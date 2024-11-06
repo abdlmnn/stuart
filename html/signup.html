@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    font-family: "Poppins", sans-serif;
+}
+body{
+    background-color: #f8f8f8;
+}
+.body-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 
+    "navbar navbar"
+    "main main"
+    "footer footer";
+    min-height: 100vh;
+}
+.navbar{
+    /* border: 2px solid rgb(0, 255, 8); */
+    grid-area: navbar;
+    padding: 1em 2em;
+    display: flex;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.navbar .left-item{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1em;
+}
+.navbar .left-item .company-name{
+    color: #000;
+    font-weight: 900;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+.navbar .left-item  .nav{
+    display: flex;
+    align-items: center;
+}
+.navbar .left-item .nav .nav-link{
+    margin-right: .5em;
+    /* font-weight: 500; */
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+.navbar .left-item .nav .nav-link:hover{
+    opacity: .5;
+}
+.navbar .right-item{
+    position: relative;
+}
+.navbar .right-item .total-item{
+    position: absolute;
+    top: -25px;
+    /* right: -1px; */
+    /* font-weight: 600; */
+    font-size: 15px;
+    z-index: 100;
+    color: #000;
+}
+.navbar .right-item .cart-icon{
+    position: absolute;
+    right: 3px;
+    top: -10px;
+}
+
+
+
+
+
+.main{
+    /* border: 2px solid rgb(255, 0, 234); */
+    grid-area: main;
+}
+.footer{
+    border: 2px solid rgb(255, 0, 0);
+    grid-area: footer;
+}
+    </style>
+     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" /> -->
+     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
+</head>
+<body>
+    <div class="body-container">
+
+        <nav class="navbar">
+
+            <div class="left-item">
+
+                <div class="company-name">
+                    Stuart
+                </div>
+                <ul class="nav">
+                    <li class="nav-link">Home</li>
+                    <li class="nav-link">About</li>
+                    <li class="nav-link">Purchase</li>
+                    <li class="nav-link">Login</li>
+                </ul>
+
+            </div>
+
+            <div class="right-item">
+                
+                <span class="total-item">0</span>
+
+                <ion-icon name="cart-outline" class="cart-icon"></ion-icon>
+                
+            </div>
+
+        </nav>
+
+        <main class="main">
+            <h1>Hi</h1>
+        </main>
+        <footer class="footer">Footer</footer>
+    </div>
+</body>
+</html>
