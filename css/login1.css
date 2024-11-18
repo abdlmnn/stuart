@@ -1,0 +1,53 @@
+@import url('font.css');
+@import url('navbar1.css');
+
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.box {
+    background-color: #111;
+    padding: 40px;
+    border-radius: 10px;
+    width: 400px;
+}
+
+.box-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #E2A500;
+}
+
+.row {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.row i {
+    color: #E2A500;
+    /* margin-left: 15px; */
+    margin-right: 15px;
+}
+
+.row .input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+.row .input::placeholder {
+    color: #000;
+}
+
+.row button {
+    cursor: pointer;
+}
