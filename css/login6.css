@@ -1,5 +1,7 @@
-@import url('font.css');
-@import url('navbar1.css');
+@import 'font.css';
+@import 'navbar3.css';
+@import 'profile1.css';
+@import 'footer1.css';
 
 .body {
     display: flex;
@@ -21,6 +23,7 @@
     font-size: 24px;
     font-weight: bold;
     color: #E2A500;
+    /* color: #fff; */
 }
 
 .row {
@@ -46,6 +49,11 @@
 
 .row .input::placeholder {
     color: #000;
+}
+
+.row .recover-pass{
+    text-decoration: underline;
+    color: #E2A500;
 }
 
 .row button {

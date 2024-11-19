@@ -2,8 +2,10 @@
     $title = 'Register';
     
     include 'config/connect.php';
-    
+
     include 'codes/authentication_code.php';
+
+    $login->UserLoggedIn();
 
     include 'includes/header.php';
     include 'includes/navbar.php';

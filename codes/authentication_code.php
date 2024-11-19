@@ -1,7 +1,37 @@
 <?php
-    // include 'config/connect.php';
-
     include_once 'controllers/RegisterController.php';
+    include_once 'controllers/LoginController.php';
+
+    $login = new LoginController;
+
+    if(isset($_POST['logout-button']))
+    {
+        $checkLoggedOut = $login->userLogout();
+
+        if($checkLoggedOut){
+            redirect('You have logout successfully','login.php');
+        }
+    }
+
+    if(isset($_POST['login-button']))
+    {
+        $email = $_POST['inputEmail'];
+        $password = $_POST['inputPassword'];
+        
+        $checkLogin = $login->userLogin($email,$password);
+
+        if($checkLogin){
+
+            if($_SESSION['user']['type'] == '1'){
+                redirect('You have login successfully','admin/dashboard.php');
+            }else{
+                redirect('You have login successfully','customer.php');
+            }
+
+        }else{
+            redirect('Invalid Email and Password Try again','login.php');
+        }
+    }
 
     if(isset($_POST['register-button']))
     {

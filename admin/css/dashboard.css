@@ -1,0 +1,63 @@
+.cards {
+    display: flex;
+    justify-content: space-evenly;
+    /* gap: 1em; */
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.cards .card {
+    background-color: #111;
+    border-radius: 10px;
+    padding: 20px;
+    width: calc(33.33% - 20px);
+    transition: transform 0.3s;
+}
+.cards .card .box {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.cards .card .box .total-number {
+    font-size: 25px;
+    font-weight: bold;
+    color: #E2A500;
+}
+.cards .card .box .text-box {
+    font-size: 20px;
+    color: #ffffff;
+}
+.cards .case {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+.cards .case .icon {
+    font-size: 30px;
+    color: #fff;
+}
+
+.stock-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px; 
+    overflow-y: auto; 
+    /* display: block;  */
+}
+.available-item, .stock-in, .stock-out {
+    margin-top: 25px;
+}
+.stock-table th, .stock-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+.stock-table th {
+    background-color: #111;
+    color: #E2A500;
+    /* color: #fff; */
+    font-weight: bold;
+}
+.stock-table tr:hover {
+    background-color: #f1f1f1; 
+}

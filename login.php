@@ -3,6 +3,10 @@
     
     include 'config/connect.php';
 
+    include 'codes/authentication_code.php';
+
+    $login->UserLoggedIn();
+
     include 'includes/header.php';
     include 'includes/navbar.php';
     
@@ -25,6 +29,9 @@
             <div class="row">
                 <i class="fas fa-lock"></i>
                 <input type="password" placeholder="Password"  class="input" name="inputPassword" required/>
+            </div>
+            <div class="row">
+                <a href="" class="recover-pass">Forget your password?</a>
             </div>
             <div class="row button">
                 <button type="submit" name="login-button" class="input">Login</button>
