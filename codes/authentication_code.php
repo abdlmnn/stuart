@@ -1,8 +1,39 @@
 <?php
     include_once 'controllers/RegisterController.php';
     include_once 'controllers/LoginController.php';
+    include_once 'controllers/ResetPasswordController.php';
 
     $login = new LoginController;
+    $register = new RegisterController;
+    $resetPassword =  new ResetPasswordController;
+
+    if(isset($_POST['reset-password-button']))
+    {
+        $email = $_POST['inputEmail'];
+        $newPassword = $_POST['inputNewPassword'];
+        $confirmPassword = $_POST['inputConfirmPassword'];
+        
+        $resultPassword = $register->confirmPassword($newPassword,$confirmPassword);
+
+        if($resultPassword){
+            $emailExists = $register->UserExists($email);
+
+            if($emailExists){
+                $successChange = $resetPassword->newPassword($email,$newPassword);
+
+                if($successChange){
+                    redirect('Your Password has been successfully changed','login.php');
+                }else{
+                    redirect('Something went wrong','reset-password.php');
+                }
+            }else{
+                redirect('Your Email does not exist','reset-password.php');
+            }
+        }else{
+            redirect('Your New Password and Confirm Password does not match',"reset-password.php");
+        }
+        
+    }
 
     if(isset($_POST['logout-button']))
     {
@@ -24,12 +55,15 @@
 
             if($_SESSION['user']['type'] == '1'){
                 redirect('You have login successfully','admin/dashboard.php');
-            }else{
+            };
+            
+
+            if($_SESSION['user']['type'] == '0'){
                 redirect('You have login successfully','customer.php');
-            }
+            };
 
         }else{
-            redirect('Invalid Email and Password Try again','login.php');
+            redirect('Your Email or Password are invalid, Please try again','login.php');
         }
     }
 
@@ -42,8 +76,6 @@
         $email = $_POST['inputEmail'];
         $password = $_POST['inputPassword'];
         $confirmPassword = $_POST['inputConfirmPassword'];
-
-        $register = new RegisterController;
 
         $resultPassword = $register->confirmPassword($password,$confirmPassword);
 
@@ -62,7 +94,7 @@
                 }
             }
         }else{
-            redirect('Password and Confirm password does not match',"register.php");
+            redirect('Your Password and Confirm Password does not match',"register.php");
         }
     }
 ?>

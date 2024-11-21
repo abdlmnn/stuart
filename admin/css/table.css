@@ -1,0 +1,129 @@
+.whole-container {
+    display: flex;
+    flex-direction: row;
+    /* padding-top: 25px; */
+    padding: 25px 25px;
+    align-items: center;
+    overflow-x: none; 
+    overflow-x: hidden;
+}
+.child-cont {
+    /* display: none; */
+    flex: 0;
+    /* margin-left: 60px; */
+}
+.form-container {
+    margin-bottom: 25px;
+    /* background-color: #111; */
+    padding: 30px;
+    border-radius: 8px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.child-cont h1 {
+    font-size: 24px; 
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    /* color: #E2A500; */
+    color: #000;
+    /* color: #fff; */
+}
+.child-cont input[type="text"], input[type="file"] {
+    padding: 10px 20px; 
+    border-radius: 5px;
+    border: none;
+    width: 100%; 
+    background-color: #ddd;
+}
+.child-cont input[type="number"] {
+    padding: 10px 20px; 
+    border-radius: 5px;
+    /* margin: 5px; */
+    border: none;
+    width: 100%; 
+    background-color: #ddd;
+} 
+.child-cont select{
+    padding: 10px 20px; 
+    border-radius: 5px;
+    /* margin: 5px; */
+    border: none;
+    width: 100%; 
+    background-color: #ddd;
+}
+.child-cont button {
+    padding: 10px 20px;
+    margin-top: 25px;
+    font-size: 20px; 
+    /* background-color: #E2A500; */
+    background-color: #111;
+    /* color: #000000; */
+    color: #fff;
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer; 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.child-cont button:hover {
+    color: #E2A500;
+}
+
+.table-container .add-button {
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+}
+.table-container .add-button .circle-icon {
+    font-size: 40px;
+    color: #000;
+}
+.table-container .add-button .circle-icon:hover {
+    color: #E2A500;
+}
+.table-container {
+    flex: 2;
+}
+.scroll-table {
+    height: 480px;
+    overflow-y: auto; 
+}
+.child-table {
+    border-collapse: collapse;
+    width: 100%;
+    /* display: block; */
+}
+.child-table th {
+    position: sticky; 
+    top: 0;
+}
+.child-table th, .child-table td {
+    border-bottom: 1px solid #ddd;
+    /* padding: 20px; */
+    padding: 10px;
+    text-align: center;
+}
+.child-table th {
+    background-color: #111;
+    color: #E2A500;
+    /* color: #fff; */
+}
+.child-table tr:hover {
+    background-color: #f1f1f1; 
+}
+.child-table a {
+    text-decoration: none;
+    color: #000;
+}
+.child-table a i {
+    font-size: 20px;
+}
+.child-table a i:hover {
+    color: #E2A500;
+}

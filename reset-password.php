@@ -17,7 +17,7 @@
     <div class="box">
 
         <div class="box-title">
-            <span class="title">Login</span>
+            <span class="title">Reset Password</span>
         </div>
 
         <form action="" method="post">
@@ -26,15 +26,22 @@
                 <i class="fas fa-envelope"></i>
                 <input type="email" placeholder="Email" class="input" name="inputEmail" required>
             </div>
+
             <div class="row">
                 <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Password"  class="input" name="inputPassword" required/>
+                <input type="password" placeholder="New Password" class="input" name="inputNewPassword" required>
             </div>
             <div class="row">
-                <a href="<?= base_url('reset-password.php') ?>" class="recover-pass">Forgot Password?</a>
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Confirm Password" class="input" name="inputConfirmPassword" required>
             </div>
+
+            <div class="row">
+                <a href="login.php" class="recover-pass">Back to login?</a>
+            </div>
+
             <div class="row button">
-                <button type="submit" name="login-button" class="input">Login</button>
+                <button type="submit" name="reset-password-button" class="input">Reset</button>
             </div>
 
         </form>

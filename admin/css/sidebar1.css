@@ -1,5 +1,6 @@
 @import 'font.css';
 @import 'dashboard.css';
+@import 'table.css';
 
 #sidebar {
     height: 100vh;

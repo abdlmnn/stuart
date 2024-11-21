@@ -35,6 +35,7 @@
             $_SESSION['user'] = [
                 'id' => $data['userID'],
                 'fullname' => $data['userFullname'],
+                'email' => $data['userEmail'],
                 'type' => $data['userType']
             ];
         }
