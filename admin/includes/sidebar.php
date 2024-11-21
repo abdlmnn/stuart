@@ -1,10 +1,15 @@
 <?php
     $title = 'Sidenav';
+
+    include_once 'codes/authentication_code.php';
     
     $page = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'], '/')+1);
 ?>
 <div class="main-content">
     <aside id="sidebar">
+        <?php
+            if(isset($_SESSION['authenticated'])) :
+        ?>
         <ul>
             <li>
                 <span class="logo">Stuart Boutique</span>
@@ -24,8 +29,8 @@
                     <span>Purchase</span>
                 </a>
             </li>
-            <li class="<?= $page == 'category.php' ? 'active':'' ?>">
-                <a href="category.php">
+            <li class="<?= $page == 'add-categories.php' ? 'active':'' ?>">
+                <a href="add-categories.php">
                     <ion-icon name="shirt-outline" class="icons"></ion-icon>
                     <span>Categories</span>
                 </a>
@@ -60,7 +65,7 @@
                 </a>
             </li>
             <li>
-                <!-- <a href="logout.php">
+                <!-- <a href="codes/authentication.php">
                     <ion-icon name="log-out-outline" class="icons"></ion-icon>
                     <span>Logout</span>
                 </a> -->
@@ -72,4 +77,7 @@
                 </form>
             </li>
         </ul>
+        <?php
+            endif;
+        ?>
     </aside>
