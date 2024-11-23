@@ -1,69 +1,95 @@
 <?php
     class AuthenticateController
     {
+        private $conn;
+        
         public function __construct()
-        {
+        {   
+                // calling my DatabaseConnection
             $db = new DatabaseConnection;
+
+            // this variable conn is assign as the db of my conn
             $this->conn = $db->conn;
 
+            // i called from my function checkIsLoggedIn
             $this->checkIsLoggedIn();
         }
 
+        // adminOnly can access the admin pages
         public function adminOnly()
         {
-            $id = $_SESSION['user']['id'];
+            if(isset($_SESSION['user']['id']))
+            {
+                $id = $_SESSION['user']['id'];
 
-            $checkAdminQuery = "
-                SELECT * 
-                FROM users
-                WHERE userID='$id'
-                AND userType='1'
-                LIMIT 1
-            ";
-            $result = $this->conn->query($checkAdminQuery);
+                $checkAdminQuery = "
+                    SELECT * 
+                    FROM users
+                    WHERE userID='$id'
+                    AND userType='1'
+                    LIMIT 1
+                ";
+                $result = $this->conn->query($checkAdminQuery);
 
-            if($result->num_rows == '1'){
-                return true;
-            }else{
-                redirect('You are not authorized as admin','customer.php');
+                // if the usertype is admin which is true
+                if($result->num_rows == 1){
+                    return true;
+                }else{
+
+                    // if the usertype is customer, it direct customer page when attempting to access admin page
+                    redirect('You are not authorized as admin','customer.php');
+                }
             }
         }
 
+        // CustomerOnly can access the customer pages
         public function customerOnly()
         {
-            $id = $_SESSION['user']['id'];
+            if(isset($_SESSION['user']['id']))
+            {
+                $id = $_SESSION['user']['id'];
 
-            $checkCustomerQuery = "
-                SELECT * 
-                FROM users
-                WHERE userID='$id'
-                AND userType='0'
-                LIMIT 1
-            ";
-            $result = $this->conn->query($checkCustomerQuery);
+                $checkCustomerQuery = "
+                    SELECT * 
+                    FROM users
+                    WHERE userID='$id'
+                    AND userType='0'
+                    LIMIT 1
+                ";
+                $result = $this->conn->query($checkCustomerQuery);
 
-            if($result->num_rows == '0'){
-                return true;
-            }else{
-                return false;
+                // if the usertype is customer which is true
+                if($result->num_rows == 1){
+                    return true;
+                }else{
+
+                    // if the usertype is admin , it direct customer page when attempting to access customer page
+                    redirect('You are not authorized as customer','admin/dashboard.php');
+                }
             }
         }
 
+        // CheckIsLoggedIn if not it required to login
         private function checkIsLoggedIn()
         {
+            // if the session authenticated is set false
             if(!isset($_SESSION['authenticated'])){
-                redirect('Login or Register to access the page','login.php');
 
+                // it direct to login page
+                redirect('Please Login to access this page','login.php');
                 return false;
             }else{
                 return true;
             }
         }
 
+        // Get userDetails Data
         public function userDetails()
         {
+                       // i called from my function checkIsLoggedIn
             $checkUser = $this->checkIsLoggedIn();
 
+            // if the checkUser is true 
             if($checkUser){
                 $userID = $_SESSION['user']['id'];
 
@@ -78,9 +104,10 @@
                 if($result->num_rows > 0){
                     $data = $result->fetch_assoc();
                     
+                    // fetching all values on users table Rows
                     return $data;
                 }else{
-                    die("Error: " . $this->conn->error);
+                    return false;
                 }
             }
         }

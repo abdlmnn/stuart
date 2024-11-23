@@ -5,7 +5,6 @@
     define('USERNAME','root');
     define('PASSWORD','');
     define('DATABASE','stuart');
-
     define('SITE_URL','http://localhost/stuart/');
     
     include_once 'DatabaseConnection.php';

@@ -1,12 +1,18 @@
 <?php
     class ResetPasswordController
     {
+        private $conn;
+
         public function __construct()
-        {
+        {   
+                // calling my DatabaseConnection
             $db = new DatabaseConnection;
+
+            // this variable conn is assign as the db of my conn
             $this->conn = $db->conn;
         }
 
+        // Setting newPassword to my userPassword table rows
         public function newPassword($email,$newPassword)
         {
             $updatePasswordQuery = "

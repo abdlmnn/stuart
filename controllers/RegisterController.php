@@ -1,14 +1,18 @@
 <?php
-    // include 'config/connect.php';
-
     class RegisterController
-    {
+    {   
+        private $conn;
+
         public function __construct()
-        {
+        {   
+                // calling my DatabaseConnection
             $db = new DatabaseConnection;
+
+            // this variable conn is assign as the db of my conn
             $this->conn = $db->conn;
         }
 
+        // Registration inserting input values which is users table
         public function registration($fname,$number,$address,$gender,$email,$password)
         {
             $registerQuery = "
@@ -20,6 +24,7 @@
             return $result;
         }
 
+        // It check the user or email exists on users table 
         public function UserExists($email)
         {
             $checkUserQuery = "
@@ -37,6 +42,7 @@
             }
         }
 
+        // Comparing the input password to the input confirm password
         public function confirmPassword($password,$confirmPassword)
         {
             if($password == $confirmPassword){

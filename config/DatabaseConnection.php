@@ -7,11 +7,12 @@
 
             if($conn->connect_error)
             {
-                die ("Connection Failed: ");
+                die ("Connection Failed: " . $conn->connect_error);
             }
 
             // echo 'Connection Database is successful';
 
+            // this variable conn is assign as the db of my conn
             return $this->conn = $conn;
         }
     }

@@ -7,8 +7,8 @@
 
     include_once 'controllers/AuthenticateController.php';
     $authenticated = new AuthenticateController;
-    
-    $userRows = $authenticated->userDetails();
+
+    $authenticated->customerOnly(); 
 
     include 'includes/header.php';
     include 'includes/navbar.php';
@@ -20,6 +20,9 @@
     </div>
 
     <div class="profile-details">
+        
+        <?php $userRows = $authenticated->userDetails(); ?>
+
         <p><strong>Full Name:</strong> <?= $userRows['userFullname'] ?></p>
         <p><strong>Email:</strong> <?= $userRows['userEmail'] ?></p>
         <p><strong>Phone Number:</strong> <?= $userRows['userNumber'] ?></p>
