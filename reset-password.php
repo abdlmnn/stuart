@@ -24,7 +24,7 @@
 
             <div class="row">
                 <i class="fas fa-envelope"></i>
-                <input type="email" placeholder="Email" class="input" name="inputEmail" required>
+                <input type="email" placeholder="Email" class="input" name="inputEmail" required autofocus>
             </div>
 
             <div class="row">

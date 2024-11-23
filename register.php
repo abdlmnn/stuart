@@ -24,7 +24,7 @@
 
             <div class="row">
                 <i class="fas fa-user"></i>
-                <input type="text" placeholder="Full Name" class="input" name="inputFullname" required>
+                <input type="text" placeholder="Full Name" class="input" name="inputFullname" required autofocus> 
             </div>
             <div class="row">
                 <i class="fas fa-phone"></i>

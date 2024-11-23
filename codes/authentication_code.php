@@ -3,8 +3,8 @@
     include_once 'controllers/LoginController.php';
     include_once 'controllers/ResetPasswordController.php';
 
-    $login = new LoginController;
     $register = new RegisterController;
+    $login = new LoginController;
     $resetPassword =  new ResetPasswordController;
 
     if(isset($_POST['reset-password-button']))
@@ -27,7 +27,7 @@
                     redirect('Something went wrong','reset-password.php');
                 }
             }else{
-                redirect('Your Email does not exist','reset-password.php');
+                redirect('Your Email does not exist, Please try again and register the email','reset-password.php');
             }
         }else{
             redirect('Your New Password and Confirm Password does not match',"reset-password.php");
