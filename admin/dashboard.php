@@ -16,6 +16,7 @@
 <main>
     <h1>Dashboard</h1>
     <hr>
+    
     <div class="whole-dashboard-container">
         <div class="content-cont">
 

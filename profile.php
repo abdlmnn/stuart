@@ -3,7 +3,7 @@
     
     include 'config/connect.php';
 
-    include 'codes/authentication_code.php';
+    include 'codes/authentication-code.php';
 
     include_once 'controllers/AuthenticateController.php';
     $authenticated = new AuthenticateController;

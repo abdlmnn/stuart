@@ -1,15 +1,13 @@
 <?php
     $title = 'Sidenav';
 
-    include_once 'codes/authentication_code.php';
+    include_once 'codes/authentication-code.php';
     
     $page = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'], '/')+1);
 ?>
 <div class="main-content">
     <aside id="sidebar">
-        <?php
-            if(isset($_SESSION['authenticated'])) :
-        ?>
+        <?php if(isset($_SESSION['authenticated'])) : ?>
         <ul>
             <li>
                 <span class="logo">Stuart Boutique</span>

@@ -21,4 +21,9 @@
         header("location: " . SITE_URL.$page);
         exit(0);
     }
+
+    function showMessage($message)
+    {
+        $_SESSION['message'] = $message;
+    }
 ?>

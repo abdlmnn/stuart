@@ -26,7 +26,7 @@
             if($result->num_rows > 0){
                 $userData = $result->fetch_assoc();
 
-                // I compared the inputPassword to userPassword which is for my user Table
+                // i compared the inputPassword to userPassword which is for my user Table
                 if($password == $userData['userPassword']){ 
 
                     // if the inputPassword is same as userPassword table it will run or execute the function userAuthentication
@@ -41,7 +41,7 @@
 
             }else{
 
-                // This will return false through my if statement $checkLogin 
+                // this will return false through my if statement $checkLogin 
                 return false;
             }
         }
