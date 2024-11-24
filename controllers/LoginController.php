@@ -12,7 +12,7 @@
             $this->conn = $db->conn;
         }
 
-        // It check the email and password in order the user can login
+        // It check the email and password in order the customer or admin can login
         public function userLogin($email,$password)
         {
             $checkLoginQuery = "
@@ -46,7 +46,7 @@
             }
         }
 
-        // Saving the user info in the session array and indicating the user authenticated 
+        // Saving the user info in the session array and indicating the user authenticated
         private function userAuthentication($data)
         {
             // to check if the user is logged in which is true
@@ -64,6 +64,7 @@
         // The user is already logged in and trying to search the file path of going back
         public function UserLoggedIn()
         {
+            // if session authenticated is set as true
             if(isset($_SESSION['authenticated']) === true){
 
                 // getting the user type from my session which is on my function userAuthentication
@@ -73,11 +74,11 @@
                 if($usertype == '0'){
 
                     // it direct to customer page
-                    redirect('You are already Logged In as a customer','customer.php');
+                    redirect('You are already logged in as a customer','customer.php');
                 }else if($usertype == '1'){
 
                     // if the usertype is 1, it direct to admin page 
-                    redirect('You are already Logged In as a admin','admin/dashboard.php');
+                    redirect('You are already logged in as a admin','admin/dashboard.php');
                 }
 
             }else{

@@ -32,23 +32,23 @@
                 // if the changeSuccess is true
                 if($successChange){
 
-                    // Direct to login page
+                    // it direct to login page
                     redirect('Your Password has been successfully changed','login.php');
                 }else{
 
-                    // Just incase something went wrong, it will direct to reset-password page
+                    // just incase something went wrong, it will direct to reset-password page
                     redirect('Something went wrong','reset-password.php');
                 }
 
             }else{
 
                 // if the email does not exist, it will direct to reset-password page
-                redirect('Your Email does not exist, Please try again and register the email','reset-password.php');
+                redirect('Your Email does not exist, Please Try again or Register the Email','register.php');
             }
 
         }else{
 
-            // if the resultPassword is false because it does not match, it direct to reset-password page
+            // if the resultPassword is false because it does not match, it will direct to reset-password page
             redirect('Your New Password and Confirm Password does not match',"reset-password.php");
         }
     }
@@ -74,8 +74,7 @@
 
         // it check if my checkLogin is true or the email and password exists on my table
         if($checkLogin){
-            //  This statement for userType it compared 0 or 1 
-
+            
             // This is for admin redirect to admin page
             if($_SESSION['user']['type'] == '1'){
                 redirect('You have login successfully','admin/dashboard.php');

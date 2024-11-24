@@ -15,7 +15,7 @@
             $this->checkIsLoggedIn();
         }
 
-        // adminOnly can access the admin pages
+        // adminOnly can access the admin pages, when customer attempting to access the admin pages
         public function adminOnly()
         {
             if(isset($_SESSION['user']['id']))
@@ -42,7 +42,7 @@
             }
         }
 
-        // CustomerOnly can access the customer pages
+        // customerOnly can access the customer pages, when admin attempting to access the customer pages
         public function customerOnly()
         {
             if(isset($_SESSION['user']['id']))
@@ -64,12 +64,12 @@
                 }else{
 
                     // if the usertype is admin , it direct customer page when attempting to access customer page
-                    redirect('You are not authorized as customer','admin/dashboard.php');
+                    redirect('You are not register as a customer','admin/dashboard.php');
                 }
             }
         }
 
-        // CheckIsLoggedIn if not it required to login
+        // CheckIsLoggedIn if not, it required to login
         private function checkIsLoggedIn()
         {
             // if the session authenticated is set false
@@ -83,7 +83,7 @@
             }
         }
 
-        // Get userDetails Data
+        // Get userDetails Data from users Table
         public function userDetails()
         {
                        // i called from my function checkIsLoggedIn
