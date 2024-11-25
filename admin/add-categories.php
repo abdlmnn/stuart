@@ -21,7 +21,7 @@
     <hr>
 
     <div class="whole-container">
-        <div class="child-cont" id="categoryForm">
+        <div class="child-cont" id="form">
             <div class="form-container">
 
                 <h1>ADD Category</h1>

@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="css/sidebar1.css">
+    <link rel="stylesheet" href="css/sidebar2.css">
 
-    <!-- Font awesome -->
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-
-    <!-- Javascript -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 
+    <!-- Javascript -->
     <script src="js/sidebar.js" defer></script>
+    <script src="js/form.js" defer></script>
     
-    <title><?php echo $title; ?></title>
+    <title><?= $title ?></title>
 </head>
 <body>
