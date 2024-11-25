@@ -3,8 +3,8 @@
 
     include '../config/connect.php';
 
-    include_once 'controllers/CategoriesController.php';
     include_once '../controllers/AuthenticateController.php';
+    include_once 'controllers/CategoriesController.php';
 
     $authenticated = new AuthenticateController;
     $categories = new CategoriesController;
@@ -51,10 +51,18 @@
                         <form action="codes/categories-code.php" method="post">
 
                             <input type="hidden" name="inputID" value="<?= $data['id'] ?>">
+                            
                             <input type="text" name="inputName" value="<?= $data['name'] ?>" placeholder="Name" required autofocus>
-                            <br>
-                            <br>
-                            <input type="text" name="inputDescription" value="<?= $data['description'] ?>" placeholder="Description" required>
+                            <br><br>
+
+                            <select name="inputGender">
+                                
+                                <option selected>Select Gender</option>
+                                <option value="Men">Men</option>
+                                <option value="Women">Women</option>
+                                <option value="Unisex">Unisex</option>
+
+                            </select>
 
                             <button type="submit" name="update-button">
                                 <i class="fa-solid fa-pen-to-square"></i>
@@ -120,7 +128,7 @@
                                 <?= $data['name'] ?>
                             </td>
                             <td>
-                                <?= $data['description'] ?>
+                                <?= $data['gender'] ?>
                             </td>
                             <td>
                                 <a href="edit-categories.php?updateID=<?= $data['id'] ?>">
@@ -130,9 +138,11 @@
                                     <i class="fa-solid fa-trash"></i>
                                 </a> -->
                                 <form action="codes/categories-code.php" method="post">
+
                                     <button type="submit" name="delete-button" value="<?= $data['id'] ?>" class="delete-icon">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
+
                                 </form>
                             </td>
                         </tr>
@@ -146,3 +156,4 @@
         </div>
     </div>
 </main>
+<?php include 'includes/footer.php'; ?>

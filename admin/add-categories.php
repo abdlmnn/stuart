@@ -3,8 +3,8 @@
 
     include '../config/connect.php';
 
-    include_once 'controllers/CategoriesController.php';
     include_once '../controllers/AuthenticateController.php';
+    include_once 'controllers/CategoriesController.php';
 
     $authenticated = new AuthenticateController;
     $categories = new CategoriesController;
@@ -29,9 +29,16 @@
                 <form action="codes/categories-code.php" method="post">
 
                     <input type="text" name="inputName" placeholder="Name" required autofocus>
-                    <br>
-                    <br>
-                    <input type="text" name="inputDescription" placeholder="Description" required>
+                    <br><br>
+
+                    <select name="inputGender">
+
+                        <option selected>Select Gender</option>
+                        <option value="Men">Men</option>
+                        <option value="Women">Women</option>
+                        <option value="Unisex">Unisex</option>
+                        
+                    </select>
 
                     <button type="submit" name="add-button">
                         <ion-icon name="add-outline" class="add-icon"></ion-icon>
@@ -56,7 +63,7 @@
                         <tr>
                             <th>Id</th>
                             <th>Name</th>
-                            <th>Description</th>
+                            <th>Gender</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -68,14 +75,16 @@
                             
                             // if the result of get function return false or true
                             if(!$resultGet){
+
+                                // if the resultGet of get function is false, it show message
                                 showMessage('No Record Found');
                             }else{
 
                                 // if the resultGet of get function return the result
                                 foreach($resultGet as $categoriesRows) :
 
-                                    // rows came from my Class CategoriesController
-                                $data = $categories->rows($categoriesRows);
+                                          // rows came from my Class CategoriesController
+                                    $data = $categories->rows($categoriesRows);
                         ?>
                         <tr>
                             <td>
@@ -85,7 +94,7 @@
                                 <?= $data['name'] ?>
                             </td>
                             <td>
-                                <?= $data['description'] ?>
+                                <?= $data['gender'] ?>
                             </td>
                             <td>
                                 <a href="edit-categories.php?updateID=<?= $data['id'] ?>">
@@ -95,9 +104,11 @@
                                     <i class="fa-solid fa-trash"></i>
                                 </a> -->
                                 <form action="codes/categories-code.php" method="post">
+
                                     <button type="submit" name="delete-button" value="<?= $data['id'] ?>">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
+
                                 </form>
                             </td>
                         </tr>
@@ -111,3 +122,4 @@
         </div>
     </div>
 </main>
+<?php include 'includes/footer.php'; ?>

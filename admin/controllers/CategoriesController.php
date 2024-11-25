@@ -19,11 +19,12 @@
             return $data = [
                 'id' => $row['categoryID'],
                 'name' => $row['categoryName'],
-                'description' => $row['categoryDescription'],
+                // 'description' => $row['categoryDescription']
+                'gender'=> $row['categoryGender']
             ];
         }
 
-        // Getting all the categories values
+        // Getting all the categories values and display on table
         public function get() 
         {
             $getDataQuery = "
@@ -51,7 +52,7 @@
 
             $addDataQuery = "
                 INSERT INTO
-                categories (categoryName,categoryDescription)
+                categories (categoryName,categoryGender)
                 VALUES ($allData)
             ";
             $result = $this->conn->query($addDataQuery);
@@ -91,16 +92,17 @@
         }
         
         // Update the values of categories rows 
-        public function update($inputData)
+        public function update($data)
         {
-            $id = $inputData['id'];
-            $name = $inputData['name'];
-            $description = $inputData['description'];
+            $id = $data['id'];
+            $name = $data['name'];
+            // $description = $inputData['description'];
+            $gender = $data['gender'];
 
             $updateDataQuery = "
                 UPDATE categories
                 SET categoryName='$name', 
-                    categoryDescription='$description'
+                    categoryGender='$gender'
                 WHERE categoryID='$id'
                 LIMIT 1
             ";

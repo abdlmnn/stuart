@@ -33,9 +33,10 @@
         $categoryData = [
             'id'=> $_POST['inputID'],
             'name'=> $_POST['inputName'],
-            'description'=> $_POST['inputDescription']
+            'gender'=> $_POST['inputGender']
         ];
 
+                      // update came from my Class CategoriesController
         $resultUpdate = $categories->update($categoryData);
 
         // if the resultUpdate of update function return true
@@ -57,9 +58,10 @@
         // storing input category data in a array
         $categoryData = [
             'name'=> $_POST['inputName'],
-            'description'=> $_POST['inputDescription']
+            'gender'=> $_POST['inputGender']
         ];
 
+                   // add came from my Class CategoriesController
         $resultAdd = $categories->add($categoryData); 
 
         // if the result of my add function return true or false

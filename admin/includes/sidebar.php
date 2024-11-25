@@ -33,8 +33,8 @@
                     <span>Categories</span>
                 </a>
             </li>
-            <li class="<?= $page == 'inventory.php' ? 'active':'' ?>">
-                <a href="inventory.php">
+            <li class="<?= $page == 'add-inventory.php' ? 'active':'' ?>">
+                <a href="add-inventory.php">
                     <ion-icon name="cube-outline" class="icons"></ion-icon>
                     <span>Inventory</span>
                 </a>
