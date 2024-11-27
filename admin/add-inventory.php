@@ -4,8 +4,11 @@
     include '../config/connect.php';
 
     include_once '../controllers/AuthenticateController.php';
-    // include_once 'controllers/InventoryController.php';
+    include_once 'controllers/CategoriesController.php';
+    include_once 'controllers/InventoryController.php';
 
+    $categories = new CategoriesController;
+    $inventory = new InventoryController;
     $authenticated = new AuthenticateController;
 
     $authenticated->adminOnly();
@@ -25,16 +28,33 @@
 
                 <h1>ADD Item</h1>
 
-                <form action="codes/inventory-code.php" method="post">
+                <form action="codes/inventory-code.php" method="post" enctype="multipart/form-data">
 
                     <select name="inputCategory">
                         <option selected>Select Categories</option>
                         <?php
+                                         // get came from my Class CategoriesController 
+                            $resultGet = $categories->get();
 
+                            // if resultGet return false or true
+                            if(!$resultGet){
+                                
+                                // it return false, it show message
+                                showMessage('No Categories Found');
+                            }else{
+
+                                 // if the resultGet of get function return the result
+                                 foreach($resultGet as $categoriesRow) :
+
+                                                  // rows came from my Class CategoriesController
+                                    $categoryData = $categories->rows($categoriesRow);
                         ?>
-                            <option value=""></option>
+                            <option value="<?= $categoryData['id'] ?>">
+                                <?= $categoryData['name'] ?>
+                            </option>
                         <?php
-
+                                endforeach;
+                            }
                         ?>
                     </select>
                     <br><br>
@@ -107,36 +127,49 @@
                             <th>Size</th>
                             <th>Stock</th>
                             <th>Price</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
     
                     <tbody>
                         <?php
-                                       // get came from my Class CategoriesController  
-                            $resultGet = $categories->get();
+                                       // get came from my Class InventoryController  
+                            $resultGet = $inventory->get();
                             
                             // if the result of get function return false or true
                             if(!$resultGet){
 
                                 // if the resultGet of get function is false, it show message
-                                showMessage('No Record Found');
+                                showMessage('No Inventory Record Found');
                             }else{
 
                                 // if the resultGet of get function return the result
-                                foreach($resultGet as $categoriesRows) :
+                                foreach($resultGet as $inventoryRows) :
 
-                                          // rows came from my Class CategoriesController
-                                    $data = $categories->rows($categoriesRows);
+                                          // rows came from my Class InventoryController
+                                    $data = $inventory->rows($inventoryRows);
                         ?>
                         <tr>
                             <td>
                                 <?= $data['id'] ?>
                             </td>
                             <td>
+                                <?= $data['categoryName'] ?>
+                            </td>
+                            <td>
+                                <img src="../images/<?= $data['image'] ?>" width="50" title="<?= $data['image'] ?>">
+                            </td>
+                            <td>
                                 <?= $data['name'] ?>
                             </td>
                             <td>
-                                <?= $data['gender'] ?>
+                                <?= $data['size'] ?>
+                            </td>
+                            <td>
+                                <?= $data['stock'] ?>
+                            </td>
+                            <td>
+                                <?= $data['price'] ?> 
                             </td>
                             <td>
                                 <a href="edit-categories.php?updateID=<?= $data['id'] ?>">

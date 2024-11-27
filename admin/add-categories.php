@@ -61,7 +61,7 @@
                 <table class="child-table">
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            <th>ID</th>
                             <th>Name</th>
                             <th>Gender</th>
                             <th>Actions</th>
@@ -77,7 +77,7 @@
                             if(!$resultGet){
 
                                 // if the resultGet of get function is false, it show message
-                                showMessage('No Record Found');
+                                showMessage('No Categories Record Found');
                             }else{
 
                                 // if the resultGet of get function return the result
