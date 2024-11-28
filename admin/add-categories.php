@@ -79,7 +79,7 @@
                                 // if the resultGet of get function is false, it show message
                                 showMessage('No Categories Record Found');
                             }else{
-
+                                // HI
                                 // if the resultGet of get function return the result
                                 foreach($resultGet as $categoriesRows) :
 
