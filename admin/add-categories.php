@@ -31,7 +31,7 @@
                     <input type="text" name="inputName" placeholder="Name" required autofocus>
                     <br><br>
 
-                    <select name="inputGender">
+                    <select name="inputGender" required>
 
                         <option selected>Select Gender</option>
                         <option value="Men">Men</option>
@@ -50,21 +50,23 @@
 
         <div class="table-container">
 
-            <button type="submit" class="add-button" onclick="showForm()">
-                <ion-icon name="add-circle-outline" class="circle-icon"></ion-icon>
-            </button>
             <button type="submit" class="add-button" onclick="closeForm()">
-                <ion-icon name="close-circle-outline" class="circle-icon"></ion-icon>
+                <!-- <ion-icon name="close-circle-outline" class="circle-icon"></ion-icon> -->
+                <ion-icon name="arrow-back-circle-outline" class="circle-icon"></ion-icon>
+            </button>
+            <button type="submit" class="add-button" onclick="showForm()">
+                <!-- <ion-icon name="add-circle-outline" class="circle-icon"></ion-icon> -->
+                <ion-icon name="arrow-forward-circle-outline" class="circle-icon"></ion-icon>
             </button>
 
             <div class="scroll-table">
                 <table class="child-table">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <!-- <th>ID</th> -->
                             <th>Name</th>
                             <th>Gender</th>
-                            <th>Actions</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
     
@@ -79,7 +81,7 @@
                                 // if the resultGet of get function is false, it show message
                                 showMessage('No Categories Record Found');
                             }else{
-                                // HI
+
                                 // if the resultGet of get function return the result
                                 foreach($resultGet as $categoriesRows) :
 
@@ -87,9 +89,9 @@
                                     $data = $categories->rows($categoriesRows);
                         ?>
                         <tr>
-                            <td>
+                            <!-- <td>
                                 <?= $data['id'] ?>
-                            </td>
+                            </td> -->
                             <td>
                                 <?= $data['name'] ?>
                             </td>
@@ -97,19 +99,19 @@
                                 <?= $data['gender'] ?>
                             </td>
                             <td>
-                                <a href="edit-categories.php?updateID=<?= $data['id'] ?>">
-                                    <i class="fa-solid fa-pen-to-square"></i>              
-                                </a>
-                                <!-- <a href="categoryProcess.php?deleteID=<?= $data['id'] ?>">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a> -->
-                                <form action="codes/categories-code.php" method="post">
+                                <div class="a-cont">
+                                    <a href="edit-categories.php?updateID=<?= $data['id'] ?>">
+                                        <i class="fa-solid fa-pen-to-square"></i>              
+                                    </a>
 
-                                    <button type="submit" name="delete-button" value="<?= $data['id'] ?>">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
+                                    <form action="codes/categories-code.php" method="post" class="form">
 
-                                </form>
+                                        <button type="submit" name="delete-button" value="<?= $data['id'] ?>" class="delete-button">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         <?php 

@@ -1,4 +1,3 @@
-    
 <div class="header">
 
     <div class="left-item">
@@ -17,8 +16,9 @@
             
             <div class="dropdown">
                 <button class="dropbtn"><ion-icon name="person-outline" class="user-icon"></ion-icon></button>
+                
                 <div class="dropdown-content">
-                    <a href="<?= base_url('profile.php') ?>" class="a-drop">Profile</a>
+                    <a href="<?= base_url('view-profile.php') ?>" class="a-drop">Profile</a>
                     <form action="" method="post">
                         <button type="submit" name="logout-button" class="logout-btn">Logout</button>
                     </form>
@@ -37,12 +37,11 @@
         <?php
             else :
         ?>
-            <a href="<?= base_url('register.php') ?>" class="a-link">Register</a>
-            <a href="<?= base_url('login.php') ?>" class="a-link">Login</a>
+            <a href="<?= base_url('add-register.php') ?>" class="a-link">Register</a>
+            <a href="<?= base_url('view-login.php') ?>" class="a-link">Login</a>
         <?php
             endif;
         ?>
     </div>
 
 </div>
-

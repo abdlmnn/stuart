@@ -10,7 +10,7 @@
         $login->userLogout();
 
         // userLogout is true, it direct to login page
-        redirect('You have logout successfully','login.php');
+        redirect('You have logout successfully','view-login.php');
     }
     // LOGOUT
 ?>

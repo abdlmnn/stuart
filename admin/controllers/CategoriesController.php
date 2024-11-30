@@ -19,7 +19,6 @@
             return $data = [
                 'id' => $row['categoryID'],
                 'name' => $row['categoryName'],
-                // 'description' => $row['categoryDescription']
                 'gender'=> $row['categoryGender']
             ];
         }
@@ -30,6 +29,7 @@
             $getDataQuery = "
                 SELECT *
                 FROM categories
+                ORDER BY categoryGender 
             ";
             $result = $this->conn->query($getDataQuery);
 
@@ -39,6 +39,50 @@
                 return $result;
             }else{
 
+                // it return false of the result to the function
+                return false;
+            }
+        }
+
+        // Getting all the values of categories with exact id to display there values
+        public function exact($updateID)
+        {
+            $checkDataQuery = "
+                SELECT *
+                FROM categories
+                WHERE categoryID='$updateID'
+                LIMIT 1
+            ";
+            $result = $this->conn->query($checkDataQuery);  
+            
+            if($result->num_rows == 1){
+
+                // it return the result to the function
+                return $result;
+            }else{
+
+                // it return false of the result to the function
+                return false;
+            }
+        }
+        
+        // Get only the exact ID of categories values when editing
+        public function getExact($id)
+        {
+            $getDataQuery = "
+                SELECT *
+                FROM categories
+                WHERE categoryID='$id'
+                LIMIT 1
+            ";
+            $result = $this->conn->query($getDataQuery);
+
+            if($result->num_rows == 1){
+
+                // it return the result to the function
+                return $result;
+            }else{
+                
                 // it return false of the result to the function
                 return false;
             }
@@ -69,34 +113,11 @@
             }
         }
 
-        // Getting all the values of categories with exact id
-        public function exact($updateID)
-        {
-            $checkDataQuery = "
-                SELECT *
-                FROM categories
-                WHERE categoryID='$updateID'
-                LIMIT 1
-            ";
-            $result = $this->conn->query($checkDataQuery);  
-            
-            if($result->num_rows == 1){
-
-                // it return the result to the function
-                return $result;
-            }else{
-
-                // it return false of the result to the function
-                return false;
-            }
-        }
-        
         // Update the values of categories rows 
         public function update($data)
         {
-            $id = $data['id'];
-            $name = $data['name'];
-            // $description = $inputData['description'];
+            $id     = $data['id'];
+            $name   = $data['name'];
             $gender = $data['gender'];
 
             $updateDataQuery = "

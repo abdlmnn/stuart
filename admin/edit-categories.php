@@ -77,45 +77,50 @@
                             // if the resultEdit is false, it show the message
                             showMessage('No Record Found');
                         }
-                    }
+                    // }
                 ?>
             </div>
         </div>
 
         <div class="table-container">
 
-            <button type="submit" class="add-button" onclick="showForm()">
-                <ion-icon name="add-circle-outline" class="circle-icon"></ion-icon>
-            </button>
             <button type="submit" class="add-button" onclick="closeForm()">
-                <ion-icon name="close-circle-outline" class="circle-icon"></ion-icon>
+                <!-- <ion-icon name="close-circle-outline" class="circle-icon"></ion-icon> -->
+                <ion-icon name="arrow-back-circle-outline" class="circle-icon"></ion-icon>
+            </button>
+            <button type="submit" class="add-button" onclick="showForm()">
+                <!-- <ion-icon name="add-circle-outline" class="circle-icon"></ion-icon> -->
+                <ion-icon name="arrow-forward-circle-outline" class="circle-icon"></ion-icon>
+            </button>
+            <button type="submit" class="add-button" onclick="addCategoriesForm()">
+                <ion-icon name="add-circle-outline" class="circle-icon"></ion-icon>
             </button>
 
             <div class="scroll-table">
                 <table class="child-table">
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            <th>ID</th>
                             <th>Name</th>
-                            <th>Description</th>
-                            <th>Actions</th>
+                            <th>Gender</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
     
                     <tbody>
                         <?php
-                                       // get came from my Class CategoriesController  
-                            $resultGet = $categories->get();
+                                       // getExact came from my Class CategoriesController  
+                            $resultGetExact = $categories->getExact($updateID);
                             
                             // if the result of get function return false
-                            if(!$resultGet){
+                            if(!$resultGetExact){
                                 
                                 // it show the message
                                 showMessage('No Record Found');
                             }else{
 
                                 // if the resultGet of get function return the result
-                                foreach($resultGet as $categoriesRows) :
+                                foreach($resultGetExact as $categoriesRows) :
                                 
                                     // rows came from my Class CategoriesController
                                 $data = $categories->rows($categoriesRows);
@@ -131,24 +136,21 @@
                                 <?= $data['gender'] ?>
                             </td>
                             <td>
-                                <a href="edit-categories.php?updateID=<?= $data['id'] ?>">
-                                    <i class="fa-solid fa-pen-to-square"></i>              
-                                </a>
-                                <!-- <a href="delete-categories.php?deleteID=<?= $data['id'] ?>">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a> -->
-                                <form action="codes/categories-code.php" method="post">
+                            <div class="a-cont">
+                                    <form action="codes/categories-code.php" method="post" class="form">
 
-                                    <button type="submit" name="delete-button" value="<?= $data['id'] ?>" class="delete-icon">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
+                                        <button type="submit" name="delete-button" value="<?= $data['id'] ?>" class="delete-button">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
 
-                                </form>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         <?php 
                                 endforeach;
                             } 
+                        }
                         ?>
                     </tbody>
                 </table>

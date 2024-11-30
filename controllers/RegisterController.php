@@ -13,11 +13,14 @@
         }
 
         // Registration inserting input values which is users table
-        public function registration($fname,$number,$address,$gender,$email,$password)
+        public function registration($registerData)
         {
+            // it will dislpay all the data of my inputData which is in array registerData
+            $data = "'". implode("', '",$registerData) ."'";
+
             $registerQuery = "
                 INSERT INTO users (userFullname,userNumber,userAddress,userGender,userEmail,userPassword)
-                VALUES ('$fname','$number','$address','$gender','$email','$password')
+                VALUES ($data)
             ";
             $result = $this->conn->query($registerQuery);
 
@@ -25,8 +28,10 @@
         }
 
         // It check the user or email exists on users table 
-        public function UserExists($email)
+        public function UserExists($registerData)
         {
+            $email = $registerData['email'];
+
             $checkUserQuery = "
                 SELECT *
                 FROM users
@@ -43,8 +48,10 @@
         }
 
         // Comparing the input password to the input confirm password
-        public function confirmPassword($password,$confirmPassword)
+        public function confirmPassword($registerData, $confirmPassword)
         {
+            $password = $registerData['password'];
+
             if($password == $confirmPassword){
                 return true;
             }else{

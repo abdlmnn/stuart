@@ -1,4 +1,3 @@
-
     <footer>
         <div class="footer-content">
 
@@ -9,7 +8,7 @@
                     if(isset($_SESSION['authenticated'])) :
                 ?>
                 <li>
-                    <a href="<?= base_url('customer.php') ?>">
+                    <a href="<?= base_url('view-customer.php') ?>">
                         <i class="fas fa-home"></i> 
                         Home
                     </a>
@@ -32,7 +31,7 @@
                 <li>
                     <a href="">
                         <i class="fa-solid fa-location-dot"></i>
-                        Torallba st. Poblacion Iligan City
+                        Torallba St. Poblacion, Iligan City
                     </a>
                 </li>
                 <li>

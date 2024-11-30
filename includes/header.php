@@ -10,10 +10,10 @@
 
     <!-- Font Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-
-    <!-- JavaScript -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 
+    <!-- JavaScript -->
+    <script src="js/link.js" defer></script>
 </head>
 <body>
     

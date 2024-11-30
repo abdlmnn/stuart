@@ -80,6 +80,7 @@
 
 .table-container .add-button {
     background-color: #fff;
+    /* background-color: none; */
     border: none;
     cursor: pointer;
 }
@@ -110,7 +111,7 @@
     border-bottom: 1px solid #ddd;
     /* padding: 20px; */
     padding: 10px;
-    text-align: center;
+    text-align: left;
 }
 .child-table th {
     background-color: #111;
@@ -120,6 +121,10 @@
 .child-table tr:hover {
     background-color: #f1f1f1; 
 }
+.child-table .a-cont {
+    display: flex;
+    gap: 10px;
+}
 .child-table a {
     text-decoration: none;
     color: #000;
@@ -128,5 +133,18 @@
     font-size: 20px;
 }
 .child-table a i:hover {
+    color: #E2A500;
+}
+
+.child-table .delete-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 0%;
+}
+.child-table .delete-button i {
+    font-size: 20px;
+}
+.child-table .delete-button i:hover {
     color: #E2A500;
 }

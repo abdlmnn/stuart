@@ -32,30 +32,33 @@
 
                     <select name="inputCategory">
                         <option selected>Select Categories</option>
-                        <?php
-                                         // get came from my Class CategoriesController 
-                            $resultGet = $categories->get();
 
-                            // if resultGet return false or true
-                            if(!$resultGet){
+                        <?php
+                                         // getMen came from my Class CategoriesController 
+                            $resultGetMen = $categories->get();
+
+                            // if resultGetMen return false or true
+                            if(!$resultGetMen){
                                 
                                 // it return false, it show message
-                                showMessage('No Categories Found');
+                                showMessage('No Men Categories Found');
                             }else{
 
-                                 // if the resultGet of get function return the result
-                                 foreach($resultGet as $categoriesRow) :
+                                 // if the resultGetMen of get function return the result
+                                 foreach($resultGetMen as $categoriesRow) :
 
                                                   // rows came from my Class CategoriesController
                                     $categoryData = $categories->rows($categoriesRow);
                         ?>
                             <option value="<?= $categoryData['id'] ?>">
-                                <?= $categoryData['name'] ?>
+                                <?= $categoryData['name'] ?> | <?= $categoryData['gender'] ?>
                             </option>
                         <?php
                                 endforeach;
                             }
                         ?>
+
+                        
                     </select>
                     <br><br>
 
@@ -94,10 +97,10 @@
                     </select>
                     <br><br>
 
-                    <input type="number" min="0" name="inputPrice" placeholder="Stock" required>
+                    <input type="number" min="0" name="inputStock" placeholder="Stock" required>
                     <br><br>
 
-                    <input type="number" min="0" name="inputStock" placeholder="Price" required>
+                    <input type="number" min="0" name="inputPrice" placeholder="Price" required>
 
                     <button type="submit" name="add-button">
                         <ion-icon name="add-outline" class="add-icon"></ion-icon>
@@ -109,19 +112,22 @@
 
         <div class="table-container">
 
-            <button type="submit" class="add-button" onclick="showForm()">
-                <ion-icon name="add-circle-outline" class="circle-icon"></ion-icon>
-            </button>
             <button type="submit" class="add-button" onclick="closeForm()">
-                <ion-icon name="close-circle-outline" class="circle-icon"></ion-icon>
+                <!-- <ion-icon name="close-circle-outline" class="circle-icon"></ion-icon> -->
+                <ion-icon name="arrow-back-circle-outline" class="circle-icon"></ion-icon>
+            </button>
+            <button type="submit" class="add-button" onclick="showForm()">
+                <!-- <ion-icon name="add-circle-outline" class="circle-icon"></ion-icon> -->
+                <ion-icon name="arrow-forward-circle-outline" class="circle-icon"></ion-icon>
             </button>
 
             <div class="scroll-table">
                 <table class="child-table">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <!-- <th>ID</th> -->
                             <th>Category</th>
+                            <th>Gender</th>
                             <th>Image</th>
                             <th>Name</th>
                             <th>Size</th>
@@ -150,11 +156,14 @@
                                     $data = $inventory->rows($inventoryRows);
                         ?>
                         <tr>
-                            <td>
+                            <!-- <td>
                                 <?= $data['id'] ?>
-                            </td>
+                            </td> -->
                             <td>
                                 <?= $data['categoryName'] ?>
+                            </td>
+                            <td>
+                                <?= $data['gender'] ?>
                             </td>
                             <td>
                                 <img src="../images/<?= $data['image'] ?>" width="50" title="<?= $data['image'] ?>">
@@ -166,25 +175,25 @@
                                 <?= $data['size'] ?>
                             </td>
                             <td>
-                                <?= $data['stock'] ?>
+                                <?= $data['stock'] ?> <p class="stock-status" style="font-size: 10px; background-color: grey;">Low Stock</p>
                             </td>
                             <td>
                                 <?= $data['price'] ?> 
                             </td>
                             <td>
-                                <a href="edit-categories.php?updateID=<?= $data['id'] ?>">
-                                    <i class="fa-solid fa-pen-to-square"></i>              
-                                </a>
-                                <!-- <a href="categoryProcess.php?deleteID=<?= $data['id'] ?>">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a> -->
-                                <form action="codes/categories-code.php" method="post">
+                                <div class="a-cont">
+                                    <a href="edit-inventory.php?updateID=<?= $data['id'] ?>">
+                                        <i class="fa-solid fa-pen-to-square"></i>              
+                                    </a>
 
-                                    <button type="submit" name="delete-button" value="<?= $data['id'] ?>">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
+                                    <form action="codes/inventory-code.php" method="post" class="form">
 
-                                </form>
+                                        <button type="submit" name="delete-button" value="<?= $data['id'] ?>" class="delete-button">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         <?php 

@@ -13,8 +13,11 @@
         }
 
         // Setting newPassword to my userPassword table rows
-        public function newPassword($email,$newPassword)
+        public function newPassword($registerData)
         {
+            $email = $registerData['email'];
+            $newPassword = $registerData['password'];
+
             $updatePasswordQuery = "
                 UPDATE users
                 SET userPassword='$newPassword'

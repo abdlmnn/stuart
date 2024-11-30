@@ -15,14 +15,14 @@
                     <ion-icon name="chevron-back-outline" class="open-icon"></ion-icon>
                 </button>
             </li>
-            <li class="<?= $page == 'dashboard.php' ? 'active':'' ?>">
-                <a href="dashboard.php">
+            <li class="<?= $page == 'view-dashboard.php' ? 'active':'' ?>">
+                <a href="view-dashboard.php">
                     <ion-icon name="tv-outline" class="icons"></ion-icon>
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li class="<?= $page == 'purchase.php' ? 'active':'' ?>">
-                <a href="purchase.php">
+            <li class="<?= $page == 'view-order.php' ? 'active':'' ?>">
+                <a href="view-order.php">
                     <ion-icon name="bag-outline" class="icons"></ion-icon>
                     <span>Purchase</span>
                 </a>
@@ -47,11 +47,11 @@
                 </button>
                 <ul class="sub-menu">
                     <div class="child-menu">
-                        <li class="<?= $page == 'salesReport.php' ? 'active':'' ?>">
-                            <a href="salesReport.php">Sales</a>
+                        <li class="<?= $page == 'view-salesReport.php' ? 'active':'' ?>">
+                            <a href="view-salesReport.php">Sales</a>
                         </li>
-                        <li class="<?= $page == 'inventoryReport.php' ? 'active':'' ?>">
-                            <a href="inventoryReport.php">Inventory</a>
+                        <li class="<?= $page == 'view-inventoryReport.php' ? 'active':'' ?>">
+                            <a href="view-inventoryReport.php">Inventory</a>
                         </li>
                     </div>
                 </ul>
@@ -68,8 +68,8 @@
                     <span>Logout</span>
                 </a> -->
                 <form action="" method="post">
-                    <button type="submit" name="logout-button" class="logout">
-                        <ion-icon name="log-out-outline" class="icons" class="logout-btn"></ion-icon>
+                    <button type="submit" name="logout-button" class="dropdown-btn">
+                        <ion-icon name="log-out-outline" class="icons"></ion-icon>
                         <span>Logout</span>
                     </button>
                 </form>

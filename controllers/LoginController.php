@@ -13,8 +13,11 @@
         }
 
         // It check the email and password in order the customer or admin can login
-        public function userLogin($email,$password)
+        public function userLogin($loginData)
         {
+            $email = $loginData['email'];
+            $password = $loginData['password'];
+
             $checkLoginQuery = "
                 SELECT *
                 FROM users
@@ -35,7 +38,7 @@
                 }else{
 
                     // if the inputPassword is not the same as userPassword table it will redirect to login.php
-                    redirect('Your Password is invalid, Please try again','login.php');
+                    redirect('Your Password is invalid, Please try again','view-login.php');
                     return false;
                 }
 
@@ -62,7 +65,7 @@
         }
 
         // The user is already logged in and trying to search the file path of going back
-        public function UserLoggedIn()
+        public function userLoggedIn()
         {
             // if session authenticated is set as true
             if(isset($_SESSION['authenticated']) === true){
@@ -74,11 +77,11 @@
                 if($usertype == '0'){
 
                     // it direct to customer page
-                    redirect('You are already logged in as a customer','customer.php');
+                    redirect('You are already logged in as a customer','view-customer.php');
                 }else if($usertype == '1'){
 
                     // if the usertype is 1, it direct to admin page 
-                    redirect('You are already logged in as a admin','admin/dashboard.php');
+                    redirect('You are already logged in as a admin','admin/view-dashboard.php');
                 }
 
             }else{
@@ -96,7 +99,7 @@
                 unset($_SESSION['authenticated']);
                 unset($_SESSION['user']);
 
-                // session_destroy();
+                session_destroy();
 
                 return true;
             }else{
