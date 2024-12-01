@@ -28,7 +28,7 @@
         }
 
         // It check the user or email exists on users table 
-        public function UserExists($registerData)
+        public function userExists($registerData)
         {
             $email = $registerData['email'];
 
@@ -50,9 +50,21 @@
         // Comparing the input password to the input confirm password
         public function confirmPassword($registerData, $confirmPassword)
         {
-            $password = $registerData['password'];
+            // my password came from my register POST 
+            $password = $registerData['password']; 
+            
+                                                        // Both the same variable an array but different set POST
 
-            if($password == $confirmPassword){
+            // my new password came from my reset or change password POST
+            $newPassword = $registerData['newPassword']; 
+            
+
+            // if password same as confirm password is true but the new password is false
+            // the password is in the register form
+            // OR
+            // if new password same as confirm password is true but the password is false
+            // the new password is in the reset password
+            if($password == $confirmPassword || $newPassword == $confirmPassword){
                 return true;
             }else{
                 return false;

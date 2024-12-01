@@ -31,7 +31,7 @@
                 <input type="password" placeholder="Password"  class="input" name="inputPassword" required/>
             </div>
             <div class="row">
-                <a href="<?= base_url('reset-password.php') ?>" class="recover-pass">Forgot Password?</a>
+                <a href="<?= base_url('edit-reset-password.php') ?>" class="recover-pass">Forgot Password?</a>
             </div>
             <div class="row button">
                 <button type="submit" name="login-button" class="input">Login</button>

@@ -7,7 +7,7 @@
     $login = new LoginController;
     $resetPassword =  new ResetPasswordController;
 
-    // RESET PASSWORD
+    // EDIT RESET PASSWORD
     if(isset($_POST['reset-password-button']))
     {
         $registerData = [
@@ -22,8 +22,8 @@
         // if the resultPassword is true
         if($resultPassword){
 
-                         // UserExists came from my Class RegisterController
-            $emailExists = $register->UserExists($registerData);
+                         // userExists came from my Class RegisterController
+            $emailExists = $register->userExists($registerData);
 
             // it will check if the email already exists which is true
             if($emailExists){
@@ -54,18 +54,24 @@
             redirect('Your New Password and Confirm Password does not match',"edit-reset-password.php");
         }
     }
-    // RESET PASSWORD
-    // LOGOUT
+    // EDIT RESET PASSWORD
+    // LOGOUT USER
     if(isset($_POST['logout-button']))
     {
         // userLogout came from my Class LoginController
-        $login->userLogout();
+        $resultLogout = $login->userLogout();
 
-        // userLogout is true, it direct to login page
-        redirect('You have logout successfully','view-login.php');
+        if($resultLogout){
+
+            // userLogout is true, it direct to login page
+            redirect('You have logout successfully','view-login.php');
+        }else{
+
+            redirect('Something went wrong','view-customer.php');
+        }
     }
-    // LOGOUT
-    // LOGIN
+    // LOGOUT USER
+    // LOGIN USER
     if(isset($_POST['login-button']))
     {
         $loginData = [
@@ -98,8 +104,8 @@
             return false;
         }
     }
-    // LOGIN
-    // REGISTER
+    // LOGIN USER
+    // ADD REGISTER USER
     if(isset($_POST['register-button']))
     {
         
@@ -120,8 +126,8 @@
         // if the resultPassword is true
         if($resultPassword){
 
-                        // UserExists came from my Class RegisterController
-            $resultUser = $register->UserExists($registerData);
+                        // userExists came from my Class RegisterController
+            $resultUser = $register->userExists($registerData);
             
             // if the resultUser is true because the user exists
             if($resultUser){
@@ -152,5 +158,5 @@
             redirect('Your Password and Confirm Password does not match',"add-register.php");
         }
     }
-    // REGISTER
+    // ADD REGISTER USER
 ?>

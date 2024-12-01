@@ -6,14 +6,14 @@
     <title><?= $title; ?></title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/login9.css">
+    <link rel="stylesheet" href="css/login12.css">
 
     <!-- Font Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 
     <!-- JavaScript -->
-    <script src="js/link.js" defer></script>
+    <script src="js/link2.js" defer></script>
 </head>
 <body>
     

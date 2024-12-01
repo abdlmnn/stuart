@@ -1,0 +1,76 @@
+.profile-container {
+    max-width: 800px;
+    margin: 7.5em auto;
+}
+
+.profile-header {
+    text-align: center;
+    color: #E2A500;
+    font-size: 1.5rem;
+    background-color: #111;
+    padding: 10px 25px;
+}
+
+.profile-details {
+    background-color: #ddd;
+    padding: 25px 25px;
+    font-size: 1.2rem;
+}
+
+.profile-details p {
+    margin-bottom: 20px;
+}
+
+.profile-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.profile-actions button {
+    padding: 10px 20px;
+    background-color: #111;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="text"], input[type="email"] {
+    padding: 10px 20px; 
+    border-radius: 5px;
+    border: none;
+    width: 50%; 
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+}
+input[type="tel"], input[type="password"] {
+    padding: 10px 20px; 
+    border-radius: 5px;
+    /* margin: 5px; */
+    border: none;
+    width: 50%; 
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+} 
+input::placeholder {
+    color: #000;
+}
+select{
+    padding: 10px 20px; 
+    border-radius: 5px;
+    /* margin: 5px; */
+    border: none;
+    width: 25%; 
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

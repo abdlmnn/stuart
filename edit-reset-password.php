@@ -37,7 +37,7 @@
             </div>
 
             <div class="row">
-                <a href="login.php" class="recover-pass">Back to login?</a>
+                <a href="<?= base_url('view-login.php') ?>" class="recover-pass">Back to login?</a>
             </div>
 
             <div class="row button">

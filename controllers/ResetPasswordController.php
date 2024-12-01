@@ -16,7 +16,7 @@
         public function newPassword($registerData)
         {
             $email = $registerData['email'];
-            $newPassword = $registerData['password'];
+            $newPassword = $registerData['newPassword'];
 
             $updatePasswordQuery = "
                 UPDATE users

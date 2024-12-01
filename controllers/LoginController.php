@@ -11,7 +11,7 @@
             // this variable conn is assign as the db of my conn
             $this->conn = $db->conn;
         }
-
+        
         // It check the email and password in order the customer or admin can login
         public function userLogin($loginData)
         {
@@ -99,7 +99,9 @@
                 unset($_SESSION['authenticated']);
                 unset($_SESSION['user']);
 
+                session_unset();
                 session_destroy();
+                session_regenerate_id();
 
                 return true;
             }else{

@@ -12,15 +12,15 @@
             $this->conn = $db->conn;
         }
 
-        public function update($profileData)
+        // Edit all the information of user with exact ID
+        public function update($userData)
         {
-            $userID = $_SESSION['user']['id'];
-            
-            $fullname = $profileData['fullname'];
-            $number = $profileData['number'];
-            $address = $profileData['address'];
-            $gender = $profileData['gender'];
-            $email = $profileData['email'];
+            $id = $userData['id'];
+            $fullname = $userData['fullname'];
+            $number = $userData['number'];
+            $address = $userData['address'];
+            $gender = $userData['gender'];
+            $email = $userData['email'];
 
             $editDataQuery = "
                 UPDATE users
@@ -29,16 +29,14 @@
                     userAddress='$address',
                     userGender='$gender',
                     userEmail='$email'
-                WHERE userID='$userID'
+                WHERE userID='$id'
                 LIMIT 1
             ";
             $resultEdit = $this->conn->query($editDataQuery);
 
-            if($resultEdit->num_rows > 0){
-
-                return $resultEdit;
+            if($resultEdit){
+                return true;
             }else{
-
                 return false;
             }
         }

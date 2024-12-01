@@ -28,7 +28,7 @@
             </div>
             <div class="row">
                 <i class="fas fa-phone"></i>
-                <input type="text" placeholder="Phone Number" class="input" name="inputNumber" required>
+                <input type="text" placeholder="Phone Number" pattern="[0-9]{3}-[0-9}{3}-[0-9]{4}" class="input" name="inputNumber" required>
             </div>
             <div class="row">
                 <i class="fas fa-map-marker-alt"></i>
