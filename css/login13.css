@@ -1,7 +1,8 @@
 @import 'font.css';
-@import 'navbar3.css';
+@import 'navbar4.css';
 @import 'profile5.css';
 @import 'footer1.css';
+@import 'shop.css';
 
 .body {
     display: flex;
