@@ -1,13 +1,35 @@
 <?php
     include_once 'controllers/ProfileController.php';
-
-    $profile = new ProfileController;
+    include_once 'controllers/LoginController.php';
     
+    $profile = new ProfileController;
+    $login = new LoginController;
+
+    // DELETE USER PROFILE
+    if(isset($_POST['delete-button']))
+    {
+        $id = $_POST['delete-button'];
+
+                      // delete came from my Class ProfileController 
+        $resultDelete = $profile->delete($id);
+
+        if($resultDelete){
+
+            // userLogout came from my Class LoginController
+            $login->userLogout();
+            
+            redirect('Your Profile Deleted Successfully','add-register.php');
+        }else{
+
+            redirect('Something went wrong','view-profile.php?action=delete-profile');
+        }
+    }
+    // DELETE USER PROFILE
     // EDIT USER PROFILE
     if(isset($_POST['edit-button']))
     {
         $userData = [
-            'id' => $_POST['inputID'],
+            'id' => $_POST['edit-button'],
             'fullname' => $_POST['inputFullname'],
             'number' => $_POST['inputNumber'],
             'address' => $_POST['inputAddress'],

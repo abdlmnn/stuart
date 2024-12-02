@@ -12,6 +12,32 @@
             $this->conn = $db->conn;
         }
 
+        // Check the current and new password if already exists
+        public function checkCurrentandNewPassword($userData)
+        {
+            $id = $userData['id'];
+            $currentPassword = $userData['currentPassword'];
+            $newPassword = $userData['newPassword'];
+
+            $getDataQuery = "
+                SELECT *
+                FROM users
+                WHERE userID='$id'
+                LIMIT 1
+            ";
+            $result = $this->conn->query($getDataQuery);
+
+            if($result->num_rows == 1){
+                $userRows = $result->fetch_assoc();
+
+                return $userRows;
+            }else{
+
+                return false;
+            }
+        }
+
+        // Updating the old password to new password
         public function newPassword($userData)
         {
             $id = $userData['id'];
@@ -40,8 +66,8 @@
             }
         }
 
-        // Check the current password if it correct
-        public function checkPassword($userData)
+        // Check the current password on my user password table
+        public function checkCurrentPassword($userData)
         {
             $id = $userData['id'];
             $currentPassword = $userData['currentPassword'];

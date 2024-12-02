@@ -99,9 +99,9 @@
                 unset($_SESSION['authenticated']);
                 unset($_SESSION['user']);
 
-                session_unset();
-                session_destroy();
-                session_regenerate_id();
+                // session_unset();
+                // session_destroy();
+                // session_regenerate_id();
 
                 return true;
             }else{

@@ -11,3 +11,4 @@ function toggleModal() {
         hamburger.classList.add("active"); // Add active class to hamburger
     }
 }
+

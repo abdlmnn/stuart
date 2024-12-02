@@ -32,9 +32,6 @@
 
             <form action="" method="post">
 
-            <!-- <?php echo $userRows['userID']; ?> -->
-                <input type="hidden" name="inputID" value="<?= $userRows['userID'] ?>">
-
                 <p><strong>Full Name:</strong> <input type="text" name="inputFullname" value="<?= $userRows['userFullname'] ?>" autofocus required> </p>
                 <p><strong>Email:</strong> <input type="email" name="inputEmail" value="<?= $userRows['userEmail'] ?>" required> </p>
                 <p><strong>Phone Number:</strong> <input type="tel" name="inputNumber" value="<?= $userRows['userNumber'] ?>" required> </p>
@@ -48,7 +45,7 @@
                 </p>
 
                 <div class="profile-actions">
-                    <button type="submit" name="edit-button">Save</button>
+                    <button type="submit" value="<?= $userRows['userID'] ?>" name="edit-button">Save</button>
 
                     <button type="button" onclick="cancel()">Cancel</button>
                 </div>
@@ -63,18 +60,23 @@
         </div>
 
         <div class="profile-details">
-            <!-- <input type="hidden" name="inputID" value="<?= $userRows['userID'] ?>"> -->
-            <p><strong>Full Name:</strong> <?= $userRows['userFullname'] ?></p>
-            <p><strong>Email:</strong> <?= $userRows['userEmail'] ?></p>
-            <p><strong>Phone Number:</strong> <?= $userRows['userNumber'] ?></p>
-            <p><strong>Address:</strong> <?= $userRows['userAddress'] ?></p>
-            <p><strong>Gender:</strong> <?= $userRows['userGender'] ?></p>
 
-            <div class="profile-actions">
-                <button type="submit" name="delete-button">Delete</button>
+            <form action="" method="post">
+                <!-- <?php echo $userRows['userID'] ?> -->
+                
+                <p><strong>Full Name:</strong> <?= $userRows['userFullname'] ?></p>
+                <p><strong>Email:</strong> <?= $userRows['userEmail'] ?></p>
+                <p><strong>Phone Number:</strong> <?= $userRows['userNumber'] ?></p>
+                <p><strong>Address:</strong> <?= $userRows['userAddress'] ?></p>
+                <p><strong>Gender:</strong> <?= $userRows['userGender'] ?></p>
 
-                <button type="button" onclick="cancel()">Cancel</button>
-            </div>
+                <div class="profile-actions">
+                    <button type="submit" value="<?= $userRows['userID'] ?>" name="delete-button">Delete</button>
+
+                    <button type="button" onclick="cancel()">Cancel</button>
+                </div>
+            </form>
+
         </div>
 
     <?php elseif(!empty($_GET['action']) && $_GET['action'] == 'change-password') : ?>
@@ -87,14 +89,12 @@
 
             <form action="" method="post">
 
-                <input type="hidden" name="inputID" value="<?= $userRows['userID'] ?>">
-
                 <p><strong>Current password:</strong> <input type="password" name="inputCurrent" autofocus required> </p>
                 <p><strong>New password:</strong> <input type="password" name="inputNew" required> </p>
                 <p><strong>Retype new password:</strong> <input type="password" name="inputRetype" required> </p>
 
                 <div class="profile-actions">
-                    <button type="submit" name="change-password-button">Save</button>
+                    <button type="submit" value="<?= $userRows['userID'] ?>" name="change-password-button">Save</button>
 
                     <button type="button" onclick="cancel()">Cancel</button>
                 </div>

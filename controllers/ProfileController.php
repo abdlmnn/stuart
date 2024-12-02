@@ -12,7 +12,7 @@
             $this->conn = $db->conn;
         }
 
-        // Edit all the information of user with exact ID
+        // Edit the information of user with exact ID
         public function update($userData)
         {
             $id = $userData['id'];
@@ -37,6 +37,26 @@
             if($resultEdit){
                 return true;
             }else{
+                return false;
+            }
+        }
+
+        // Delete the information of user with exact ID
+        public function delete($deleteID)
+        {
+            $deleteDataQuery = "
+                DELETE 
+                FROM users
+                WHERE userID='$deleteID'
+                LIMIT 1
+            ";
+            $result = $this->conn->query($deleteDataQuery);
+
+            if($result){
+
+                return true;
+            }else{
+
                 return false;
             }
         }

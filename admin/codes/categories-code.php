@@ -10,7 +10,7 @@
     {   
         $deleteID = $_POST['delete-button'];
         
-                      // delete came from my class CategoriesController 
+                      // delete came from my Class CategoriesController 
         $resultDelete = $categories->delete($deleteID);
         
         // if the resultDelete of delete function return true

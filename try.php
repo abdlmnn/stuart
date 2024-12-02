@@ -9,13 +9,16 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: white;
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+        text-decoration: none;
         }
 
-        /* Header style */
         .header {
             background-color: #111;
             padding: 0.5em 2em;
@@ -29,10 +32,9 @@
             width: 100%;
         }
 
-        /* Centering the logo */
         .company-name {
             flex-grow: 1;
-            text-align: left;
+            padding-left: 35px;
         }
 
         .company-name .a-link {
@@ -42,7 +44,6 @@
             text-decoration: none;
         }
 
-        /* Right items (Profile, Cart, Notifications) */
         .header .right-item {
             display: flex;
             gap: 30px;
@@ -54,92 +55,73 @@
             font-weight: bold;
         }
 
-        /* Icon positioning */
+        .header .right-item .a-link:hover {
+            color: #E2A500;
+        }
+
         .header .right-item .cart-icon {
             position: absolute;
             font-size: 25px;
-            right: 90px;
+            right: 155px;
             top: -10px;
         }
 
-        .header .right-item .notification-icon {
+        /* .header .right-item .notification-icon {
             position: absolute;
             font-size: 25px;
-            right: 42px;
+            right: 120px;
             top: -10px;
-        }
+        } */
 
         .header .right-item .user-icon {
             position: absolute;
             font-size: 25px;
-            right: 0;
+            right: 110px;
             top: -10px;
         }
 
-        /* Total item and notification count positioning */
         .header .right-item .total-item {
             position: absolute;
-            top: -20px;
-            left: -64px;
-            font-size: 15px;
+            top: -15px;
+            left: -100px;
+            font-size: 12px;
             z-index: 100;
-            color: #fff;
+            color: #E2A500;
         }
 
-        .header .right-item .total-notification {
+        /* .header .right-item .total-notification {
             position: absolute;
             top: -20px;
             right: 60px;
             font-size: 15px;
             z-index: 100;
             color: #fff;
-        }
+        } */
 
-        /* Dropdown button styling */
-        .header .right-item .dropbtn {
-            position: absolute;
-            left: 60px;
-            background-color: #111;
-            color: #fff;
-            border: none;
+        .header .right-item .logout-btn {
+            background: none; 
+            border: none; 
+            color: #fff; 
             cursor: pointer;
+            position: absolute; 
+            top: -13px;
+            right: 60px;
+            z-index: 100; 
+            font-family: inherit; 
+            text-decoration: none; 
+            display: flex; 
+            align-items: center; 
+            gap: 5px; 
         }
 
-        /* Dropdown content styling */
-        .header .right-item .dropdown-content {
-            display: none;
-            position: absolute;
-            margin-top: 13px;
-            background-color: #111;
-            min-width: 100px;
-            z-index: 1;
-            right: 1;
-            padding: 10px 20px;
-            border-radius: 15px;
+        .header .right-item .logout-btn:hover {
+            color: #E2A500;
         }
 
-        .header .right-item .dropdown-content .a-drop {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1rem;
+        .header .right-item .logout-btn .logout-icon {
+            font-size: 30px; 
         }
 
-        .header .right-item .dropdown-content .logout-btn {
-            background-color: #111;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            padding-top: 15px;
-        }
-
-        /* Dropdown hover effect */
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-
-        /* Hamburger icon (mobile) */
         .hamburger {
             /* display: flex; */
             flex-direction: column;
@@ -150,15 +132,14 @@
         }
 
         .hamburger div {
-            width: 30px;
+            width: 25px;
             height: 3px;
-            background-color: white;
+            background-color: #fff;
             border-radius: 5px;
             transition: transform 0.3s ease, opacity 0.3s ease;
             display: flex;
         }
 
-        /* When hamburger is active (clicked), rotate the bars to form a cross */
         .hamburger.active div:nth-child(1) {
             transform: rotate(45deg);
             position: relative;
@@ -175,40 +156,33 @@
             top: -8px;
         }
 
-        /* Modal Navbar */
         .modal-content {
-            background-color: #111;
-            width: 80%;
-            max-width: 300px;
-            padding: 20px;
-            border-radius: 8px;
             display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%); /* Center the modal */
-            z-index: 1000;
             flex-direction: column;
-            gap: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
         }
 
-        /* Icon and button styling in modal */
-        .modal-content button {
-            display: flex;
-            align-items: center;
-            color: #fff;
-            background-color: #111;
+        .modal-content a, .modal-content button {
+            color: white;
+            font-size: 20px;
+            margin: 15px 0;
+            text-decoration: none;
+            background: none;
             border: none;
             cursor: pointer;
-            
         }
-        .modal-content a {
-            font-size: 20px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            color: #fff;
-            cursor: pointer;
+
+        .modal-content a:hover,
+        .modal-content button:hover {
+            color: #E2A500;
         }
 
         .modal-content a ion-icon,
@@ -217,17 +191,12 @@
             margin-right: 10px;
         }
 
-        .modal-content .total-item {
-            position: absolute;
-            bottom: 35px;
-            left: 45px;
-            font-size: 15px;
-            color: #E2A500;
-            font-weight: bold;
-            z-index: 100;
+        .modal-content .logout-icon {
+            font-size: 30px;
+            padding-left: 7px;
         }
 
-        .modal-content .total-notification {
+        /* .modal-content .total-notification {
             position: absolute;
             bottom: 85px;
             left: 45px;
@@ -235,93 +204,39 @@
             color: #E2A500;
             font-weight: bold;
             z-index: 100;
-        }
+        } */
 
-        /* Close button */
-        .close-btn {
-            background-color: transparent;
-            color: white;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            align-self: flex-end;
-        }
-
-        /* Logout icon */
-        .logout-icon {
-            font-size: 22px;
-        }
-
-        /* Media queries for responsiveness */
         @media (max-width: 768px) {
             .hamburger {
-                display: flex; /* Show hamburger on small screens */
+                display: flex; 
             }
 
             .header .company-name {
                 text-align: center;
-                flex-grow: 0;
             }
 
             .header .right-item {
-                display: none; /* Hide right items on small screens */
+                display: none;
             }
 
             .modal-content {
-                width: 90%;
-                max-width: 350px;
+                width: 100%;
+                /* max-width: 250px; */
+                max-width: 2500px;
                 display: none;
             }
 
             .modal-content a,
             .modal-content button {
-                font-size: 18px;
+                font-size: 20px;
             }
 
-            .modal-content a ion-icon,
-            .modal-content button ion-icon {
-                font-size: 28px;
-            }
-
-            /* Adjust positions for the mobile view */
-            .modal-content .total-item,
-            .modal-content .total-notification {
-                font-size: 14px;
-            }
-
-            /* Adjust icon spacing on smaller screens */
-            .modal-content a ion-icon,
-            .modal-content button ion-icon {
-                margin-right: 8px;
-            }
-
-            .close-btn {
-                font-size: 28px;
-            }
+           
         }
 
         @media (max-width: 480px) {
             .modal-content {
-                width: 95%;
-            }
-
-            .modal-content a,
-            .modal-content button {
-                font-size: 16px;
-            }
-
-            .modal-content a ion-icon,
-            .modal-content button ion-icon {
-                font-size: 30px;
-            }
-
-            .modal-content .total-item,
-            .modal-content .total-notification {
-                font-size: 16px;
-            }
-
-            .close-btn {
-                font-size: 32px;
+                width: 100%;
             }
         }
 
@@ -330,38 +245,34 @@
 <body>
 
 <div class="header">
-    <!-- Hamburger Icon (for mobile) -->
+
     <div class="hamburger" onclick="toggleModal()">
         <div></div>
         <div></div>
         <div></div>
     </div>
 
-    <!-- Company Logo (Centered) -->
     <div class="company-name">
         <a href="#" class="a-link">Stuart Boutique</a>
     </div>
 
-    <!-- Right Items (Profile, Cart, Notifications) -->
     <div class="right-item">
-        <!-- Profile Dropdown -->
-        <div class="dropdown">
-            <button class="dropbtn">
-                <ion-icon name="person-outline" class="user-icon"></ion-icon>
-            </button>
-            <div class="dropdown-content">
-                <a href="#" class="a-drop">Profile</a>
-                <button type="button" class="logout-btn">Logout</button>
-            </div>
-        </div>
 
-        <!-- Notifications Icon -->
+        <form action="" method="post">
+            <button type="submit" name="logout-button" class="logout-btn">
+                <ion-icon name="log-out-outline" class="logout-icon"></ion-icon>
+            </button>
+        </form>
+
         <a href="#" class="a-link">
-            <span class="total-notification">5</span>
-            <ion-icon name="notifications-outline" class="notification-icon"></ion-icon>
+            <ion-icon name="person-outline" class="user-icon"></ion-icon>
         </a>
 
-        <!-- Cart Icon -->
+        <!-- <a href="#" class="a-link">
+            <span class="total-notification">5</span>
+            <ion-icon name="notifications-outline" class="notification-icon"></ion-icon>
+        </a> -->
+
         <a href="#" class="a-link">
             <span class="total-item">10</span>
             <ion-icon name="bag-outline" class="cart-icon"></ion-icon>
@@ -369,47 +280,72 @@
     </div>
 </div>
 
-<!-- Modal Content -->
+
 <div class="modal-content">
-    <button class="close-btn" onclick="toggleModal()">×</button>
-    
-    <!-- Profile Icon -->
+
+    <!-- <button type="button" class="logout-btn">
+        <ion-icon name="log-out-outline" class="logout-icon"></ion-icon>
+    </button> -->
+
+    <form action="" method="post">
+        <button type="submit" name="logout-button" class="logout-btn">
+            <ion-icon name="log-out-outline" class="logout-icon"></ion-icon>
+        </button>
+    </form>
+
     <a href="#">
         <ion-icon name="person-outline" class="user-icon"></ion-icon>
     </a>
-    
-    <!-- Logout Icon -->
-    <button type="button" class="logout-btn">
-        <ion-icon name="log-out-outline" class="logout-icon"></ion-icon>
-    </button>
-    
-    <!-- Notifications Icon -->
-    <a href="#" class="a-link">
+
+    <!-- <a href="#" class="a-link">
         <span class="total-notification">5</span>
         <ion-icon name="notifications-outline" class="notification-icon"></ion-icon>
-    </a>
-    
-    <!-- Cart Icon -->
+    </a> -->
+
     <a href="#" class="a-link">
-        <span class="total-item">10</span>
         <ion-icon name="bag-outline" class="cart-icon"></ion-icon>
+    </a>
+
+    <a href="#" class="a-link">
+        Men Clothing
+    </a>
+
+    <a href="#" class="a-link">
+        Women Clothing
+    </a>
+
+    <a href="#" class="a-link">
+        Men Shoes
+    </a>
+
+    <a href="#" class="a-link">
+        Women Shoes
     </a>
 </div>
 
 <script>
-    function toggleModal() {
-        const modal = document.querySelector(".modal-content");
-        const hamburger = document.querySelector(".hamburger");
+    const modal = document.querySelector(".modal-content");
+    const hamburger = document.querySelector(".hamburger");
 
-        // Toggle the modal visibility
+    function toggleModal() {
+
         if (modal.style.display === "flex") {
-            modal.style.display = "none"; // Close the modal
-            hamburger.classList.remove("active"); // Remove active class from hamburger
+            modal.style.display = "none"; 
+            hamburger.classList.remove("active"); 
         } else {
-            modal.style.display = "flex"; // Open the modal
-            hamburger.classList.add("active"); // Add active class to hamburger
+            modal.style.display = "flex"; 
+            hamburger.classList.add("active"); 
         }
     }
+
+    window.addEventListener("resize", () => {
+
+        if (window.innerWidth > 768 && modal.style.display === "flex") {
+            modal.style.display = "none"; 
+            hamburger.classList.remove("active"); 
+        }
+    });
+
 </script>
 
 </body>
