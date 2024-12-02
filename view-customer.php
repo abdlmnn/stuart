@@ -15,20 +15,22 @@
     
     include 'message.php';
 ?>
-<div class="body">
+<!-- <section class="bg-image"> -->
+    <div class="body">
 
-    <!-- <div class="box"> -->
+        <!-- <div class="box"> -->
 
-        <div class="box-title">
-            <h1 style="color: #000;">Welcome <?= $_SESSION['user']['fullname']; ?></h1>
-            <br>
-            <a href="<?= base_url('shop.php') ?>" style="color: #E2A500; font-size: 1.7rem;">
-                Shop Now
-            </a>
-        </div>
-    <!-- </div> -->
-    
-</div>
+            <div class="box-title">
+                <h1 style="color: #000;">Welcome <?= $_SESSION['user']['fullname']; ?></h1>
+                <br>
+                <a href="<?= base_url('shop.php') ?>" style="color: #E2A500; font-size: 1.7rem;">
+                    Shop Now
+                </a>
+            </div>
+        <!-- </div> -->
+        
+    </div>
+<!-- </section> -->
 <?php
     include 'includes/footer.php';
 ?>

@@ -1,9 +1,15 @@
 @import 'font.css';
-@import 'navbar4.css';
+@import 'navbar1.css';
 @import 'profile5.css';
-@import 'footer1.css';
+@import 'footer3.css';
 @import 'shop.css';
 
+.bg-image {
+    background: url('../images/bg.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .body {
     display: flex;
     justify-content: center;
@@ -13,7 +19,8 @@
 }
 
 .box {
-    background-color: #111;
+    background-color: #111111db;
+    /* background-color: #000000c4; */
     padding: 40px;
     border-radius: 10px;
     width: 400px;

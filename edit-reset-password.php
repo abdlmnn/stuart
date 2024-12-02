@@ -8,7 +8,7 @@
     $login->UserLoggedIn();
 
     include 'includes/header.php';
-    include 'includes/navbar.php';
+    include 'includes/navbar1.php';
     
     include 'message.php';
 ?>

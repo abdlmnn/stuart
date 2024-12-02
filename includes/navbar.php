@@ -1,47 +1,109 @@
 <div class="header">
 
-    <div class="left-item">
-        <div class="company-name">
-            <a href="" class="a-link">Stuart Boutique</a>
-        </div>
+    <div class="hamburger" onclick="toggleModal()">
+        <div></div>
+        <div></div>
+        <div></div>
     </div>
-    
+
+    <?php if(isset($_SESSION['authenticated'])) : ?>
+
+        <div class="company-name">
+            <a href="<?= base_url('view-customer.php') ?>" class="a-link">Stuart Boutique</a>
+        </div>
+
+    <?php else : ?>
+
+        <div class="company-name">
+            <a href="<?= base_url('view-login.php') ?>" class="a-link">Stuart Boutique</a>
+        </div>
+
+    <?php endif; ?>
+
     <div class="right-item">
-        <?php
-            if(isset($_SESSION['authenticated'])) :
-        ?>
-            <!-- <a href="" class="a-link">
-                <ion-icon name="person-outline" class="user-icon"></ion-icon>
-            </a> -->
-            
-            <div class="dropdown">
-                <button class="dropbtn"><ion-icon name="person-outline" class="user-icon"></ion-icon></button>
-                
-                <div class="dropdown-content">
-                    <a href="<?= base_url('view-profile.php') ?>" class="a-drop">Profile</a>
-                    <form action="" method="post">
-                        <button type="submit" name="logout-button" class="logout-btn">Logout</button>
-                    </form>
-                </div>
-            </div>
 
-            <a href="" class="a-link">
-                <span class="total-notification">5</span>
-                <ion-icon name="notifications-outline" class="notification-icon"></ion-icon>
-            </a>
+    <?php if(isset($_SESSION['authenticated'])) : ?>
 
-            <a href="" class="a-link">
-                <span class="total-item">10</span>
-                <ion-icon name="bag-outline" class="cart-icon"></ion-icon>
-            </a>
-        <?php
-            else :
-        ?>
+        <form action="" method="post">
+            <button type="submit" name="logout-button" class="logout-btn">
+                <ion-icon name="log-out-outline" class="logout-icon"></ion-icon>
+            </button>
+        </form>
+
+        <a href="<?= base_url('view-profile.php') ?>" class="a-link">
+            <ion-icon name="person-outline" class="user-icon"></ion-icon>
+        </a>
+
+        <!-- <a href="#" class="a-link">
+            <span class="total-notification">5</span>
+            <ion-icon name="notifications-outline" class="notification-icon"></ion-icon>
+        </a> -->
+
+        <a href="<?= base_url('view-cart.php') ?>" class="a-link">
+            <span class="total-item">10</span>
+            <ion-icon name="bag-outline" class="cart-icon"></ion-icon>
+        </a>
+
+    <?php else : ?>
+
+        <!-- <a href="<?= base_url('view-home.php') ?>" class="a-link">Home</a> -->
+        <div class="container" style="display: flex; justify-content: center; align-content: center; gap:30px;">
+
+            <!-- <a href="<?= base_url('try.php') ?>" class="a-link">Home</a> -->
+            <!-- <a href="<?= base_url('view-shop.php') ?>" class="a-link">Shop</a> -->
             <a href="<?= base_url('add-register.php') ?>" class="a-link">Register</a>
             <a href="<?= base_url('view-login.php') ?>" class="a-link">Login</a>
-        <?php
-            endif;
-        ?>
-    </div>
+        </div>
 
+    <?php endif; ?>
+
+    </div>
+</div>
+
+
+<div class="modal-content">
+
+    <?php if(isset($_SESSION['authenticated'])) : ?>
+
+        <form action="" method="post">
+            <button type="submit" name="logout-button" class="logout-btn">
+                <ion-icon name="log-out-outline" class="logout-icon"></ion-icon>
+            </button>
+        </form>
+
+        <a href="<?= base_url('view-profile.php') ?>">
+            <ion-icon name="person-outline" class="user-icon"></ion-icon>
+        </a>
+
+        <!-- <a href="#" class="a-link">
+            <span class="total-notification">5</span>
+            <ion-icon name="notifications-outline" class="notification-icon"></ion-icon>
+        </a> -->
+
+        <a href="<?= base_url('shop.php') ?>" class="a-link">
+            <ion-icon name="bag-outline" class="cart-icon"></ion-icon>
+        </a>
+
+        <a href="#" class="a-link">
+            Men Clothing
+        </a>
+
+        <a href="#" class="a-link">
+            Women Clothing
+        </a>
+
+        <a href="#" class="a-link">
+            Men Shoes
+        </a>
+
+        <a href="#" class="a-link">
+            Women Shoes
+        </a>
+
+    <?php else : ?>
+
+        <a href="<?= base_url('add-register.php') ?>" class="a-link">Register</a>
+        <a href="<?= base_url('view-login.php') ?>" class="a-link">Login</a>
+
+    <?php endif; ?>
 </div>

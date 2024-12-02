@@ -3,240 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Navbar with Modal</title>
-
+    <title>Clothing Line - Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-
+        /* Basic Reset */
         * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Poppins", sans-serif;
-        text-decoration: none;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .header {
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            background-color: #fafafa;
+            color: #333;
+        }
+
+        header {
             background-color: #111;
-            padding: 0.5em 2em;
+            padding: 1em 2em;
+            text-align: center;
+            color: #fff;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        nav ul {
             display: flex;
             justify-content: center;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            width: 100%;
-        }
-
-        .company-name {
-            flex-grow: 1;
-            padding-left: 35px;
-        }
-
-        .company-name .a-link {
-            color: #E2A500;
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .header .right-item {
-            display: flex;
             gap: 30px;
-            position: relative;
+            list-style: none;
         }
 
-        .header .right-item .a-link {
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
             color: #fff;
-            font-weight: bold;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
-        .header .right-item .a-link:hover {
-            color: #E2A500;
+        nav ul li a:hover {
+            color: #E2A500; /* Highlight color */
         }
 
-        .header .right-item .cart-icon {
-            position: absolute;
-            font-size: 25px;
-            right: 155px;
-            top: -10px;
-        }
-
-        /* .header .right-item .notification-icon {
-            position: absolute;
-            font-size: 25px;
-            right: 120px;
-            top: -10px;
-        } */
-
-        .header .right-item .user-icon {
-            position: absolute;
-            font-size: 25px;
-            right: 110px;
-            top: -10px;
-        }
-
-        .header .right-item .total-item {
-            position: absolute;
-            top: -15px;
-            left: -100px;
-            font-size: 12px;
-            z-index: 100;
-            color: #E2A500;
-        }
-
-        /* .header .right-item .total-notification {
-            position: absolute;
-            top: -20px;
-            right: 60px;
-            font-size: 15px;
-            z-index: 100;
-            color: #fff;
-        } */
-
-        .header .right-item .logout-btn {
-            background: none; 
-            border: none; 
-            color: #fff; 
-            cursor: pointer;
-            position: absolute; 
-            top: -13px;
-            right: 60px;
-            z-index: 100; 
-            font-family: inherit; 
-            text-decoration: none; 
-            display: flex; 
-            align-items: center; 
-            gap: 5px; 
-        }
-
-        .header .right-item .logout-btn:hover {
-            color: #E2A500;
-        }
-
-        .header .right-item .logout-btn .logout-icon {
-            font-size: 30px; 
-        }
-
-        .hamburger {
-            /* display: flex; */
-            flex-direction: column;
-            gap: 5px;
-            padding: 10px;
-            cursor: pointer;
-            display: none; 
-        }
-
-        .hamburger div {
-            width: 25px;
-            height: 3px;
-            background-color: #fff;
-            border-radius: 5px;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            display: flex;
-        }
-
-        .hamburger.active div:nth-child(1) {
-            transform: rotate(45deg);
-            position: relative;
-            top: 8px;
-        }
-
-        .hamburger.active div:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active div:nth-child(3) {
-            transform: rotate(-45deg);
-            position: relative;
-            top: -8px;
-        }
-
-        .modal-content {
-            display: none;
-            flex-direction: column;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
+        .hero-section {
+            background: url('images/bg4.jpg') no-repeat center center/cover;
             height: 100vh;
-            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 999;
+            color: #fff;
+            text-align: center;
         }
 
-        .modal-content a, .modal-content button {
-            color: white;
-            font-size: 20px;
-            margin: 15px 0;
-            text-decoration: none;
-            background: none;
+        .hero-section h2 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .hero-section .cta-btn {
+            padding: 12px 30px;
+            background-color: #E2A500;
+            color: #fff;
+            font-size: 1rem;
             border: none;
             cursor: pointer;
+            border-radius: 5px;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
         }
 
-        .modal-content a:hover,
-        .modal-content button:hover {
-            color: #E2A500;
+        .hero-section .cta-btn:hover {
+            background-color: #111;
         }
 
-        .modal-content a ion-icon,
-        .modal-content button ion-icon {
-            font-size: 25px;
-            margin-right: 10px;
+        .item-container {
+            width: 100%;
+            max-width: 1200px;
+            /* max-width: 1450px; */
+            margin: 7em auto 2em auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px; 
+            justify-content: center; 
+            align-items: start;
         }
 
-        .modal-content .logout-icon {
-            font-size: 30px;
-            padding-left: 7px;
+        .item-container .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-content: space-between;
+            height: 310px;
+            padding: 0.5em;
         }
 
-        /* .modal-content .total-notification {
+        .item-container .card:hover{
+            background-color: #dfdada52;
+        }
+
+        .item-container .card .card-image {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin: auto;
+        }
+
+        .item-container .card .card-image .image-item {
+            width: 175px;
             position: absolute;
-            bottom: 85px;
-            left: 45px;
-            font-size: 15px;
-            color: #E2A500;
-            font-weight: bold;
-            z-index: 100;
-        } */
+            z-index: 1;
+        }
+
+        .item-container .card .description-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-top: 1em;
+        }
+
+        .item-container .card .description-container .item-name {
+            font-size: 1rem;
+            margin-bottom: 0.3em;
+        }
+
+        .item-container .card .description-container .item-price {
+            font-weight: 500;
+            color: #efaf00;
+        }
+
+        .item-container .card .description-container .add-to-cart {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .item-container .card .description-container .add-to-cart .cart-logo {
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .item-container .card .description-container .add-to-cart .cart-logo:hover {
+            color: #efaf00;
+        }
+
 
         @media (max-width: 768px) {
-            .hamburger {
-                display: flex; 
+            .item-container {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
             }
 
-            .header .company-name {
-                text-align: center;
+            .item-container .card {
+                width: 100%; 
             }
-
-            .header .right-item {
-                display: none;
-            }
-
-            .modal-content {
-                width: 100%;
-                /* max-width: 250px; */
-                max-width: 2500px;
-                display: none;
-            }
-
-            .modal-content a,
-            .modal-content button {
-                font-size: 20px;
-            }
-
-           
         }
 
-        @media (max-width: 480px) {
-            .modal-content {
-                width: 100%;
+
+
+        footer {
+            background-color: #111;
+            color: #fff;
+            text-align: center;
+            padding: 20px 10px;
+        }
+
+        footer .footer-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        footer .footer-links li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        footer .footer-links li a:hover {
+            color: #E2A500;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-section h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero-section p {
+                font-size: 1rem;
+            }
+
+            footer .footer-links {
+                flex-direction: column;
             }
         }
 
@@ -244,109 +227,347 @@
 </head>
 <body>
 
-<div class="header">
+<header>
+    <h1>Stuart Boutique</h1>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Register</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <div class="hamburger" onclick="toggleModal()">
-        <div></div>
-        <div></div>
-        <div></div>
+<section class="hero-section">
+    <div>
+        <h2>Explore Our Latest Fashion</h2>
+        <p>Find the perfect outfit for any occasion</p>
+        <button class="cta-btn">Shop Now</button>
+    </div>
+</section>
+
+<div class="item-container">
+        <div class="card">
+
+            <div class="card-image">
+                <img src="images/shoes3.png" alt="" class="image-item">
+            </div>
+
+            <div class="description-container">
+                <div class="item-description">
+                    <h1 class="item-name">Red Sneaker</h1>
+                    <p class="item-price">&#x20B1;999</p>
+                </div>
+
+                <div class="add-to-cart">
+                    <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
+                    <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-image">
+                <img src="images/shirt2.png" alt="" class="image-item">
+            </div>
+
+            <div class="description-container">
+                <div class="item-description">
+                    <h1 class="item-name">T-shirt</h1>
+                    <p class="item-price">&#x20B1;999</p>
+                </div>
+
+                <div class="add-to-cart">
+                    <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
+                    <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-image">
+                <img src="images/shirt3.png" alt="" class="image-item">
+            </div>
+
+            <div class="description-container">
+                <div class="item-description">
+                    <h1 class="item-name">T-shirt</h1>
+                    <p class="item-price">&#x20B1;999</p>
+                </div>
+
+                <div class="add-to-cart">
+                    <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
+                    <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-image">
+                <img src="images/shoes2.png" alt="" class="image-item">
+            </div>
+
+            <div class="description-container">
+                <div class="item-description">
+                    <h1 class="item-name">Air Force Ones Nike Air</h1>
+                    <p class="item-price">&#x20B1;999</p>
+                </div>
+
+                <div class="add-to-cart">
+                    <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
+                    <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-image">
+                <img src="images/shirt2.png" alt="" class="image-item">
+            </div>
+
+            <div class="description-container">
+                <div class="item-description">
+                    <h1 class="item-name">T-shirt</h1>
+                    <p class="item-price">&#x20B1;999</p>
+                </div>
+
+                <div class="add-to-cart">
+                    <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
+                    <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-image">
+                <img src="images/shirt3.png" alt="" class="image-item">
+            </div>
+
+            <div class="description-container">
+                <div class="item-description">
+                    <h1 class="item-name">T-shirt</h1>
+                    <p class="item-price">&#x20B1;999</p>
+                </div>
+
+                <div class="add-to-cart">
+                    <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
+                    <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-image">
+                <img src="images/shirt1.png" alt="" class="image-item">
+            </div>
+
+            <div class="description-container">
+                <div class="item-description">
+                    <h1 class="item-name">T-shirt</h1>
+                    <p class="item-price">&#x20B1;999</p>
+                </div>
+
+                <div class="add-to-cart">
+                    <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
+                    <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-image">
+                <img src="images/shoes1.png" alt="" class="image-item">
+            </div>
+
+            <div class="description-container">
+                <div class="item-description">
+                    <h1 class="item-name">Shoes</h1>
+                    <p class="item-price">&#x20B1;999</p>
+                </div>
+
+                <div class="add-to-cart">
+                    <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
+                    <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-image">
+                <img src="images/heel1.png" alt="" class="image-item">
+            </div>
+
+            <div class="description-container">
+                <div class="item-description">
+                    <h1 class="item-name">Heel</h1>
+                    <p class="item-price">&#x20B1;999</p>
+                </div>
+
+                <div class="add-to-cart">
+                    <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
+                    <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-image">
+                <img src="images/heel1.png" alt="" class="image-item">
+            </div>
+
+            <div class="description-container">
+                <div class="item-description">
+                    <h1 class="item-name">Heel</h1>
+                    <p class="item-price">&#x20B1;999</p>
+                </div>
+
+                <div class="add-to-cart">
+                    <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
+                    <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-image">
+                <img src="images/heel1.png" alt="" class="image-item">
+            </div>
+
+            <div class="description-container">
+                <div class="item-description">
+                    <h1 class="item-name">Heel</h1>
+                    <p class="item-price">&#x20B1;999</p>
+                </div>
+
+                <div class="add-to-cart">
+                    <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
+                    <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-image">
+                <img src="images/heel1.png" alt="" class="image-item">
+            </div>
+
+            <div class="description-container">
+                <div class="item-description">
+                    <h1 class="item-name">Heel</h1>
+                    <p class="item-price">&#x20B1;999</p>
+                </div>
+
+                <div class="add-to-cart">
+                    <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
+                    <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-image">
+                <img src="images/heel1.png" alt="" class="image-item">
+            </div>
+
+            <div class="description-container">
+                <div class="item-description">
+                    <h1 class="item-name">Heel</h1>
+                    <p class="item-price">&#x20B1;999</p>
+                </div>
+
+                <div class="add-to-cart">
+                    <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
+                    <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-image">
+                <img src="images/heel1.png" alt="" class="image-item">
+            </div>
+
+            <div class="description-container">
+                <div class="item-description">
+                    <h1 class="item-name">Heel</h1>
+                    <p class="item-price">&#x20B1;999</p>
+                </div>
+
+                <div class="add-to-cart">
+                    <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
+                    <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
+                </div>
+            </div>
+
+        </div>
+        
     </div>
 
-    <div class="company-name">
-        <a href="#" class="a-link">Stuart Boutique</a>
-    </div>
 
-    <div class="right-item">
-
-        <form action="" method="post">
-            <button type="submit" name="logout-button" class="logout-btn">
-                <ion-icon name="log-out-outline" class="logout-icon"></ion-icon>
-            </button>
-        </form>
-
-        <a href="#" class="a-link">
-            <ion-icon name="person-outline" class="user-icon"></ion-icon>
-        </a>
-
-        <!-- <a href="#" class="a-link">
-            <span class="total-notification">5</span>
-            <ion-icon name="notifications-outline" class="notification-icon"></ion-icon>
-        </a> -->
-
-        <a href="#" class="a-link">
-            <span class="total-item">10</span>
-            <ion-icon name="bag-outline" class="cart-icon"></ion-icon>
-        </a>
-    </div>
-</div>
-
-
-<div class="modal-content">
-
-    <!-- <button type="button" class="logout-btn">
-        <ion-icon name="log-out-outline" class="logout-icon"></ion-icon>
-    </button> -->
-
-    <form action="" method="post">
-        <button type="submit" name="logout-button" class="logout-btn">
-            <ion-icon name="log-out-outline" class="logout-icon"></ion-icon>
-        </button>
-    </form>
-
-    <a href="#">
-        <ion-icon name="person-outline" class="user-icon"></ion-icon>
-    </a>
-
-    <!-- <a href="#" class="a-link">
-        <span class="total-notification">5</span>
-        <ion-icon name="notifications-outline" class="notification-icon"></ion-icon>
-    </a> -->
-
-    <a href="#" class="a-link">
-        <ion-icon name="bag-outline" class="cart-icon"></ion-icon>
-    </a>
-
-    <a href="#" class="a-link">
-        Men Clothing
-    </a>
-
-    <a href="#" class="a-link">
-        Women Clothing
-    </a>
-
-    <a href="#" class="a-link">
-        Men Shoes
-    </a>
-
-    <a href="#" class="a-link">
-        Women Shoes
-    </a>
-</div>
-
-<script>
-    const modal = document.querySelector(".modal-content");
-    const hamburger = document.querySelector(".hamburger");
-
-    function toggleModal() {
-
-        if (modal.style.display === "flex") {
-            modal.style.display = "none"; 
-            hamburger.classList.remove("active"); 
-        } else {
-            modal.style.display = "flex"; 
-            hamburger.classList.add("active"); 
-        }
-    }
-
-    window.addEventListener("resize", () => {
-
-        if (window.innerWidth > 768 && modal.style.display === "flex") {
-            modal.style.display = "none"; 
-            hamburger.classList.remove("active"); 
-        }
-    });
-
-</script>
+<footer>
+    <p>&copy; <?php echo date('Y') ?> Stuart Boutique</p>
+    <ul class="footer-links">
+    <?php if (isset($_SESSION['authenticated'])): ?>
+        <li>
+            <a href="<?= base_url('view-customer.php') ?>">
+                <i class="fas fa-home"></i> 
+                    Home
+            </a>
+        </li>
+        <li>
+            <a href="<?= base_url('shop.php') ?>">
+                <i class="fa-solid fa-bag-shopping"></i> 
+                    Shopping
+            </a>
+        </li>
+    <?php endif; ?>
+        <li>
+            <a href="https://www.facebook.com/profile.php?id=100064031860548" target="_blank">
+                <i class="fa-brands fa-facebook"></i> 
+                    Facebook
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <i class="fa-solid fa-location-dot"></i>
+                    Torallba St. Poblacion, Iligan City
+                </a>
+            </li>
+        <li>
+            <a href="">
+                <i class="fa-solid fa-phone"></i>
+                    (063) 221 3543
+            </a>
+        </li>
+    </ul>
+</footer>
 
 </body>
 </html>
