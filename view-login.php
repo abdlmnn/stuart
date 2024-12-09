@@ -29,7 +29,7 @@
                 </div>
                 <div class="row">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Password"  class="input" name="inputPassword" id="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
+                    <input type="password" placeholder="Password"  class="input" name="inputPassword" id="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required/>
                     <div class="eye-container" onclick="showPassword1()">
                         <i class="fa-solid fa-eye eye1" id="eyeOpen"></i>
                         <i class="fa-solid fa-eye-slash eye2" id="eyeClose"></i>

@@ -67,7 +67,7 @@
 
             <div class="row">
                 <i class="fas fa-lock"></i>
-                <input type="password" placeholder="New Password" class="input" name="inputNewPassword" id="psw" required>
+                <input type="password" placeholder="New Password" class="input" name="inputNewPassword" id="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
                 <div class="eye-container" onclick="showPassword1()">
                     <i class="fa-solid fa-eye eye1" id="eyeOpen"></i>
                     <i class="fa-solid fa-eye-slash eye2" id="eyeClose"></i>
@@ -76,7 +76,7 @@
 
             <div class="row">
                 <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Confirm Password" class="input" name="inputConfirmPassword" id="confirm" required>
+                <input type="password" placeholder="Confirm Password" class="input" name="inputConfirmPassword" id="confirm" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
                 <div class="eye-container" onclick="showPassword2()">
                     <i class="fa-solid fa-eye eye1" id="eyeOpen1"></i>
                     <i class="fa-solid fa-eye-slash eye2" id="eyeClose2"></i>

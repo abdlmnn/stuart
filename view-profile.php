@@ -17,6 +17,9 @@
 
     include 'message.php';
 ?>
+
+<link rel="stylesheet" href="css/profile5.css">
+
 <div class="profile-container">
 
     <!-- userDetails came from my Class AuthenticateController  -->
@@ -124,7 +127,7 @@
         </div>
 
         <div class="profile-details">
-            <p><strong>Full Name: <?= $userRows['userFullname'] ?></p>
+            <p><strong>Full Name:</strong> <?= $userRows['userFullname'] ?></p>
             <p><strong>Email:</strong> <?= $userRows['userEmail'] ?></p>
             <p><strong>Phone Number:</strong> <?= $userRows['userNumber'] ?></p>
             <p><strong>Address:</strong> <?= $userRows['userAddress'] ?></p>
