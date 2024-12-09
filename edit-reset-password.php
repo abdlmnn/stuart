@@ -25,13 +25,21 @@
         </div>
 
         <?php
-            // trying to access the old password reset link
+            // trying to access the old code and password reset link
             if(!isset($_SESSION['code'])){
                 
                 exit("<p style='color:red; text-align: center;'>
                         You can't access this page again.
                     </p>"); 
             }else{
+
+                // trying to access the page without code
+                if(!isset($_GET['code'])){
+                
+                    exit("<p style='color:red; text-align: center;'>
+                            You can't access this page.
+                        </p>"); 
+                }
 
                 // i get from my url code=
                 $code = $_GET['code'];
@@ -55,7 +63,7 @@
                     exit("<p style='color:red; text-align: center;'>
                             Your code is invalid, 
                             Please request a new password reset link. 
-                            <b>Thank you:)</b>
+                            <b>Thank you:)</b>.
                         .</p>"); 
                 }
             }
