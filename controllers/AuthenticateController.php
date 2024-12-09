@@ -78,7 +78,7 @@
             if(!isset($_SESSION['authenticated'])){
 
                 // it direct to login page
-                redirect('Please login to access this page','view-login.php');
+                redirect('Please login to access the page','view-login.php');
                 // direct('view-login.php');
                 return false;
             }else{
