@@ -34,13 +34,13 @@
                 if($resultCheckCurrentandNewPassword){
 
                     // Proceed to new password
+                    
                                       // newPassword came from my Class ChangePasswordController 
                     $resultNewPassword = $changePassword->newPassword($userData);
 
                     if($resultNewPassword){
 
-                        // redirect('Your Current password has been successfully changed','view-profile.php');
-                        direct('view-profile.php');
+                        redirect('Your Current password has been successfully changed','view-profile.php');
                     }else{
                         
                         redirect('Something went wrong','view-profile.php?action=change-password');

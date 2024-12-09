@@ -150,7 +150,7 @@
 
                     $mail->send();
 
-                    redirect('We e-mailed you already, check your email','view-forgot-password.php');
+                    redirect('We have already sent you an e-mail','view-forgot-password.php');
 
                     // unset($code);
 
@@ -181,8 +181,7 @@
         if($resultLogout){
 
             // userLogout is true, it direct to login page
-            // redirect('You have logout successfully','view-login.php');
-            direct('view-login.php');
+            redirect('You have logout successfully','view-login.php');
         }else{
 
             redirect('Something went wrong','view-customer.php');
@@ -207,18 +206,15 @@
             if($_SESSION['user']['type'] == '1'){
 
                 redirect('You have logged in successfully','admin/view-dashboard.php');
-                // direct('admin/view-dashboard.php');
             }elseif($_SESSION['user']['type'] == '0'){
 
                 // This is for empty user Row 
                 if(empty($_SESSION['user']['fullname']) || empty($_SESSION['user']['number']) || empty($_SESSION['user']['address']) || empty($_SESSION['user']['gender'])){
 
                     redirect('Proceed to fill up your information','add-info.php');
-                    // direct('add-info.php');
                 }elseif(!empty($_SESSION['user']['fullname']) && !empty($_SESSION['user']['number']) && !empty($_SESSION['user']['address']) && !empty($_SESSION['user']['gender'])){
 
                     redirect('You have logged in successfully','view-customer.php');
-                    // direct('view-customer.php');
                 }
                 
             };
@@ -263,10 +259,8 @@
 
                     // it will direct to process to login
                     redirect('You have successfully registered','view-login.php');
-                    // direct('view-login.php');
                 }else{
 
-                    // just incase something went wrong, it will direct to register page
                     redirect('Something went wrong','add-register.php');
                 }
 

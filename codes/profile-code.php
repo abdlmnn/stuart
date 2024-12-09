@@ -18,7 +18,7 @@
 
         if($resultUpdateinfo){
 
-            direct('view-customer.php');
+            redirect('Your fill up is complete','view-customer.php');
         }else{
 
             redirect('Something went wrong','add-info.php');
@@ -38,8 +38,7 @@
             // userLogout came from my Class LoginController
             $login->userLogout();
             
-            // redirect('Your Profile Deleted Successfully','add-register.php');
-            direct('add-register.php');
+            redirect('Your Account Deleted Successfully','add-register.php');
         }else{
 
             redirect('Something went wrong','view-profile.php?action=delete-profile');
@@ -63,8 +62,7 @@
 
         if($resultEdit){
 
-            // redirect('Your Profile Updated Successfully','view-profile.php');
-            direct('view-profile.php');
+            redirect('Your Profile Updated Successfully','view-profile.php');
         }else{
 
             redirect('Something went wrong','view-profile.php?action=edit');
