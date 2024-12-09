@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2024 at 05:58 PM
+-- Generation Time: Dec 09, 2024 at 12:52 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -38,7 +38,15 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`categoryID`, `categoryName`, `categoryGender`) VALUES
-(12, 'Top', 'Women');
+(23, 'Top', 'Men'),
+(24, 'Shoes', 'Men'),
+(25, 'Pants', 'Men'),
+(26, 'Shorts', 'Men'),
+(27, 'Top', 'Women'),
+(28, 'Shoes', 'Women'),
+(29, 'Skirt', 'Women'),
+(30, 'Hoodie', 'Unisex'),
+(31, 'Pants', 'Unisex');
 
 -- --------------------------------------------------------
 
@@ -53,8 +61,23 @@ CREATE TABLE `inventory` (
   `itemName` varchar(255) NOT NULL,
   `itemSize` varchar(100) NOT NULL,
   `itemStock` int(100) NOT NULL,
-  `itemPrice` int(100) NOT NULL
+  `itemPrice` int(100) NOT NULL,
+  `itemStatus` enum('0','1') DEFAULT '0' COMMENT '''0''=avail, ''1''=unavail'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `inventory`
+--
+
+INSERT INTO `inventory` (`inventoryID`, `categoryID`, `itemImage`, `itemName`, `itemSize`, `itemStock`, `itemPrice`, `itemStatus`) VALUES
+(23, 23, 'shirt2.png', 'Black Shirt', 'M', 5, 100, '0'),
+(24, 23, 'shirt3.png', 'Long sleeve', 'M', 5, 250, '0'),
+(25, 24, 'shoes2.png', 'Jordan 1', '43', 5, 2999, '0'),
+(26, 28, 'heel1.png', 'Red Heels', '38', 5, 99, '0'),
+(27, 24, 'shoes3.png', 'Converse', '41', 5, 1999, '0'),
+(28, 23, 'shirt1.png', 'Red Shirt', 'S', 5, 100, '0'),
+(29, 23, 'shirt3.png', 'ADHD', 'XL', 5, 999, '0'),
+(32, 23, 'shoes1.png', 'sadas', 'Select Size', 2, 2500, '0');
 
 -- --------------------------------------------------------
 
@@ -64,12 +87,13 @@ CREATE TABLE `inventory` (
 
 CREATE TABLE `users` (
   `userID` int(11) NOT NULL,
-  `userFullname` varchar(150) NOT NULL,
-  `userNumber` varchar(100) NOT NULL,
-  `userAddress` varchar(100) NOT NULL,
-  `userGender` varchar(20) NOT NULL,
+  `userFullname` varchar(150) DEFAULT NULL,
+  `userNumber` varchar(100) DEFAULT NULL,
+  `userAddress` varchar(100) DEFAULT NULL,
+  `userGender` varchar(20) DEFAULT NULL,
   `userEmail` varchar(100) NOT NULL,
   `userPassword` varchar(50) NOT NULL,
+  `userCode` int(255) DEFAULT NULL,
   `userType` tinyint(2) DEFAULT 0 COMMENT '0=customer, 1=admin'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -77,17 +101,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userID`, `userFullname`, `userNumber`, `userAddress`, `userGender`, `userEmail`, `userPassword`, `userType`) VALUES
-(1, 'Mohammad Abdulmanan', '09213179', 'Here lng', 'Male', 'manan@gmail.com', 'salih', 1),
-(3, 'Salih', '1321380', 'asdasda', 'Female', 'ryan@gmail.com', '12345', 0),
-(4, 'Abdul', '1231297362198', 'secret', 'Male', 'ummair@gmail.com', 'salih123', 0),
-(5, 'Salih', '242424', 'asda', 'Male', 'ansari@gmail.com', '12345', 0),
-(6, 'Salih', 'asdasdasdas', '123123213', 'Female', 'mai@gmail.com', 'salih123', 0),
-(7, 'Salih', 'asdasdasdas', '123123213', 'Female', 'ali@gmail.com', 'salih123', 0),
-(8, 'Salih', '123123', '1231casdasd', 'Female', 'ali123@gmail.com', 'salih123', 0),
-(9, 'Salih Abdulmanan', '098921731 ', 'Dito lng banda', 'Male', 'abdulmanan@gmail.com', 'salih', 1),
-(10, 'Ryan', '0922 909 2323', 'Tibanga', 'Male', 'ryan123@gmail.com', 'ryan123', 0),
-(11, 'salih salih', '2131023821', 'tibanga', 'Select Gender', 'salih@gmail.com', '123', 0);
+INSERT INTO `users` (`userID`, `userFullname`, `userNumber`, `userAddress`, `userGender`, `userEmail`, `userPassword`, `userCode`, `userType`) VALUES
+(17, 'Salih', '2131023821', 'tibanga', 'Male', 'salih@gmail.com', 'Abdulmanan24', 249969, 1),
+(22, 'Abdulmanan', '137198', 'Tibanga', 'Male', 'mohammadabdulmanan24@gmail.com', 'Salih123', NULL, 0),
+(26, NULL, NULL, NULL, NULL, 'mohammaddomangcag.abdulmanan@my.smciligan.edu.ph', 'Salih123', 660337, 0);
 
 --
 -- Indexes for dumped tables
@@ -120,19 +137,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `categoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `categoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `inventoryID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `inventoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Constraints for dumped tables
