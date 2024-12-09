@@ -1,4 +1,5 @@
     <footer>
+
         <div class="footer-content">
 
             <p>&copy; <?php echo date('Y') ?> Stuart Boutique</p>

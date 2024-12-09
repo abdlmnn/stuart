@@ -33,24 +33,17 @@
                 // if resultCheckCurrentandNewPassword is return true or false
                 if($resultCheckCurrentandNewPassword){
 
-                    // it check if current and new password are same input and the current are already exists
-                    if($currentPassword == $userRows['userPassword'] && $newPassword == $userRows['userPassword']){
+                    // Proceed to new password
+                                      // newPassword came from my Class ChangePasswordController 
+                    $resultNewPassword = $changePassword->newPassword($userData);
 
-                        redirect('Your Current password and New Password are already exists','view-profile.php?action=change-password');
+                    if($resultNewPassword){
+
+                        // redirect('Your Current password has been successfully changed','view-profile.php');
+                        direct('view-profile.php');
                     }else{
-
-                        // Proceed to new password
-                                          // newPassword came from my Class ChangePasswordController 
-                        $resultNewPassword = $changePassword->newPassword($userData);
-
-                        if($resultNewPassword){
-
-                            redirect('Your Current password has been Successfully Changed','view-profile.php');
-                        }else{
-                            
-                            redirect('Something went wrong','view-profile.php?action=change-password');
-                        }
-
+                        
+                        redirect('Something went wrong','view-profile.php?action=change-password');
                     }
 
                 }else{

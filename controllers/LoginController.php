@@ -59,7 +59,11 @@
             $_SESSION['user'] = [
                 'id' => $data['userID'],
                 'fullname' => $data['userFullname'],
+                'number' => $data['userNumber'],
+                'address' => $data['userAddress'],
+                'gender' => $data['userGender'],
                 'email' => $data['userEmail'],
+                'code' => $data['userCode'],
                 'type' => $data['userType']
             ];
         }
@@ -77,11 +81,13 @@
                 if($usertype == '0'){
 
                     // it direct to customer page
-                    redirect('You are already logged in as a customer','view-customer.php');
+                    // redirect('You are already logged in as a customer','view-customer.php');
+                    direct('view-customer.php');
                 }else if($usertype == '1'){
 
                     // if the usertype is 1, it direct to admin page 
-                    redirect('You are already logged in as a admin','admin/view-dashboard.php');
+                    // redirect('You are already logged in as a admin','admin/view-dashboard.php');
+                    direct('admin/view-dashboard.php');
                 }
 
             }else{
@@ -98,10 +104,6 @@
 
                 unset($_SESSION['authenticated']);
                 unset($_SESSION['user']);
-
-                // session_unset();
-                // session_destroy();
-                // session_regenerate_id();
 
                 return true;
             }else{

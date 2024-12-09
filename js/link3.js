@@ -3,9 +3,9 @@ function editProfile()
     window.location.href = "view-profile.php?action=edit-profile";
 }
 
-function deleteProfile()
+function deleteAccount()
 {
-    window.location.href = "view-profile.php?action=delete-profile";
+    window.location.href = "view-profile.php?action=delete-account";
 }
 
 function changePassword()

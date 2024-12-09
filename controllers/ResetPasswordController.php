@@ -12,23 +12,22 @@
             $this->conn = $db->conn;
         }
 
-        // Setting newPassword to my userPassword table rows
-        public function newPassword($registerData)
+        // Updating my userPassword into new Password using the Reset Password
+        public function newPassword($data)
         {
-            $email = $registerData['email'];
-            $newPassword = $registerData['newPassword'];
+            $code = $data['code'];
+            $newPassword = $data['newPassword'];
 
             $updatePasswordQuery = "
                 UPDATE users
                 SET userPassword='$newPassword'
-                WHERE userEmail='$email'
+                WHERE userCode='$code'
                 LIMIT 1
             ";
             $result = $this->conn->query($updatePasswordQuery);
 
             return $result;
         }
-
     }
 ?>
 

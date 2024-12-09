@@ -88,9 +88,25 @@
             }
         }
 
+        // To check gender must be required
+        public function checkGender($inputData)
+        {
+            $gender = $inputData['gender'];
+
+            if($gender == 'Select Gender')
+            {
+                redirect('Gender is required','admin/add-categories.php');
+                return false;
+            }
+
+        }
+
         // Add input data to categories table values
         public function add($inputData)
         {
+            // this checkGender came from my function checkGender
+            $this->checkGender($inputData);
+
             // it will dislpay all the data of my inputData which is in array categoryData
             $allData = "'" . implode("', '", $inputData) . "'"; 
 
@@ -115,9 +131,9 @@
 
         // Update the values of categories rows 
         public function update($data)
-        {
-            $id     = $data['id'];
-            $name   = $data['name'];
+        {   
+            $id = $data['id'];
+            $name = $data['name'];
             $gender = $data['gender'];
 
             $updateDataQuery = "
@@ -148,12 +164,8 @@
             $result = $this->conn->query($deleteDataQuery);
 
             if($result){
-
-                // it return true to the function
                 return true;
             }else{
-
-                // it return false to the function 
                 return false;
             }
         }

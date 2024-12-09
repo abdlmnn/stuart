@@ -28,7 +28,6 @@
     // CATEGORIES UPDATE
     if(isset($_POST['update-button']))
     {
-
         // storing input category data in a array
         $categoryData = [
             'id'=> $_POST['inputID'],

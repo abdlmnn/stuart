@@ -27,17 +27,39 @@
                     <span>Purchase</span>
                 </a>
             </li>
-            <li class="<?= $page == 'add-categories.php' ? 'active':'' ?>">
-                <a href="add-categories.php">
+            <li>
+                <button onclick="toggleSubMenu(this)" class="dropdown-btn">
                     <ion-icon name="shirt-outline" class="icons"></ion-icon>
                     <span>Categories</span>
-                </a>
+                    <ion-icon name="chevron-down-outline"></ion-icon>
+                </button>
+                <ul class="sub-menu">
+                    <div class="child-menu">
+                        <li class="<?= $page == 'add-categories.php' ? 'active':'' ?>">
+                            <a href="add-categories.php">Add</a>
+                        </li>
+                        <li class="<?= $page == 'view-categories.php' ? 'active':'' ?>">
+                            <a href="view-categories.php">View</a>
+                        </li>
+                    </div>
+                </ul>
             </li>
-            <li class="<?= $page == 'add-inventory.php' ? 'active':'' ?>">
-                <a href="add-inventory.php">
+            <li>
+                <button onclick="toggleSubMenu(this)" class="dropdown-btn">
                     <ion-icon name="cube-outline" class="icons"></ion-icon>
                     <span>Inventory</span>
-                </a>
+                    <ion-icon name="chevron-down-outline"></ion-icon>
+                </button>
+                <ul class="sub-menu">
+                    <div class="child-menu">
+                        <li class="<?= $page == 'add-inventory.php' ? 'active':'' ?>">
+                            <a href="add-inventory.php">Add</a>
+                        </li>
+                        <li class="<?= $page == 'view-inventory.php' ? 'active':'' ?>">
+                            <a href="view-inventory.php">View</a>
+                        </li>
+                    </div>
+                </ul>
             </li>
             <li>
                 <button onclick="toggleSubMenu(this)" class="dropdown-btn">
@@ -47,26 +69,38 @@
                 </button>
                 <ul class="sub-menu">
                     <div class="child-menu">
-                        <li class="<?= $page == 'view-salesReport.php' ? 'active':'' ?>">
-                            <a href="view-salesReport.php">Sales</a>
+                        <li class="<?= $page == 'view-sales-report.php' ? 'active':'' ?>">
+                            <a href="view-sales-report.php">Sales</a>
                         </li>
-                        <li class="<?= $page == 'view-inventoryReport.php' ? 'active':'' ?>">
-                            <a href="view-inventoryReport.php">Inventory</a>
+                        <li class="<?= $page == 'view-inventory-report.php' ? 'active':'' ?>">
+                            <a href="view-inventory-report.php">Inventory</a>
                         </li>
                     </div>
                 </ul>
             </li>
-            <li class="<?= $page == 'users.php' ? 'active':'' ?>">
-                <a href="users.php">
+                <button onclick="toggleSubMenu(this)" class="dropdown-btn">
                     <ion-icon name="people-outline" class="icons"></ion-icon>
                     <span>Users</span>
+                    <ion-icon name="chevron-down-outline"></ion-icon>
+                </button>
+                <ul class="sub-menu">
+                    <div class="child-menu">
+                        <li class="<?= $page == 'add-users.php' ? 'active':'' ?>">
+                            <a href="add-users.php">Add</a>
+                        </li>
+                        <li class="<?= $page == 'view-users.php' ? 'active':'' ?>">
+                            <a href="view-users.php.php">View</a>
+                        </li>
+                    </div>
+                </ul>
+            </li>
+            <li class="<?= $page == 'view-profile.php' ? 'active':'' ?>">
+                <a href="view-profile.php">
+                    <ion-icon name="person-outline" class="icons"></ion-icon>
+                    <span>Profile</span>
                 </a>
             </li>
             <li>
-                <!-- <a href="codes/authentication.php">
-                    <ion-icon name="log-out-outline" class="icons"></ion-icon>
-                    <span>Logout</span>
-                </a> -->
                 <form action="" method="post">
                     <button type="submit" name="logout-button" class="dropdown-btn">
                         <ion-icon name="log-out-outline" class="icons"></ion-icon>

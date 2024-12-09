@@ -17,9 +17,11 @@
         {
             // it will dislpay all the data of my inputData which is in array registerData
             $data = "'". implode("', '",$registerData) ."'";
-
+            
+            // userFullname,userNumber,userAddress,userGender,
             $registerQuery = "
-                INSERT INTO users (userFullname,userNumber,userAddress,userGender,userEmail,userPassword)
+                INSERT INTO 
+                users (userEmail,userPassword)
                 VALUES ($data)
             ";
             $result = $this->conn->query($registerQuery);

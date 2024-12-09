@@ -37,7 +37,8 @@
                 }else{
 
                     // if the usertype is customer, it direct customer page when attempting to access admin page
-                    redirect('You are not authorized as admin','view-customer.php');
+                    // redirect('You are not authorized as admin','view-customer.php');
+                    direct('view-customer.php');
                 }
             }
         }
@@ -64,7 +65,8 @@
                 }else{
 
                     // if the usertype is admin , it direct customer page when attempting to access customer page
-                    redirect('You are not register as a customer','admin/view-dashboard.php');
+                    // redirect('You are not register as a customer','admin/view-dashboard.php');
+                    direct('admin/view-dashboard.php');
                 }
             }
         }
@@ -76,7 +78,8 @@
             if(!isset($_SESSION['authenticated'])){
 
                 // it direct to login page
-                redirect('Please login to access this page','view-login.php');
+                // redirect('Please login to access this page','view-login.php');
+                direct('view-login.php');
                 return false;
             }else{
                 return true;

@@ -55,14 +55,29 @@
                             <input type="text" name="inputName" value="<?= $data['name'] ?>" placeholder="Name" required autofocus>
                             <br><br>
 
-                            <select name="inputGender">
-                                
-                                <option selected>Select Gender</option>
-                                <option value="Men">Men</option>
-                                <option value="Women">Women</option>
-                                <option value="Unisex">Unisex</option>
+                            <select name="inputGender" >
+                                <?php if($data['gender'] != 'Men' && $data['gender'] != 'Women' && $data['gender'] != 'Unisex' && $data['gender'] == 'Select Gender' || empty($data['gender'])) : ?>
 
-                            </select>
+                                    <option value="Men">Men</option>
+                                    <option value="Women">Women</option>
+                                    <option value="Unisex">Unisex</option>
+
+                                <?php elseif($data['gender'] == 'Men') : ?>
+
+                                    <option value="<?= $data['gender'] ?>" selected><?= $data['gender'] ?></option>
+
+                                    <option value="Women">Women</option>
+                                    <option value="Unisex">Unisex</option>
+
+                                <?php elseif($data['gender'] == 'Women') : ?>
+
+                                    <option value="<?= $data['gender'] ?>" selected><?= $data['gender'] ?></option>
+
+                                    <option value="Men">Men</option>
+                                    <option value="Unisex">Unisex</option>
+
+                                <?php endif; ?>
+                            </select> 
 
                             <button type="submit" name="update-button">
                                 <i class="fa-solid fa-pen-to-square"></i>

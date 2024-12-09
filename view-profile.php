@@ -19,7 +19,7 @@
 ?>
 <div class="profile-container">
 
-                <!-- userDetails came from my Class AuthenticateController  -->
+    <!-- userDetails came from my Class AuthenticateController  -->
     <?php $userRows = $authenticated->userDetails(); ?>
 
     <?php if(!empty($_GET['action']) && $_GET['action'] == 'edit-profile') : ?>
@@ -38,9 +38,24 @@
                 <p><strong>Address:</strong> <input type="text" name="inputAddress" value="<?= $userRows['userAddress'] ?>" required> </p>
                 <p><strong>Gender:</strong> 
                     <select name="inputGender" >
-                        <option value="<?= $userRows['userGender'] ?>" selected><?= $userRows['userGender'] ?></option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
+                        <?php if($userRows['userGender'] != 'Male' && $userRows['userGender'] != 'Female' && $userRows['userGender'] == 'Select Gender' || empty($userRows['userGender'])) : ?>
+
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+
+                        <?php elseif($userRows['userGender'] == 'Male') : ?>
+
+                            <option value="<?= $userRows['userGender'] ?>" selected><?= $userRows['userGender'] ?></option>
+
+                            <option value="Female">Female</option>
+
+                        <?php elseif($userRows['userGender'] == 'Female') : ?>
+
+                            <option value="<?= $userRows['userGender'] ?>" selected><?= $userRows['userGender'] ?></option>
+
+                            <option value="Male">Male</option>
+
+                        <?php endif; ?>
                     </select> 
                 </p>
 
@@ -53,10 +68,10 @@
             </form>
         </div>
 
-    <?php elseif(!empty($_GET['action']) && $_GET['action'] == 'delete-profile') : ?>
+    <?php elseif(!empty($_GET['action']) && $_GET['action'] == 'delete-account') : ?>
 
         <div class="profile-header">
-            <h2>Delete Profile</h2>
+            <h2>Delete Account</h2>
         </div>
 
         <div class="profile-details">
@@ -109,7 +124,7 @@
         </div>
 
         <div class="profile-details">
-            <p><strong>Full Name:</strong> <?= $userRows['userFullname'] ?></p>
+            <p><strong>Full Name: <?= $userRows['userFullname'] ?></p>
             <p><strong>Email:</strong> <?= $userRows['userEmail'] ?></p>
             <p><strong>Phone Number:</strong> <?= $userRows['userNumber'] ?></p>
             <p><strong>Address:</strong> <?= $userRows['userAddress'] ?></p>
@@ -117,7 +132,7 @@
 
             <div class="profile-actions">
                 <button type="submit" onclick="editProfile()">Edit Profile</button>
-                <button type="submit" onclick="deleteProfile()">Delete Profile</button>
+                <button type="submit" onclick="deleteAccount()">Delete Account</button>
                 <button type="submit" onclick="changePassword()">Change Password</button>
             </div>
         </div>

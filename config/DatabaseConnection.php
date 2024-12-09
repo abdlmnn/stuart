@@ -1,19 +1,17 @@
 <?php
     class DatabaseConnection
-    {
+    {   
+        public $conn;
         public function __construct()
         {
-            $conn = new mysqli(HOSTNAME,USERNAME,PASSWORD,DATABASE);
+            $this->conn = new mysqli(HOSTNAME,USERNAME,PASSWORD,DATABASE);
 
-            if($conn->connect_error)
+            if($this->conn->connect_error)
             {
-                die ("Connection Failed: " . $conn->connect_error);
+                die ("Connection Failed: " . $this->conn->connect_error);
             }
 
             // echo 'Connection Database is successful';
-
-            // this variable conn is assign as the db of my conn
-            return $this->conn = $conn;
         }
     }
 ?>

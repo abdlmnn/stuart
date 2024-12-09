@@ -1,70 +1,188 @@
 <?php
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
+    require 'phpmailer/src/Exception.php';
+    require 'phpmailer/src/PHPMailer.php';
+    require 'phpmailer/src/SMTP.php';
+
     include_once 'controllers/RegisterController.php';
     include_once 'controllers/LoginController.php';
     include_once 'controllers/ResetPasswordController.php';
+    include_once 'controllers/ForgotPasswordController.php';
 
     $register = new RegisterController;
     $login = new LoginController;
     $resetPassword =  new ResetPasswordController;
+    $forgotPassword =  new ForgotPasswordController;
 
-    // EDIT RESET PASSWORD
-    if(isset($_POST['reset-password-button']))
+    // RESET PASSWORD USER
+    if(isset($_POST['reset-button']))
     {
-        $registerData = [
-            'email'=> $_POST['inputEmail'],
-            'newPassword'=> $_POST['inputNewPassword'],
+        $data = [
+            'code'=> $_POST['inputCode'],
+            'newPassword'=> $_POST['inputNewPassword']
         ];
         $confirmPassword = $_POST['inputConfirmPassword'];
+        
+        $code = $data['code'];
 
-                        // confirmPassword came from my Class RegisterController 
-        $resultPassword = $register->confirmPassword($registerData,$confirmPassword);
+                               // confirmPassword came from my Class RegisterController
+        $resultConfirmPassword = $register->confirmPassword($data,$confirmPassword);
+        
+        if($resultConfirmPassword){
 
-        // if the resultPassword is true
-        if($resultPassword){
+                                 // newPassword came from my Class ResetPasswordController
+            $resultResetPassword = $resetPassword->newPassword($data);
 
-                         // userExists came from my Class RegisterController
-            $emailExists = $register->userExists($registerData);
+            // if the result reset password return true
+            if($resultResetPassword){
 
-            // it will check if the email already exists which is true
-            if($emailExists){
-
-                               // newPassword came from my Class ResetPasswordController 
-                $successChange = $resetPassword->newPassword($registerData);
-
-                // if the changeSuccess is true
-                if($successChange){
-
-                    // it direct to login page
-                    redirect('Your Password has been successfully changed','view-login.php');
-                }else{
-
-                    // just incase something went wrong, it will direct to reset-password page
-                    redirect('Something went wrong','edit-reset-password.php');
-                }
-
+                // setNull came from my Class ForgotPasswordController
+                $forgotPassword->setNull($data);
+                // this will set or update my userCode into null after a success reset password 
+        
+                redirect('You have reset your password successfully','view-login.php');
             }else{
 
-                // if the email does not exist, it will direct to reset-password page
-                redirect('Your Email does not exist, Please Try again or Register the Email','add-register.php');
+                redirect('Something went wrong',"edit-reset-password.php?code=$code");
             }
 
         }else{
 
-            // if the resultPassword is false because it does not match, it will direct to reset-password page
-            redirect('Your New Password and Confirm Password does not match',"edit-reset-password.php");
+            redirect('Your New and Confirm password does not match',"edit-reset-password.php?code=$code");
+        }
+
+    }
+    // RESET PASSWORD USER
+    // SENDING EMAIL USER
+    if(isset($_POST['send-button']))
+    {
+        $data = [
+            'email'=> $_POST['inputEmail'],
+            'code'=> mt_rand(100000, 999999)
+        ];
+
+                     // userExists came from my Class RegisterController
+        $emailExists = $register->userExists($data);
+
+        // it will check if the email already exists which is true
+        if($emailExists){
+                              // updateCode came from my Class ForgotPasswordController   
+            $resultUpdateCode = $forgotPassword->updateCode($data);
+
+            // if the code has been sent to the user it proceed to send a link for the exact user email
+            if($resultUpdateCode){
+
+                $mail = new PHPMailer(true);
+
+                // Send email to the exact userEmail with a link for reset password
+                try{
+
+                    $_SESSION['reset_code'] = $data['code'];
+
+                    $userEmail = $data['email'];
+                    $code = $data['code'];
+
+                    //Server settings
+                    $mail->SMTPDebug = 0;                           // Enable verbose debug output, 1 for produciton , 2,3 for debuging in devlopment 
+                    $mail->isSMTP();                                // Set mailer to use SMTP
+                    $mail->Host = 'smtp.gmail.com';                 // Specify main and backup SMTP servers
+                    $mail->SMTPAuth = true;                         // Enable SMTP authentication
+                    $mail->Username = 'legendsalih24@gmail.com';    // SMTP username
+                    $mail->Password = 'vuuf yosu qkzr xsih';        // SMTP password
+                    // $mail->SMTPSecure = 'tls';                   // Enable TLS encryption, `ssl` also accepted
+                    $mail->SMTPSecure = 'ssl';                      // Enable TLS encryption, `ssl` also accepted
+                    // $mail->Port = 587;   // for tls              // TCP port to connect to
+                    $mail->Port = 465;
+
+                    //Recipients
+                    $mail->setFrom(
+                            'legendsalih24@gmail.com', 
+                            'Stuart Boutique'
+                        );                                          // from who? 
+                    $mail->addAddress($userEmail);         // Add a recipient
+
+                    //Content
+                    $mail->isHTML(true);                    // Set email format to HTML
+                    $mail->Subject = 'Password reset link';
+                    $mail->Body    = "
+                                        <h2 style=' color: #111; 
+                                                    text-align: center;
+                                                  '
+                                        >
+                                                    Requested Password Reset
+                                        </h2>
+
+                                        <p style='  color: #111; 
+                                                    text-align: center;
+                                                    font-size: 15px;
+                                                 '
+                                        > 
+                                                    Click the password reset button 
+                                        </p>
+
+                                        <div style='text-align: center;'>
+                                        <a href='http://localhost/stuart/edit-reset-password.php?code=$code'> 
+                                            <button 
+                                                style=' background-color: #111; 
+                                                        border: none; color: #fff; 
+                                                        border-radius: 5px;
+                                                        font-size: 15px; 
+                                                        padding: 10px; 
+                                                        cursor: pointer;
+                                                      '
+                                            > 
+                                                    Password Reset
+                                            </button> 
+                                        </a> 
+                                        </div>
+                                     ";
+
+                    // to solve a problem 
+                    $mail->SMTPOptions = array(
+                        'ssl' => array(
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                        'allow_self_signed' => true
+                        )
+                    );
+
+                    $mail->send();
+
+                    redirect('We e-mailed you already, check your email','view-forgot-password.php');
+
+                    // unset($code);
+
+                }catch (Exception $e){
+
+                    // Catch PHPMailer exceptions and display error
+                    redirect('Email could not be sent. Error:'. $mail->ErrorInfo,'view-forgot-password.php');
+                }
+
+            }else{
+
+                redirect('Something went wrong','view-forgot-password.php');
+            }
+  
+        }else{
+
+            // if the email does not exist, it will direct to reset-password page
+            redirect('Your Email does not exist, Please Try again or Register the email','add-register.php');
         }
     }
-    // EDIT RESET PASSWORD
+    // SENDING EMAIL USER
     // LOGOUT USER
     if(isset($_POST['logout-button']))
     {
-        // userLogout came from my Class LoginController
+                      // userLogout came from my Class LoginController
         $resultLogout = $login->userLogout();
 
         if($resultLogout){
 
             // userLogout is true, it direct to login page
-            redirect('You have logout successfully','view-login.php');
+            // redirect('You have logout successfully','view-login.php');
+            direct('view-login.php');
         }else{
 
             redirect('Something went wrong','view-customer.php');
@@ -87,36 +205,37 @@
             
             // This is for admin redirect to admin page
             if($_SESSION['user']['type'] == '1'){
-                redirect('You have login successfully','admin/view-dashboard.php');
-                return true;
-            };
 
-            // This is for customer redirect to customer page
-            if($_SESSION['user']['type'] == '0'){
-                redirect('You have login successfully','view-customer.php');
-                return true;
+                redirect('You have logged in successfully','admin/view-dashboard.php');
+                // direct('admin/view-dashboard.php');
+            }elseif($_SESSION['user']['type'] == '0'){
+
+                // This is for empty user Row 
+                if(empty($_SESSION['user']['fullname']) || empty($_SESSION['user']['number']) || empty($_SESSION['user']['address']) || empty($_SESSION['user']['gender'])){
+
+                    redirect('Proceed to fill up your information','add-info.php');
+                    // direct('add-info.php');
+                }elseif(!empty($_SESSION['user']['fullname']) && !empty($_SESSION['user']['number']) && !empty($_SESSION['user']['address']) && !empty($_SESSION['user']['gender'])){
+
+                    redirect('You have logged in successfully','view-customer.php');
+                    // direct('view-customer.php');
+                }
+                
             };
 
         }else{
 
             // if the checkLogin is false or not register 
             redirect('Your Email and Password are invalid, Please Register','add-register.php');
-            return false;
         }
     }
     // LOGIN USER
     // ADD REGISTER USER
     if(isset($_POST['register-button']))
     {
-        
         $registerData = [
-            'fullname' => $_POST['inputFullname'],
-            'number' => $_POST['inputNumber'],
-            'address' => $_POST['inputAddress'],
-            'gender'=> $_POST['inputGender'],
             'email'=> $_POST['inputEmail'],
             'password'=> $_POST['inputPassword'],
-            
         ];
         $confirmPassword = $_POST['inputConfirmPassword'];
 
@@ -127,13 +246,13 @@
         if($resultPassword){
 
                         // userExists came from my Class RegisterController
-            $resultUser = $register->userExists($registerData);
+            $resultUserExists = $register->userExists($registerData);
             
-            // if the resultUser is true because the user exists
-            if($resultUser){
+            // if the resultUserExists is true because the user exists
+            if($resultUserExists){
 
                 // it will direct to register page
-                redirect('This user already exists','add-register.php');
+                redirect('This email already exists','add-register.php');
             }else{
 
                             // registration came from my Class RegisterController
@@ -144,6 +263,7 @@
 
                     // it will direct to process to login
                     redirect('You have successfully registered','view-login.php');
+                    // direct('view-login.php');
                 }else{
 
                     // just incase something went wrong, it will direct to register page

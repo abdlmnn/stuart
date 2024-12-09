@@ -24,44 +24,42 @@
             <form action="" method="post">  
 
                 <div class="row">
-                    <i class="fas fa-user"></i>
-                    <input type="text" placeholder="Full Name" class="input" name="inputFullname" required autofocus> 
-                </div>
-                <div class="row">
-                    <i class="fas fa-phone"></i>
-                    <input type="text" placeholder="Phone Number" pattern="[0-9]{3}-[0-9}{3}-[0-9]{4}" class="input" name="inputNumber" required>
-                </div>
-                <div class="row">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <input type="text" placeholder="Address" class="input" name="inputAddress" required>
-                </div>
-                <div class="row">
-                    <i class="fas fa-venus-mars"></i>
-                    <select name="inputGender" class="input" required>
-                        <option>Select Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                    </select>
-                </div>
-                <div class="row">
                     <i class="fas fa-envelope"></i>
                     <input type="email" placeholder="Email" class="input" name="inputEmail" required>
                 </div>
                 <div class="row">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Password" class="input" name="inputPassword" required>
+                    <input type="password" placeholder="Password" class="input" name="inputPassword" id="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                    <div class="eye-container" onclick="showPassword1()">
+                        <i class="fa-solid fa-eye eye1" id="eyeOpen"></i>
+                        <i class="fa-solid fa-eye-slash eye2" id="eyeClose"></i>
+                    </div>
                 </div>
                 <div class="row">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Confirm Password" class="input" name="inputConfirmPassword" required>
+                    <input type="password" placeholder="Confirm Password" class="input" name="inputConfirmPassword" id="confirm" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                    <div class="eye-container" onclick="showPassword2()">
+                        <i class="fa-solid fa-eye eye1" id="eyeOpen1"></i>
+                        <i class="fa-solid fa-eye-slash eye2" id="eyeClose2"></i>
+                    </div>
                 </div>
                 
                 <div class="row button">
-                    <button type="submit" name="register-button" class="input">Register</button>
+                    <button type="submit" name="register-button" class="input button">Register</button>
                 </div>
 
             </form>
 
+        </div>
+
+        <div id="message">
+            <div class="message-container">
+                <h4>Password must contain the following:</h4>
+                <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                <p id="number" class="invalid">A <b>number</b></p>
+                <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+            </div>
         </div>
             
     </div>

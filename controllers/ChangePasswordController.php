@@ -27,10 +27,18 @@
             ";
             $result = $this->conn->query($getDataQuery);
 
-            if($result->num_rows == 1){
+            if($result->num_rows > 0){
                 $userRows = $result->fetch_assoc();
 
-                return $userRows;
+                if($currentPassword == $userRows['userPassword'] && $newPassword == $userRows['userPassword']){
+
+                    redirect('Your Current password and New Password are already exist','view-profile.php?action=change-password');
+                    return false;
+                }else{
+                    
+                    return true;
+                }
+
             }else{
 
                 return false;

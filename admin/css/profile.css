@@ -1,0 +1,75 @@
+.profile-container {
+    /* border: 1px solid red; */
+    margin: 25px;
+    /* padding: 25px 25px; */
+    /* background-color: #efefee; */
+    max-width: 900px;
+    /* margin: 7.5em auto; */
+}
+
+.profile-details {
+    border: 1px solid blue;
+    background-color: #ddd;
+    padding: 25px 25px;
+    font-size: 1rem;
+}
+
+.profile-details p {
+    margin-bottom: 15px;
+}
+
+.profile-actions {
+    /* margin-top: 20px; */
+    margin-bottom: 20px;
+    display: flex;
+    /* justify-content: center; */
+    gap: 10px;
+}
+
+.profile-actions button {
+    padding: 10px 20px;
+    background-color: #111;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+input[type="text"], input[type="email"] {
+    padding: 10px 20px; 
+    border-radius: 5px;
+    border: none;
+    width: 50%; 
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+}
+input[type="tel"], input[type="password"] {
+    padding: 10px 20px; 
+    border-radius: 5px;
+    /* margin: 5px; */
+    border: none;
+    width: 50%; 
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+} 
+input::placeholder {
+    color: #000;
+}
+select{
+    padding: 10px 20px; 
+    border-radius: 5px;
+    /* margin: 5px; */
+    border: none;
+    width: 25%; 
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

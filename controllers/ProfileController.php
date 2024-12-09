@@ -12,6 +12,26 @@
             $this->conn = $db->conn;
         }
 
+        // Delete the information of user with exact ID
+        public function delete($deleteID)
+        {
+            $deleteDataQuery = "
+                DELETE 
+                FROM users
+                WHERE userID='$deleteID'
+                LIMIT 1
+            ";
+            $result = $this->conn->query($deleteDataQuery);
+        
+             if($result){
+        
+                return true;
+            }else{
+        
+                return false;
+            }
+        }
+
         // Edit the information of user with exact ID
         public function update($userData)
         {
@@ -32,31 +52,39 @@
                 WHERE userID='$id'
                 LIMIT 1
             ";
-            $resultEdit = $this->conn->query($editDataQuery);
+            $result = $this->conn->query($editDataQuery);
 
-            if($resultEdit){
+            if($result){
                 return true;
             }else{
                 return false;
             }
         }
 
-        // Delete the information of user with exact ID
-        public function delete($deleteID)
+        // Update the information of user because it is null or empty exact email
+        public function updateInfo($userData)
         {
-            $deleteDataQuery = "
-                DELETE 
-                FROM users
-                WHERE userID='$deleteID'
+            $fullname = $userData['fullname'];
+            $number = $userData['number'];
+            $address = $userData['address'];
+            $gender = $userData['gender'];
+
+            $email = $_SESSION['user']['email'];
+
+            $insertDataQuery  = "
+                UPDATE users
+                SET userFullname='$fullname',
+                    userNumber='$number',
+                    userAddress='$address',
+                    userGender='$gender'
+                WHERE userEmail='$email'
                 LIMIT 1
             ";
-            $result = $this->conn->query($deleteDataQuery);
+            $result = $this->conn->query($insertDataQuery);
 
             if($result){
-
                 return true;
             }else{
-
                 return false;
             }
         }
