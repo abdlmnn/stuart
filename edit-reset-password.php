@@ -29,7 +29,7 @@
             if(!isset($_SESSION['code'])){
                 
                 exit("<p style='color:red; text-align: center;'>
-                        You can't access this page again.
+                        You can't access this link.
                     </p>"); 
             }else{
 
@@ -48,9 +48,9 @@
                 if ($_SESSION['code'] !== $code) {
 
                     exit("<p style='color:red; text-align: center;'>
-                            Your code is invalid, 
+                            The code and link is expired, 
                             Please request a new password reset link. 
-                            <b>Thank you:)</b>.
+                            <b>Thank you!</b>
                         </p>");
                 }
 
@@ -61,10 +61,10 @@
                 if(!$resultCheckCode){
 
                     exit("<p style='color:red; text-align: center;'>
-                            Your code is invalid, 
+                            The code is invalid, 
                             Please request a new password reset link. 
-                            <b>Thank you:)</b>.
-                        .</p>"); 
+                            <b>Thank you!</b>
+                        </p>"); 
                 }
             }
         ?>
