@@ -1,37 +1,32 @@
 .profile-container {
-    /* border: 1px solid red; */
-    margin: 25px;
-    /* padding: 25px 25px; */
-    /* background-color: #efefee; */
-    max-width: 900px;
-    /* margin: 7.5em auto; */
-    display: flex;
+    max-width: 800px;
+    margin: 7.5em auto;
+}
+
+.profile-header {
+    text-align: center;
+    color: #E2A500;
+    font-size: 1.5rem;
+    background-color: #111;
+    padding: 10px 25px;
 }
 
 .profile-details {
-    border: 1px solid blue;
     background-color: #ddd;
     padding: 25px 25px;
-    font-size: 1rem;
-    width: 100%;
-    min-width: 50vw;
+    font-size: 1.2rem;
 }
 
 .profile-details p {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .profile-actions {
-    /* margin-top: 20px; */
-    /* margin-bottom: 20px; */
-    /* margin-right: 100px; */
+    margin-top: 20px;
     display: flex;
-    width: 100%;
-    /* justify-content: center; */
+    justify-content: center;
     gap: 10px;
-    border: 1px solid red;
-    padding: 10px;
-    flex-direction: column;
+    /* border: 1px solid red; */
 }
 
 .profile-actions button {
@@ -42,7 +37,6 @@
     border-radius: 5px;
     cursor: pointer;
 }
-
 
 input[type="text"], input[type="email"] {
     padding: 10px 20px; 

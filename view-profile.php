@@ -18,7 +18,7 @@
     include 'message.php';
 ?>
 
-<link rel="stylesheet" href="css/profile5.css">
+<link rel="stylesheet" href="css/profile6.css">
 
 <div class="profile-container">
 
