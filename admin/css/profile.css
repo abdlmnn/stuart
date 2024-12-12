@@ -1,20 +1,20 @@
 .profile-container {
     /* border: 1px solid red; */
-    margin: 25px;
-    /* padding: 25px 25px; */
-    /* background-color: #efefee; */
-    max-width: 900px;
-    /* margin: 7.5em auto; */
     display: flex;
+    margin: 25px auto;
+    max-width: 1000px;
 }
 
 .profile-details {
-    border: 1px solid blue;
-    background-color: #ddd;
+    /* border: 1px solid blue; */
+    /* background-color: #ddd; */
+    background-color: #ffff;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 2.5px;
     padding: 25px 25px;
-    font-size: 1rem;
+    /* font-size: 1rem; */
     width: 100%;
-    min-width: 50vw;
+    min-width: 55vw;
 }
 
 .profile-details p {
@@ -22,46 +22,69 @@
 }
 
 .profile-actions {
-    /* margin-top: 20px; */
-    /* margin-bottom: 20px; */
-    /* margin-right: 100px; */
+    margin-right: 20px;
     display: flex;
-    width: 100%;
-    /* justify-content: center; */
-    gap: 10px;
-    border: 1px solid red;
-    padding: 10px;
     flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    /* border: 1px solid red; */
+    /* padding: 10px; */
 }
 
 .profile-actions button {
     padding: 10px 20px;
-    background-color: #111;
+    background-color: #111111f2;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
+/* .btn-container{
+    border: 1px solid red;
+} */
+
+.btn-container button {
+    padding: 10px 20px;
+    background-color: #111111f2;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;    
+}
 
 input[type="text"], input[type="email"] {
     padding: 10px 20px; 
     border-radius: 5px;
     border: none;
-    width: 50%; 
-    background-color: #fff;
+    width: 100%; 
+    /* background-color: #fff; */
+    /* background-color: #ddd; */
+    border-bottom: 2px solid #111;
     display: flex;
     align-items: center;
     justify-content: center;
     outline: none;
 }
-input[type="tel"], input[type="password"] {
+input[type="tel"] {
     padding: 10px 20px; 
     border-radius: 5px;
-    /* margin: 5px; */
+    width: 100%; 
     border: none;
-    width: 50%; 
-    background-color: #fff;
+    /* background-color:  #111; */
+    border-bottom: 2px solid #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+} 
+input[type="password"] {
+    padding: 10px 20px; 
+    border-radius: 5px;
+    width: 100%; 
+    border: none;
+    /* background-color:  #111; */
+    border-bottom: 2px solid #111;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -73,11 +96,157 @@ input::placeholder {
 select{
     padding: 10px 20px; 
     border-radius: 5px;
-    /* margin: 5px; */
+    width: 100%; 
     border: none;
-    width: 25%; 
-    background-color: #fff;
+    outline: none;
+    border-bottom: 2px solid #111;
     display: flex;
-    align-items: center;
-    justify-content: center;
+}
+
+.profile-details .display {
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 10px 20px; 
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+
+#message {
+    display:none;
+    position: absolute;
+    z-index: 1200;
+}
+
+#message2 {
+    display:none;
+    position: absolute;
+    z-index: 1200;
+}
+
+.message-container.current{
+    position: relative;
+    top: 95px;
+    left: 310px;
+    background-color: #fff;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+    color: #000;
+    padding: 20px;
+    /* display: none; */
+}
+
+.message-container.new{
+    position: relative;
+    top: 175px;
+    left: 310px;
+    background-color: #fff;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+    color: #000;
+    padding: 20px;
+}
+  
+#message p {
+    padding: 10px 35px;
+    font-size: 12px;
+}
+
+#message2 p {
+    padding: 10px 35px;
+    font-size: 12px;
+}
+
+.valid {
+    color: green;
+}
+  
+.valid:before {
+    position: relative;
+    left: -35px;
+    content: "&#10004;";
+}
+
+.invalid {
+    color: red;
+}
+  
+.invalid:before {
+    position: relative;
+    left: -35px;
+    content: "&#10006;";
+}
+
+.valid1 {
+    color: green;
+}
+  
+.valid1:before {
+    position: relative;
+    left: -35px;
+    content: "&#10004;";
+}
+
+.invalid1 {
+    color: red;
+}
+  
+.invalid1:before {
+    position: relative;
+    left: -35px;
+    content: "&#10006;";
+}
+
+.check-container {
+    display: flex;
+    position: relative;
+    /* border: 1px solid red; */
+    position: relative;
+    padding-left: 30px;
+    user-select: none;
+    margin-bottom: 12px;
+}
+.check-container input {
+    cursor: pointer;
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #fff;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+}
+
+.check-container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.check-container input:checked ~ .checkmark {
+    background-color: #111;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+  
+.check-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.check-container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
 }

@@ -6,7 +6,7 @@
     <title><?= $title; ?></title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/login.css?v=1.1">
+    <link rel="stylesheet" href="css/login.css?v=1.3">
 
     <!-- Font Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />

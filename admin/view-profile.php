@@ -1,7 +1,9 @@
 <?php
-    $title = 'Dashboard';
+    $title = 'Profile';
 
     include '../config/connect.php';
+
+    include 'codes/profile-code.php';
 
     include_once '../controllers/AuthenticateController.php';
     include_once 'controllers/ProfileController.php';
@@ -30,41 +32,54 @@
         <?php if(!empty($_GET['action']) && $_GET['action'] == 'edit-profile') : ?>
 
             <div class="profile-actions">
-                <button type="submit" value="<?= $adminRow['userID'] ?>" name="edit-button">Save</button>
-
-                <button type="button" onclick="cancel()">Cancel</button>
+                <button type="submit" onclick="deleteAccount()">Delete Account</button>
+                <button type="submit" onclick="changePassword()">Change Password</button>
             </div>
 
             <div class="profile-details">
 
-            <form action="" method="post">
+                <form action="" method="post">
 
-                <p><strong>Full Name:</strong> <input type="text" id="fullname" name="inputFullname" value="<?= $adminRow['userFullname'] ?>" autofocus required> </p>
-                <p><strong>Email:</strong> <input type="email" id="email" name="inputEmail" value="<?= $adminRow['userEmail'] ?>" required> </p>
-                <p><strong>Number:</strong> <input type="tel" id="number" name="inputNumber" value="<?= $adminRow['userNumber'] ?>" required> </p>
-                <p><strong>Address:</strong> <input type="text" id="address" name="inputAddress" value="<?= $adminRow['userAddress'] ?>" required> </p>
-                <p><strong>Gender:</strong> 
-                    <select name="inputGender" id="gender">
-                        <?php if($adminRow['userGender'] != 'Male' && $adminRow['userGender'] != 'Female' && $adminRow['userGender'] == 'Select Gender' || empty($adminRow['userGender'])) : ?>
+                    <p><strong>Full Name:</strong> 
+                        <input type="text" id="fullname" name="inputFullname" value="<?= $adminRow['userFullname'] ?>" autofocus required> 
+                    </p>
+                    <p><strong>Email:</strong> 
+                        <input type="email" id="email" name="inputEmail" value="<?= $adminRow['userEmail'] ?>" required> 
+                    </p>
+                    <p><strong>Number:</strong> 
+                        <input type="tel" id="number" name="inputNumber" value="<?= $adminRow['userNumber'] ?>" required> 
+                    </p>
+                    <p><strong>Address:</strong> 
+                        <input type="text" id="address" name="inputAddress" value="<?= $adminRow['userAddress'] ?>" required> 
+                    </p>
+                    <p><strong>Gender:</strong> 
+                        <select name="inputGender" id="gender">
+                            <?php if($adminRow['userGender'] != 'Male' && $adminRow['userGender'] != 'Female' && $adminRow['userGender'] == 'Select Gender' || empty($adminRow['userGender'])) : ?>
 
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
 
-                        <?php elseif($adminRow['userGender'] == 'Male') : ?>
+                            <?php elseif($adminRow['userGender'] == 'Male') : ?>
 
-                            <option value="<?= $adminRow['userGender'] ?>" selected><?= $adminRow['userGender'] ?></option>
+                                <option value="<?= $adminRow['userGender'] ?>" selected><?= $adminRow['userGender'] ?></option>
 
-                            <option value="Female">Female</option>
+                                <option value="Female">Female</option>
 
-                        <?php elseif($adminRow['userGender'] == 'Female') : ?>
+                            <?php elseif($adminRow['userGender'] == 'Female') : ?>
 
-                            <option value="<?= $adminRow['userGender'] ?>" selected><?= $adminRow['userGender'] ?></option>
+                                <option value="<?= $adminRow['userGender'] ?>" selected><?= $adminRow['userGender'] ?></option>
 
-                            <option value="Male">Male</option>
+                                <option value="Male">Male</option>
 
-                        <?php endif; ?>
-                    </select> 
-                </p>
+                            <?php endif; ?>
+                        </select> 
+                    </p>
+
+                    <div class="btn-container">
+                        <button type="submit" value="<?= $adminRow['userID'] ?>" name="edit-button">Save</button>
+
+                        <button type="button" onclick="cancel()">Cancel</button>
+                    </div>
 
                 </form>
 
@@ -73,57 +88,104 @@
         <?php elseif(!empty($_GET['action']) && $_GET['action'] == 'delete-account') : ?>
 
             <div class="profile-actions">
-                <button type="submit" value="<?= $adminRow['userID'] ?>" name="delete-button">Delete</button>
-
-                <button type="button" onclick="cancel()">Cancel</button>
-            </div>
-
-            <div class="profile-details">
-
-                <p><strong>Full Name:</strong> 
-                    <button class="display" id="fullname"><?= $adminRow['userFullname'] ?></button>
-                </p>
-                <p><strong>Email:</strong> 
-                    <button class="display" id="email"><?= $adminRow['userEmail'] ?></button> 
-                </p>
-                <p><strong>Phone number:</strong> 
-                    <button class="display" id="number"><?= $adminRow['userNumber'] ?></button> 
-                </p>
-                <p><strong>Address:</strong>
-                    <button class="display" id="address"><?= $adminRow['userAddress'] ?></button> 
-                </p>
-                <p><strong>Gender:</strong> 
-                    <button class="display" id="gender"><?= $adminRow['userGender'] ?></button> 
-                </p>
-
-            </div>
-
-        <?php elseif(!empty($_GET['action']) && $_GET['action'] == 'change-password') : ?>
-            
-            <div class="profile-actions">
-                <button type="submit" value="<?= $adminRow['userID'] ?>" name="save-change-password-button">Save</button>
-
-                <button type="button" onclick="cancel()">Cancel</button>
+                <button type="submit" onclick="editProfile()">Edit Profile</button>
+                <button type="submit" onclick="changePassword()">Change Password</button>
             </div>
 
             <div class="profile-details">
 
                 <form action="" method="post">
 
-                    <p><strong>Current password:</strong> <input type="password" id="current" name="inputCurrent" autofocus required> </p>
-                    <p><strong>New password:</strong> <input type="password" id="new" name="inputNew" required> </p>
-                    <p><strong>Retype new password:</strong> <input type="password" id="retype" name="inputRetype" required> </p>
-                    
+                    <p><strong>Full Name:</strong> 
+                        <button class="display" id="fullname"><?= $adminRow['userFullname'] ?></button>
+                    </p>
+                    <p><strong>Email:</strong> 
+                        <button class="display" id="email"><?= $adminRow['userEmail'] ?></button> 
+                    </p>
+                    <p><strong>Number:</strong> 
+                        <button class="display" id="number"><?= $adminRow['userNumber'] ?></button> 
+                    </p>
+                    <p><strong>Address:</strong>
+                        <button class="display" id="address"><?= $adminRow['userAddress'] ?></button> 
+                    </p>
+                    <p><strong>Gender:</strong> 
+                        <button class="display" id="gender"><?= $adminRow['userGender'] ?></button> 
+                    </p>
+
+                    <div class="btn-container">
+                        <button type="submit" value="<?= $adminRow['userID'] ?>" name="delete-button">Delete</button>
+
+                        <button type="button" onclick="cancel()">Cancel</button>
+                    </div>
+
                 </form>
 
             </div>
 
+        <?php elseif(!empty($_GET['action']) && $_GET['action'] == 'change-password') : ?>
+            
+            <div class="profile-actions">
+                <button type="submit" onclick="editProfile()">Edit Profile</button>
+                <button type="submit" onclick="deleteAccount()">Delete Account</button>
+            </div>
+
+            <div class="profile-details">
+
+                <form action="" method="post">
+
+                    <p><strong>Current password:</strong> 
+                        <input type="password" id="current" name="inputCurrent" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required> 
+                    </p>
+
+                    <p><strong>New password:</strong> 
+                        <input type="password" id="new" name="inputNew" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required> 
+                    </p>
+
+                    <p><strong>Retype new password:</strong> 
+                        <input type="password" id="retype" name="inputRetype" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required> 
+                    </p>
+
+                    <label class="check-container"> Show all passwords?
+                        <input type="checkbox" id="showPasswordCheckbox" onclick="showPassword()">
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <div class="btn-container">
+                        <button type="submit" value="<?= $adminRow['userID'] ?>" name="save-change-password-button">Save</button>
+
+                        <button type="button" onclick="cancel()">Cancel</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div id="message">
+                <div class="message-container current">
+                    <h4>Password must contain the following:</h4>
+                    <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                    <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                    <p id="number" class="invalid">A <b>number</b></p>
+                    <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                </div>
+            </div>
+
+            <div id="message2">
+                <div class="message-container new">
+                    <h4>Password must contain the following:</h4>
+                    <p id="capital1" class="invalid1">A <b>capital (uppercase)</b> letter</p>
+                    <p id="letter1" class="invalid1">A <b>lowercase</b> letter</p>
+                    <p id="number1" class="invalid1">A <b>number</b></p>
+                    <p id="length1" class="invalid1">Minimum <b>8 characters</b></p>
+                </div>
+            </div>
+            
         <?php else : ?>
 
         <div class="profile-actions">
-                <button type="submit" onclick="editProfile()">Edit Profile</button>
-                <button type="submit" onclick="deleteAccount()">Delete Account</button>
-                <button type="submit" onclick="changePassword()">Change Password</button>
+            <button type="submit" onclick="editProfile()">Edit Profile</button>
+            <button type="submit" onclick="deleteAccount()">Delete Account</button>
+            <button type="submit" onclick="changePassword()">Change Password</button>
         </div>
 
         <div class="profile-details">
@@ -134,7 +196,7 @@
             <p><strong>Email:</strong> <br>
                 <button class="display" id="email"><?= $adminRow['userEmail'] ?></button> 
             </p>
-            <p><strong>Phone number:</strong> <br>
+            <p><strong>Number:</strong> <br>
                 <button class="display" id="number"><?= $adminRow['userNumber'] ?></button> 
             </p>
             <p><strong>Address:</strong><br>    

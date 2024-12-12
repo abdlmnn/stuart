@@ -92,7 +92,7 @@
             </div>
 
             <div id="message">
-                <div class="message-container-two">
+                <div class="message-container-three">
                     <h4>Password must contain the following:</h4>
                     <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
                     <p id="letter" class="invalid">A <b>lowercase</b> letter</p>

@@ -17,7 +17,7 @@
                     modal.style.justifyContent = 'center';
                     modal.style.alignItems = 'center';
                     modal.style.opacity = '0'; 
-                    modal.style.transition = 'opacity 0.5s ease'; 
+                    // modal.style.transition = 'opacity 0.5s ease'; 
                 
                 // content modal 
                 var modalContent = document.createElement('div');
