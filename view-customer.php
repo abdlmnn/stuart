@@ -12,12 +12,13 @@
 
     include 'includes/header.php';
     include 'includes/navbar.php';
+    include 'includes/cart.php';
     
     include 'message.php';
 ?>
 <!-- <section class="bg-image"> -->
     <div class="body">
-
+        
         <!-- <div class="box"> -->
 
             <div class="box-title">

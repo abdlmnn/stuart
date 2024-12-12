@@ -14,6 +14,7 @@
 
     include 'includes/header.php';
     include 'includes/navbar.php';
+    include 'includes/cart.php';
 
     include 'message.php';
 ?>

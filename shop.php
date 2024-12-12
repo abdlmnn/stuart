@@ -12,11 +12,14 @@
 
     include 'includes/header.php';
     include 'includes/navbar.php';
+    include 'includes/cart.php';
     
     include 'message.php';
 ?>
 
     <div class="item-container">
+
+    
         <div class="card">
 
             <div class="card-image">

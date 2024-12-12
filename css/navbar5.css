@@ -63,7 +63,7 @@
 .header .right-item .total-item {
     position: absolute;
     top: -20px;
-    left: -185px;
+    left: -160px;
     font-size: 12px;
     z-index: 100;
     color: #E2A500;
@@ -219,3 +219,75 @@
         width: 100%;
     }
 } */
+
+.modal {
+    display: none;
+    position: fixed;
+    right: 0;
+    top: 0;
+    /* Use calc for responsive width */
+    width: calc(100vw - 30px);
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 9999;
+  }
+
+  .modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    /* Set max-width for smaller screens */
+    max-width: 400px;
+  }
+
+  .close {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .product-details {
+    display: flex;
+    flex-wrap: wrap; /* Wrap content on smaller screens */
+    margin-bottom: 15px;
+  }
+
+  .product-details img {
+    width: 100%; /* Responsive image width */
+    margin-bottom: 10px; /* Add margin for better spacing */
+  }
+
+  .product-info {
+    flex: 1; /* Allow remaining space for info */
+  }
+
+  .remove-btn {
+    background-color: #FF0000;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  .btn {
+    /* Your button styles here */
+    margin-right: 10px;
+  }
+
+  /* Show the Modal */
+  #addToCartModal.show {
+    display: block;
+  }
+
+  /* Media Queries for Additional Responsiveness (optional) */
+  @media screen and (max-width: 768px) {
+    .modal-content {
+      margin: 10% auto;
+    }
+  }

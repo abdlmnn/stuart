@@ -39,11 +39,18 @@
             <ion-icon name="notifications-outline" class="notification-icon"></ion-icon>
         </a> -->
 
-        <a href="<?= base_url('view-cart.php') ?>" class="a-link">
+        <!-- <a href="<?= base_url('view-cart.php') ?>" class="a-link">
             <span class="total-item">10</span>
             <ion-icon name="bag-outline" class="cart-icon"></ion-icon>
-        </a>
+            <ion-icon name="cart-outline" class="cart-icon"></ion-icon>
+        </a> -->
 
+        <div class="cart-icon-container">
+            <span class="total-item">10</span>
+            <ion-icon name="bag-outline" class="cart-icon" style="color: #fff; cursor: pointer;" id="cartOpen"></ion-icon>
+            <!-- <ion-icon name="cart-outline" class="cart-icon" style="color: #fff; cursor: pointer;" id="cartOpen"></ion-icon> -->
+        </div>
+        
     <?php else : ?>
 
         <!-- <a href="<?= base_url('view-home.php') ?>" class="a-link">Home</a> -->
