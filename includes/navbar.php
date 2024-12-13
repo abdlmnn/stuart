@@ -9,13 +9,13 @@
     <?php if(isset($_SESSION['authenticated'])) : ?>
 
         <div class="company-name">
-            <a href="<?= base_url('view-customer.php') ?>" class="a-link">Stuart Boutique</a>
+            <a href="<?= base_url('view-landing.php') ?>" class="a-link">Stuart Boutique</a>
         </div>
 
     <?php else : ?>
 
         <div class="company-name">
-            <a href="<?= base_url('view-login.php') ?>" class="a-link">Stuart Boutique</a>
+            <a href="<?= base_url('view-landing.php') ?>" class="a-link">Stuart Boutique</a>
         </div>
 
     <?php endif; ?>
@@ -52,12 +52,10 @@
         </div>
         
     <?php else : ?>
-
-        <!-- <a href="<?= base_url('view-home.php') ?>" class="a-link">Home</a> -->
+        
         <div class="container" style="display: flex; justify-content: center; align-content: center; gap:30px;">
 
-            <!-- <a href="<?= base_url('try.php') ?>" class="a-link">Home</a> -->
-            <!-- <a href="<?= base_url('view-shop.php') ?>" class="a-link">Shop</a> -->
+            <a href="<?= base_url('view-landing.php') ?>" class="a-link">Shop</a>
             <a href="<?= base_url('add-register.php') ?>" class="a-link">Register</a>
             <a href="<?= base_url('view-login.php') ?>" class="a-link">Login</a>
         </div>
@@ -87,9 +85,9 @@
             <ion-icon name="notifications-outline" class="notification-icon"></ion-icon>
         </a> -->
 
-        <a href="<?= base_url('shop.php') ?>" class="a-link">
+        <!-- <a href="<?= base_url('shop.php') ?>" class="a-link">
             <ion-icon name="bag-outline" class="cart-icon"></ion-icon>
-        </a>
+        </a> -->
 
         <a href="#" class="a-link">
             Men Clothing

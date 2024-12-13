@@ -67,6 +67,15 @@
             ];
         }
 
+        public function userNotLogin()
+        {
+            if($_SESSION['authenticated'] === false)
+            {
+
+                return true;
+            }
+        }
+
         // The user is already logged in and trying to search the file path of going back
         public function userLoggedIn()
         {

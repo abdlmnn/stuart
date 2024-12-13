@@ -13,7 +13,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?= base_url('shop.php') ?>">
+                        <a href="<?= base_url('shop.php?category=All') ?>">
                             <i class="fa-solid fa-bag-shopping"></i> 
                             Shopping
                         </a>
