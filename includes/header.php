@@ -6,7 +6,7 @@
     <title><?= $title; ?></title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/login.css?v=1.8">
+    <link rel="stylesheet" href="css/login.css?v=1.9">
 
     <!-- Font Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
@@ -18,6 +18,7 @@
     <script src="js/cart.js" defer></script>
     <script src="js/password-contain.js" defer></script>
     <script src="js/show-password.js" defer></script>
+    <script src="js/view-modal1.js" defer></script>
 </head>
 <body>
     

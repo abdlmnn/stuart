@@ -7,6 +7,7 @@
     
     include_once 'controllers/AuthenticateController.php';
     include_once 'controllers/ItemController.php';
+    
     $authenticated = new AuthenticateController;
     $item = new ItemController;
 
@@ -14,12 +15,13 @@
     include 'includes/navbar.php';
     include 'includes/cart.php';
     include 'includes/categories.php';
+    include 'includes/view-modal.php';
     
     include 'message.php';
 ?>
 
     <!-- if the user is logged in it can access the landing page add order -->
-    <?php if(isset($_SESSION['authenticated']) === true) : ?>
+    <?php if(isset($_SESSION['authenticated'])) : ?>
 
         <div class="item-container">
 
@@ -74,8 +76,10 @@
                         </div>
 
                         <div class="add-to-cart">
-                            <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
-                            <button type="submit" class="add-cart-button">
+                            <button type="button" class="add-cart-button" name="view-modal-button" id="viewModal">
+                                <ion-icon name="eye-outline" class="view-modal-item"></ion-icon>
+                            </button>
+                            <button type="submit" class="add-cart-button" name="add-order-button" value="<?= $data['id'] ?>">
                                 <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
                             </button>
                         </div>
@@ -142,8 +146,10 @@
                             </div>
 
                             <div class="add-to-cart">
-                                <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
-                                <button type="submit" class="add-cart-button">
+                                <button type="button" class="add-cart-button" name="view-modal-button" id="viewModal">
+                                    <ion-icon name="eye-outline" class="view-modal-item"></ion-icon>
+                                </button>
+                                <button type="submit" class="add-cart-button" name="add-order-button" value="<?= $data['id'] ?>">
                                     <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
                                 </button>
                             </div>
@@ -209,8 +215,10 @@
                             </div>
 
                             <div class="add-to-cart">
-                                <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
-                                <button type="submit" class="add-cart-button">
+                                <button type="button" class="add-cart-button" name="view-modal-button" id="viewModal">
+                                    <ion-icon name="eye-outline" class="view-modal-item"></ion-icon>
+                                </button>
+                                <button type="submit" class="add-cart-button" name="add-order-button" value="<?= $data['id'] ?>">
                                     <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
                                 </button>
                             </div>
@@ -276,8 +284,10 @@
                         </div>
 
                         <div class="add-to-cart">
-                            <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
-                            <button type="submit" class="add-cart-button">
+                            <button type="button" class="add-cart-button" name="view-modal-button" id="viewModal">
+                                <ion-icon name="eye-outline" class="view-modal-item"></ion-icon>
+                            </button>
+                            <button type="submit" class="add-cart-button" name="add-order-button" value="<?= $data['id'] ?>">
                                 <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
                             </button>
                         </div>
@@ -352,8 +362,10 @@
                         </div>
 
                         <div class="add-to-cart">
-                            <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
-                            <button type="submit" class="add-cart-button">
+                            <button type="button" class="add-cart-button" name="view-modal-button" id="viewModal">
+                                <ion-icon name="eye-outline" class="view-modal-item"></ion-icon>
+                            </button>
+                            <button type="submit" class="add-cart-button" name="add-order-button" value="<?= $data['id'] ?>">
                                 <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
                             </button>
                         </div>
@@ -420,8 +432,10 @@
                             </div>
 
                             <div class="add-to-cart">
-                                <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
-                                <button type="submit" class="add-cart-button">
+                                <button type="button" class="add-cart-button" name="view-modal-button" id="viewModal">
+                                    <ion-icon name="eye-outline" class="view-modal-item"></ion-icon>
+                                </button>
+                                <button type="submit" class="add-cart-button" name="add-order-button" value="<?= $data['id'] ?>">
                                     <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
                                 </button>
                             </div>
@@ -487,8 +501,10 @@
                             </div>
 
                             <div class="add-to-cart">
-                                <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
-                                <button type="submit" class="add-cart-button">
+                                <button type="button" class="add-cart-button" name="view-modal-button" id="viewModal">
+                                    <ion-icon name="eye-outline" class="view-modal-item"></ion-icon>
+                                </button>
+                                <button type="submit" class="add-cart-button" name="add-order-button" value="<?= $data['id'] ?>">
                                     <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
                                 </button>
                             </div>
@@ -555,7 +571,10 @@
 
                         <div class="add-to-cart">
                             <!-- <ion-icon name="cart-outline" class="cart-logo"></ion-icon> -->
-                            <button type="submit" class="add-cart-button">
+                            <button type="button" class="add-cart-button" name="view-modal-button" id="viewModal">
+                                <ion-icon name="eye-outline" class="view-modal-item"></ion-icon>
+                            </button>
+                            <button type="submit" class="add-cart-button" name="add-order-button" value="<?= $data['id'] ?>">
                                 <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
                             </button>
                         </div>
@@ -564,6 +583,57 @@
                 </div>
 
             </form>
+            
+
+            <!-- <div id="itemModal" class="view-modal-container">
+
+                <div class="first-child-container">
+
+                    <div class="second-child-container">
+
+                        <div class="item-modal-container">
+                            
+                            <div class="item-image-container">
+                                <div class="child-image-container">
+                                    <img src="images/shoes1.png" alt="" class="item-images">
+                                </div>
+                            </div>
+
+                            <div class="item-info-container">
+                                <h5 class="item-category">Top / Men</h5>
+                                <p class="item-name">Running Shoe</p>
+                                <p class="item-quantity">5 item left</p>
+
+                                <div class="item-price-container">
+                                    <span class="item-price">&#x20B1; 2,999</span>
+                                </div>
+
+                                <div class="item-size-container">
+                                    <h6 class="item-size-name">Size</h6>
+
+                                    <div class="size-option-container">
+                                        <button class="size-button">XS</button>
+                                        <button class="size-button">S</button>
+                                        <button class="size-button">M</button>
+                                        <button class="size-button disabled">L</button>
+                                    </div>
+                                </div>
+
+                                <div class="add-cart-container">
+                                    <button class="add-to-cart-button">
+                                        ADD TO CART
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div> -->
         
             <?php
                     endforeach;

@@ -1,8 +1,4 @@
 <?php if(isset($_SESSION['authenticated'])) : ?>
-<!-- <div class="cart-icon-container">
-    <span class="total-item">10</span>
-    <ion-icon name="cart-outline" class="cart-icon" style="color: #111; cursor: pointer; font-size: 25px;" id="cartOpen"></ion-icon>
-</div> -->
 
 <div class="cart-container" id="cartContainer">
     <div class="close-cart" id="cartClose">
@@ -108,4 +104,5 @@
         </div> -->
     </div>
 </div>
+
 <?php endif; ?>
