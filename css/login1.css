@@ -1,11 +1,12 @@
 @import 'font2.css';
-@import 'navbar5.css';
-@import 'cart.css';
+@import 'navbar2.css';
+@import 'cart1.css';
 /* @import 'profile5.css'; */
-@import 'footer3.css';
-@import 'shop1.css';
+@import 'footer5.css';
+@import 'shop3.css';
 @import 'message.css';
-@import 'view-modal1.css';
+/* @import 'view-modal1.css'; */
+@import 'item2.css';
 
 /* .bg-image {
     background: url('../images/bg.jpg') no-repeat center center/cover;

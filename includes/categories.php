@@ -1,6 +1,6 @@
     <div class="categories-container">
 
-    <?php $selectedCategory = $_GET['category'] ?? 'All' ?? 'Men' ?? 'Women' ?? 'Accessories'; ?>
+        <?php $selectedCategory = $_GET['category'] ?? 'All' ?? 'Men Clothing' ?? 'Women Clothing' ?? 'Men Shoes' ?? 'Women Shoes' ?? 'Accessories'; ?>
 
         <li class="categories-choice">
             <ul>
@@ -9,13 +9,23 @@
                 </a>
             </ul>
             <ul>
-                <a href="<?= base_url('view-landing.php?category=Men') ?>" class="a-category <?= $selectedCategory === 'Men' ? 'active' : '' ?>"">
-                    Men's Clothing
+                <a href="<?= base_url('view-landing.php?category=Men Clothing') ?>" class="a-category <?= $selectedCategory === 'Men Clothing' ? 'active' : '' ?>"">
+                    Men Clothing
                 </a>
             </ul>
             <ul>
-                <a href="<?= base_url('view-landing.php?category=Women') ?>" class="a-category <?= $selectedCategory === 'Women' ? 'active' : '' ?>">
-                    Women's Clothing
+                <a href="<?= base_url('view-landing.php?category=Women Clothing') ?>" class="a-category <?= $selectedCategory === 'Women Clothing' ? 'active' : '' ?>">
+                    Women Clothing
+                </a>
+            </ul>
+            <ul>
+                <a href="<?= base_url('view-landing.php?category=Men Shoes') ?>" class="a-category <?= $selectedCategory === 'Men Shoes' ? 'active' : '' ?>">
+                    Men Shoes
+                </a>
+            </ul>
+            <ul>
+                <a href="<?= base_url('view-landing.php?category=Women Shoes') ?>" class="a-category <?= $selectedCategory === 'Women Shoes' ? 'active' : '' ?>">
+                    Women Shoes
                 </a>
             </ul>
             <ul>

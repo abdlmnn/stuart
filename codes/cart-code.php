@@ -1,35 +1,49 @@
 <?php
     include_once 'controllers/CartController.php';
+    include_once 'admin/controllers/InventoryController.php';
 
     $cart = new CartController;
+    $inventory = new InventoryController;
 
-    // It set the session cart into an empty array
-    if(!isset($_SESSION['cart']))
-    {
-        $_SESSION['cart'] = [];
-    }
+    // the user is need to login to place an order
+    if(isset($_SESSION['authenticated'])) :
+    
+        // ADD ORDER or CART
+        if(isset($_POST['add-order-button']))
+        {
+            $inventoryID = $_POST['add-order-button'];
 
-    // ADD ORDER or CART
-    if(isset($_POST['add-order-button']))
-    {
-        $inventoryID = $post['add-order-button'];
+            // print_r($inventoryID);
 
-                        // getStock came from my Class CartController
-        $resultGetStock = $cart->getStock($inventoryID);
+                                // getExact came from my Class InventoryController
+            $result = $cart->exact($inventoryID);
 
-        if($resultGetStock){
+            if($result){
 
-            $quantity = 1;
+                    // rows came from my Class CartController
+                $data = $cart->rows($result);
 
-            if($resultGetStock['itemStock'] >= $quantity){
+                // session array to put all the selected item exact id inside of order array
+                $_SESSION['order'][] = [
+                    'id' => $data['id'],
+                    'image' => $data['image'],
+                    'name' => $data['name'],
+                    'price' => $data['price']
+                ];
 
-                if(!isset($_SESSION['cart'][$inventoryID])){
+                showMessage('You placed an order');
 
-                    
-                }
+                // $item->itemExists();
+                // unset($_SESSION['order']);
+
+                // print_r($_SESSION['order']);
+                // session_destroy();
+
+            }else{
+
+                showMessage('No item select');
             }
-
-
         }
-    }
+
+    endif;
 ?>

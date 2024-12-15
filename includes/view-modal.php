@@ -51,9 +51,7 @@
 
 </div>
 
-<?php else : ?>
-
-<div id="itemModal" class="view-modal-container">
+<!-- <div id="itemModal" class="view-modal-container">
 
     <div class="first-child-container">
 
@@ -102,6 +100,6 @@
 
     </div>
 
-</div>
+</div> -->
 
 <?php endif; ?>

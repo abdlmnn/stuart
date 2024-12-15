@@ -20,6 +20,7 @@
         if($resultCheckCurrentPassword){
 
             // Proceed to retype password
+
                                   // retypePassword came from my Class ChangePasswordController 
             $resultRetypePassword = $changePassword->retypePassword($userData,$retypePassword);
 
@@ -27,6 +28,7 @@
             if($resultRetypePassword){
 
                 // Proceed to check current and new password
+                
                                                   //  checkCurrentandNewPassword came from my Class ChangePasswordController
                 $resultCheckCurrentandNewPassword = $changePassword->checkCurrentandNewPassword($userData);
 

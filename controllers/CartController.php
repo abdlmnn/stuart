@@ -18,7 +18,6 @@
             // it return data to function
             return $data = [
                 'id' => $row['inventoryID'],
-                // 'categoryName'=> $row['categoryID'],
                 'categoryName'=> $row['categoryName'],
                 'gender'=> $row['categoryGender'],
                 'image' => $row['itemImage'],
@@ -29,24 +28,27 @@
             ];
         }
 
-        // Get or Select the exact ID for the itemStock
-        public function getStock($id)
+        // Getting all the values of categories with exact id to display there values on inputFields
+        public function exact($id)
         {
-            $getDataQuery = "
+            $checkDataQuery = "
                 SELECT inventory.*, categories.categoryName, categories.categoryGender
                 FROM inventory
                 INNER JOIN categories
                 ON inventory.categoryID = categories.categoryID
-                WHERE inventory.inventoryID='$id'
+                WHERE inventoryID='$id'
+                LIMIT 1
             ";
-            $result = $this->conn->query($getDataQuery);
+            $result = $this->conn->query($checkDataQuery);
 
-            if($result->num_rows > 0){
+            if($result->num_rows == 1){
                 $rows = $result->fetch_assoc();
 
+                // it return the rows to the function
                 return $rows;
             }else{
 
+                // it return false of the result to the function
                 return false;
             }
         }

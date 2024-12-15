@@ -95,7 +95,6 @@
 
                     // if the usertype is 1, it direct to admin page 
                     redirect('You are already logged in as a admin','admin/view-dashboard.php');
-                    // direct('admin/view-dashboard.php');
                 }
 
             }else{

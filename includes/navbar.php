@@ -46,7 +46,13 @@
         </a> -->
 
         <div class="cart-icon-container">
-            <span class="total-item">10</span>
+            <span class="total-item">
+                <?php if(isset($_SESSION['order'])) : ?>
+                    <?php echo count($_SESSION['order']); ?>
+                <?php else : ?>
+                    <?php echo '0'; ?>
+                <?php endif; ?>
+            </span>
             <ion-icon name="bag-outline" class="cart-icon" style="color: #fff; cursor: pointer;" id="cartOpen"></ion-icon>
             <!-- <ion-icon name="cart-outline" class="cart-icon" style="color: #fff; cursor: pointer;" id="cartOpen"></ion-icon> -->
         </div>
@@ -58,6 +64,7 @@
             <a href="<?= base_url('view-landing.php') ?>" class="a-link">Shop</a>
             <a href="<?= base_url('add-register.php') ?>" class="a-link">Register</a>
             <a href="<?= base_url('view-login.php') ?>" class="a-link">Login</a>
+            
         </div>
 
     <?php endif; ?>
@@ -103,6 +110,10 @@
 
         <a href="#" class="a-link">
             Women Shoes
+        </a>
+
+        <a href="#" class="a-link">
+            Accessories
         </a>
 
     <?php else : ?>
