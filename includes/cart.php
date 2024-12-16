@@ -7,59 +7,95 @@
         </div>
 
         <h1 class="cart-title">Order</h1>
-        
-        <?php if(isset($_SESSION['order'])) : ?>    
+     
+        <!-- if the session order array is not empty -->
+            <?php 
+                include_once 'controllers/CartController.php';
 
-            <?php foreach ($_SESSION['order'] as $key => $value) : ?>
-            
+                $cart = new CartController;
+
+                // if sesssion order array is not empty
+                if(!empty($_SESSION['order']) && isset($_SESSION['order'])) :
+
+                // print_r($_SESSION['order']);
+
+                $total = 0;
+
+                foreach ($_SESSION['order'] as $id => $data) : 
+
+                        $itemTotalPrice = $data['price'] * $data['quantity'];
+
+                        $total = $total + $itemTotalPrice;
+            ?>
+            <form action="" method="post">
             <div class="cart-item-container">
 
                 <div class="each-cart">
 
                     <div class="cart-image-container">
-                        <img src="images/<?= $value['image'] ?>" alt="" class="cart-image">
+                        <img src="images/<?= $data['image'] ?>" alt="<?= $data['name'] ?>" class="cart-image">
                     </div>
 
                     <div class="cart-description">
-                        <h1 class="cart-item-name"><?= $value['name'] ?></h1>
+                        <h1 class="cart-item-name"><?= $data['name'] ?></h1>
 
-                        <p class="cart-item-totalprice">&#x20B1; <?= number_format($value['price']) ?></p>
+                        <p class="cart-item-totalprice">&#x20B1; <?= number_format($data['price']) ?></p>
                         
                         <p class="cart-item-size">size : L</p>
 
+                        
                         <div class="quantity-controls">
-                            <button class="quantity-button minus">-</button>
-                                <span class="quantity-display">1</span>
-                            <button class="quantity-button plus">+</button>
+                            
+                            <button type="button" class="quantity-button minus">-</button>
+                        
+                            <input type="number" name="updateQuantity" class="quantity-input" min="0" value="<?= $data['quantity'] ?>">
+
+                            <button type="button" class="quantity-button plus">+</button>
+
                         </div>
 
                         <div class="cart-button-action">
-                            <button class="remove-button">
-                                <ion-icon name="close-outline" class="remove-cart-icon"></ion-icon>
-                            </button>
-                            <!-- <button class="remove-button">
-                                <ion-icon name="close-outline" class="remove-cart-icon"></ion-icon>
-                            </button> -->
-                        </div>
 
+                            <button type="submit" name="update-quantity-order-button" class="remove-button" value="<?= $id ?>">
+                                <ion-icon name="bag-check-outline"></ion-icon>
+                            </button>
+
+                            <button type="submit" name="delete-order-button" class="remove-button" value="<?= $id ?>">
+                                <!-- <ion-icon name="close-outline" class="remove-cart-icon"></ion-icon> -->
+                                <ion-icon name="bag-remove-outline"></ion-icon>
+                            </button>
+
+                        </div>
+                        
                     </div>
 
                 </div>
 
             </div>
 
-            <?php endforeach; ?>
+            <?php 
+
+                endforeach; 
+            ?>
             
         <div class="cart-checkout-container">
 
             <div class="total-price-container">
-                <p class="total-price-display">Total : <span id="total-Price">&#x20B1; 0</span></p>
-                <button type="submit" class="remove-button-two">View Order</button>
+                <p class="total-price-display">Total : <span id="total-Price">&#x20B1; <?=number_format( $total) ?></span></p>
+
+                <button type="button" class="remove-button-two">View Order</button>
+
+                <button type="submit" name="delete-all-order-button" class="remove-button-two">Clear All</button>
             </div>
             
         </div>
+        
+        </form>
 
-        <?php else : ?>
+        <?php endif; ?>
+
+        <!-- if the session order array is empty -->
+        <?php if(empty($_SESSION['order'])) : ?>
 
             <p 
             style="
@@ -70,7 +106,7 @@
             ">
                 Place an Order
             </p>
-    
+
         <?php endif; ?>
             
     </div>

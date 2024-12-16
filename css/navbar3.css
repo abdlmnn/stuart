@@ -276,19 +276,16 @@
     margin-top: 10px;
   }
 
-  .btn {
-    /* Your button styles here */
+.btn {
     margin-right: 10px;
-  }
+}
 
-  /* Show the Modal */
-  #addToCartModal.show {
+#addToCartModal.show {
     display: block;
-  }
+}
 
-  /* Media Queries for Additional Responsiveness (optional) */
-  @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .modal-content {
       margin: 10% auto;
     }
-  }
+}

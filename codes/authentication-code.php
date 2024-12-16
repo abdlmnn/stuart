@@ -179,8 +179,6 @@
         $resultLogout = $login->userLogout();
 
         if($resultLogout){
-
-            unset($_SESSION['order']);
             
             // userLogout is true, it direct to login page
             redirect('You have logout successfully','view-login.php');

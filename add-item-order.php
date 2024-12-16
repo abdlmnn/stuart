@@ -25,6 +25,7 @@
 
     if(isset($_SESSION['authenticated']))
     {
+
     // if get itemID is set false 
     if(!isset($_GET['itemID'])){
 
@@ -86,7 +87,7 @@
                         <h6 class="item-quantity-name">Qty:</h6>
                         <div class="quantity-selector">
                             <button class="quantity-button decrease">-</button>
-                            <input type="number" class="quantity-input" value="1" min="1" max="10" />
+                            <input type="number" name="inputQuantity" class="quantity-input" value="1" min="1">
                             <button class="quantity-button increase">+</button>
                         </div>
                     </div>

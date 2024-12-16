@@ -39,6 +39,7 @@
                 INNER JOIN categories
                 ON inventory.categoryID = categories.categoryID
                 WHERE categories.categoryGender='Men'
+                && itemStatus=1
             ";
             $result = $this->conn->query($getDataQuery);
 
