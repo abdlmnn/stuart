@@ -127,7 +127,7 @@
         }else{
 
             // if the itemStock is quantity or 0
-            showMessage('Out of Stock');
+            showMessage('Not enough stock');
         }
 
         // print_r($_SESSION['order']);
