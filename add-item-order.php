@@ -8,8 +8,10 @@
     
     include_once 'controllers/AuthenticateController.php';
     include_once 'admin/controllers/InventoryController.php';
+    include_once 'admin/controllers/SizesController.php';
     $authenticated = new AuthenticateController;
     $inventory = new InventoryController;
+    $sizes = new SizesController;
 
     $authenticated->customerOnly();
 
@@ -75,20 +77,21 @@
                         <h6 class="item-size-name">Size</h6>
 
                         <div class="size-option-container">
-                            <button class="size-button">XS</button>
-                            <button class="size-button">S</button>
-                            <button class="size-button">M</button>
-                            <button class="size-button disabled">L</button>
+                            <button type="button" name="" class="size-button"><?= $data['size'] ?></button>
                         </div>
 
                     </div>
 
                     <div class="item-quantity-container">
                         <h6 class="item-quantity-name">Qty:</h6>
-                        <div class="quantity-selector">
-                            <button class="quantity-button decrease">-</button>
-                            <input type="number" name="inputQuantity" class="quantity-input" value="1" min="1">
-                            <button class="quantity-button increase">+</button>
+                        <div class="quantity-selector qtyBox">
+                            <input type="hidden" name="inputID" class="inventoryID" value="<?= $data['id'] ?>"">
+
+                            <button type="button" class="quantity-button decrement">-</button>
+
+                            <input type="number" name="inputQuantity" class="qty quantity-input" value="1" min="1">
+
+                            <button type="button" class="quantity-button increment">+</button>
                         </div>
                     </div>
 
@@ -169,10 +172,14 @@
 
                     <div class="item-quantity-container">
                         <h6 class="item-quantity-name">Qty:</h6>
-                        <div class="quantity-selector">
-                            <button class="quantity-button decrease">-</button>
-                            <input type="number" class="quantity-input" value="1" min="1" max="10" />
-                            <button class="quantity-button increase">+</button>
+                        <div class="quantity-selector qtyBox">
+                            <input type="hidden" name="inputID" class="inventoryID" value="<?= $data['id'] ?>"">
+
+                            <button type="button" class="quantity-button decrement">-</button>
+
+                            <input type="text" name="inputQuantity" class="qty quantity-input" value="1" min="1">
+
+                            <button type="button" class="quantity-button increment">+</button>
                         </div>
                     </div>
 

@@ -20,12 +20,16 @@
     <h1>Inventory</h1>
     <hr>
 
+    <div class="search-container">
+        <input type="text" id="myInput" onkeyup="filterTable()" placeholder="Search here . . ." title="Type in a name">
+    </div>
+
     <div class="whole-container">
 
         <div class="table-container">
 
             <div class="scroll-table">
-                <table class="child-table">
+                <table class="child-table" id="inventoryTable">
                     <thead>
                         <tr>
                             <!-- <th>ID</th> -->
@@ -36,6 +40,7 @@
                             <th>Size</th>
                             <th>Stock</th>
                             <th>Price</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -51,6 +56,12 @@
                                 // if the resultGet of get function is false, it show message
                                 showMessage('No Inventory Record Found');
                             }else{
+
+                                $lowStock = 5;
+                                $outStock = 0;
+
+                                $outStockMessage = '';
+                                $lowStockMessage = '';
 
                                 // if the resultGet of get function return the result
                                 foreach($resultGet as $inventoryRows) :
@@ -78,10 +89,47 @@
                                 <?= $data['size'] ?>
                             </td>
                             <td>
-                                <?= $data['stock'] ?> <p class="stock-status" style="font-size: 10px; background-color: grey;">Low Stock</p>
+                                <?= $data['stock'] ?> 
+                                <?php
+
+                                    $lowStockHold = 5;
+                                    $outStockHold = 0;
+
+                                    if($data['stock'] <= $lowStockHold && $data['stock'] > $outStockHold) :
+                                        $stockMessage = 'Low Stock';
+
+                                    elseif($data['stock'] == $outStockHold) :
+                                        $stockMessage = 'Out of Stock';
+
+                                        if($data['status'] == 'Available'):
+
+                                            $id = $data['id'];
+                                            $status = 'Unavailable';
+
+                                            // updateStatus came from my Class InventoryController
+                                            $inventory->updateStatus($status,$id);
+                                        endif;
+
+                                    else :
+                                        $stockMessage = 'In Stock';
+
+                                    endif;
+                                ?>
+                                <p style="font-size: 10px;">
+                                    <?php echo $stockMessage; ?>
+                                </p>
                             </td>
                             <td>
-                                <?= $data['price'] ?> 
+                                <?= number_format($data['price']) ?> 
+                            </td>
+                            <td>
+                                <?php
+
+
+                                ?>
+                                <p class="stock-status <?= ($data['status'] == 'Available') ? 'available' : 'unavailable'; ?>">
+                                    <?= $data['status'] ?>
+                                </p>
                             </td>
                             <td>
                                 <div class="a-cont">

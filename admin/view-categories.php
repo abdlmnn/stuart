@@ -20,12 +20,16 @@
     <h1>Categories</h1>
     <hr>
 
+    <div class="search-container">
+        <input type="text" id="myInput" onkeyup="filterTable()" placeholder="Search here . . ." title="Type in a name">
+    </div>
+
     <div class="whole-container">
 
         <div class="table-container">
 
             <div class="scroll-table">
-                <table class="child-table">
+                <table class="child-table" id="inventoryTable">
                     <thead>
                         <tr>
                             <!-- <th>ID</th> -->

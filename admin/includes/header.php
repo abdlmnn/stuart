@@ -4,19 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/sidebar4.css?v=1.4">
-
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 
-    <!-- Javascript -->
-    <script src="js/sidebar.js" defer></script>
-    <script src="js/form1.js" defer></script>
-    <script src="js/link.js" defer></script>
-    <script src="js/password-contain.js" defer></script>
-    <script src="js/show-password.js" defer></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/sidebar4.css?v=7.6">
     
     <title><?= $title ?></title>
 </head>

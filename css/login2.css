@@ -15,6 +15,23 @@
     align-items: center;
 } */
 
+.size-checkbox {
+    display: none; /* Hide the default checkbox */
+}
+
+.size-label {
+    padding: 10px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.size-checkbox:checked + .size-label {
+    font-weight: bold; /* Highlight the selected size */
+    background-color: #f0f0f0; /* Change background on selection */
+}
+
+
+
 :root {
     --text-color1: #111;
     --text-color2: #E2A500; 

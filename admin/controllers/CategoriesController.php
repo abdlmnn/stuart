@@ -44,6 +44,50 @@
             }
         }
 
+        // Getting all the categories values and display on table
+        public function getMenCategory() 
+        {
+            $getDataQuery = "
+                SELECT *
+                FROM categories
+                WHERE categoryGender='Men'
+                ORDER BY categoryGender 
+            ";
+            $result = $this->conn->query($getDataQuery);
+
+            if($result->num_rows > 0){
+
+                // it return the result to the function
+                return $result;
+            }else{
+
+                // it return false of the result to the function
+                return false;
+            }
+        }
+
+        // Getting all the categories values and display on table
+        public function getWomenCategory() 
+        {
+            $getDataQuery = "
+                SELECT *
+                FROM categories
+                WHERE categoryGender='Women'
+                ORDER BY categoryGender 
+            ";
+            $result = $this->conn->query($getDataQuery);
+
+            if($result->num_rows > 0){
+
+                // it return the result to the function
+                return $result;
+            }else{
+
+                // it return false of the result to the function
+                return false;
+            }
+        }
+
         // Getting all the values of categories with exact id to display there values
         public function exact($updateID)
         {

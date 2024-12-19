@@ -19,3 +19,8 @@ function addInventoryForm()
 {
     window.location.href = 'add-inventory.php';
 }
+
+function addSizesForm()
+{
+    window.location.href = 'add-size.php';
+}

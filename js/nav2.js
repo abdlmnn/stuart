@@ -19,16 +19,3 @@ window.addEventListener("resize", () => {
         hamburger.classList.remove("active"); 
     }
 });
-
-const addToCartBtn = document.getElementById('addToCartBtn');
-const addToCartModal = document.getElementById('addToCartModal');
-const closeBtn = document.querySelector('.close');
-const removeBtn = document.querySelector('.remove-btn');
-
-addToCartBtn.addEventListener('click', () => {
-  addToCartModal.classList.add('show');
-});
-
-closeBtn.addEventListener('click', () => {
-  addToCartModal.classList.remove('show');
-});

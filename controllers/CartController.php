@@ -28,9 +28,10 @@
                 'gender'=> $row['categoryGender'],
                 'image' => $row['itemImage'],
                 'name' => $row['itemName'],
-                'size'=> $row['itemSize'],
+                'size'=> $row['sizeName'],
                 'stock'=> $row['itemStock'],
-                'price'=> $row['itemPrice']
+                'price'=> $row['itemPrice'],
+                'status'=> $row['itemStatus']
             ];
         }
 
@@ -38,10 +39,12 @@
         public function exact($id)
         {
             $checkDataQuery = "
-                SELECT inventory.*, categories.categoryName, categories.categoryGender
+                SELECT inventory.*, categories.categoryName, categories.categoryGender, sizes.sizeName
                 FROM inventory
                 INNER JOIN categories
                 ON inventory.categoryID = categories.categoryID
+                INNER JOIN sizes
+                ON inventory.sizeID = sizes.sizeID
                 WHERE inventoryID='$id'
                 LIMIT 1
             ";
@@ -62,13 +65,24 @@
         public function getStock($id)
         {
             $getDataQuery = "
-                SELECT itemStock
+                SELECT inventory.*, categories.categoryName, categories.categoryGender, sizes.sizeName
                 FROM inventory
+                INNER JOIN categories
+                ON inventory.categoryID = categories.categoryID
+                INNER JOIN sizes
+                ON inventory.sizeID = sizes.sizeID
                 WHERE inventoryID='$id'
             ";
             $result = $this->conn->query($getDataQuery);
+
+            if($result){
+                $rows = $result->fetch_assoc();
+
+                return $rows;
+            }else{
+                return false;
+            }
             
-            return $rows = $result->fetch_assoc();
         }
 
         // Set the quantity 1 or more than 1 exact id
@@ -103,6 +117,50 @@
                 return true;
             }else{
                 return false;
+            }
+        }
+
+        // Update the stock of inventory when item been remove in order
+        public function updateStockDelete($id)
+        {
+            if(isset($_SESSION['order'][$id])){
+
+                $quantity = $_SESSION['order'][$id]['quantity'];
+
+                $updateDataQuery = "
+                    UPDATE inventory
+                    SET itemStock= itemStock + $quantity
+                    WHERE inventoryID='$id'
+                    LIMIT 1
+                ";
+                $result = $this->conn->query($updateDataQuery);
+
+                if($result){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        }
+
+        public function updateStockDeleteAll(){
+            foreach($_SESSION['order'] as $id => $data){
+                
+                $quantity = $data['quantity'];
+
+                $updateDataQuery = "
+                    UPDATE inventory
+                    SET itemStock = itemStock + $quantity
+                    WHERE inventoryID='$id'
+                ";
+                $result = $this->conn->query($updateDataQuery);
+
+                if($result){
+
+                    return true;
+                }else{
+                    return false;
+                }
             }
         }
     }

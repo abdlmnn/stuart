@@ -22,8 +22,12 @@
     // DELETE ALL ORDER or CLEAR ALL ORDER in order modal
     if(isset($_POST['delete-all-order-button']))
     {
+
+        // updateStockDeleteAll came from my Class CartController
+        $cart->updateStockDeleteAll();
+
         // it set an empty session order array 
-        
+
         // emptyOrder came from my Class CartController
         $cart->emptyOrder();
 
@@ -34,8 +38,10 @@
     {
         $inventoryID = $_POST['delete-order-button'];
 
-        // it delete the order with exact id
+        // updateStockDelete came from my Class CartController
+        $cart->updateStockDelete($inventoryID);
 
+        // it delete the order with exact id
         // removing the exact key or inventoryID on session order array 
         unset($_SESSION['order'][$inventoryID]);
     }
@@ -83,6 +89,7 @@
     {
         $inventoryID = $_POST['add-order-button'];
         $quantity = $_POST['inputQuantity'];
+        // $size = $_POST['inputSize'];
 
         // print_r($inventoryID);
         
@@ -109,6 +116,7 @@
 
                     // storing the rows value to the session order array with exact id
                     $_SESSION['order'][$inventoryID] = [
+                        'id' => $data['id'],
                         'categoryName' => $data['categoryName'],
                         'gender' => $data['gender'],
                         'image' => $data['image'],
@@ -117,6 +125,8 @@
                         'price' => $data['price'],
                         'quantity' => $quantity
                     ];
+
+                    // print_r($_SESSION['order']);
 
                     // updateStock came from my Class CartController
                     $cart->updateStock($inventoryID,$quantity);
@@ -127,7 +137,7 @@
         }else{
 
             // if the itemStock is quantity or 0
-            showMessage('Out of Stock');
+            showMessage('Not enough stock');
         }
 
         // print_r($_SESSION['order']);

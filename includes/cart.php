@@ -2,7 +2,7 @@
     
     <div class="cart-container" id="cartContainer">
         
-        <div class="close-cart" id="cartClose">
+        <div class="close-cart" id="cartClose" onclick="cartClose()">
             <ion-icon name="chevron-back-outline" class="close-icon"></ion-icon>
         </div>
 
@@ -28,67 +28,71 @@
                         $total = $total + $itemTotalPrice;
             ?>
             <form action="" method="post">
-            <div class="cart-item-container">
+                <div class="cart-item-container">
 
-                <div class="each-cart">
+                    <div class="each-cart">
 
-                    <div class="cart-image-container">
-                        <img src="images/<?= $data['image'] ?>" alt="<?= $data['name'] ?>" class="cart-image">
-                    </div>
+                        <div class="cart-image-container">
+                            <img src="images/<?= $data['image'] ?>" alt="<?= $data['name'] ?>" class="cart-image">
+                        </div>
 
-                    <div class="cart-description">
-                        <h1 class="cart-item-name"><?= $data['name'] ?></h1>
+                        <div class="cart-description">
+                            <h1 class="cart-item-name"><?= $data['name'] ?></h1>
 
-                        <p class="cart-item-totalprice">&#x20B1; <?= number_format($data['price']) ?></p>
-                        
-                        <p class="cart-item-size">size : L</p>
-
-                        
-                        <div class="quantity-controls">
+                            <p class="cart-item-totalprice">&#x20B1; <?= number_format($data['price']) ?></p>
                             
-                            <button type="button" class="quantity-button minus">-</button>
-                        
-                            <input type="number" name="updateQuantity" class="quantity-input" min="0" value="<?= $data['quantity'] ?>">
+                            <p class="cart-item-size">size : <?= $data['size'] ?></p>
 
-                            <button type="button" class="quantity-button plus">+</button>
+                            
+                            <div class="quantity-controls qtyBox">
+                                
+                                <input type="hidden" name="inputID" class="inventoryID" value="<?= $id ?>">
 
+                                <button type="button" class="quantity-button decrement">-</button>
+
+                                <input type="number" name="updateQuantity" class="qty quantity-input" min="0" value="<?= $data['quantity'] ?>">
+
+                                <button type="button" class="quantity-button increment">+</button>
+
+                            </div>
+
+                            <div class="cart-button-action">
+
+                                <button type="submit" name="update-quantity-order-button" class="remove-button" value="<?= $id ?>">
+                                    <ion-icon name="bag-check-outline"></ion-icon>
+                                </button>
+
+                                <button type="submit" name="delete-order-button" class="remove-button" value="<?= $id ?>">
+                                    <!-- <ion-icon name="close-outline" class="remove-cart-icon"></ion-icon> -->
+                                    <ion-icon name="bag-remove-outline"></ion-icon>
+                                </button>
+
+                            </div>
+                            
                         </div>
 
-                        <div class="cart-button-action">
-
-                            <button type="submit" name="update-quantity-order-button" class="remove-button" value="<?= $id ?>">
-                                <ion-icon name="bag-check-outline"></ion-icon>
-                            </button>
-
-                            <button type="submit" name="delete-order-button" class="remove-button" value="<?= $id ?>">
-                                <!-- <ion-icon name="close-outline" class="remove-cart-icon"></ion-icon> -->
-                                <ion-icon name="bag-remove-outline"></ion-icon>
-                            </button>
-
-                        </div>
-                        
                     </div>
 
                 </div>
-
-            </div>
+            </form>
 
             <?php 
 
                 endforeach; 
             ?>
+        <form action="" method="post">
             
-        <div class="cart-checkout-container">
+            <div class="cart-checkout-container">
 
-            <div class="total-price-container">
-                <p class="total-price-display">Total : <span id="total-Price">&#x20B1; <?=number_format( $total) ?></span></p>
+                <div class="total-price-container">
+                    <p class="total-price-display">Total : <span id="total-Price">&#x20B1; <?=number_format( $total) ?></span></p>
 
-                <button type="button" class="remove-button-two">View Order</button>
-
-                <button type="submit" name="delete-all-order-button" class="remove-button-two">Clear All</button>
+                    <button type="button" class="remove-button-two">View Order (<?= count($_SESSION['order']) ?>)</button>
+                    
+                    <!-- <button type="submit" name="delete-all-order-button" class="remove-button-two">Clear All</button> -->
+                </div>
+                
             </div>
-            
-        </div>
         
         </form>
 

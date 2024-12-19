@@ -48,12 +48,25 @@
         <div class="cart-icon-container">
             <span class="total-item">
                 <?php if(isset($_SESSION['order'])) : ?>
-                    <?php echo count($_SESSION['order']); ?>
+                    <?php 
+                        $totalQuantity = 0;
+
+                        foreach($_SESSION['order'] as $id => $data) :
+
+                            $totalQuantity = $totalQuantity + $data['quantity'];
+
+                        endforeach;
+                    ?>
+
+                    <?php echo $totalQuantity; ?>
+
                 <?php else : ?>
-                    <?php echo '0'; ?>
+
+                    <?php echo '0' ?>
+                    
                 <?php endif; ?>
             </span>
-            <ion-icon name="bag-outline" class="cart-icon" style="color: #fff; cursor: pointer;" id="cartOpen"></ion-icon>
+            <ion-icon name="bag-outline" class="cart-icon" style="color: #fff; cursor: pointer;" id="cartOpen" onclick="cartOpen()"></ion-icon>
             <!-- <ion-icon name="cart-outline" class="cart-icon" style="color: #fff; cursor: pointer;" id="cartOpen"></ion-icon> -->
         </div>
         

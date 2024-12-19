@@ -70,7 +70,7 @@
 
                     <div class="description-container">
                         <div class="item-description">
-                            <h1 class="item-name"><?= $data['name'] ?></h1>
+                            <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
                             <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
                         </div>
 
@@ -137,7 +137,7 @@
 
                         <div class="description-container">
                             <div class="item-description">
-                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['gender'] ?></h1>
+                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
                                 <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
                             </div>
 
@@ -201,7 +201,7 @@
 
                         <div class="description-container">
                             <div class="item-description">
-                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['gender'] ?></h1>
+                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
                                 <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
                             </div>
 
@@ -266,7 +266,7 @@
 
                         <div class="description-container">
                             <div class="item-description">
-                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['gender'] ?></h1>
+                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
                                 <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
                             </div>
 
@@ -330,7 +330,7 @@
 
                         <div class="description-container">
                             <div class="item-description">
-                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['gender'] ?></h1>
+                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
                                 <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
                             </div>
 
@@ -394,7 +394,7 @@
 
                     <div class="description-container">
                         <div class="item-description">
-                            <h1 class="item-name"><?= $data['name'] ?></h1>
+                            <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
                             <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
                         </div>
 
@@ -525,7 +525,7 @@
 
                     <div class="description-container">
                         <div class="item-description">
-                            <h1 class="item-name"><?= $data['name'] ?> / <?= $data['gender'] ?></h1>
+                            <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
                             <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
                         </div>
 
@@ -590,7 +590,7 @@
 
                         <div class="description-container">
                             <div class="item-description">
-                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['gender'] ?></h1>
+                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
                                 <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
                             </div>
 
@@ -655,7 +655,7 @@
 
                         <div class="description-container">
                             <div class="item-description">
-                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['gender'] ?></h1>
+                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
                                 <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
                             </div>
 
@@ -720,7 +720,7 @@
 
                         <div class="description-container">
                             <div class="item-description">
-                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['gender'] ?></h1>
+                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
                                 <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
                             </div>
 
@@ -784,7 +784,7 @@
 
                         <div class="description-container">
                             <div class="item-description">
-                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['gender'] ?></h1>
+                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
                                 <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
                             </div>
 

@@ -17,3 +17,8 @@ function cancel()
 {
     window.location.href = "view-profile.php";
 }
+
+function skip()
+{
+    window.location.href = "view-customer.php";
+}

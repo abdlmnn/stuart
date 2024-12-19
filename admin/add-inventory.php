@@ -5,9 +5,11 @@
 
     include_once '../controllers/AuthenticateController.php';
     include_once 'controllers/CategoriesController.php';
+    include_once 'controllers/SizesController.php';
     include_once 'controllers/InventoryController.php';
 
     $categories = new CategoriesController;
+    $sizes = new SizesController;
     $inventory = new InventoryController;
     $authenticated = new AuthenticateController;
 
@@ -32,10 +34,11 @@
 
                     <select name="inputCategory">
                         <option selected>Select Categories</option>
-
+                        <option></option>
+                        <option>Men Category:</option>
                         <?php
                                          // getMen came from my Class CategoriesController 
-                            $resultGetMen = $categories->get();
+                            $resultGetMen = $categories->getMenCategory();
 
                             // if resultGetMen return false or true
                             if(!$resultGetMen){
@@ -46,6 +49,32 @@
 
                                  // if the resultGetMen of get function return the result
                                  foreach($resultGetMen as $categoriesRow) :
+
+                                                  // rows came from my Class CategoriesController
+                                    $categoryData = $categories->rows($categoriesRow);
+                        ?>
+                            <option value="<?= $categoryData['id'] ?>">
+                                <?= $categoryData['name'] ?> | <?= $categoryData['gender'] ?>
+                            </option>
+                        <?php
+                                endforeach;
+                            }
+                        ?>  
+                        <option></option>
+                        <option>Women Category:</option>
+                        <?php
+                                         // getMen came from my Class CategoriesController 
+                            $resultGetWomen = $categories->getWomenCategory();
+
+                            // if resultGetWomen return false or true
+                            if(!$resultGetWomen){
+                                
+                                // it return false, it show message
+                                showMessage('No Men Categories Found');
+                            }else{
+
+                                 // if the resultGetWomen of get function return the result
+                                 foreach($resultGetWomen as $categoriesRow) :
 
                                                   // rows came from my Class CategoriesController
                                     $categoryData = $categories->rows($categoriesRow);
@@ -69,30 +98,59 @@
                     <br><br>
 
                     <select name="inputSize">
-                        <option selected>Select Size</option>
+                        <option selected>Select Sizes</option>
+                        <option></option>
+                        <option>Clothing Size:</option>
+                        <?php
+                                         // get came from my Class SizesController 
+                            $resultGet = $sizes->getClothSize();
 
-                        
+                            // if resultGet return false or true
+                            if(!$resultGet){
+                                
+                                // it return false, it show message
+                                showMessage('No Sizes Found');
+                            }else{
+
+                                 // if the resultGet of get function return the result
+                                 foreach($resultGet as $sizesRow) :
+
+                                                  // rows came from my Class SizesController 
+                                    $data = $sizes->rows($sizesRow);
+                        ?>
+                            <option value="<?= $data['id'] ?>">
+                                <?= $data['name'] ?>
+                            </option>
+                        <?php
+                                endforeach;
+                            }
+                        ?>
                         <option></option>
-                        <option>No Size:</option>
-                        <option value="None">None</option>
-                        
-                        <option></option>
-                        <option>Clothing:</option>
-                        <option value="S">S</option>
-                        <option value="M">M</option>
-                        <option value="L">L</option>
-                        <option value="XL">XL</option>
-                        
-                        <option></option>
-                        <option>Shoes:</option>
-                        <option value="38">38</option>
-                        <option value="39">39</option>
-                        <option value="40">40</option>
-                        <option value="41">41</option>
-                        <option value="42">42</option>
-                        <option value="43">43</option>
-                        <option value="44">44</option>
-                        <option value="45">45</option>
+                        <option>Shoes Size:</option>
+                        <?php
+                                         // get came from my Class SizesController 
+                            $resultGet = $sizes->getShoeSize();
+
+                            // if resultGet return false or true
+                            if(!$resultGet){
+                                
+                                // it return false, it show message
+                                showMessage('No Sizes Found');
+                            }else{
+
+                                 // if the resultGet of get function return the result
+                                 foreach($resultGet as $sizesRow) :
+
+                                                  // rows came from my Class SizesController 
+                                    $data = $sizes->rows($sizesRow);
+                        ?>
+                            <option value="<?= $data['id'] ?>">
+                                <?= $data['name'] ?>
+                            </option>
+                        <?php
+                                endforeach;
+                            }
+                        ?>
 
                     </select>
                     <br><br>
@@ -133,6 +191,7 @@
                             <th>Size</th>
                             <th>Stock</th>
                             <th>Price</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -148,6 +207,12 @@
                                 // if the resultGet of get function is false, it show message
                                 showMessage('No Inventory Record Found');
                             }else{
+
+                                $lowStock = 5;
+                                $outStock = 0;
+
+                                $outStockMessage = '';
+                                $lowStockMessage = '';
 
                                 // if the resultGet of get function return the result
                                 foreach($resultGet as $inventoryRows) :
@@ -175,10 +240,47 @@
                                 <?= $data['size'] ?>
                             </td>
                             <td>
-                                <?= $data['stock'] ?> <p class="stock-status" style="font-size: 10px; background-color: grey;">Low Stock</p>
+                                <?= $data['stock'] ?> 
+                                <?php
+
+                                    $lowStockHold = 5;
+                                    $outStockHold = 0;
+
+                                    if($data['stock'] <= $lowStockHold && $data['stock'] > $outStockHold) :
+                                        $stockMessage = 'Low Stock';
+
+                                    elseif($data['stock'] == $outStockHold) :
+                                        $stockMessage = 'Out of Stock';
+
+                                        if($data['status'] == 'Available'):
+
+                                            $id = $data['id'];
+                                            $status = 'Unavailable';
+
+                                            // updateStatus came from my Class InventoryController
+                                            $inventory->updateStatus($status,$id);
+                                        endif;
+
+                                    else :
+                                        $stockMessage = 'In Stock';
+
+                                    endif;
+                                ?>
+                                <p style="font-size: 10px;">
+                                    <?php echo $stockMessage; ?>
+                                </p>
                             </td>
                             <td>
-                                <?= $data['price'] ?> 
+                                <?= number_format($data['price']) ?> 
+                            </td>
+                            <td>
+                                <?php
+
+
+                                ?>
+                                <p class="stock-status <?= ($data['status'] == 'Available') ? 'available' : 'unavailable'; ?>">
+                                    <?= $data['status'] ?>
+                                </p>
                             </td>
                             <td>
                                 <div class="a-cont">

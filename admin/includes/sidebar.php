@@ -24,12 +24,14 @@
             <li class="<?= $page == 'view-order.php' ? 'active':'' ?>">
                 <a href="view-order.php">
                     <ion-icon name="bag-outline" class="icons"></ion-icon>
+                    <!-- <i class="fa-solid fa-bag-shopping icons"></i> -->
                     <span>Purchase</span>
                 </a>
             </li>
             <li>
                 <button onclick="toggleSubMenu(this)" class="dropdown-btn">
                     <ion-icon name="shirt-outline" class="icons"></ion-icon>
+                    <!-- <i class="fa-solid fa-shirt icons"></i> -->
                     <span>Categories</span>
                     <ion-icon name="chevron-down-outline"></ion-icon>
                 </button>
@@ -40,6 +42,25 @@
                         </li>
                         <li class="<?= $page == 'view-categories.php' ? 'active':'' ?>">
                             <a href="view-categories.php">View</a>
+                        </li>
+                    </div>
+                </ul>
+            </li>
+            <li>
+                <button onclick="toggleSubMenu(this)" class="dropdown-btn">
+                    <!-- <ion-icon name="shirt-outline" class="icons"></ion-icon> -->
+                    <!-- <i class="fa-solid fa-ruler-horizontal"></i> -->
+                    <ion-icon name="resize-outline" class="icons"></ion-icon>
+                    <span>Sizes</span>
+                    <ion-icon name="chevron-down-outline"></ion-icon>
+                </button>
+                <ul class="sub-menu">
+                    <div class="child-menu">
+                        <li class="<?= $page == 'add-size.php' ? 'active':'' ?>">
+                            <a href="add-size.php">Add</a>
+                        </li>
+                        <li class="<?= $page == 'view-size.php' ? 'active':'' ?>">
+                            <a href="view-size.php">View</a>
                         </li>
                     </div>
                 </ul>
