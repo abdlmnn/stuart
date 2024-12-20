@@ -21,7 +21,7 @@
 
                 $total = 0;
 
-                foreach ($_SESSION['order'] as $id => $data) : 
+                foreach($_SESSION['order'] as $id => $data) : 
 
                         $itemTotalPrice = $data['price'] * $data['quantity'];
 
@@ -87,11 +87,17 @@
                 <div class="total-price-container">
                     <p class="total-price-display">Total : <span id="total-Price">&#x20B1; <?=number_format( $total) ?></span></p>
 
+<<<<<<< HEAD
                     <button type="button" class="remove-button-two">View Order (<?= count($_SESSION['order']) ?>)</button>
                     
                     <!-- <button type="submit" name="delete-all-order-button" class="remove-button-two">Clear All</button> -->
                 </div>
                 
+=======
+                <button type="button" class="remove-button-two">View Order (<?= count($_SESSION['order']) ?>)</button>
+
+                <button type="submit" name="delete-all-order-button" class="remove-button-two">Clear All</button>
+>>>>>>> a0bea119edd4401f77fa392e1e716dd79dad26b8
             </div>
         
         </form>

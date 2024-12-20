@@ -48,6 +48,7 @@
         <div class="cart-icon-container">
             <span class="total-item">
                 <?php if(isset($_SESSION['order'])) : ?>
+<<<<<<< HEAD
                     <?php 
                         $totalQuantity = 0;
 
@@ -56,14 +57,29 @@
                             $totalQuantity = $totalQuantity + $data['quantity'];
 
                         endforeach;
+=======
+
+                    <?php 
+                        $totalQuantity = 0; 
+
+                        foreach($_SESSION['order'] as $id => $data) : 
+                            
+                        $totalQuantity = $totalQuantity + $data['quantity'];
+
+                        endforeach; 
+>>>>>>> a0bea119edd4401f77fa392e1e716dd79dad26b8
                     ?>
 
                     <?php echo $totalQuantity; ?>
 
                 <?php else : ?>
+<<<<<<< HEAD
 
                     <?php echo '0' ?>
                     
+=======
+                    <?php echo $totalQuantity; ?>
+>>>>>>> a0bea119edd4401f77fa392e1e716dd79dad26b8
                 <?php endif; ?>
             </span>
             <ion-icon name="bag-outline" class="cart-icon" style="color: #fff; cursor: pointer;" id="cartOpen" onclick="cartOpen()"></ion-icon>
