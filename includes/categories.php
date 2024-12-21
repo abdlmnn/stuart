@@ -22,12 +22,12 @@
             </ul>
             <ul>
                 <a href="<?= base_url('view-landing.php?category=Men Footwear') ?>" class="a-category <?= $selectedCategory === 'Men Footwear' ? 'active' : '' ?>">
-                    Men Shoes
+                    Men Footwear
                 </a>
             </ul>
             <ul>
                 <a href="<?= base_url('view-landing.php?category=Women Footwear') ?>" class="a-category <?= $selectedCategory === 'Women Footwear' ? 'active' : '' ?>">
-                    Women Shoes
+                    Women Footwear
                 </a>
             </ul>
             <ul>
