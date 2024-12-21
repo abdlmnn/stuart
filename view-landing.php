@@ -70,7 +70,7 @@
 
                     <div class="description-container">
                         <div class="item-description">
-                            <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
+                            <h1 class="item-name"><?= $data['name'] ?></h1>
                             <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
                         </div>
 
@@ -525,7 +525,7 @@
 
                     <div class="description-container">
                         <div class="item-description">
-                            <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
+                            <h1 class="item-name"><?= $data['name'] ?></h1>
                             <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
                         </div>
 
@@ -590,7 +590,7 @@
 
                         <div class="description-container">
                             <div class="item-description">
-                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
+                                <h1 class="item-name"><?= $data['name'] ?></h1>
                                 <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
                             </div>
 
@@ -608,13 +608,77 @@
                 }
             ?>
 
-            <?php elseif(isset($_GET['category']) && $_GET['category'] == 'Men Shoes') : ?>
+            <?php elseif(isset($_GET['category']) && $_GET['category'] == 'Men Footwear') : ?>
 
             <?php
-                                // displayMenShoes came from my Class InventoryController 
-                $resultGetMenShoes = $inventory->displayMenShoes();
+                                // displayMenFootwear came from my Class InventoryController 
+                $resultGetMenFootwear = $inventory->displayMenFootwear();
 
-                if(!$resultGetMenShoes){
+                if(!$resultGetMenFootwear){
+                    
+                    exit("
+                    <section
+                        style='
+                            box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.1);
+                            padding: 35px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            margin: 0 auto;
+                            border-radius: 10px;
+                        '
+                    >
+                    <h1 
+                        style='
+                            // box-shadow: 0 1px 10px rgba(0,0,0,.5);
+                            padding: 35px;
+                            color: red;
+                        '
+                    >
+                        No item
+                    </h1>
+                    </section>");
+                }else{
+                    foreach($resultGetMenFootwear as $itemRows) :
+
+                        $data = $inventory->rows($itemRows);
+            ?>
+
+                <a href="add-item-order.php?itemID=<?= $data['id'] ?>" class="add-cart-button">
+
+                    <div class="card">
+
+                        <div class="card-image">
+                            <img src="images/<?= $data['image'] ?>" alt="" class="image-item">
+                        </div>
+
+                        <div class="description-container">
+                            <div class="item-description">
+                                <h1 class="item-name"><?= $data['name'] ?></h1>
+                                <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
+                            </div>
+
+                            <div class="add-to-cart">
+                                <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </a>
+
+            <?php
+                    endforeach;
+                }
+            ?>
+
+            <?php elseif(isset($_GET['category']) && $_GET['category'] == 'Women Footwear') : ?>
+
+            <?php
+                                // displayWomenFootwear came from my Class ItemController 
+                $resultGetWomenFootwear = $inventory->displayWomenFootwear();
+
+                if(!$resultGetWomenFootwear){
                     
                     exit("
                     <section
@@ -640,7 +704,7 @@
                     </section>");
                     // redirect('No item found','view-landing.php?category=Women');
                 }else{
-                    foreach($resultGetMenShoes as $itemRows) :
+                    foreach($resultGetWomenFootwear as $itemRows) :
 
                         $data = $inventory->rows($itemRows);
             ?>
@@ -655,72 +719,7 @@
 
                         <div class="description-container">
                             <div class="item-description">
-                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
-                                <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
-                            </div>
-
-                            <div class="add-to-cart">
-                                <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </a>
-
-            <?php
-                    endforeach;
-                }
-            ?>
-
-            <?php elseif(isset($_GET['category']) && $_GET['category'] == 'Women Shoes') : ?>
-
-            <?php
-                                // displayWomenShoes came from my Class ItemController 
-                $resultGetWomenShoes = $inventory->displayWomenShoes();
-
-                if(!$resultGetWomenShoes){
-                    
-                    exit("
-                    <section
-                        style='
-                            box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.1);
-                            padding: 35px;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            margin: 0 auto;
-                            border-radius: 10px;
-                        '
-                    >
-                    <h1 
-                        style='
-                            // box-shadow: 0 1px 10px rgba(0,0,0,.5);
-                            padding: 35px;
-                            color: red;
-                        '
-                    >
-                        No item
-                    </h1>
-                    </section>");
-                    // redirect('No item found','view-landing.php?category=Women');
-                }else{
-                    foreach($resultGetWomenShoes as $itemRows) :
-
-                        $data = $inventory->rows($itemRows);
-            ?>
-
-                <a href="add-item-order.php?itemID=<?= $data['id'] ?>" class="add-cart-button">
-
-                    <div class="card">
-
-                        <div class="card-image">
-                            <img src="images/<?= $data['image'] ?>" alt="" class="image-item">
-                        </div>
-
-                        <div class="description-container">
-                            <div class="item-description">
-                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
+                                <h1 class="item-name"><?= $data['name'] ?></h1>
                                 <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
                             </div>
 
@@ -784,7 +783,7 @@
 
                         <div class="description-container">
                             <div class="item-description">
-                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
+                                <h1 class="item-name"><?= $data['name'] ?></h1>
                                 <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
                             </div>
 

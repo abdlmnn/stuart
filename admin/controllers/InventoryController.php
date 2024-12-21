@@ -52,6 +52,151 @@
             ];
         }
 
+        // Display all item
+        public function displayAll()
+        {
+            $getDataQuery = "
+                SELECT inventory.*, subcategories.subcategoryName
+                FROM inventory
+                INNER JOIN subcategories
+                ON inventory.subcategoryID = subcategories.subcategoryID
+                WHERE inventory.itemStatus='Available'
+                ORDER BY inventory.itemName
+            ";
+            $result = $this->conn->query($getDataQuery);
+
+            if($result->num_rows > 0){
+
+                return $result;
+            }else{
+
+                // it return false of the result to the function
+                return false;
+            }
+        }
+
+        // Display only Men subcategories
+        public function displayMen()
+        {
+            $getDataQuery = "
+                SELECT inventory.*, subcategories.subcategoryName
+                FROM inventory
+                INNER JOIN subcategories
+                ON inventory.subcategoryID = subcategories.subcategoryID
+                WHERE subcategories.subcategoryName='Men Clothing'
+                AND inventory.itemStatus='Available'
+                ORDER BY inventory.itemName
+            ";
+            $result = $this->conn->query($getDataQuery);
+
+            if($result->num_rows > 0){
+            
+                return $result;
+            }else{
+
+                // it return false of the result to the function
+                return false;
+            }
+        }
+
+        // Display only Women subcategories
+        public function displayWomen()
+        {
+            $getDataQuery = "
+                SELECT inventory.*, subcategories.subcategoryName
+                FROM inventory
+                INNER JOIN subcategories
+                ON inventory.subcategoryID = subcategories.subcategoryID
+                WHERE subcategories.subcategoryName='Women Clothing'
+                AND inventory.itemStatus='Available'
+                ORDER BY inventory.itemName
+            ";
+            $result = $this->conn->query($getDataQuery);
+
+            if($result->num_rows > 0){
+
+                return $result;
+            }else{
+
+                // it return false of the result to the function
+                return false;
+            }
+        }
+
+        // Display only Men Footwear subcategories
+        public function displayMenFootwear()
+        {
+            $getDataQuery = "
+                SELECT inventory.*, subcategories.subcategoryName
+                FROM inventory
+                INNER JOIN subcategories
+                ON inventory.subcategoryID = subcategories.subcategoryID
+                WHERE subcategories.subcategoryName='Men Footwear'
+                AND inventory.itemStatus='Available'
+                ORDER BY inventory.itemName
+            ";
+            $result = $this->conn->query($getDataQuery);
+
+            if($result->num_rows > 0){
+
+                return $result;
+            }else{
+
+                // it return false of the result to the function
+                return false;
+            }
+        }
+
+        // Display only Women Footwear subcategories
+        public function displayWomenFootwear()
+        {
+            $getDataQuery = "
+                SELECT inventory.*, subcategories.subcategoryName
+                FROM inventory
+                INNER JOIN subcategories
+                ON inventory.subcategoryID = subcategories.subcategoryID
+                WHERE subcategories.subcategoryName='Women Footwear'
+                AND inventory.itemStatus='Available'
+                ORDER BY inventory.itemName
+            ";
+            $result = $this->conn->query($getDataQuery);
+
+            if($result->num_rows > 0){
+
+                return $result;
+            }else{
+
+                // it return false of the result to the function
+                return false;
+            }
+        }
+
+        // Display only Accessories joining the categories, subcategories in inventory
+        public function displayAccessories()
+        {
+            $getDataQuery = "
+                SELECT inventory.*, subcategories.subcategoryName, categories.categoryName
+                FROM inventory
+                INNER JOIN subcategories 
+                ON inventory.subcategoryID = subcategories.subcategoryID
+                INNER JOIN categories 
+                ON subcategories.categoryID = categories.categoryID
+                WHERE categories.categoryName='Accessories'
+                AND inventory.itemStatus='Available'
+                ORDER BY inventory.itemName
+            ";
+            $result = $this->conn->query($getDataQuery);
+
+            if($result->num_rows > 0){
+
+                return $result;
+            }else{
+
+                // it return false of the result to the function
+                return false;
+            }
+        }
+
         // Upload image file from path
         public function imagePath($inventoryData)
         {
@@ -151,6 +296,7 @@
                 FROM inventory
                 INNER JOIN subcategories
                 ON inventory.subcategoryID = subcategories.subcategoryID
+                ORDER BY itemName
             ";
             $result = $this->conn->query($getDataQuery);
 
@@ -217,11 +363,12 @@
         {
             $image = $inputData['image'];
             $name = $inputData['name'];
+            $subID = $inputData['subcategory'];
 
             // checkDuplicate came from my function checkDuplicate
 
                                   // checkDuplicate came from my Function checkDuplicate
-            $resultCheckDuplicate = $this->checkDuplicate($image,$name); 
+            $resultCheckDuplicate = $this->checkDuplicate($image,$name,$subID); 
 
             if($resultCheckDuplicate){
                       

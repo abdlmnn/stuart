@@ -14,7 +14,7 @@
     $sizes = new SizesController;
 
     $authenticated->customerOnly();
-    $authenticated->checkIsLoggedIn();
+    // $authenticated->checkIsLoggedIn();
 
     include 'includes/header.php';
     include 'includes/navbar.php';
@@ -66,9 +66,9 @@
                 </div>
 
                 <div class="item-info-container">
-                    <h5 class="item-category"><?= $data['categoryName'] ?> / <?= $data['gender'] ?></h5>
+                    <h5 class="item-category"></h5>
                     <p class="item-name"><?= $data['name'] ?></p>
-                    <p class="item-quantity"><?= $data['stock'] ?> item left</p>
+                    <p class="item-quantity"> item left</p>
 
                     <div class="item-price-container">
                         <span class="item-price">&#x20B1; <?= $data['price'] ?></span>
@@ -151,9 +151,9 @@
                 </div>
 
                 <div class="item-info-container">
-                    <h5 class="item-category"><?= $data['categoryName'] ?> / <?= $data['gender'] ?></h5>
+                    <h5 class="item-category">ASDsa</h5>
                     <p class="item-name"><?= $data['name'] ?></p>
-                    <p class="item-quantity"><?= $data['stock'] ?> item left</p>
+                    <p class="item-quantity">5 item left</p>
 
                     <div class="item-price-container">
                         <span class="item-price">&#x20B1; <?= $data['price'] ?></span>

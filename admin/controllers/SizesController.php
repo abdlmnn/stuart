@@ -35,6 +35,7 @@
                 FROM sizes
                 INNER JOIN inventory
                 ON sizes.inventoryID = inventory.inventoryID
+                ORDER BY inventory.itemName
             ";
             $result = $this->conn->query($getDataQuery);
 

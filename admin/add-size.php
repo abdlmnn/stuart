@@ -56,7 +56,7 @@
                     </select>
                     <br><br>
 
-                    <input type="text" name="inputName" placeholder="Size" required autofocus>
+                    <input type="text" name="inputName" placeholder="Size" autofocus>
                     <br><br>
 
                     <input type="text" name="inputStock" min="1" placeholder="Stock" required>

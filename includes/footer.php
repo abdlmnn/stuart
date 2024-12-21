@@ -1,4 +1,4 @@
-<?php if(isset($_SESSION['authenticated'])) : ?>
+
     <footer>
 
         <div class="footer-content">
@@ -57,4 +57,3 @@
     <script src="js/show-password1.js"></script>
 </body>
 </html>
-<?php endif; ?>

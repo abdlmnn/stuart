@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2024 at 04:32 AM
+-- Generation Time: Dec 21, 2024 at 06:38 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -62,11 +62,66 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`inventoryID`, `subcategoryID`, `itemImage`, `itemName`, `itemPrice`, `itemTotalStock`, `itemStatus`) VALUES
-(11, 2, 'shirt2.png', 'Black T-Shirt', 899, 5, 'Available'),
-(13, 2, 'shirt1.png', 'Red T-Shirt', 399, 5, 'Available'),
-(17, 5, 'shoes1.png', 'Running Shoe', 1599, 3, 'Available'),
-(19, 5, 'shoes2.png', 'Jordan 1', 1999, 15, 'Available'),
-(20, 5, 'shoes3.png', 'Converse', 1399, 5, 'Available');
+(24, 2, 'Back-Of-Black-Hoodie-PNG-Free-Download.png', 'Back of Black Hoodie', 2599, 10, 'Available'),
+(25, 1, 'Always-T-Shirt-PNG-Pic.png', 'Always T-Shirt', 299, 30, 'Available'),
+(26, 1, 'Turtle-Neck-Shirt-PNG-Photo.png', 'Turtle Neck Brown', 159, 10, 'Available'),
+(27, 1, 'Animal-Print-Shirt-PNG-Image.png', 'Tiger Sweater', 189, 20, 'Available'),
+(28, 1, 'Embellished-Sweater-PNG-Clipart.png', 'Embellished Sweater', 399, 20, 'Available'),
+(29, 1, 'Graphic-T-Shirt-PNG-File.png', 'Graphic T-Shirt', 499, 20, 'Available'),
+(30, 1, 'Half-T-shirt-Singlet-PNG-File.png', 'Half T-Shirt', 90, 10, 'Available'),
+(31, 10, 'Backpack-Bag.png', 'Red Backpack', 499, 5, 'Available'),
+(32, 10, 'Black-Duffel-Bag.png', 'Duffel Bag Black', 699, 5, 'Available'),
+(33, 10, 'Lv-Bag.png', 'Louis Vuitton ', 3599, 5, 'Available'),
+(37, 2, 'Polo-Collar-T-Shirt-PNG.png', 'Polo Black T-Shirt', 450, 10, 'Available'),
+(39, 2, 'Polo-T-Shirt-PNG-Image.png', 'Ocean Breeze Polo', 189, 10, 'Available'),
+(40, 2, 'Plain-White-T-Shirt-PNG.png', 'Classic White Tee', 200, 10, 'Available'),
+(41, 2, 'shirt3.png', 'Navy ADHD Long Sleeve Shirt', 399, 10, 'Available'),
+(42, 2, 'Polo.png', 'Rustic Red', 269, 10, 'Available'),
+(43, 2, 'Polo-Shirt-PNG-Photos.png', 'The Green Loop', 350, 10, 'Available'),
+(44, 2, 'Shirt-PNG-Image-Free-Download.png', 'Black Tie Affair', 689, 10, 'Available'),
+(45, 1, 'Women-Back-Of-Black-Hoodie-PNG-Picture.png', 'Tuesday Crop', 700, 10, 'Available'),
+(46, 1, 'T-Shirt-Transparent-Isolated-PNG.png', 'Boomer Pink', 480, 10, 'Available'),
+(47, 2, 'T-Shirt-PNG-Transparent.png', 'ServisHero Yellow', 300, 10, 'Available'),
+(48, 1, 'T-Shirt-PNG-Picture.png', 'Amethyst Aura', 250, 10, 'Available'),
+(49, 2, 'T-Shirt-PNG-Pic.png', 'Adidas Trefoil Back', 800, 10, 'Available'),
+(56, 1, 'T-Shirt-PNG-Isolated-Transparent.png', 'Brainchild', 350, 10, 'Available'),
+(57, 2, 'T-Shirt-PNG-Isolated-Photo.png', 'Scott Vintage Turquoise', 500, 10, 'Available'),
+(58, 2, 'T-Shirt-PNG-Free-Download.png', 'Mandarin Collar Polo', 400, 10, 'Available'),
+(59, 1, 'T-Shirt-Download-PNG-Isolated-Image.png', 'Hey Girl Long Sleeve', 600, 10, 'Available'),
+(60, 2, 'Thrasher-T-Shirt-PNG-Transparent-Image.png', 'Thrasher Flame', 500, 10, 'Available'),
+(63, 2, 'Thrasher-T-Shirt-PNG-Photos.png', 'Thrasher Flame Hoodie', 1000, 10, 'Available'),
+(64, 1, 'Thrasher-T-Shirt-PNG-Image.png', 'Thrasher Flame Pink', 500, 10, 'Available'),
+(65, 5, 'shoes2.png', 'Nike Air Force 1 Mid ', 4500, 10, 'Available'),
+(67, 5, 'shoes3.png', 'Classic Red Chucks', 1500, 10, 'Available'),
+(69, 5, 'shoes1.png', 'Allbirds Wool Runners', 4000, 10, 'Available'),
+(70, 2, 'shirt2.png', 'Classic Black Crewneck', 250, 10, 'Available'),
+(71, 2, 'shirt1.png', 'Classic Red Tee', 200, 10, 'Available'),
+(72, 4, 'heel1.png', 'Red Hot Stilettos', 5000, 5, 'Available'),
+(73, 4, 'pure.png', 'Black Satin Bow Heels', 8000, 10, 'Available'),
+(74, 4, 'purepng.com-blue-women-shoewomen-shoesfootdesignfoot-wearwomenladiescasualblue-1421526427896lp3gs.png', 'Royal Blue Satin Sandals', 3000, 10, 'Available'),
+(75, 4, 'purepng.com-black-women-shoewomen-shoesfootdesignfoot-wearwomenladiescasualleatherblack-1421526427979f7tbf.png', 'Burgundy Patent Leather', 2000, 10, 'Available'),
+(76, 4, 'purepng.com-women-shoewomen-shoesfootdesignfoot-wearwomenladiescasualleather-1421526428001ven3p.png', 'Gucci Denim Platform Wedges', 25000, 10, 'Available'),
+(77, 4, 'purepng.com-women-shoewomen-shoesfootdesignfoot-wearwomenladiescasualleather-1421526427925ybhgq.png', 'Saddle Leather Pumps', 2500, 10, 'Available'),
+(78, 4, 'purepng.com-white-women-shoewomen-shoesfootdesignfoot-wearwomenladieswhite-1421526427811rk3z0.png', 'Peace of Shoe', 25000, 10, 'Available'),
+(79, 4, 'purepng.com-black-women-shoewomen-shoesfootdesignfoot-wearwomenladiescasualleatherblack-14215264280391tuvx.png', 'Classic Black Pumps', 3000, 10, 'Available'),
+(81, 4, 'purepng.com-black-women-shoewomen-shoesfootdesignfoot-wearblackboot-1421526427559jwngk.png', 'Leather Buckle Booties', 3500, 10, 'Available'),
+(82, 4, 'purepng.com-kheila-white-women-shoewomen-shoesfootdesignfoot-wearwhitekheila-1421526427594wde1z.png', 'White Patent Leather', 3000, 10, 'Available'),
+(83, 4, 'purepng.com-pink-women-bootwomen-shoesfootdesignfoot-wearboot-14215264275018xljc.png', 'Pink Buttoned Ankle Boots', 25000, 10, 'Available'),
+(84, 4, 'purepng.com-women-shoeswomen-shoesfootdesignfoot-wear-14215264271567wdeb.png', 'Burgundy Wool', 15000, 10, 'Available'),
+(85, 9, 'heart-necklace-for-women-ozv.png', 'Heart Pendant', 2500, 10, 'Available'),
+(86, 9, 'love-pendant-vei.png', 'Love Necklace', 1500, 10, 'Available'),
+(87, 9, 'beautiful-earrings-and-ring-qqm.png', 'Oval Garnet', 5500, 10, 'Available'),
+(88, 15, 'purepng.com-sun-glassesglasseseyeglassesspectaclesplastic-lensesmountedsun-glasses-1421526498926qwvmv.png', 'The Navigator', 899, 10, 'Available'),
+(89, 15, 'purepng.com-sports-sun-glassesglasseseyeglassesspectaclesplastic-lensesmountedsun-glassessports-1421526499139k8v7u.png', 'Speedster', 1200, 10, 'Available'),
+(90, 5, 'purepng.com-running-shoesrunning-shoesrunningshoessportingphysical-activitiesstyle-170152818146178pyz.png', 'ASICS GT-2170 Trail Runner', 4000, 10, 'Available'),
+(91, 5, 'purepng.com-running-shoesrunning-shoesrunningshoessportingphysical-activitiesstyle-17015281813376hks0.png', 'Brooks Glycerin 10', 4500, 10, 'Available'),
+(92, 5, 'purepng.com-running-shoesrunning-shoesrunningshoessportingphysical-activitiesstyle-1701528185665agwka.png', 'Salomon X Ultra 2 GTX', 5000, 10, 'Available'),
+(93, 5, 'purepng.com-running-shoesrunning-shoesrunningshoessportingphysical-activitiesstyle-1701528181538k7ske.png', 'Nike Lunar Control Vapor 2', 6000, 10, 'Available'),
+(94, 5, 'purepng.com-running-shoesrunning-shoesrunningshoessportingphysical-activitiesstyle-1701528181359oiaep.png', 'Mizuno Wave Rider 16', 4000, 10, 'Available'),
+(95, 5, 'purepng.com-running-shoesrunning-shoesrunningshoessportingphysical-activitiesstyle-1701528181310sel6e.png', 'Adidas Energy Boost', 8000, 10, 'Available'),
+(96, 5, 'shoes-png-nike-shoes-png-image-1280.png', 'Nike Zoom Kobe IV', 5000, 10, 'Available'),
+(97, 5, 'shoes-png-shoes-png-file-png-image-1180.png', 'Yuketen', 8000, 10, 'Available'),
+(98, 5, 'purepng.com-shoes-merrellfashion-objects-shoes-men-footwear-running-shoe-foot-sport-brown-trendclothingshoes-merrell-631522936021ldy4h.png', 'Merrell Moab 2', 3000, 10, 'Available');
 
 -- --------------------------------------------------------
 
@@ -130,11 +185,71 @@ CREATE TABLE `sizes` (
 --
 
 INSERT INTO `sizes` (`sizeID`, `inventoryID`, `sizeName`, `sizeStock`) VALUES
-(19, 11, 'S', 5),
-(20, 13, 'S', 5),
-(24, 17, '43', 3),
-(26, 19, '44', 15),
-(27, 20, '41', 5);
+(36, 25, 'XS', 10),
+(37, 25, 'S', 10),
+(38, 25, 'M', 10),
+(39, 26, 'M', 10),
+(40, 27, 'S', 10),
+(41, 27, 'M', 10),
+(42, 28, 'M', 10),
+(43, 28, 'L', 10),
+(44, 29, 'S', 10),
+(45, 29, 'M', 10),
+(46, 30, 'S', 10),
+(47, 24, 'S', 10),
+(50, 37, 'S', 10),
+(52, 39, 'S', 10),
+(53, 40, 'S', 10),
+(54, 41, 'S', 10),
+(55, 31, '', 5),
+(56, 32, '', 5),
+(57, 33, '', 5),
+(59, 44, 'S', 10),
+(60, 42, 'S', 10),
+(61, 43, 'S', 10),
+(62, 46, 'S', 10),
+(63, 45, 'S', 10),
+(64, 60, 'S', 10),
+(65, 63, 'S', 10),
+(66, 64, 'S', 10),
+(67, 47, 'S', 10),
+(68, 57, 'S', 10),
+(69, 72, '38', 5),
+(70, 65, '40', 10),
+(71, 58, 'S', 10),
+(72, 59, 'S', 10),
+(73, 71, 'S', 10),
+(74, 67, '40', 10),
+(75, 70, 'S', 10),
+(76, 56, 'S', 10),
+(77, 48, 'S', 10),
+(78, 69, '40', 10),
+(79, 49, 'S', 10),
+(80, 73, '37', 10),
+(81, 74, '37', 10),
+(82, 75, '37', 10),
+(83, 76, '37', 10),
+(84, 77, '37', 10),
+(85, 78, '37', 10),
+(86, 79, '37', 10),
+(88, 81, '37', 10),
+(89, 83, '37', 10),
+(90, 84, '37', 10),
+(91, 82, '37', 10),
+(92, 85, '', 10),
+(93, 86, '', 10),
+(94, 87, '', 10),
+(95, 89, '', 10),
+(96, 88, '', 10),
+(97, 95, '40', 10),
+(98, 90, '40', 10),
+(99, 91, '40', 10),
+(100, 94, '40', 10),
+(101, 93, '40', 10),
+(102, 92, '40', 10),
+(103, 96, '40', 10),
+(104, 97, '40', 10),
+(105, 98, '40', 10);
 
 -- --------------------------------------------------------
 
@@ -155,12 +270,11 @@ CREATE TABLE `subcategories` (
 INSERT INTO `subcategories` (`subcategoryID`, `subcategoryName`, `categoryID`) VALUES
 (1, 'Women Clothing', 1),
 (2, 'Men Clothing', 1),
-(3, 'Kids Clothing', 1),
 (4, 'Women Footwear', 2),
 (5, 'Men Footwear', 2),
-(6, 'Kids Footwear', 2),
 (9, 'Jewelry', 3),
-(10, 'Bags', 3);
+(10, 'Bags', 3),
+(15, 'Eye glasses', 3);
 
 -- --------------------------------------------------------
 
@@ -185,7 +299,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userID`, `userFullname`, `userNumber`, `userAddress`, `userGender`, `userEmail`, `userPassword`, `userCode`, `userType`) VALUES
-(1, 'Abdulmanan', 123123, 'Here', 'Male', 'manan@gmail.com', 'Salih123', NULL, 1);
+(1, 'Abdulmanan', 123123, 'Here', 'Male', 'manan@gmail.com', 'Salih123', NULL, 1),
+(15, NULL, NULL, NULL, NULL, 'mohammaddomangcag.abdulmanan@my.smciligan.edu.ph', 'Salih123', 280077, 0);
 
 --
 -- Indexes for dumped tables
@@ -250,13 +365,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `categoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `categoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `inventoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `inventoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT for table `orderline`
@@ -280,19 +395,19 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `sizes`
 --
 ALTER TABLE `sizes`
-  MODIFY `sizeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `sizeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT for table `subcategories`
 --
 ALTER TABLE `subcategories`
-  MODIFY `subcategoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `subcategoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
