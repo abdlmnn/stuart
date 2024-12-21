@@ -48,6 +48,28 @@
                 return false;
             }
         }
+        // Getting all the sizes values and display on table
+        public function getSizeOnly($inventoryID) 
+        {
+            $getDataQuery = "
+                SELECT sizes.*, inventory.*
+                FROM sizes
+                INNER JOIN inventory
+                ON sizes.inventoryID = inventory.inventoryID
+                WHERE inventory.inventoryID='$inventoryID'
+            ";
+            $result = $this->conn->query($getDataQuery);
+
+            if($result->num_rows > 0){
+
+                // it return the result to the function
+                return $result;
+            }else{
+
+                // it return false of the result to the function
+                return false;
+            }
+        }
 
         // Getting all the sizes values and display on table Order By
         public function getOrderBy() 
@@ -214,8 +236,6 @@
         // Add input data to size table values
         public function add($item,$sizeName,$sizeStock)
         {
-            // checkDuplicate came from my function checkDuplicate
-
                                   // checkDuplicate came from my Function checkDuplicate
             $resultCheckDuplicate = $this->checkDuplicate($item, $sizeName); 
 
@@ -255,32 +275,19 @@
             $name = $data['name'];
             $stock = $data['stock'];
 
-            // checkDuplicate came from my function checkDuplicate
+            $updateDataQuery = "
+                UPDATE sizes
+                SET sizeName='$name',
+                    sizeStock='$stock'
+                WHERE sizeID='$id'
+                LIMIT 1
+            ";
+            $result = $this->conn->query($updateDataQuery);
 
-                                  // checkDuplicate came from my Function checkDuplicate
-            $resultCheckDuplicate = $this->checkDuplicate($inventoryID, $name); 
-
-            if($resultCheckDuplicate){
-                      
-                redirect('The item already exists', 'admin/add-size.php');
-                return false;
+            if($result){
+                return true;
             }else{
-
-                $updateDataQuery = "
-                    UPDATE sizes
-                    SET sizeName='$name',
-                        sizeStock='$stock'
-                    WHERE sizeID='$id'
-                    LIMIT 1
-                ";
-                $result = $this->conn->query($updateDataQuery);
-
-                if($result){
-                    return true;
-                }else{
-                    return false;
-                }
-
+                return false;
             }
             
         }

@@ -24,7 +24,28 @@
             ];
         }
 
-        // Getting all the categories values and display on table
+        // Getting all the categories values and display on table with exact ID 
+        public function getCategory($subcategoryID) 
+        {
+            $getDataQuery = "
+                SELECT subcategories.*, categories.categoryName
+                FROM subcategories
+                INNER JOIN categories
+                ON subcategories.categoryID = categories.categoryID
+                WHERE subcategoryID = '$subcategoryID'
+            ";
+            $result = $this->conn->query($getDataQuery);
+
+            if($result->num_rows > 0){
+
+                return $result;
+            }else{
+
+                return false;
+            }
+        }
+
+        // Getting all the subcategories values and display on table
         public function get() 
         {
             $getDataQuery = "
@@ -132,29 +153,65 @@
             }
         }
 
+        // Check the name if it is exists
+        public function checkDuplicate($data)
+        {
+            $name = $data['name'];
+            $categoryID = $data['category'];
+
+            $checkDataQuery = "
+                SELECT COUNT(*)
+                FROM subcategories
+                WHERE subcategoryName='$name' 
+                AND categoryID='$categoryID'
+                LIMIT 1
+            ";
+            $result = $this->conn->query($checkDataQuery);
+            
+            if($result){
+                $rowCheck = $result->fetch_row();
+
+                return $rowCheck[0] > 0; 
+            }else{
+                return false; 
+            }
+        }
+
         // Add input data to subcategories table values
         public function add($inputData)
         {
-            // it will dislpay all the data of my inputData which is in array categoryData
-            $allData = "'" . implode("', '", $inputData) . "'"; 
+                                  // checkDuplicate came from my Function checkDuplicate
+            $resultCheckDuplicate = $this->checkDuplicate($inputData);
 
-            $addDataQuery = "
-                INSERT INTO
-                subcategories (subcategoryName,categoryID)
-                VALUES ($allData)
-            ";
-            $result = $this->conn->query($addDataQuery);
-            
-            // if the result of addQuery is true or false 
-            if($result){
-                
-                // if it true this will run on my subcategories-codes which is the subcategories ADD
-                return true;
-            }else{
+            if($resultCheckDuplicate){
 
-                // if it false this will run on my subcategories-codes which is the subcategories ADD
+                redirect('The item already exists', 'admin/add-subcategories.php');
                 return false;
+            }else{
+                    
+                // it will dislpay all the data of my inputData which is in array categoryData
+                $allData = "'" . implode("', '", $inputData) . "'"; 
+
+                $addDataQuery = "
+                    INSERT INTO
+                    subcategories (subcategoryName,categoryID)
+                    VALUES ($allData)
+                ";
+                $result = $this->conn->query($addDataQuery);
+                
+                // if the result of addQuery is true or false 
+                if($result){
+                    
+                    // if it true this will run on my subcategories-codes which is the subcategories ADD
+                    return true;
+                }else{
+
+                    // if it false this will run on my subcategories-codes which is the subcategories ADD
+                    return false;
+                }
+            
             }
+
         }
 
         // Update the values of subcategories rows 

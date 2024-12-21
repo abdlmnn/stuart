@@ -25,7 +25,7 @@
                 <a href="view-order.php">
                     <ion-icon name="bag-outline" class="icons"></ion-icon>
                     <!-- <i class="fa-solid fa-bag-shopping icons"></i> -->
-                    <span>Purchase</span>
+                    <span>Orders</span>
                 </a>
             </li>
             <li>

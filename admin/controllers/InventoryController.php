@@ -117,6 +117,31 @@
             return $result;
         }
 
+        // Getting all the inventory values and display on table only available item
+        public function getAvail()
+        {
+            // Joining the category,size table to inventory table using the categoryID, sizeID on inventory
+            $getDataQuery = "
+                SELECT inventory.*, subcategories.subcategoryName
+                FROM inventory
+                INNER JOIN subcategories
+                ON inventory.subcategoryID = subcategories.subcategoryID
+                WHERE itemStatus='Available'
+            ";
+            $result = $this->conn->query($getDataQuery);
+
+            if($result->num_rows > 0){
+                
+                $this->totalStock();
+
+                return $result;
+            }else{
+
+                // it return false of the result to the function
+                return false;
+            }
+        }
+
         // Getting all the inventory values and display on table
         public function get()
         {

@@ -23,6 +23,14 @@ input::-webkit-inner-spin-button {
     outline: none;
     border-bottom: 2px solid #ccc;
 }
+#myInput1 {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #ccc;
+}
 
 #sidebar {
     height: 100vh;

@@ -86,26 +86,58 @@
             }
         }
 
+        // Check the name if it is exists
+        public function checkDuplicate($name)
+        {
+            $checkDataQuery = "
+                SELECT COUNT(*)
+                FROM categories
+                WHERE categoryName='$name'
+                LIMIT 1
+            ";
+            $result = $this->conn->query($checkDataQuery);
+            
+            if($result){
+                $rowCheck = $result->fetch_row();
+
+                return $rowCheck[0] > 0; 
+            }else{
+                return false; 
+            }
+        }
+
         // Add input data to categories table values
         public function add($inputData)
-        {
-            $addDataQuery = "
-                INSERT INTO
-                categories (categoryName)
-                VALUES ('$inputData')
-            ";
-            $result = $this->conn->query($addDataQuery);
-            
-            // if the result of addQuery is true or false 
-            if($result){
-                
-                // if it true this will run on my categories-codes which is the CATEGORIES ADD
-                return true;
+        {   
+                                  // checkDuplicate came from my Function checkDuplicate
+            $resultCheckDuplicate = $this->checkDuplicate($inputData);
+
+            if($resultCheckDuplicate){
+
+                redirect('The item already exists','admin/add-categories.php');
+                return false;
             }else{
 
-                // if it false this will run on my categories-codes which is the CATEGORIES ADD
-                return false;
+                $addDataQuery = "
+                    INSERT INTO
+                    categories (categoryName)
+                    VALUES ('$inputData')
+                ";
+                $result = $this->conn->query($addDataQuery);
+                
+                // if the result of addQuery is true or false 
+                if($result){
+                    
+                    // if it true this will run on my categories-codes which is the CATEGORIES ADD
+                    return true;
+                }else{
+
+                    // if it false this will run on my categories-codes which is the CATEGORIES ADD
+                    return false;
+                }
+
             }
+
         }
 
         // Update the values of categories rows 

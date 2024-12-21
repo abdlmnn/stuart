@@ -1,5 +1,5 @@
 <?php
-    $title = 'Categories';
+    $title = 'Inventory';
 
     include '../config/connect.php';
 

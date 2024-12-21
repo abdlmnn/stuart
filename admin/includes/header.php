@@ -9,7 +9,7 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/sidebar4.css?v=2.6">
+    <link rel="stylesheet" href="css/sidebar4.css?v=3.6">
     
     <title><?= $title ?></title>
 </head>
