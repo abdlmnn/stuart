@@ -12,6 +12,7 @@
     $authenticated = new AuthenticateController;
 
     $authenticated->adminOnly();
+    $authenticated->checkIsLoggedIn();
 
     include 'includes/header.php';
     include 'includes/sidebar.php';

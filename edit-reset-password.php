@@ -110,6 +110,9 @@
     </div>
         
 </div>
+
+    <script src="js/password-contain1.js"></script>
+    <script src="js/show-password1.js"></script>
 <?php
     // include 'includes/footer.php';
 ?>

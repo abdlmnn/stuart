@@ -1,3 +1,4 @@
+<?php if(isset($_SESSION['authenticated'])) : ?>
 <?php
     $title = 'Sidenav';
 
@@ -21,7 +22,7 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li class="<?= $page == 'view-order.php' ? 'active':'' ?>">
+            <li class="<?= $page == 'view-orders.php' ? 'active':'' ?>">
                 <a href="view-order.php">
                     <ion-icon name="bag-outline" class="icons"></ion-icon>
                     <!-- <i class="fa-solid fa-bag-shopping icons"></i> -->
@@ -113,7 +114,7 @@
                             <a href="add-users.php">Add</a>
                         </li>
                         <li class="<?= $page == 'view-users.php' ? 'active':'' ?>">
-                            <a href="view-users.php.php">View</a>
+                            <a href="view-users.php">View</a>
                         </li>
                     </div>
                 </ul>
@@ -137,3 +138,4 @@
             endif;
         ?>
     </aside>
+<?php endif; ?>

@@ -14,6 +14,7 @@
     $sizes = new SizesController;
 
     $authenticated->customerOnly();
+    $authenticated->checkIsLoggedIn();
 
     include 'includes/header.php';
     include 'includes/navbar.php';

@@ -189,7 +189,7 @@
                 return false;
             }else{
                     
-                // it will dislpay all the data of my inputData which is in array categoryData
+                // it will dislpay all the data of my inputData which is in array subcategoryData
                 $allData = "'" . implode("', '", $inputData) . "'"; 
 
                 $addDataQuery = "

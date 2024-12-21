@@ -70,7 +70,7 @@
         }
 
         // CheckIsLoggedIn if not, it required to login
-        private function checkIsLoggedIn()
+        public function checkIsLoggedIn()
         {
             // if the session authenticated is set false
             if(!isset($_SESSION['authenticated'])){

@@ -14,6 +14,7 @@
     $sizes = new SizesController;
 
     $authenticated->adminOnly();
+    $authenticated->checkIsLoggedIn();
 
     include 'includes/header.php';
     include 'includes/sidebar.php';
@@ -57,7 +58,8 @@
                             <span class="text-box">Total Sales</span>
                         </div>
                         <div class="case">
-                            <ion-icon name="shirt-outline" class="icon"></ion-icon>
+                            <!-- <ion-icon name="shirt-outline" class="icon"></ion-icon> -->
+                            <ion-icon name="stats-chart-outline" class="icon"></ion-icon>
                         </div>
                     </div>
 

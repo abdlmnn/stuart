@@ -21,54 +21,25 @@
     <h1>Users</h1>
     <hr>
 
-    <div class="whole-container">
-        <div class="child-cont" id="form">
-            <div class="form-container">
+    <div class="search-container">
+        <input type="text" id="myInput" onkeyup="filterTable()" placeholder="Search here . . ." title="Type in a name">
+    </div>
 
-                <h1>ADD Users</h1>
-
-                <form action="codes/users-code.php" method="post" enctype="multipart/form-data">
-
-                    <select name="inputType">
-                       
-                        <option value="1">Admin</option>
-                        <option value="0" >Customer</option>
-                       
-                    </select>
-                    <br><br>
-                    
-                    <input type="text" name="inputEmail" placeholder="Email" required autofocus>
-                    <br><br>
-
-                    <input type="password" name="inputPassword" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
-
-                    <button type="submit" name="add-button">
-                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
-                    </button>
-
-                </form>
-            </div>
-        </div>
+    <!-- <div class="whole-container"> -->
 
         <div class="table-container">
 
-            <button type="submit" class="add-button" onclick="closeForm()">
-                <!-- <ion-icon name="close-circle-outline" class="circle-icon"></ion-icon> -->
-                <ion-icon name="arrow-back-circle-outline" class="circle-icon"></ion-icon>
-            </button>
-            <button type="submit" class="add-button" onclick="showForm()">
-                <!-- <ion-icon name="add-circle-outline" class="circle-icon"></ion-icon> -->
-                <ion-icon name="arrow-forward-circle-outline" class="circle-icon"></ion-icon>
-            </button>
-
             <div class="scroll-table">
-                <table class="child-table">
+                <table class="child-table" id="inventoryTable">
                     <thead>
                         <tr>
-                            <!-- <th>ID</th> -->
+                            <th>ID</th>
                             <th>Email</th>
+                            <th>Name</th>
+                            <th>Number</th>
+                            <th>Address</th>
+                            <th>Gender</th>
                             <th>Type</th>
-                            <!-- <th>Action</th> -->
                         </tr>
                     </thead>
     
@@ -91,11 +62,23 @@
                                     $data = $users->rows($inventoryRows);
                         ?>
                         <tr>
-                            <!-- <td>
+                            <td>
                                 <?= $data['id'] ?>
-                            </td> -->
+                            </td>
                             <td>
                                 <?= $data['email'] ?>
+                            </td>
+                            <td>
+                                <?= $data['fullname'] ?>
+                            </td>
+                            <td>
+                                <?= $data['number'] ?>
+                            </td>
+                            <td>
+                                <?= $data['address'] ?>
+                            </td>
+                            <td>
+                                <?= $data['gender'] ?>
                             </td>
                             <td>
                                 <?php 
@@ -107,17 +90,6 @@
                                 ?>
                                 <?= $type ?>
                             </td>
-                            <!-- <td>
-                                <div class="a-cont">
-                                    <form action="codes/users-code.php" method="post" class="form">
-
-                                        <button type="submit" name="delete-button" value="<?= $data['id'] ?>" class="delete-button">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
-
-                                    </form>
-                                </div>
-                            </td> -->
                         </tr>
                         <?php 
                                 endforeach;
@@ -127,6 +99,6 @@
                 </table>
             </div>
         </div>
-    </div>
+    <!-- </div> -->
 </main>
 <?php include 'includes/footer.php'; ?>

@@ -11,6 +11,7 @@
     $authenticated = new AuthenticateController;
 
     $authenticated->customerOnly(); 
+    $authenticated->checkIsLoggedIn();
 
     include 'includes/header.php';
     include 'includes/navbar.php';

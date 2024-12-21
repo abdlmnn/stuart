@@ -10,6 +10,7 @@
     $subcategories = new SubcategoriesController;
 
     $authenticated->adminOnly();
+    $authenticated->checkIsLoggedIn();
 
     include 'includes/header.php';
     include 'includes/sidebar.php';
@@ -24,7 +25,7 @@
         <input type="text" id="myInput" onkeyup="filterTable()" placeholder="Search here . . ." title="Type in a name">
     </div>
 
-    <div class="whole-container">
+    <!-- <div class="whole-container"> -->
 
         <div class="table-container">
 
@@ -91,6 +92,6 @@
                 </table>
             </div>
         </div>
-    </div>
+    <!-- </div> -->
 </main>
 <?php include 'includes/footer.php'; ?>

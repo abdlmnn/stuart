@@ -10,6 +10,7 @@
     $categories = new CategoriesController;
 
     $authenticated->adminOnly();
+    $authenticated->checkIsLoggedIn();
 
     include 'includes/header.php';
     include 'includes/sidebar.php';

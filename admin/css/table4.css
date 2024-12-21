@@ -38,6 +38,14 @@
     width: 100%; 
     background-color: #ddd;
 }
+.child-cont input[type="password"] {
+    padding: 10px 20px; 
+    border-radius: 5px;
+    /* margin: 5px; */
+    border: none;
+    width: 100%; 
+    background-color: #ddd;
+}
 .child-cont input[type="number"] {
     padding: 10px 20px; 
     border-radius: 5px;

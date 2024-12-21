@@ -1,5 +1,5 @@
 <?php
-    $title = 'Inventory Report';
+    $title = 'Sales Report';
 
     include '../config/connect.php';
 
@@ -22,7 +22,7 @@
     include '../message.php';
 ?>
 <main>
-    <h1>Inventory Report</h1>
+    <h1>Sales Report</h1>
     <hr>
 
     <div class="search-container">

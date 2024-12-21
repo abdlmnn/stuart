@@ -1,3 +1,5 @@
+<?php if(isset($_SESSION['authenticated'])) : ?>
+    
     <div class="categories-container">
 
         <?php $selectedCategory = $_GET['category'] ?? 'All' ?? 'Men Clothing' ?? 'Women Clothing' ?? 'Men Shoes' ?? 'Women Shoes' ?? 'Accessories'; ?>
@@ -35,3 +37,4 @@
             </ul>
         </li>
     </div>
+<?php endif; ?>

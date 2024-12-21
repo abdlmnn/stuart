@@ -12,6 +12,7 @@
     $profile = new ProfileController;
 
     $authenticated->adminOnly();
+    $authenticated->checkIsLoggedIn();
 
     include 'includes/header.php';
     include 'includes/sidebar.php';
@@ -40,20 +41,20 @@
 
                 <form action="" method="post">
 
-                    <p><strong>Full Name:</strong> 
-                        <input type="text" id="fullname" name="inputFullname" value="<?= $adminRow['userFullname'] ?>" autofocus> 
+                    <p ><strong>Full Name:</strong> 
+                        <input type="text" id="fullname" name="inputFullname" value="<?= $adminRow['userFullname'] ?>" autofocus style="font-size: 1rem;"> 
                     </p>
                     <p><strong>Email:</strong> 
-                        <input type="email" id="email" name="inputEmail" value="<?= $adminRow['userEmail'] ?>"> 
+                        <input type="email" id="email" name="inputEmail" value="<?= $adminRow['userEmail'] ?>" style="font-size: 1rem;"> 
                     </p>
                     <p><strong>Number:</strong> 
-                        <input type="tel" id="number" name="inputNumber" value="<?= $adminRow['userNumber'] ?>"> 
+                        <input type="tel" id="number" name="inputNumber" value="<?= $adminRow['userNumber'] ?>" style="font-size: 1rem;"> 
                     </p>
                     <p><strong>Address:</strong> 
-                        <input type="text" id="address" name="inputAddress" value="<?= $adminRow['userAddress'] ?>"> 
+                        <input type="text" id="address" name="inputAddress" value="<?= $adminRow['userAddress'] ?>" style="font-size: 1rem;"> 
                     </p>
                     <p><strong>Gender:</strong> 
-                        <select name="inputGender" id="gender">
+                        <select name="inputGender" id="gender" style="font-size: 1rem;">
                             <?php if($adminRow['userGender'] != 'Male' && $adminRow['userGender'] != 'Female' && $adminRow['userGender'] == 'Select Gender' || empty($adminRow['userGender'])) : ?>
 
                                 <option value="Male">Male</option>
@@ -97,19 +98,19 @@
                 <form action="" method="post">
 
                     <p><strong>Full Name:</strong> 
-                        <button class="display" id="fullname"><?= $adminRow['userFullname'] ?></button>
+                        <button class="display" id="fullname" style="font-size: 1rem;"><?= $adminRow['userFullname'] ?></button>
                     </p>
                     <p><strong>Email:</strong> 
-                        <button class="display" id="email"><?= $adminRow['userEmail'] ?></button> 
+                        <button class="display" id="email" style="font-size: 1rem;"><?= $adminRow['userEmail'] ?></button> 
                     </p>
                     <p><strong>Number:</strong> 
-                        <button class="display" id="number"><?= $adminRow['userNumber'] ?></button> 
+                        <button class="display" id="number" style="font-size: 1rem;"><?= $adminRow['userNumber'] ?></button> 
                     </p>
                     <p><strong>Address:</strong>
-                        <button class="display" id="address"><?= $adminRow['userAddress'] ?></button> 
+                        <button class="display" id="address" style="font-size: 1rem;"><?= $adminRow['userAddress'] ?></button> 
                     </p>
                     <p><strong>Gender:</strong> 
-                        <button class="display" id="gender"><?= $adminRow['userGender'] ?></button> 
+                        <button class="display" id="gender" style="font-size: 1rem;"><?= $adminRow['userGender'] ?></button> 
                     </p>
 
                     <div class="btn-container">
@@ -134,15 +135,15 @@
                 <form action="" method="post">
 
                     <p><strong>Current password:</strong> 
-                        <input type="password" id="current" name="inputCurrent" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required> 
+                        <input type="password" id="current" name="inputCurrent" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required style="font-size: 1rem;"> 
                     </p>
 
                     <p><strong>New password:</strong> 
-                        <input type="password" id="new" name="inputNew" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required> 
+                        <input type="password" id="new" name="inputNew" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required style="font-size: 1rem;"> 
                     </p>
 
                     <p><strong>Retype new password:</strong> 
-                        <input type="password" id="retype" name="inputRetype" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required> 
+                        <input type="password" id="retype" name="inputRetype" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required style="font-size: 1rem;"> 
                     </p>
 
                     <label class="check-container"> Show all passwords?
@@ -191,19 +192,19 @@
         <div class="profile-details">
 
             <p><strong>Full Name:</strong> <br>
-                <button class="display" id="fullname"><?= $adminRow['userFullname'] ?></button>
+                <button class="display" id="fullname" style="font-size: 1rem;"><?= $adminRow['userFullname'] ?></button>
             </p>
             <p><strong>Email:</strong> <br>
-                <button class="display" id="email"><?= $adminRow['userEmail'] ?></button> 
+                <button class="display" id="email" style="font-size: 1rem;"><?= $adminRow['userEmail'] ?></button> 
             </p>
             <p><strong>Number:</strong> <br>
-                <button class="display" id="number"><?= $adminRow['userNumber'] ?></button> 
+                <button class="display" id="number" style="font-size: 1rem;"><?= $adminRow['userNumber'] ?></button> 
             </p>
             <p><strong>Address:</strong><br>    
-                <button class="display" id="address"><?= $adminRow['userAddress'] ?></button> 
+                <button class="display" id="address" style="font-size: 1rem;"><?= $adminRow['userAddress'] ?></button> 
             </p>
             <p><strong>Gender:</strong> <br>
-                <button class="display" id="gender"><?= $adminRow['userGender'] ?></button> 
+                <button class="display" id="gender" style="font-size: 1rem;"><?= $adminRow['userGender'] ?></button> 
             </p>
 
         </div>
