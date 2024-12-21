@@ -30,9 +30,10 @@
     {
         // storing input size data in a array
         $sizeData = [
-            'id'=> $_POST['inputID'],
+            'id'=> $_POST['sizeID'],
+            'inventoryID'=> $_POST['inventoryID'],
             'name'=> $_POST['inputName'],
-            'type'=> $_POST['inputType']
+            'stock'=> $_POST['inputStock']
         ];
 
                       // update came from my Class SizesController
@@ -53,16 +54,17 @@
     // SIZE ADD
     if(isset($_POST['add-button']))
     {
+        $item = $_POST['inputItem'];
         $name = $_POST['inputName'];
-        $type = $_POST['inputType'];
+        $stock = $_POST['inputStock'];
 
                    // add came from my Class SizesController
-        $resultAdd = $sizes->add($name,$type); 
+        $resultAdd = $sizes->add($item,$name,$stock); 
 
         // if the result of my add function return true or false
         if($resultAdd){
 
-            // if the result of my add function return true, it direct to the add-catogories page
+            // if the result of my add function return true, it direct to the add-size page
             redirect('Size Added Successfully','admin/add-size.php');
         }else{
 

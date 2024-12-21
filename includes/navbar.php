@@ -14,7 +14,7 @@
 
     <?php else : ?>
 
-        <div class="company-name">
+        <div class="company-name" style="padding-left: 0;">
             <a href="<?= base_url('view-landing.php') ?>" class="a-link">Stuart Boutique</a>
         </div>
 
@@ -48,7 +48,7 @@
         <div class="cart-icon-container">
             <span class="total-item">
                 <?php if(isset($_SESSION['order'])) : ?>
-<<<<<<< HEAD
+
                     <?php 
                         $totalQuantity = 0;
 
@@ -57,7 +57,7 @@
                             $totalQuantity = $totalQuantity + $data['quantity'];
 
                         endforeach;
-=======
+                    ?>
 
                     <?php 
                         $totalQuantity = 0; 
@@ -67,20 +67,15 @@
                         $totalQuantity = $totalQuantity + $data['quantity'];
 
                         endforeach; 
->>>>>>> a0bea119edd4401f77fa392e1e716dd79dad26b8
                     ?>
 
                     <?php echo $totalQuantity; ?>
 
                 <?php else : ?>
-<<<<<<< HEAD
 
                     <?php echo '0' ?>
-                    
-=======
-                    <?php echo $totalQuantity; ?>
->>>>>>> a0bea119edd4401f77fa392e1e716dd79dad26b8
                 <?php endif; ?>
+                
             </span>
             <ion-icon name="bag-outline" class="cart-icon" style="color: #fff; cursor: pointer;" id="cartOpen" onclick="cartOpen()"></ion-icon>
             <!-- <ion-icon name="cart-outline" class="cart-icon" style="color: #fff; cursor: pointer;" id="cartOpen"></ion-icon> -->

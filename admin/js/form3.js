@@ -24,3 +24,8 @@ function addSizesForm()
 {
     window.location.href = 'add-size.php';
 }
+
+function addSubForm()
+{
+    window.location.href = 'add-subcategories.php';
+}

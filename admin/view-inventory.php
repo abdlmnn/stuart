@@ -32,14 +32,12 @@
                 <table class="child-table" id="inventoryTable">
                     <thead>
                         <tr>
-                            <!-- <th>ID</th> -->
-                            <th>Category</th>
-                            <th>Gender</th>
+                            <th>ID</th>
+                            <th>SubCategory</th>
                             <th>Image</th>
                             <th>Name</th>
-                            <th>Size</th>
-                            <th>Stock</th>
                             <th>Price</th>
+                            <th>Total Stock</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -57,12 +55,6 @@
                                 showMessage('No Inventory Record Found');
                             }else{
 
-                                $lowStock = 5;
-                                $outStock = 0;
-
-                                $outStockMessage = '';
-                                $lowStockMessage = '';
-
                                 // if the resultGet of get function return the result
                                 foreach($resultGet as $inventoryRows) :
 
@@ -70,14 +62,11 @@
                                     $data = $inventory->rows($inventoryRows);
                         ?>
                         <tr>
-                            <!-- <td>
-                                <?= $data['id'] ?>
-                            </td> -->
                             <td>
-                                <?= $data['categoryName'] ?>
+                                <?= $data['id'] ?>
                             </td>
                             <td>
-                                <?= $data['gender'] ?>
+                                <?= $data['subcategoryName'] ?>
                             </td>
                             <td>
                                 <img src="../images/<?= $data['image'] ?>" width="50" title="<?= $data['image'] ?>">
@@ -86,19 +75,28 @@
                                 <?= $data['name'] ?>
                             </td>
                             <td>
-                                <?= $data['size'] ?>
+                                <?= number_format($data['price']) ?> 
                             </td>
                             <td>
-                                <?= $data['stock'] ?> 
+                                <?= $data['totalStock'] ?> 
                                 <?php
+                                    $stockMessage = '';
 
-                                    $lowStockHold = 5;
-                                    $outStockHold = 0;
+                                    if($data['totalStock'] <= 5 && $data['totalStock'] > 0) :
 
-                                    if($data['stock'] <= $lowStockHold && $data['stock'] > $outStockHold) :
                                         $stockMessage = 'Low Stock';
 
-                                    elseif($data['stock'] == $outStockHold) :
+                                        if($data['status'] == 'Unavailable'):
+
+                                            $id = $data['id'];
+                                            $status = 'Available';
+
+                                            // updateStatusAvail came from my Class InventoryController
+                                            $inventory->updateStatusAvail($status,$id);
+                                        endif;
+
+                                    elseif($data['totalStock'] == 0) :
+
                                         $stockMessage = 'Out of Stock';
 
                                         if($data['status'] == 'Available'):
@@ -106,12 +104,20 @@
                                             $id = $data['id'];
                                             $status = 'Unavailable';
 
-                                            // updateStatus came from my Class InventoryController
-                                            $inventory->updateStatus($status,$id);
+                                            // updateStatusUnavail came from my Class InventoryController
+                                            $inventory->updateStatusUnavail($status,$id);
                                         endif;
 
                                     else :
-                                        $stockMessage = 'In Stock';
+                                        
+                                        if($data['status'] === 'Unavailable') :
+
+                                            $id = $data['id'];
+                                            $status = 'Available';
+
+                                            // updateStatusAvail came from my Class InventoryController
+                                            $inventory->updateStatusAvail($status,$id);
+                                        endif;
 
                                     endif;
                                 ?>
@@ -120,13 +126,6 @@
                                 </p>
                             </td>
                             <td>
-                                <?= number_format($data['price']) ?> 
-                            </td>
-                            <td>
-                                <?php
-
-
-                                ?>
                                 <p class="stock-status <?= ($data['status'] == 'Available') ? 'available' : 'unavailable'; ?>">
                                     <?= $data['status'] ?>
                                 </p>

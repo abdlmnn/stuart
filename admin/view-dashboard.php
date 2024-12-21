@@ -30,7 +30,7 @@
                     <div class="card">
                         <div class="box">
                             <span class="total-number">0</span>
-                            <span class="text-box">Total Purchases</span>
+                            <span class="text-box">Total Orders</span>
                         </div>
                         <div class="case">
                             <ion-icon name="bag-outline" class="icon"></ion-icon>

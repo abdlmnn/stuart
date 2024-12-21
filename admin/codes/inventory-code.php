@@ -32,11 +32,9 @@
         // storing input inventory data in a array
         $inventoryData = [
             'id' => $_POST['inputID'],
-            'category' => $_POST['inputCategory'],
+            'subcategory' => $_POST['inputSubCategory'],
             'image' => $_FILES['inputImage']['name'],
             'name' => $_POST['inputName'],
-            'size' => $_POST['inputSize'],
-            'stock' => $_POST['inputStock'],
             'price' => $_POST['inputPrice']
         ];
 
@@ -61,11 +59,9 @@
 
         // storing input inventory data in a array
         $inventoryData = [
-            'category' => $_POST['inputCategory'],
+            'subcategory' => $_POST['inputSubCategory'],
             'image' => $_FILES['inputImage']['name'],
             'name' => $_POST['inputName'],
-            'size' => $_POST['inputSize'],
-            'stock' => $_POST['inputStock'],
             'price' => $_POST['inputPrice']
         ];
 

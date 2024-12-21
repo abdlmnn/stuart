@@ -32,8 +32,12 @@
                 <table class="child-table" id="inventoryTable">
                     <thead>
                         <tr>
-                            <!-- <th>ID</th> -->
+                            <th>ID</th>
+                            <th>Image</th>
+                            <th>Item</th>
                             <th>Size</th>
+                            <th>Stock</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -47,7 +51,7 @@
                             if(!$resultGet){
 
                                 // if the resultGet of get function is false, it show message
-                                showMessage('No Categories Record Found');
+                                showMessage('No Size Record Found');
                             }else{
 
                                 // if the resultGet of get function return the result
@@ -57,15 +61,45 @@
                                     $data = $sizes->rows($sizesRows);
                         ?>
                         <tr>
-                            <!-- <td>
+                            <td>
                                 <?= $data['id'] ?>
-                            </td> -->
+                            </td>
+                            <td>
+                                <img src="../images/<?= $data['itemImage'] ?>" width="50" title="<?= $data['itemName'] ?>">
+                            </td>
+                            <td>
+                                <?= $data['itemName'] ?>
+                            </td>
                             <td>
                                 <?= $data['name'] ?>
                             </td>
                             <td>
+                                <?= $data['stock'] ?>
+                            </td>
+                            <td>
+                            <?php
+                                    $stockMessage = '';
+
+                                    if($data['stock'] <= 5 && $data['stock'] > 0) :
+                                        $stockMessage = 'Low Stock';
+
+                                    elseif($data['stock'] == 0) :
+
+                                        $stockMessage = 'Out Stock';
+
+                                    else:
+                                        
+                                        $stockMessage='In Stock';
+
+                                    endif;
+                                ?>
+                                <p style="font-size: 1rem;">
+                                    <?php echo $stockMessage; ?>
+                                </p>
+                            </td>
+                            <td>
                                 <div class="a-cont">
-                                    <a href="edit-sizes.php?updateID=<?= $data['id'] ?>">
+                                    <a href="edit-size.php?updateID=<?= $data['id'] ?>">
                                         <i class="fa-solid fa-pen-to-square"></i>              
                                     </a>
 

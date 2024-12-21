@@ -53,31 +53,6 @@
                             <input type="hidden" name="inputID" value="<?= $data['id'] ?>">
                             
                             <input type="text" name="inputName" value="<?= $data['name'] ?>" placeholder="Name" required autofocus>
-                            <br><br>
-
-                            <select name="inputGender" >
-                                <?php if($data['gender'] != 'Men' && $data['gender'] != 'Women' && $data['gender'] != 'Unisex' && $data['gender'] == 'Select Gender' || empty($data['gender'])) : ?>
-
-                                    <option value="Men">Men</option>
-                                    <option value="Women">Women</option>
-                                    <option value="Unisex">Unisex</option>
-
-                                <?php elseif($data['gender'] == 'Men') : ?>
-
-                                    <option value="<?= $data['gender'] ?>" selected><?= $data['gender'] ?></option>
-
-                                    <option value="Women">Women</option>
-                                    <option value="Unisex">Unisex</option>
-
-                                <?php elseif($data['gender'] == 'Women') : ?>
-
-                                    <option value="<?= $data['gender'] ?>" selected><?= $data['gender'] ?></option>
-
-                                    <option value="Men">Men</option>
-                                    <option value="Unisex">Unisex</option>
-
-                                <?php endif; ?>
-                            </select> 
 
                             <button type="submit" name="update-button">
                                 <i class="fa-solid fa-pen-to-square"></i>
@@ -117,7 +92,6 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Gender</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -146,9 +120,6 @@
                             </td>
                             <td>
                                 <?= $data['name'] ?>
-                            </td>
-                            <td>
-                                <?= $data['gender'] ?>
                             </td>
                             <td>
                             <div class="a-cont">

@@ -38,7 +38,10 @@
                 <ul class="sub-menu">
                     <div class="child-menu">
                         <li class="<?= $page == 'add-categories.php' ? 'active':'' ?>">
-                            <a href="add-categories.php">Add</a>
+                            <a href="add-categories.php">Add Category</a>
+                        </li>
+                        <li class="<?= $page == 'add-subcategories.php' ? 'active':'' ?>">
+                            <a href="add-subcategories.php">Add Subcategory</a>
                         </li>
                         <li class="<?= $page == 'view-categories.php' ? 'active':'' ?>">
                             <a href="view-categories.php">View</a>

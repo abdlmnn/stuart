@@ -12,134 +12,6 @@
             $this->conn = $db->conn;
         }
 
-        // Get or Display all only the available item on inventory
-        public function displayAll()
-        {
-            $getDataQuery = "
-                SELECT inventory.*, categories.categoryName, categories.categoryGender, sizes.sizeName
-                FROM inventory
-                INNER JOIN categories
-                ON inventory.categoryID = categories.categoryID
-                INNER JOIN sizes
-                ON inventory.sizeID = sizes.sizeID
-                WHERE itemStatus=1
-            ";
-            $result = $this->conn->query($getDataQuery);
-
-            if($result->num_rows > 0){
-                return $result;
-            }else{
-                return false;
-            }
-        }
-
-        // Get or Display the Men categories
-        public function displayMen()
-        {
-            $getDataQuery = "
-                SELECT inventory.*, categories.categoryName, categories.categoryGender, sizes.sizeName
-                FROM inventory
-                INNER JOIN categories
-                ON inventory.categoryID = categories.categoryID
-                INNER JOIN sizes
-                ON inventory.sizeID = sizes.sizeID
-                WHERE categories.categoryGender='Men' && itemStatus=1
-            ";
-            $result = $this->conn->query($getDataQuery);
-
-            if($result->num_rows > 0){
-                return $result;
-            }else{
-                return false;
-            }
-        }
-
-        // Get or Display the Women categories
-        public function displayWomen()
-        {
-            $getDataQuery = "
-                SELECT inventory.*, categories.categoryName, categories.categoryGender, sizes.sizeName
-                FROM inventory
-                INNER JOIN categories
-                ON inventory.categoryID = categories.categoryID
-                INNER JOIN sizes
-                ON inventory.sizeID = sizes.sizeID
-                WHERE categories.categoryGender='Women' && itemStatus=1
-            ";
-            $result = $this->conn->query($getDataQuery);
-
-            if($result->num_rows > 0){
-                return $result;
-            }else{
-                return false;
-            }
-        }
-
-          // Get or Display the Men Shoes categories
-        public function displayMenShoes()
-        {
-            $getDataQuery = "
-                SELECT inventory.*, categories.categoryName, categories.categoryGender, sizes.sizeName
-                FROM inventory
-                INNER JOIN categories
-                ON inventory.categoryID = categories.categoryID
-                INNER JOIN sizes
-                ON inventory.sizeID = sizes.sizeID
-                WHERE categories.categoryName='Shoes'
-                && categories.categoryGender='Men' && itemStatus=1
-            ";
-            $result = $this->conn->query($getDataQuery);
-  
-            if($result->num_rows > 0){
-                return $result;
-            }else{
-                return false;
-            }
-        }
-  
-          // Get or Display the Women Shoes categories
-        public function displayWomenShoes()
-        {
-            $getDataQuery = "
-                SELECT inventory.*, categories.categoryName, categories.categoryGender, sizes.sizeName
-                FROM inventory
-                INNER JOIN categories
-                ON inventory.categoryID = categories.categoryID
-                INNER JOIN sizes
-                ON inventory.sizeID = sizes.sizeID
-                WHERE categories.categoryName='Shoes'
-                && categories.categoryGender='Women' && itemStatus=1
-            ";
-            $result = $this->conn->query($getDataQuery);
-  
-            if($result->num_rows > 0){
-                return $result;
-            }else{
-                return false;
-            }
-        }
-
-        // Get or Display the Accessories categories
-        public function displayAccessories()
-        {
-            $getDataQuery = "
-                SELECT inventory.*, categories.categoryName, categories.categoryGender, sizes.sizeName
-                FROM inventory
-                INNER JOIN categories
-                ON inventory.categoryID = categories.categoryID
-                INNER JOIN sizes
-                ON inventory.sizeID = sizes.sizeID
-                WHERE categories.categoryName='Accessories' && itemStatus=1
-            ";
-            $result = $this->conn->query($getDataQuery);
-
-            if($result->num_rows > 0){
-                return $result;
-            }else{
-                return false;
-            }
-        }
-
         // Total of Items, it display to dashboard
         public function totalItems()
         {
@@ -170,15 +42,12 @@
             // it return data to function
             return $data = [
                 'id' => $row['inventoryID'],
-                'categoryID' => $row['categoryID'],
-                'categoryName'=> $row['categoryName'],
-                'gender'=> $row['categoryGender'],
+                'subcategoryID' => $row['subcategoryID'],
+                'subcategoryName' => $row['subcategoryName'],
                 'image' => $row['itemImage'],
                 'name' => $row['itemName'],
-                'sizeID'=> $row['sizeID'],
-                'size'=> $row['sizeName'],
-                'stock'=> $row['itemStock'],
                 'price'=> $row['itemPrice'],
+                'totalStock'=> $row['itemTotalStock'],
                 'status'=> $row['itemStatus']
             ];
         }
@@ -212,12 +81,10 @@
         public function exact($updateID)
         {
             $checkDataQuery = "
-                SELECT inventory.*, categories.categoryName, categories.categoryGender, sizes.sizeName
+                SELECT inventory.*, subcategories.subcategoryName
                 FROM inventory
-                INNER JOIN categories
-                ON inventory.categoryID = categories.categoryID
-                INNER JOIN sizes
-                ON inventory.sizeID = sizes.sizeID
+                INNER JOIN subcategories
+                ON inventory.subcategoryID = subcategories.subcategoryID
                 WHERE inventoryID='$updateID'
                 LIMIT 1
             ";
@@ -234,23 +101,38 @@
             }
         }
 
+        // Update and sum up the total of the size Stock so the totatStock will be display the sum size Stock
+        public function totalStock()
+        {
+            $updateDataQuery = "
+                UPDATE inventory
+                SET itemTotalStock = (
+                    SELECT SUM(sizeStock)
+                    FROM sizes
+                    WHERE sizes.inventoryID = inventory.inventoryID
+                )
+            ";
+            $result = $this->conn->query($updateDataQuery);
+
+            return $result;
+        }
+
         // Getting all the inventory values and display on table
         public function get()
         {
             // Joining the category,size table to inventory table using the categoryID, sizeID on inventory
             $getDataQuery = "
-                SELECT inventory.*, categories.categoryName, categories.categoryGender, sizes.sizeName
+                SELECT inventory.*, subcategories.subcategoryName
                 FROM inventory
-                INNER JOIN categories
-                ON inventory.categoryID = categories.categoryID
-                INNER JOIN sizes
-                ON inventory.sizeID = sizes.sizeID
-                ORDER BY categories.categoryGender
+                INNER JOIN subcategories
+                ON inventory.subcategoryID = subcategories.subcategoryID
             ";
             $result = $this->conn->query($getDataQuery);
 
             if($result->num_rows > 0){
                 
+                $this->totalStock();
+
                 return $result;
             }else{
 
@@ -263,12 +145,10 @@
         public function getExact($id)
         {
             $getDataQuery = "
-                SELECT inventory.*, categories.categoryName, categories.categoryGender, sizes.sizeName
+                SELECT inventory.*, subcategories.subcategoryName
                 FROM inventory
-                INNER JOIN categories
-                ON inventory.categoryID = categories.categoryID
-                INNER JOIN sizes
-                ON inventory.sizeID = sizes.sizeID
+                INNER JOIN subcategories
+                ON inventory.subcategoryID = subcategories.subcategoryID
                 WHERE inventoryID='$id'
                 LIMIT 1
             ";
@@ -285,115 +165,90 @@
             }
         }
 
-        // Check categoryID of selected 
-        public function checkCategory($id)
-        {
-            $checkCategoryQuery = "
-                SELECT categoryID
-                FROM categories
-                WHERE categoryID='$id'
-                LIMIT 1
-            ";
-            $result = $this->conn->query($checkCategoryQuery);
-
-            if($result->num_rows == 0){
-
-                redirect('Category is required','admin/add-inventory.php');
-                return false;
-            }else{
-                return true;
-            }
-        }
-
-        // Check sizeID of selected 
-        public function checkSize($id)
-        {
-            $checkCategoryQuery = "
-                SELECT sizeID
-                FROM sizes
-                WHERE sizeID='$id'
-                LIMIT 1
-            ";
-            $result = $this->conn->query($checkCategoryQuery);
-
-            if($result->num_rows == 0){
-
-                redirect('Size is required','admin/add-inventory.php');
-                return false;
-            }else{
-                return true;
-            }
-        }
-
-        // Check the category, size, name are the same 
-        public function checkDuplicate($categoryID, $sizeID, $itemName)
-        {
+        // Check the name, image are the same 
+        public function checkDuplicate($image,$name)
+        {   
             $checkDataQuery = "
                 SELECT COUNT(*) 
-                FROM inventory 
-                WHERE categoryID = '$categoryID' 
-                AND sizeID = '$sizeID' 
-                AND itemName = '$itemName' 
+                FROM inventory
+                WHERE itemName='$name'
+                AND itemImage='$image' 
                 LIMIT 1
             ";
-
             $result = $this->conn->query($checkDataQuery);
             
-            if ($result) {
+            if($result){
                 $rowCheck = $result->fetch_row();
 
                 return $rowCheck[0] > 0; 
-            } else {
+            }else{
                 return false; 
             }
+
         }
 
         // Add input data to inventory table values
         public function add($inputData)
         {
-            $categoryID = $inputData['category'];
-            $sizeID = $inputData['size'];
+            $image = $inputData['image'];
             $name = $inputData['name'];
 
-            // checkCategory came from my function CheckCategory
-            $this->checkCategory($categoryID);
+            // checkDuplicate came from my function checkDuplicate
 
-            // checkSize came from my function CheckSize
-            // $this->checkSize($sizeID);
+                                  // checkDuplicate came from my Function checkDuplicate
+            $resultCheckDuplicate = $this->checkDuplicate($image,$name); 
 
-            // Check for the same category, size, and name
-
-                    // checkDuplicate came from my function checkDuplicate
-            if($this->checkDuplicate($categoryID, $sizeID, $name)){
-
-                redirect('The item already exists', 'admin/add-inventory.php');
-                return false;
-            }
-
-            // it will dislpay all the data of my inputData which is in array inventoryData
-            $allData = implode("', '", $inputData); 
-
-            $addDataQuery = "
-                INSERT INTO
-                inventory (categoryID,itemImage,itemName,sizeID,itemStock,itemPrice)
-                VALUES ('$allData')
-            ";
-            $result = $this->conn->query($addDataQuery);
-
-            // if the result of addQuery is true or false 
-            if($result){
-                
-                // if it true this will run on my inventory-codes which is the INVENTORY ADD
-                return true;
+            if($resultCheckDuplicate){
+                      
+                    redirect('The item already exists', 'admin/add-inventory.php');
+                    return false;
             }else{
 
-                // if it false this will run on my inventory-codes which is the INVENTORY ADD
+                // it will dislpay all the data of my inputData which is in array inventoryData
+                $allData = implode("', '", $inputData); 
+
+                $addDataQuery = "
+                    INSERT INTO
+                    inventory (subcategoryID,itemImage,itemName,itemPrice)
+                    VALUES ('$allData')
+                ";
+                $result = $this->conn->query($addDataQuery);
+
+                // if the result of addQuery is true or false 
+                if($result){
+                    
+                    // if it true this will run on my inventory-codes which is the INVENTORY ADD
+                    return true;
+                }else{
+
+                    // if it false this will run on my inventory-codes which is the INVENTORY ADD
+                    return false;
+                }
+
+            }
+
+        }
+
+        // Update status when stock is 0 then the status went unavail
+        public function updateStatusUnavail($status,$id)
+        {
+            $updateDataQuery = "
+                UPDATE inventory
+                SET itemStatus='$status'
+                WHERE inventoryID='$id'
+                LIMIT 1
+            ";
+            $result = $this->conn->query($updateDataQuery);
+
+            if($result){
+                return true;
+            }else{
                 return false;
             }
         }
 
-        // Update status when stock is 0 then the status when 1 into unavail
-        public function updateStatus($status,$id)
+        // Update status when stock is 0 then the status went unavail
+        public function updateStatusAvail($status,$id)
         {
             $updateDataQuery = "
                 UPDATE inventory
@@ -413,29 +268,18 @@
         // Update the values of inventory rows 
         public function update($data)
         {
-            $categoryID = $data['category'];
-
-            // checkCategory came from my function CheckCategory
-            $this->checkCategory($categoryID);
-
             $id = $data['id'];
-            $category = $data['category'];
+            $subcategory = $data['subcategory'];
             $image = $data['image'];
             $name = $data['name'];
-            $size = $data['size'];
-            $stock = $data['stock'];
             $price = $data['price'];
-
-            // $status = $this->status($stock);
 
             $updateDataQuery = "
                 UPDATE inventory
-                SET categoryID='$category',
+                SET subcategoryID='$subcategory',
                     itemImage='$image',
                     itemName='$name',
-                    itemSize='$size',
-                    itemStock='$stock',
-                    itemPrice='$price',
+                    itemPrice='$price'
                 WHERE inventoryID='$id'
                 LIMIT 1
             ";
@@ -448,26 +292,54 @@
             }
         }
 
-        // Delete the value of inventory row with exact ID
-        public function delete($deleteID)
+        // Delete the exact ID sizes after deleting the item in inventory Table
+        public function deleteSize($deleteID)
         {
             $deleteDataQuery = "
-                DELETE
-                FROM inventory
+                DELETE 
+                FROM sizes
                 WHERE inventoryID='$deleteID'
-                LIMIT 1
             ";
             $result = $this->conn->query($deleteDataQuery);
 
             if($result){
                 
-                // it return true to the function
                 return true;
             }else{
 
-                // it return false to the function
                 return false;
             }
+        }
+
+        // Delete the value of inventory row with exact ID
+        public function delete($deleteID)
+        {   
+                              // deleteSize came from my Function deleteSize 
+            $resultDeleteSize = $this->deleteSize($deleteID);
+            
+            if($resultDeleteSize){
+
+                $deleteDataQuery = "
+                    DELETE
+                    FROM inventory
+                    WHERE inventoryID='$deleteID'
+                    LIMIT 1
+                ";
+                $result = $this->conn->query($deleteDataQuery);
+
+                if($result){
+                    
+                    return true;
+                }else{
+
+                    return false;
+                }
+
+            }else{
+
+                redirect('Something went wrong','admin/add-size.php');
+            }
+            
         }
 
     }

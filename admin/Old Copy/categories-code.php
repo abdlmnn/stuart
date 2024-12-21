@@ -31,7 +31,8 @@
         // storing input category data in a array
         $categoryData = [
             'id'=> $_POST['inputID'],
-            'name'=> $_POST['inputName']
+            'name'=> $_POST['inputName'],
+            'gender'=> $_POST['inputGender']
         ];
 
                       // update came from my Class CategoriesController
@@ -54,7 +55,10 @@
     {
 
         // storing input category data in a array
-        $categoryData = $_POST['inputName'];
+        $categoryData = [
+            'name'=> $_POST['inputName'],
+            'gender'=> $_POST['inputGender']
+        ];
 
                    // add came from my Class CategoriesController
         $resultAdd = $categories->add($categoryData); 

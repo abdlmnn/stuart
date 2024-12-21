@@ -1,15 +1,15 @@
 <?php
-    $title = 'Sizes';
+    $title = 'Subcategories';
 
     include '../config/connect.php';
 
     include_once '../controllers/AuthenticateController.php';
-    include_once 'controllers/SizesController.php';
-    include_once 'controllers/InventoryController.php';
+    include_once 'controllers/SubcategoriesController.php';
+    include_once 'controllers/CategoriesController.php';
 
     $authenticated = new AuthenticateController;
-    $sizes = new SizesController;
-    $inventory = new InventoryController;
+    $subcategories = new SubcategoriesController;
+    $categories = new CategoriesController;
 
     $authenticated->adminOnly();
 
@@ -19,7 +19,7 @@
     include '../message.php';
 ?>
 <main>
-    <h1>Sizes</h1>
+    <h1>Subcategories</h1>
     <hr>
 
     <div class="whole-container">
@@ -37,28 +37,51 @@
                     }else{
                         $updateID = $_GET['updateID'];
 
-                                    // exact came from my class SizesController 
-                        $resultExact = $sizes->exact($updateID);
+                                    // exact came from my class SubcategoriesController  
+                        $resultExact = $subcategories->exact($updateID);
 
                         // if result of the exact function return the data which is true
                         if($resultExact){
 
                             // if the resultExact of exact function return the result
-                            foreach($resultExact as $sizesRows) :
+                            foreach($resultExact as $subcategoriesRows) :
                                 
-                                      // rows came from my Class SizesController
-                                $data = $sizes->rows($sizesRows);
+                                      // rows came from my Class CategoriesController
+                                $data = $subcategories->rows($subcategoriesRows);
 
                 ?>
-                        <form action="codes/sizes-code.php" method="post">
+                        <form action="codes/subcategories-code.php" method="post">
 
-                            <input type="hidden" name="sizeID" value="<?= $data['id'] ?>">
-                            <input type="hidden" name="inventoryID" value="<?= $data['inventoryID'] ?>">
-                            
-                            <input type="text" name="inputName" value="<?= $data['name'] ?>" placeholder="Size" required autofocus>
+                            <input type="hidden" name="inputID" value="<?= $data['id'] ?>">
+
+                            <select name="inputCategory" required>
+                                
+                                <?php
+                                    $resultGet = $categories->get();
+
+                                    if(!$resultGet){
+
+                                        showMessage('No Categories Record Found');
+                                    }else{
+
+                                        // if the resultGet of get function return the result
+                                        foreach($resultGet as $categoriesRows) :
+
+                                            // rows came from my Class CategoriesController
+                                            $categoryData = $categories->rows($categoriesRows);
+                                ?>
+                                        <option value="<?= $categoryData['id'] ?>"><?= $categoryData['name'] ?></option>
+
+                                <?php
+                                        endforeach;
+                                    }
+                                ?>
+                                
+                            </select>
+
                             <br><br>
                             
-                            <input type="text" name="inputStock" min="1" value="<?= $data['stock'] ?>" placeholder="Stock" required autofocus>
+                            <input type="text" name="inputName" value="<?= $data['name'] ?>" placeholder="Name" required autofocus>
 
                             <button type="submit" name="update-button">
                                 <i class="fa-solid fa-pen-to-square"></i>
@@ -88,7 +111,7 @@
                 <!-- <ion-icon name="add-circle-outline" class="circle-icon"></ion-icon> -->
                 <ion-icon name="arrow-forward-circle-outline" class="circle-icon"></ion-icon>
             </button>
-            <button type="submit" class="add-button" onclick="addSizesForm()">
+            <button type="submit" class="add-button" onclick="addSubForm()">
                 <ion-icon name="add-circle-outline" class="circle-icon"></ion-icon>
             </button>
 
@@ -97,19 +120,16 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Image</th>
-                            <th>Item</th>
-                            <th>Size</th>
-                            <th>Stock</th>
-                            <th>Status</th>
+                            <th>Name</th>
+                            <th>Category</th>
                             <th>Action</th>
                         </tr>
                     </thead>
     
                     <tbody>
                         <?php
-                                       // getExact came from my Class SizesController  
-                            $resultGetExact = $sizes->getExact($updateID);
+                                       // getExact came from my Class SubcategoriesController   
+                            $resultGetExact = $subcategories->getExact($updateID);
                             
                             // if the result of get function return false
                             if(!$resultGetExact){
@@ -119,52 +139,24 @@
                             }else{
 
                                 // if the resultGet of get function return the result
-                                foreach($resultGetExact as $sizesRows) :
+                                foreach($resultGetExact as $subcategoriesRows) :
                                 
-                                    // rows came from my Class SizesController
-                                $data = $sizes->rows($sizesRows);
+                                    // rows came from my Class SubcategoriesController 
+                                $data = $subcategories->rows($subcategoriesRows);
                         ?>
                         <tr>
                             <td>
                                 <?= $data['id'] ?>
                             </td>
                             <td>
-                                <img src="../images/<?= $data['itemImage'] ?>" width="50" title="<?= $data['itemName'] ?>">
-                            </td>
-                            <td>
-                                <?= $data['itemName'] ?>
-                            </td>
-                            <td>
                                 <?= $data['name'] ?>
                             </td>
                             <td>
-                                <?= $data['stock'] ?>
-                            </td>
-                            <td>
-                            <?php
-                                    $stockMessage = '';
-
-                                    if($data['stock'] <= 5 && $data['stock'] > 0) :
-
-                                        $stockMessage = 'Low Stock';
-
-                                    elseif($data['stock'] == 0) :
-
-                                        $stockMessage = 'Out Stock';
-                                        
-                                    else:
-                                        
-                                        $stockMessage='In Stock';
-
-                                    endif;
-                                ?>
-                                <p style="font-size: 1rem;">
-                                    <?php echo $stockMessage; ?>
-                                </p>
+                                <?= $data['categoryName'] ?>
                             </td>
                             <td>
                             <div class="a-cont">
-                                    <form action="codes/sizes-code.php" method="post" class="form">
+                                    <form action="codes/subcategories-code.php" method="post" class="form">
 
                                         <button type="submit" name="delete-button" value="<?= $data['id'] ?>" class="delete-button">
                                             <i class="fa-solid fa-trash"></i>

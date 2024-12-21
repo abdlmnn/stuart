@@ -41,16 +41,16 @@
                 <form action="" method="post">
 
                     <p><strong>Full Name:</strong> 
-                        <input type="text" id="fullname" name="inputFullname" value="<?= $adminRow['userFullname'] ?>" autofocus required> 
+                        <input type="text" id="fullname" name="inputFullname" value="<?= $adminRow['userFullname'] ?>" autofocus> 
                     </p>
                     <p><strong>Email:</strong> 
-                        <input type="email" id="email" name="inputEmail" value="<?= $adminRow['userEmail'] ?>" required> 
+                        <input type="email" id="email" name="inputEmail" value="<?= $adminRow['userEmail'] ?>"> 
                     </p>
                     <p><strong>Number:</strong> 
-                        <input type="tel" id="number" name="inputNumber" value="<?= $adminRow['userNumber'] ?>" required> 
+                        <input type="tel" id="number" name="inputNumber" value="<?= $adminRow['userNumber'] ?>"> 
                     </p>
                     <p><strong>Address:</strong> 
-                        <input type="text" id="address" name="inputAddress" value="<?= $adminRow['userAddress'] ?>" required> 
+                        <input type="text" id="address" name="inputAddress" value="<?= $adminRow['userAddress'] ?>"> 
                     </p>
                     <p><strong>Gender:</strong> 
                         <select name="inputGender" id="gender">

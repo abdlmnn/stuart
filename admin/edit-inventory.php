@@ -4,10 +4,10 @@
     include '../config/connect.php';
 
     include_once '../controllers/AuthenticateController.php';
-    include_once 'controllers/CategoriesController.php';
+    include_once 'controllers/SubcategoriesController.php';
     include_once 'controllers/InventoryController.php';
 
-    $categories = new CategoriesController;
+    $subcategories = new SubcategoriesController;
     $inventory = new InventoryController;
     $authenticated = new AuthenticateController;
 
@@ -55,34 +55,31 @@
 
                             <input type="hidden" name="inputID" value="<?= $data['id'] ?>">
 
-                            <select name="inputCategory">
-                                <option selected>
-                                    Selected: <?= $data['categoryName'] ?> | <?= $data['gender'] ?>
-                                </option>
+                            <select name="inputSubCategory">
                                 <?php
-                                                // get came from my Class CategoriesController 
-                                    $resultGet = $categories->get();
+                                                // get came from my Class SubcategoriesController 
+                                    $resultGet = $subcategories->get();
 
                                     // if resultGet return false or true
                                     if(!$resultGet){
                                         
                                         // it return false, it show message
-                                        showMessage('No Categories Found');
+                                        showMessage('No Subcategories Found');
                                     }else{
 
                                         // if the resultGet of get function return the result
-                                        foreach($resultGet as $categoriesRow) :
+                                        foreach($resultGet as $subcategoriesRows) :
 
-                                                        // rows came from my Class CategoriesController
-                                            $categoryData = $categories->rows($categoriesRow);
+                                                        // rows came from my Class SubcategoriesController
+                                            $subcategoriesData = $subcategories->rows($subcategoriesRows);
                                 ?>
-                                            <option value="<?= $categoryData['id'] ?>">
-                                                <?= $categoryData['name'] ?> | <?= $categoryData['gender'] ?>
-                                            </option>
+                                    <option value="<?= $subcategoriesData['id'] ?>">
+                                        <?= $subcategoriesData['name'] ?>
+                                    </option>
                                 <?php
                                         endforeach;
                                     }
-                                ?>
+                                ?>  
                             </select>
                             <br><br>
 
@@ -92,39 +89,7 @@
                             <input type="text" name="inputName" value="<?= $data['name'] ?>" placeholder="Name" required autofocus>
                             <br><br>
 
-                            <select name="inputSize">
-                                <option value="<?= $data['size'] ?>" selected>Selected: <?= $data['size'] ?></option>
-
-                                
-                                <option></option>
-                                <option>No Size:</option>
-                                <option value="None">None</option>
-                                
-                                <option></option>
-                                <option>Clothing:</option>
-                                <option value="S">S</option>
-                                <option value="M">M</option>
-                                <option value="L">L</option>
-                                <option value="XL">XL</option>
-                                
-                                <option></option>
-                                <option>Shoes:</option>
-                                <option value="38">38</option>
-                                <option value="39">39</option>
-                                <option value="40">40</option>
-                                <option value="41">41</option>
-                                <option value="42">42</option>
-                                <option value="43">43</option>
-                                <option value="44">44</option>
-                                <option value="45">45</option>
-
-                            </select>
-                            <br><br>
-
-                            <input type="number" min="0" name="inputStock" value="<?= $data['stock'] ?>" placeholder="Stock" required>
-                            <br><br>
-
-                            <input type="number" min="0" name="inputPrice" value="<?= $data['price'] ?>" placeholder="Price" required>
+                            <input type="number" min="1" name="inputPrice" value="<?= $data['price'] ?>" placeholder="Price" required>
 
                             <button type="submit" name="update-button">
                                 <i class="fa-solid fa-pen-to-square"></i>
@@ -140,7 +105,6 @@
                             // if the resultEdit is false, it show the message
                             showMessage('No Record Found');
                         }
-                    // }
                 ?>
             </div>
         </div>
@@ -163,14 +127,13 @@
                 <table class="child-table">
                     <thead>
                         <tr>
-                            <!-- <th>ID</th> -->
-                            <th>Category</th>
-                            <th>Gender</th>
+                            <th>ID</th>
+                            <th>SubCategory</th>
                             <th>Image</th>
                             <th>Name</th>
-                            <th>Size</th>
-                            <th>Stock</th>
                             <th>Price</th>
+                            <th>Total Stock</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -194,14 +157,11 @@
                                     $data = $inventory->rows($inventoryRows);
                         ?>
                         <tr>
-                            <!-- <td>
-                                <?= $data['id'] ?>
-                            </td> -->
                             <td>
-                                <?= $data['categoryName'] ?>
+                                <?= $data['id'] ?>
                             </td>
                             <td>
-                                <?= $data['gender'] ?>
+                                <?= $data['subcategoryName'] ?>
                             </td>
                             <td>
                                 <img src="../images/<?= $data['image'] ?>" width="50" title="<?= $data['image'] ?>">
@@ -210,13 +170,59 @@
                                 <?= $data['name'] ?>
                             </td>
                             <td>
-                                <?= $data['size'] ?>
+                                <?= number_format($data['price']) ?> 
                             </td>
                             <td>
-                                <?= $data['stock'] ?>
+                                <?= $data['totalStock'] ?>
+                                <?php
+                                    $stockMessage = '';
+
+                                    if($data['totalStock'] <= 5 && $data['totalStock'] > 0) :
+                                        $stockMessage = 'Low Stock';
+
+                                        if($data['status'] == 'Unavailable') :
+
+                                            $id = $data['id'];
+                                            $status = 'Available';
+
+                                            // updateStatusAvail came from my Class InventoryController
+                                            $inventory->updateStatusAvail($status,$id);
+                                        endif;
+
+                                    elseif($data['totalStock'] == 0) :
+
+                                        $stockMessage = 'Out Stock';
+
+                                        if($data['status'] == 'Available'):
+
+                                            $id = $data['id'];
+                                            $status = 'Unavailable';
+
+                                            // updateStatusUnavail came from my Class InventoryController
+                                            $inventory->updateStatusUnavail($status,$id);
+                                        endif;
+                                    
+                                    else :
+                                        
+                                        if($data['status'] === 'Unavailable') :
+    
+                                            $id = $data['id'];
+                                            $status = 'Available';
+    
+                                            // updateStatusAvail came from my Class InventoryController
+                                            $inventory->updateStatusAvail($status,$id);
+                                        endif;
+
+                                    endif;
+                                ?>
+                                <p style="font-size: 10px;">
+                                    <?php echo $stockMessage; ?>
+                                </p>
                             </td>
                             <td>
-                                <?= $data['price'] ?> 
+                                <p class="stock-status <?= ($data['status'] == 'Available') ? 'available' : 'unavailable'; ?>">
+                                    <?= $data['status'] ?>
+                                </p>
                             </td>
                             <td>
                             <div class="a-cont">
