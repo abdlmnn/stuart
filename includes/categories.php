@@ -1,8 +1,8 @@
-<?php if(isset($_SESSION['authenticated'])) : ?>
+<?php if(!isset($_SESSION['authenticated']) || isset($_SESSION['authenticated'])) : ?>
     
     <div class="categories-container">
 
-        <?php $selectedCategory = $_GET['category'] ?? 'All' ?? 'Men Clothing' ?? 'Women Clothing' ?? 'Men Shoes' ?? 'Women Shoes' ?? 'Accessories'; ?>
+        <?php $selectedCategory = $_GET['category'] ?? 'All' ?? 'Men Clothing' ?? 'Women Clothing' ?? 'Men Footwear' ?? 'Women Footwear' ?? 'Accessories'; ?>
 
         <li class="categories-choice">
             <ul>
@@ -21,12 +21,12 @@
                 </a>
             </ul>
             <ul>
-                <a href="<?= base_url('view-landing.php?category=Men Shoes') ?>" class="a-category <?= $selectedCategory === 'Men Shoes' ? 'active' : '' ?>">
+                <a href="<?= base_url('view-landing.php?category=Men Footwear') ?>" class="a-category <?= $selectedCategory === 'Men Footwear' ? 'active' : '' ?>">
                     Men Shoes
                 </a>
             </ul>
             <ul>
-                <a href="<?= base_url('view-landing.php?category=Women Shoes') ?>" class="a-category <?= $selectedCategory === 'Women Shoes' ? 'active' : '' ?>">
+                <a href="<?= base_url('view-landing.php?category=Women Footwear') ?>" class="a-category <?= $selectedCategory === 'Women Footwear' ? 'active' : '' ?>">
                     Women Shoes
                 </a>
             </ul>
@@ -37,4 +37,5 @@
             </ul>
         </li>
     </div>
+
 <?php endif; ?>
