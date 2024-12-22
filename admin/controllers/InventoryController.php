@@ -24,18 +24,6 @@
             return $getData->num_rows;
         }
         
-        // Total of Categories, it display to dashboard
-        public function totalCategories()
-        {
-            $getDataQuery = "
-                SELECT * 
-                FROM categories
-            ";
-            $getData = $this->conn->query($getDataQuery);
-
-            return $getData->num_rows;
-        }
-
         // Storing the data in array with key and assign the row as a value
         public function rows($row)
         {
@@ -44,6 +32,7 @@
                 'id' => $row['inventoryID'],
                 'subcategoryID' => $row['subcategoryID'],
                 'subcategoryName' => $row['subcategoryName'],
+                'categoryName' => $row['categoryName'],
                 'image' => $row['itemImage'],
                 'name' => $row['itemName'],
                 'price'=> $row['itemPrice'],
@@ -56,10 +45,12 @@
         public function displayAll()
         {
             $getDataQuery = "
-                SELECT inventory.*, subcategories.subcategoryName
+                SELECT inventory.*, subcategories.subcategoryName, categories.categoryName
                 FROM inventory
                 INNER JOIN subcategories
                 ON inventory.subcategoryID = subcategories.subcategoryID
+                INNER JOIN categories 
+                ON subcategories.categoryID = categories.categoryID
                 WHERE inventory.itemStatus='Available'
                 ORDER BY inventory.itemName
             ";
@@ -79,10 +70,12 @@
         public function displayMen()
         {
             $getDataQuery = "
-                SELECT inventory.*, subcategories.subcategoryName
+                SELECT inventory.*, subcategories.subcategoryName, categories.categoryName
                 FROM inventory
                 INNER JOIN subcategories
                 ON inventory.subcategoryID = subcategories.subcategoryID
+                INNER JOIN categories 
+                ON subcategories.categoryID = categories.categoryID
                 WHERE subcategories.subcategoryName='Men Clothing'
                 AND inventory.itemStatus='Available'
                 ORDER BY inventory.itemName
@@ -103,10 +96,12 @@
         public function displayWomen()
         {
             $getDataQuery = "
-                SELECT inventory.*, subcategories.subcategoryName
+                SELECT inventory.*, subcategories.subcategoryName, categories.categoryName
                 FROM inventory
                 INNER JOIN subcategories
                 ON inventory.subcategoryID = subcategories.subcategoryID
+                INNER JOIN categories 
+                ON subcategories.categoryID = categories.categoryID
                 WHERE subcategories.subcategoryName='Women Clothing'
                 AND inventory.itemStatus='Available'
                 ORDER BY inventory.itemName
@@ -127,10 +122,12 @@
         public function displayMenFootwear()
         {
             $getDataQuery = "
-                SELECT inventory.*, subcategories.subcategoryName
+                SELECT inventory.*, subcategories.subcategoryName, categories.categoryName
                 FROM inventory
                 INNER JOIN subcategories
                 ON inventory.subcategoryID = subcategories.subcategoryID
+                INNER JOIN categories 
+                ON subcategories.categoryID = categories.categoryID
                 WHERE subcategories.subcategoryName='Men Footwear'
                 AND inventory.itemStatus='Available'
                 ORDER BY inventory.itemName
@@ -151,10 +148,12 @@
         public function displayWomenFootwear()
         {
             $getDataQuery = "
-                SELECT inventory.*, subcategories.subcategoryName
+                SELECT inventory.*, subcategories.subcategoryName, categories.categoryName
                 FROM inventory
                 INNER JOIN subcategories
                 ON inventory.subcategoryID = subcategories.subcategoryID
+                INNER JOIN categories 
+                ON subcategories.categoryID = categories.categoryID
                 WHERE subcategories.subcategoryName='Women Footwear'
                 AND inventory.itemStatus='Available'
                 ORDER BY inventory.itemName
@@ -226,16 +225,20 @@
         public function exact($updateID)
         {
             $checkDataQuery = "
-                SELECT inventory.*, subcategories.subcategoryName
+                SELECT inventory.*, subcategories.subcategoryName, categories.categoryName
                 FROM inventory
                 INNER JOIN subcategories
                 ON inventory.subcategoryID = subcategories.subcategoryID
+                INNER JOIN categories 
+                ON subcategories.categoryID = categories.categoryID
                 WHERE inventoryID='$updateID'
                 LIMIT 1
             ";
             $result = $this->conn->query($checkDataQuery);
 
             if($result->num_rows == 1){
+
+                $this->totalStock();
 
                 // it return the result to the function
                 return $result;
@@ -267,7 +270,7 @@
         {
             // Joining the category,size table to inventory table using the categoryID, sizeID on inventory
             $getDataQuery = "
-                SELECT inventory.*, subcategories.subcategoryName
+                SELECT inventory.*, subcategories.subcategoryName, categories.categoryName
                 FROM inventory
                 INNER JOIN subcategories
                 ON inventory.subcategoryID = subcategories.subcategoryID
@@ -292,10 +295,12 @@
         {
             // Joining the category,size table to inventory table using the categoryID, sizeID on inventory
             $getDataQuery = "
-                SELECT inventory.*, subcategories.subcategoryName
+                SELECT inventory.*, subcategories.subcategoryName, categories.categoryName
                 FROM inventory
                 INNER JOIN subcategories
                 ON inventory.subcategoryID = subcategories.subcategoryID
+                INNER JOIN categories 
+                ON subcategories.categoryID = categories.categoryID
                 ORDER BY itemName
             ";
             $result = $this->conn->query($getDataQuery);
@@ -316,10 +321,12 @@
         public function getExact($id)
         {
             $getDataQuery = "
-                SELECT inventory.*, subcategories.subcategoryName
+                SELECT inventory.*, subcategories.subcategoryName, categories.categoryName
                 FROM inventory
                 INNER JOIN subcategories
                 ON inventory.subcategoryID = subcategories.subcategoryID
+                INNER JOIN categories 
+                ON subcategories.categoryID = categories.categoryID
                 WHERE inventoryID='$id'
                 LIMIT 1
             ";
@@ -368,7 +375,7 @@
             // checkDuplicate came from my function checkDuplicate
 
                                   // checkDuplicate came from my Function checkDuplicate
-            $resultCheckDuplicate = $this->checkDuplicate($image,$name,$subID); 
+            $resultCheckDuplicate = $this->checkDuplicate($image,$name); 
 
             if($resultCheckDuplicate){
                       

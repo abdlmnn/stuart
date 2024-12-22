@@ -75,9 +75,6 @@
                         </div>
 
                         <div class="add-to-cart">
-                            <!-- <button type="submit" class="add-cart-button" name="add-order-button" value="<?= $data['id'] ?>" id="viewModal">
-                                <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
-                            </button> -->
                             <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
                         </div>
                     </div>
@@ -94,7 +91,7 @@
             <?php elseif(isset($_GET['category']) && $_GET['category'] == 'Women Clothing') : ?>
 
             <?php
-                                // displayWomen came from my Class inventoryController 
+                                // displayWomen came from my Class InventoryController 
                 $resultGetWomen = $inventory->displayWomen();
 
                 if(!$resultGetWomen){
@@ -121,6 +118,7 @@
                         No item
                     </h1>
                     </section>");
+                    // redirect('No item found','view-landing.php?category=Women');
                 }else{
                     foreach($resultGetWomen as $itemRows) :
 
@@ -137,7 +135,7 @@
 
                         <div class="description-container">
                             <div class="item-description">
-                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
+                                <h1 class="item-name"><?= $data['name'] ?></h1>
                                 <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
                             </div>
 
@@ -155,13 +153,13 @@
                 }
             ?>
 
-            <?php elseif(isset($_GET['category']) && $_GET['category'] == 'Men Shoes') : ?>
+            <?php elseif(isset($_GET['category']) && $_GET['category'] == 'Men Footwear') : ?>
 
             <?php
-                                // displayMenShoes came from my Class InventoryController 
-                $resultGetMenShoes = $inventory->displayMenShoes();
+                                // displayMenFootwear came from my Class InventoryController 
+                $resultGetMenFootwear = $inventory->displayMenFootwear();
 
-                if(!$resultGetMenShoes){
+                if(!$resultGetMenFootwear){
                     
                     exit("
                     <section
@@ -186,7 +184,7 @@
                     </h1>
                     </section>");
                 }else{
-                    foreach($resultGetMenShoes as $itemRows) :
+                    foreach($resultGetMenFootwear as $itemRows) :
 
                         $data = $inventory->rows($itemRows);
             ?>
@@ -201,7 +199,7 @@
 
                         <div class="description-container">
                             <div class="item-description">
-                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
+                                <h1 class="item-name"><?= $data['name'] ?></h1>
                                 <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
                             </div>
 
@@ -219,13 +217,13 @@
                 }
             ?>
 
-            <?php elseif(isset($_GET['category']) && $_GET['category'] == 'Women Shoes') : ?>
+            <?php elseif(isset($_GET['category']) && $_GET['category'] == 'Women Footwear') : ?>
 
             <?php
-                                // displayWomenShoes came from my Class ItemController 
-                $resultGetWomenShoes = $inventory->displayWomenShoes();
+                                // displayWomenFootwear came from my Class ItemController 
+                $resultGetWomenFootwear = $inventory->displayWomenFootwear();
 
-                if(!$resultGetWomenShoes){
+                if(!$resultGetWomenFootwear){
                     
                     exit("
                     <section
@@ -251,7 +249,7 @@
                     </section>");
                     // redirect('No item found','view-landing.php?category=Women');
                 }else{
-                    foreach($resultGetWomenShoes as $itemRows) :
+                    foreach($resultGetWomenFootwear as $itemRows) :
 
                         $data = $inventory->rows($itemRows);
             ?>
@@ -266,7 +264,7 @@
 
                         <div class="description-container">
                             <div class="item-description">
-                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
+                                <h1 class="item-name"><?= $data['name'] ?></h1>
                                 <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
                             </div>
 
@@ -287,7 +285,7 @@
             <?php elseif(isset($_GET['category']) && $_GET['category'] == 'Accessories') : ?>
 
             <?php
-                                // displayWomen came from my Class InventoryController 
+                                // displayWomen came from my Class ItemController 
                 $resultGetAccessories = $inventory->displayAccessories();
 
                 if(!$resultGetAccessories){
@@ -330,7 +328,7 @@
 
                         <div class="description-container">
                             <div class="item-description">
-                                <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
+                                <h1 class="item-name"><?= $data['name'] ?></h1>
                                 <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
                             </div>
 
@@ -390,19 +388,17 @@
 
                     <div class="card-image">
                         <img src="images/<?= $data['image'] ?>" alt="" class="image-item">
+                        <input type="hidden" name="itemImage" value="<?= $data['image'] ?>">
                     </div>
 
                     <div class="description-container">
                         <div class="item-description">
-                            <h1 class="item-name"><?= $data['name'] ?> / <?= $data['size'] ?></h1>
+                            <h1 class="item-name"><?= $data['name'] ?></h1>
                             <p class="item-price">&#x20B1; <?= number_format($data['price']) ?></p>
                         </div>
 
                         <div class="add-to-cart">
-                            <!-- <button type="submit" class="add-cart-button" name="add-order-button" value="<?= $data['id'] ?>">
-                                <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
-                            </button> -->
-                                <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
+                            <ion-icon name="bag-add-outline" class="cart-logo"></ion-icon>
                         </div>
                     </div>
 
@@ -414,6 +410,10 @@
                     endforeach;
                 }
             ?>
+
+            <?php endif; ?>    
+                
+        </div>
 
             <!-- <div id="itemModal" class="view-modal-container">
                 <div class="first-child-container">
@@ -427,10 +427,6 @@
                     </div>
                 </div>
             </div> -->
-
-            <?php endif; ?>    
-                
-        </div>
 
 
 

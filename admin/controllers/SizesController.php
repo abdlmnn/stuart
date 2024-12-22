@@ -49,6 +49,32 @@
                 return false;
             }
         }
+
+        // Get the exact Size using sizeID
+        public function getSizeName($sizeID) 
+        {
+            $getDataQuery = "
+                SELECT sizes.*, inventory.*
+                FROM sizes
+                INNER JOIN inventory
+                ON sizes.inventoryID = inventory.inventoryID
+                WHERE sizes.sizeID='$sizeID'
+                LIMIT 1
+            ";
+            $result = $this->conn->query($getDataQuery);
+
+            if($result->num_rows > 0){
+
+                $row = $result->fetch_assoc();
+                // it return the result to the function
+                return $row;
+            }else{
+
+                // it return false of the result to the function
+                return false;
+            }
+        }
+
         // Getting all the sizes values and display on table
         public function getSizeOnly($inventoryID) 
         {
@@ -95,71 +121,42 @@
             }
         }
 
-        // Getting all the sizes values and display on table
-        public function getName($name) 
+        // Get the exact inventoryID of stock
+        public function getExactStock($inventoryID)
         {
             $getDataQuery = "
-                SELECT sizes.*, inventory.*
+                SELECT sizeStock, sizeName, inventory.*
                 FROM sizes
                 INNER JOIN inventory
                 ON sizes.inventoryID = inventory.inventoryID
-                WHERE sizeName='$name'
+                WHERE inventory.inventoryID='$inventoryID'
+                LIMIT 1
             ";
             $result = $this->conn->query($getDataQuery);
 
             if($result->num_rows > 0){
+                $row = $result->fetch_assoc();
 
-                // it return the result to the function
-                return $result;
+                return $row;
             }else{
-
-                // it return false of the result to the function
                 return false;
             }
         }
 
-        // Getting all the sizes values and display on table
-        public function getClothSize() 
+        // Get the exact inventoryID  to display the sizeName
+        public function getExactInventoryID($inventoryID)
         {
             $getDataQuery = "
-                SELECT sizes.*, inventory.*
+                SELECT *
                 FROM sizes
-                INNER JOIN inventory
-                ON sizes.inventoryID = inventory.inventoryID
-                WHERE sizetype='Clothing'
+                WHERE inventoryID='$inventoryID'
             ";
             $result = $this->conn->query($getDataQuery);
 
             if($result->num_rows > 0){
-                
-                // it return the result to the function
+
                 return $result;
             }else{
-
-                // it return false of the result to the function
-                return false;
-            }
-        }
-
-        // Getting all the sizes values and display on table
-        public function getShoeSize() 
-        {
-            $getDataQuery = "
-                SELECT sizes.*, inventory.*
-                FROM sizes
-                INNER JOIN inventory
-                ON sizes.inventoryID = inventory.inventoryID
-                WHERE sizetype='Shoes'
-            ";
-            $result = $this->conn->query($getDataQuery);
-
-            if($result->num_rows > 0){
-                
-                // it return the result to the function
-                return $result;
-            }else{
-
-                // it return false of the result to the function
                 return false;
             }
         }
@@ -172,7 +169,7 @@
                 FROM sizes
                 INNER JOIN inventory
                 ON sizes.inventoryID = inventory.inventoryID
-                WHERE sizeID='$updateID'
+                WHERE sizes.sizeID='$updateID'
                 LIMIT 1
             ";
             $result = $this->conn->query($checkDataQuery);  
@@ -272,7 +269,7 @@
         public function update($data)
         {   
             $id = $data['id'];
-            $inventoryID = $data['inventoryID'];
+            // $inventoryID = $data['inventoryID'];
             $name = $data['name'];
             $stock = $data['stock'];
 
@@ -291,6 +288,19 @@
                 return false;
             }
             
+        }
+
+        // Update the stock of sizes exact ID
+        public function updateStock($sizeID,$quantity)
+        {
+            $updateDataQuery = "
+                UPDATE sizes
+                SET sizeStock = sizeStock - $quantity
+                WHERE sizeID='$sizeID'
+            ";
+            $result = $this->conn->query($updateDataQuery);
+            
+            return $result;
         }
 
         // Delete the value of sizes row with exact ID

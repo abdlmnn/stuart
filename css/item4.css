@@ -1,5 +1,6 @@
 .item-add-container {
     /* height: 100vh; */
+    /* min-height: 100vh; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,6 +15,7 @@
     width: 100%;
     max-width: 1200px;
     /* max-width: 700px; */
+    /* height: 100vh; */
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.1);
@@ -43,7 +45,7 @@
 }
 
 .child-image-container .item-images {
-    width: 90%;
+    width: 70%;
     /* height: 100%; */
     object-fit: cover;
     /* border-radius: 8px; */
@@ -88,52 +90,78 @@
 }
 
 .item-size-container {
-    margin-bottom: 5px;
+    /* border: 1px solid red; */
+    /* margin-bottom: 5px; */
+    margin-bottom: 20px;
 }
 
 .item-size-name {
     font-size: 1rem;
     font-weight: bold;
     margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 5px; 
     /* border: 1px solid red; */
-}
+} 
 
 .size-option-container {
+    /* border: 1px solid red; */
     display: flex;
-    margin-top: 5px;
+    flex-wrap: wrap;
     gap: 10px;
-    font-size: .9rem;
-    /* border: 1px solid red; */
 }
 
-.size-button {
-    padding: 10px 20px;
-    border-radius: 25px;
+.size-option {
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
     border: 1px solid #cccccca1;
-    background-color: transparent;
+    border-radius: 50%;
+    text-align: center;
+    font-size: .9rem;
+    font-weight: bold;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-    /* margin-bottom: 5px; */
-    /* border: 1px solid red; */
+    position: relative;
+    background-color: transparent;
 }
 
-.size-button:hover {
+.size-option:hover {
     border: 1px solid #232323;
 }
 
-.size-button.disabled {
-    cursor: not-allowed;
-    opacity: 0.3;
+.size-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
 }
 
-/* .quantity-label {
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    border: 1px solid red;
-} */
+.size-option input[type="radio"]:checked + .size-content {
+    border: 1px solid #232323;
+}
+
+.size-content {
+    /* border: 1px solid red;   */
+    display: block;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.stock-quantity {
+    /* border: 1px solid red; */
+    display: block;
+    font-size: 10px;
+    color: #7777779a;
+    position: absolute;
+    bottom: -20px;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;

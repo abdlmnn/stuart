@@ -2,11 +2,11 @@
 @import 'navbar3.css';
 @import 'cart1.css';
 /* @import 'profile5.css'; */
-@import 'footer5.css';
-@import 'shop4.css';
+@import 'footer6.css';
+@import 'shop5.css';
 @import 'message.css';
 /* @import 'view-modal1.css'; */
-@import 'item3.css';
+@import 'item4.css';
 
 /* .bg-image {
     background: url('../images/bg.jpg') no-repeat center center/cover;
@@ -16,7 +16,7 @@
 } */
 
 .size-checkbox {
-    display: none; /* Hide the default checkbox */
+    display: none; 
 }
 
 .size-label {
@@ -26,8 +26,8 @@
 }
 
 .size-checkbox:checked + .size-label {
-    font-weight: bold; /* Highlight the selected size */
-    background-color: #f0f0f0; /* Change background on selection */
+    font-weight: bold;
+    background-color: #f0f0f0; 
 }
 
 

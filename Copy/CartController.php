@@ -13,9 +13,9 @@
         }
 
         // Empty session order array
-        public function emptyCart()
+        public function emptyOrder()
         {
-            $_SESSION['cart']= [];
+            $_SESSION['order'] = [];
         }
 
         // Storing the data in array with key and assign the row as a value

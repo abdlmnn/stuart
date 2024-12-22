@@ -61,49 +61,24 @@
 
                 <div class="item-image-container">
                     <div class="child-image-container">
-                        <img src="images/<?= $data['image'] ?>" alt="<?= $data['name'] ?>" class="item-images">
+                        <img src="images/<?= $data['image'] ?>" alt="" class="item-images">
                     </div>
                 </div>
 
                 <div class="item-info-container">
-                    <h5 class="item-category"><?= $data['categoryName'] ?> / <?= $data['subcategoryName'] ?></h5>
+                    <h5 class="item-category"></h5>
                     <p class="item-name"><?= $data['name'] ?></p>
-                    <p class="item-quantity"><?= $data['totalStock'] ?> item left</p>
+                    <p class="item-quantity"> item left</p>
 
                     <div class="item-price-container">
-                        <span class="item-price">&#x20B1; <?= number_format($data['price']) ?></span>
+                        <span class="item-price">&#x20B1; <?= $data['price'] ?></span>
                     </div>
 
                     <div class="item-size-container">
                         <h6 class="item-size-name">Size</h6>
-                    
+
                         <div class="size-option-container">
-
-                        <?php
-                            $resultGetID = $sizes->getExactInventoryID($itemID);
-
-                            if(!$resultGetID){
-
-                                showMessage('No Size item ID found');
-                            }else{
-
-                                // foreach($resultGetID as $sizeRows) :
-                                
-                                while($sizeRows = $resultGetID->fetch_assoc()) :
-
-                        ?>
-                            <label class="size-option">
-                                <input type="radio" name="inputSize" value="<?= $sizeRows['sizeID'] ?>" required>
-                                <span class="size-content">
-                                    <?= $sizeRows['sizeName'] ?>
-                                    <span class="stock-quantity">(<?= $sizeRows['sizeStock'] ?>)</span>
-                                </span>
-                            </label>
-                        <?php
-                                endwhile;
-                                // endforeach;
-                            }
-                        ?>
+                            <button type="button" name="" class="size-button">s</button>
                         </div>
 
                     </div>
@@ -171,45 +146,27 @@
 
                 <div class="item-image-container">
                     <div class="child-image-container">
-                        <img src="images/<?= $data['image'] ?>" alt="<?= $data['name'] ?>" class="item-images">
+                        <img src="images/<?= $data['image'] ?>" alt="" class="item-images">
                     </div>
                 </div>
 
                 <div class="item-info-container">
-                    <h5 class="item-category"><?= $data['categoryName'] ?> / <?= $data['subcategoryName'] ?></h5>
+                    <h5 class="item-category">ASDsa</h5>
                     <p class="item-name"><?= $data['name'] ?></p>
-                    <p class="item-quantity"><?= $data['totalStock'] ?> item left</p>
+                    <p class="item-quantity">5 item left</p>
 
                     <div class="item-price-container">
-                        <span class="item-price">&#x20B1; <?= number_format($data['price']) ?></span>
+                        <span class="item-price">&#x20B1; <?= $data['price'] ?></span>
                     </div>
 
                     <div class="item-size-container">
                         <h6 class="item-size-name">Size</h6>
-                    
+
                         <div class="size-option-container">
-                        <?php
-                            $resultGetID = $sizes->getExactInventoryID($itemID);
-
-                            if(!$resultGetID){
-
-                                showMessage('No Size item ID found');
-                            }else{
-
-                                foreach($resultGetID as $sizeRows) :
-
-                        ?>
-                            <label class="size-option">
-                                <input type="radio" name="inputSize" value="<?= $sizeRows['sizeID'] ?>" required>
-                                <span class="size-content">
-                                    <?= $sizeRows['sizeName'] ?>
-                                    <span class="stock-quantity">(<?= $sizeRows['sizeStock'] ?>)</span>
-                                </span>
-                            </label>
-                        <?php
-                                endforeach;
-                            }
-                        ?>
+                            <button class="size-button">XS</button>
+                            <button class="size-button">S</button>
+                            <button class="size-button">M</button>
+                            <button class="size-button disabled">L</button>
                         </div>
 
                     </div>
@@ -221,7 +178,7 @@
 
                             <button type="button" class="quantity-button decrement">-</button>
 
-                            <input type="number" name="inputQuantity" class="qty quantity-input" value="1" min="1">
+                            <input type="text" name="inputQuantity" class="qty quantity-input" value="1" min="1">
 
                             <button type="button" class="quantity-button increment">+</button>
                         </div>

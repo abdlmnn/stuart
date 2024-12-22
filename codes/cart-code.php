@@ -1,25 +1,28 @@
 <?php
-    include_once 'controllers/CartController.php';
     include_once 'admin/controllers/InventoryController.php';
+    include_once 'admin/controllers/SizesController.php';
+    include_once 'controllers/CartController.php';
 
-    $cart = new CartController;
     $inventory = new InventoryController;
+    $sizes = new SizesController;
+    $cart = new CartController;
 
     // the user is need to login to place an order
     if(isset($_SESSION['authenticated'])) :
 
-    // if the session order is not set or not exists
-    if(!isset($_SESSION['order']))
+    // if the session cart is not set or not exists
+    if(!isset($_SESSION['cart']))
     {
-        // session order array will exists
+        // session cart array will exists
 
-        // emptyOrder came from my Class CartController
-        $cart->emptyOrder();
+        // emptycart came from my Class CartController
+        // $cart->emptyCart();
+        $_SESSION['cart'] = [];
         
         // print_r($_SESSION['order']);
     }
 
-    // DELETE ALL ORDER or CLEAR ALL ORDER in order modal
+    // DELETE ALL cart or CLEAR ALL cart in cart modal
     if(isset($_POST['delete-all-order-button']))
     {
 
@@ -41,18 +44,18 @@
         // updateStockDelete came from my Class CartController
         $cart->updateStockDelete($inventoryID);
 
-        // it delete the order with exact id
-        // removing the exact key or inventoryID on session order array 
-        unset($_SESSION['order'][$inventoryID]);
+        // it delete the cart with exact id
+        // removing the exact key or inventoryID on session cart array 
+        unset($_SESSION['cart'][$inventoryID]);
     }
 
-    // UPDATE QUANTITY ORDER in order modal
+    // UPDATE QUANTITY CART in cart modal
     if(isset($_POST['update-quantity-order-button']))
     {
         $inventoryID = $_POST['update-quantity-order-button'];
         $updateQuantity = $_POST['updateQuantity'];
 
-        $newQuantity = $updateQuantity - $_SESSION['order'][$inventoryID]['quantity'];
+        $newQuantity = $updateQuantity - $_SESSION['cart'][$inventoryID]['quantity'];
 
         // getStock came from my Class CartController
         $data = $cart->getStock($inventoryID);
@@ -60,18 +63,18 @@
         // if newQuantity is less than itemStock
         if($newQuantity <= $data['itemStock']){
             
-            if(isset($_SESSION['order'][$inventoryID])){
+            if(isset($_SESSION['cart'][$inventoryID])){
             // check if the quantity is equal to 0
             if($updateQuantity == 0){
 
-                // it delete the order with exact id
+                // it delete the cart with exact id
 
-                // removing the exact key or inventoryID on session order array 
-                unset($_SESSION['order'][$inventoryID]);
+                // removing the exact key or inventoryID on session cart array 
+                unset($_SESSION['cart'][$inventoryID]);
             }else{
 
                 // if not equal to 0, it update the quantity
-                $_SESSION['order'][$inventoryID]['quantity'] = $updateQuantity;
+                $_SESSION['cart'][$inventoryID]['quantity'] = $updateQuantity;
 
                 // updateStock came from my Class CartController
                 $cart->updateStock($inventoryID,$newQuantity);
@@ -83,23 +86,67 @@
         }
         // print_r($quantity);
     }
-    
-    // ADD ORDER
+    // UPDATE QUANTITY CART in cart modal
+    // ADD CART
     if(isset($_POST['add-order-button']))
     {
         $inventoryID = $_POST['add-order-button'];
         $quantity = $_POST['inputQuantity'];
-        // $size = $_POST['inputSize'];
-
-        // print_r($inventoryID);
+        $size = $_POST['inputSize'];
         
-              // getStock came from my Class CartController
-        $data = $cart->getStock($inventoryID);
+                  // getStock came from my Class CartController
+        $sizeData = $sizes->getExactStock($inventoryID);
 
-        // if my itemStock is greater than quantity
-        if($data['itemStock'] >= $quantity){
+        // if my sizeStock is greater than quantity
+        if($sizeData['sizeStock'] >= $quantity){
 
-            // if the item id exists in the session order array
+            // print_r($sizeData['sizeStock']);
+
+            if(isset($_SESSION['cart'][$inventoryID][$size])){
+
+                showMessage('This item already placed in cart');
+            }else{
+
+                             // exact came from my Class CartController 
+                $resultExact = $cart->exact($inventoryID);
+
+                if($resultExact){
+
+                          // rows came from my Class CartController 
+                    $data = $cart->rows($resultExact);
+
+                    // storing the rows value to the session cart array with exact id, size
+                    $_SESSION['cart'][$inventoryID]['item'][$size] = [
+                        'name' => $data['name'],
+                        'image' => $data['image'],
+                        'price' => $data['price'],
+                        'size' => $size,
+                        'quantity' => $quantity
+                    ];
+
+                    // print_r($_SESSION['cart']);
+
+                    unset($_SESSION['cart']);
+
+                    // updateStock came from my Class SizesController
+                    $sizes->updateStock($size,$quantity);
+                }
+
+            }
+
+        }else{
+
+            showMessage('Not Enough Stock');
+        }
+
+    }
+    // ADD CART
+
+    endif;
+?>
+
+<!-- 
+    // if the item id exists in the session order array
             if(isset($_SESSION['order'][$inventoryID])){
 
                 showMessage('This item already placed in order');
@@ -117,11 +164,9 @@
                     // storing the rows value to the session order array with exact id
                     $_SESSION['order'][$inventoryID] = [
                         'id' => $data['id'],
-                        'categoryName' => $data['categoryName'],
-                        'gender' => $data['gender'],
+                        'subName' => $data['subName'],
                         'image' => $data['image'],
                         'name' => $data['name'],
-                        'size' => $data['size'],
                         'price' => $data['price'],
                         'quantity' => $quantity
                     ];
@@ -129,19 +174,58 @@
                     // print_r($_SESSION['order']);
 
                     // updateStock came from my Class CartController
-                    $cart->updateStock($inventoryID,$quantity);
+                    // $cart->updateStock($inventoryID,$quantity);
                 }
 
             }
 
-        }else{
+            // if the item id exists in the session order array
+            if(isset($_SESSION['order'][$inventoryID])){
 
-            // if the itemStock is quantity or 0
-            showMessage('Not enough stock');
-        }
+                showMessage('This item already placed in order');
+            }else{
+                // if the item id is not exists in session order array 
 
-        // print_r($_SESSION['order']);
-    }
+                   
+            }
 
-    endif;
-?>
+
+
+
+
+
+
+
+//              if(isset($_SESSION['cart'][$inventoryID][$size])){
+
+                // showMessage('This item already placed in cart');
+            // }else{
+
+                             // exact came from my Class CartController 
+                $resultExact = $cart->exact($inventoryID);
+
+                if($resultExact){
+
+                          // rows came from my Class CartController 
+                    $data = $cart->rows($resultExact);
+
+                    // storing the rows value to the session cart array with exact id
+                    // $_SESSION['cart'][$inventoryID][$size] = [
+                    //     'id' => $data['id'],
+                    //     'name' => $data['name'],
+                    //     'image' => $data['image'],
+                    //     'price' => $data['price'],
+                    //     'size' => $size,
+                    //     'quantity' => $quantity
+                    // ];
+
+                    // print_r($_SESSION['cart']);
+
+                    // unset($_SESSION['cart']);
+
+                    // updateStock came from my Class SizesController
+                    $sizes->updateStock($size,$quantity);
+                }
+
+            // }
+-->
