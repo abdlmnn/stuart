@@ -95,7 +95,7 @@
                             <tbody>
                                 <?php
                                             // get came from my Class InventoryController  
-                                    $resultGet = $inventory->get();
+                                    $resultGet = $inventory->getAvail();
                                     
                                     // if the result of get function return false or true
                                     if(!$resultGet){
@@ -128,7 +128,7 @@
 
                                                     if(!$resultGetSizeOnly){
 
-                                                        showMessage('No Size Record Found');
+                                                        // showMessage('No Size Record Found');
                                                     }else{
 
                                                         $collectSize = [];

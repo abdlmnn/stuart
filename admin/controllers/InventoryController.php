@@ -274,7 +274,10 @@
                 FROM inventory
                 INNER JOIN subcategories
                 ON inventory.subcategoryID = subcategories.subcategoryID
+                INNER JOIN categories 
+                ON subcategories.categoryID = categories.categoryID
                 WHERE itemStatus='Available'
+                ORDER BY itemName
             ";
             $result = $this->conn->query($getDataQuery);
 
@@ -334,6 +337,8 @@
 
             if($result->num_rows == 1){
 
+                $this->totalStock();
+                
                 // it return the result to the function
                 return $result;
             }else{
@@ -420,6 +425,7 @@
             $result = $this->conn->query($updateDataQuery);
 
             if($result){
+                
                 return true;
             }else{
                 return false;
