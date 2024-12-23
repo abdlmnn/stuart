@@ -103,6 +103,7 @@
                     </div>
                 </ul>
             </li>
+            <li>
                 <button onclick="toggleSubMenu(this)" class="dropdown-btn">
                     <ion-icon name="people-outline" class="icons"></ion-icon>
                     <span>Users</span>
