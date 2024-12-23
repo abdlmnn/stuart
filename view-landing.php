@@ -1313,9 +1313,9 @@ input::-webkit-inner-spin-button {
             });
         });
 
-        $(document).on('click', '.close-modal', function () {
-            $('#itemModal').removeClass('show-modal');
-        });
+        // $(document).on('click', '.close-modal', function () {
+        //     $('#itemModal').removeClass('show-modal');
+        // });
 
         $(document).mouseup(function(e) {
             var modalContent = $(".item-modal-container");

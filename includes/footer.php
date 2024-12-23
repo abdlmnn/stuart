@@ -48,14 +48,14 @@
     <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+    <script src="js/cart2.js"></script>
+    <!-- <script src="js/contain.js"></script> -->
     <script src="js/custom1.js"></script>
-    <script src="js/size1.js"></script>
-    <script src="js/qty1.js"></script>
     <script src="js/link4.js"></script>
     <script src="js/nav2.js"></script>
-    <script src="js/cart1.js"></script>
     <script src="js/password-contain1.js"></script>
-    <!-- <script src="js/contain.js"></script> -->
+    <script src="js/qty1.js"></script>
     <script src="js/show-password1.js"></script>
+    <script src="js/size1.js"></script>
 </body>
 </html>
