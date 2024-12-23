@@ -16,8 +16,8 @@
         // session cart array will exists
 
         // emptycart came from my Class CartController
-        // $cart->emptyCart();
-        $_SESSION['cart'] = [];
+        $cart->emptyCart();
+        // $_SESSION['cart'] = [];
         
         // print_r($_SESSION['order']);
     }
@@ -102,7 +102,7 @@
 
             // print_r($sizeData['sizeStock']);
 
-            if(isset($_SESSION['cart'][$inventoryID][$size])){
+            if(isset($_SESSION['cart'][$inventoryID]['item'][$size])){
 
                 showMessage('This item already placed in cart');
             }else{
@@ -126,7 +126,7 @@
 
                     // print_r($_SESSION['cart']);
 
-                    unset($_SESSION['cart']);
+                    // unset($_SESSION['cart']);
 
                     // updateStock came from my Class SizesController
                     $sizes->updateStock($size,$quantity);
@@ -144,88 +144,3 @@
 
     endif;
 ?>
-
-<!-- 
-    // if the item id exists in the session order array
-            if(isset($_SESSION['order'][$inventoryID])){
-
-                showMessage('This item already placed in order');
-            }else{
-                // if the item id is not exists in session order array 
-
-                            // exact came from my Class CartController 
-                $resultExact = $cart->exact($inventoryID);
-
-                if($resultExact){
-
-                        // rows came from my Class CartController 
-                    $data = $cart->rows($resultExact);
-
-                    // storing the rows value to the session order array with exact id
-                    $_SESSION['order'][$inventoryID] = [
-                        'id' => $data['id'],
-                        'subName' => $data['subName'],
-                        'image' => $data['image'],
-                        'name' => $data['name'],
-                        'price' => $data['price'],
-                        'quantity' => $quantity
-                    ];
-
-                    // print_r($_SESSION['order']);
-
-                    // updateStock came from my Class CartController
-                    // $cart->updateStock($inventoryID,$quantity);
-                }
-
-            }
-
-            // if the item id exists in the session order array
-            if(isset($_SESSION['order'][$inventoryID])){
-
-                showMessage('This item already placed in order');
-            }else{
-                // if the item id is not exists in session order array 
-
-                   
-            }
-
-
-
-
-
-
-
-
-//              if(isset($_SESSION['cart'][$inventoryID][$size])){
-
-                // showMessage('This item already placed in cart');
-            // }else{
-
-                             // exact came from my Class CartController 
-                $resultExact = $cart->exact($inventoryID);
-
-                if($resultExact){
-
-                          // rows came from my Class CartController 
-                    $data = $cart->rows($resultExact);
-
-                    // storing the rows value to the session cart array with exact id
-                    // $_SESSION['cart'][$inventoryID][$size] = [
-                    //     'id' => $data['id'],
-                    //     'name' => $data['name'],
-                    //     'image' => $data['image'],
-                    //     'price' => $data['price'],
-                    //     'size' => $size,
-                    //     'quantity' => $quantity
-                    // ];
-
-                    // print_r($_SESSION['cart']);
-
-                    // unset($_SESSION['cart']);
-
-                    // updateStock came from my Class SizesController
-                    $sizes->updateStock($size,$quantity);
-                }
-
-            // }
--->

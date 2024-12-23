@@ -1,4 +1,5 @@
 .item-container {
+    /* border: 1px solid red; */
     width: 100%;
     max-width: 1200px;
     /* max-width: 1450px; */
@@ -14,6 +15,7 @@
 }
 
 .item-container .card {
+    /* border: 1px solid red; */
     background-color: #fff;
     box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -30,19 +32,21 @@
 
 .item-container .card .card-image {
     width: 100%;
-    /* height: 200px; */
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     margin: auto;
+    /* border: 1px solid red; */
+    /* background-color: #dfdada52; */
 }
 
-.card-image:hover {
+/* .card-image:hover {
     background-color: #dfdada52;
     width: 100%;
     height: 100%;
-}
+} */
 
 .item-container .card .card-image .image-item {
     width: 175px;
@@ -75,34 +79,15 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    /* border: 1px solid red; */
 }
 
 .item-container .card .description-container .add-to-cart .cart-logo {
-    font-size: 20px;
-    /* gap: 25px; */
+    font-size: 25px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     color: #111;
-    /* margin-right: 20px; */
-    /* border: 1px solid red; */
-    margin-left: 15px;
-    margin-top: 8px;
-}
-
-/* .item-container .card .description-container .add-to-cart .view-modal-item { */
-    /* font-size: 20px; */
     /* gap: 25px; */
-    /* padding-right: ; */
-    /* cursor: pointer; */
-    /* border: 1px solid red; */
-    /* transition: all 0.3s ease-in-out; */
-    /* margin-top: 3px; */
-    /* margin-right: 5px; */
-
-/* } */
-
-.item-container .card .description-container .add-to-cart .view-modal-item:hover {
-    color: #efaf00;
 }
 
 .item-container .card .description-container .add-to-cart .cart-logo:hover {
@@ -113,7 +98,6 @@
     border: none;
     background-color: transparent;
     /* border: 1px solid red; */
-    
 }
 
 @media (max-width: 768px) {

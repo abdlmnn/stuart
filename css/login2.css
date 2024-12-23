@@ -1,12 +1,9 @@
-@import 'font2.css';
-@import 'navbar3.css';
 @import 'cart1.css';
-/* @import 'profile5.css'; */
+@import 'font2.css';
 @import 'footer6.css';
-@import 'shop5.css';
-@import 'message.css';
-/* @import 'view-modal1.css'; */
-@import 'item4.css';
+@import 'item6.css';
+@import 'navbar3.css';
+@import 'shop6.css';
 
 /* .bg-image {
     background: url('../images/bg.jpg') no-repeat center center/cover;
@@ -30,13 +27,12 @@
     background-color: #f0f0f0; 
 }
 
-
-
 :root {
     --text-color1: #111;
     --text-color2: #E2A500; 
     --bg-color: #fff;
 }
+
 .body {
     display: flex;
     justify-content: center;
