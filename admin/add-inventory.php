@@ -87,7 +87,7 @@
             </button>
 
             <div class="scroll-table">
-                <table class="child-table">
+                <table class="child-table" id="inventoryTable">
                     <thead>
                         <tr>
                             <!-- <th>ID</th> -->

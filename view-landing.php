@@ -1327,6 +1327,6 @@ input::-webkit-inner-spin-button {
             }
 
         });
-
+        
     });
 </script>
