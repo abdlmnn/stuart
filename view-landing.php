@@ -30,7 +30,7 @@
     height: 100%;
     justify-content: center;
     align-items: center;
-    /* background-color: rgba(0, 0, 0, 0.2); */
+    background-color: rgba(0, 0, 0, 0.2);
     z-index: 1050;
     overflow: auto;
     display: none;
@@ -1292,7 +1292,11 @@ input::-webkit-inner-spin-button {
         $('.view-data').click(function (e) {
             e.preventDefault();
 
+            // console.log('hi');
+
             var id = $(this).find('input[name="id"]').val();
+
+            // console.log(id);
 
             $.ajax({
                 method: "POST",
@@ -1303,19 +1307,16 @@ input::-webkit-inner-spin-button {
                 },
                 success: function(response) {
 
+                    // console.log(response);
+
                     $('.item-modal-container').html(response);
 
                     $('#itemModal').addClass('show-modal'); 
-                },
-                error: function(xhr, status, error) {
-                    console.error("An error occurred:", status, error);
                 }
-            });
-        });
 
-        // $(document).on('click', '.close-modal', function () {
-        //     $('#itemModal').removeClass('show-modal');
-        // });
+            });
+
+        });
 
         $(document).mouseup(function(e) {
             var modalContent = $(".item-modal-container");
@@ -1326,5 +1327,6 @@ input::-webkit-inner-spin-button {
             }
 
         });
+
     });
 </script>

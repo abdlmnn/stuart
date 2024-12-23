@@ -160,6 +160,7 @@
 .cart-checkout-container {
     margin-top: 20px;
     padding: 1em;
+    margin-bottom: auto;
     border-top: 1px solid #ddd;
     background-color: #f7f7f7;
     text-align: center;
