@@ -19,30 +19,174 @@
 
     include 'message.php';
 ?>
+<link rel="stylesheet" href="css/profile.css?v=5.5">
 
-<link rel="stylesheet" href="css/profile6.css">
+    <div class="profile-container">
 
-<div class="profile-container">
+        <aside class="sidebar-container">
 
-    <!-- userDetails came from my Class AuthenticateController  -->
-    <?php $userRows = $authenticated->userDetails(); ?>
+            <div class="section-action">
 
-    <?php if(!empty($_GET['action']) && $_GET['action'] == 'edit-profile') : ?>
+                <h4>Personal Center</h4>
 
-        <div class="profile-header">
-            <h2>Edit Profile</h2>
-        </div>
+                <ul>
+                    <li>
+                        <a href="view-profile.php" onclick="showTab('orders')">My Orders</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showTab('messages')">My Messages</a>
+                    </li>
+                </ul>
 
-        <div class="profile-details">
+            </div>
 
-            <form action="" method="post">
+            <div class="section-action">
 
-                <p><strong>Full Name:</strong> <input type="text" name="inputFullname" value="<?= $userRows['userFullname'] ?>" autofocus required> </p>
-                <p><strong>Email:</strong> <input type="email" name="inputEmail" value="<?= $userRows['userEmail'] ?>" required> </p>
-                <p><strong>Phone Number:</strong> <input type="tel" name="inputNumber" value="<?= $userRows['userNumber'] ?>" required> </p>
-                <p><strong>Address:</strong> <input type="text" name="inputAddress" value="<?= $userRows['userAddress'] ?>" required> </p>
-                <p><strong>Gender:</strong> 
-                    <select name="inputGender" >
+                <h4>My Account</h4>
+
+                <ul>
+                    <li>
+                        <a href="#" onclick="showTab('profile')">My Profile</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showTab('edit-profile')">Edit Profile</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showTab('delete-profile')">Delete Profile</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showTab('change-password')">Change Password</a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </aside>
+
+        <!-- userDetails came from my Class AuthenticateController  -->
+        <?php $userRows = $authenticated->userDetails(); ?>
+        <section class="acount-info-container">
+
+            <div class="tab" id="orders">
+                <h1>MY ORDERS</h1>
+
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>Order #</th>
+                            <th>Date</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Order Row 1 -->
+                        <tr>
+                            <td>#123456</td>
+                            <td>December 20, 2024</td>
+                            <td>2 Items</td>
+                            <td>$45.00</td>
+                            <td><span class="order-status completed">Completed</span></td>
+                            <td><a href="#" class="btn">View Details</a></td>
+                        </tr>
+                        <!-- Order Row 2 -->
+                        <tr>
+                            <td>#123457</td>
+                            <td>December 18, 2024</td>
+                            <td>2 Items</td>
+                            <td>$75.00</td>
+                            <td><span class="order-status pending">Pending</span></td>
+                            <td><a href="#" class="btn">View Details</a></td>
+                        </tr>
+                        <!-- Order Row 3 -->
+                        <tr>
+                            <td>#123458</td>
+                            <td>December 15, 2024</td>
+                            <td>1 Item</td>
+                            <td>$35.00</td>
+                            <td><span class="order-status cancelled">Cancelled</span></td>
+                            <td><a href="#" class="btn">View Details</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+
+            <div class="tab" id="messages">
+                <h1>MY MESSAGES</h1>
+
+                <div class="notification-item">
+                    <div class="notification-content">
+                        <p>Your order #123456 has been successfully delivered. Thank you for shopping with us!</p>
+                    </div>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-content">
+                        <p>Your payment for order #123457 has been confirmed. We are now processing your order.</p>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="tab" id="profile">
+                <h1>MY PROFILE</h1>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <button class="info-btn"><?= $userRows['userEmail'] ?></button>
+                </div>
+
+                <div class="form-group">
+                    <label>Fullname</label>
+                    <button class="info-btn"><?= $userRows['userFullname'] ?></button>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <button class="info-btn"><?= $userRows['userNumber'] ?></button>
+                </div>
+
+                <div class="form-group">
+                    <label>Address</label>
+                    <button class="info-btn"><?= $userRows['userAddress'] ?></button>
+                </div>
+
+                <div class="form-group">
+                    <label >Gender</label>
+                    <button class="info-btn"><?= $userRows['userGender'] ?></button>
+                </div>
+            </div>
+
+            <div class="tab" id="edit-profile">
+                <h1>EDIT PROFILE</h1>
+                <form action="" method="post">
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="inputEmail" value="<?= $userRows['userEmail'] ?>" placeholder="Enter your email" required autofocus>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fullname">Fullname</label>
+                        <input type="text" name="inputFullname" value="<?= $userRows['userFullname'] ?>" placeholder="Enter your full name" required>
+                        </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="text" name="inputNumber" value="<?= $userRows['userNumber'] ?>" placeholder="Enter your phone number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" name="inputAddress" value="<?= $userRows['userAddress'] ?>" placeholder="Enter your address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select name="inputGender" >
                         <?php if($userRows['userGender'] != 'Male' && $userRows['userGender'] != 'Female' && $userRows['userGender'] == 'Select Gender' || empty($userRows['userGender'])) : ?>
 
                             <option value="Male">Male</option>
@@ -62,89 +206,126 @@
 
                         <?php endif; ?>
                     </select> 
-                </p>
+                    </div>
 
-                <div class="profile-actions">
-                    <button type="submit" value="<?= $userRows['userID'] ?>" name="edit-button">Save</button>
+                    <div class="btn-container">
+                        <button type="submit" value="<?= $userRows['userID'] ?>" name="edit-button" class="btn save">Save</button>
+                        <button type="button" onclick="cancel1()" class="btn cancel">Cancel</button>
+                    </div>
 
-                    <button type="button" onclick="cancel()">Cancel</button>
-                </div>
-
-            </form>
-        </div>
-
-    <?php elseif(!empty($_GET['action']) && $_GET['action'] == 'delete-account') : ?>
-
-        <div class="profile-header">
-            <h2>Delete Account</h2>
-        </div>
-
-        <div class="profile-details">
-
-            <form action="" method="post">
-                <!-- <?php echo $userRows['userID'] ?> -->
-                
-                <p><strong>Full Name:</strong> <?= $userRows['userFullname'] ?></p>
-                <p><strong>Email:</strong> <?= $userRows['userEmail'] ?></p>
-                <p><strong>Phone Number:</strong> <?= $userRows['userNumber'] ?></p>
-                <p><strong>Address:</strong> <?= $userRows['userAddress'] ?></p>
-                <p><strong>Gender:</strong> <?= $userRows['userGender'] ?></p>
-
-                <div class="profile-actions">
-                    <button type="submit" value="<?= $userRows['userID'] ?>" name="delete-button">Delete</button>
-
-                    <button type="button" onclick="cancel()">Cancel</button>
-                </div>
-            </form>
-
-        </div>
-
-    <?php elseif(!empty($_GET['action']) && $_GET['action'] == 'change-password') : ?>
-
-        <div class="profile-header">
-            <h2>Change Password</h2>
-        </div>
-
-        <div class="profile-details">
-
-            <form action="" method="post">
-
-                <p><strong>Current password:</strong> <input type="password" name="inputCurrent" autofocus required> </p>
-                <p><strong>New password:</strong> <input type="password" name="inputNew" required> </p>
-                <p><strong>Retype new password:</strong> <input type="password" name="inputRetype" required> </p>
-
-                <div class="profile-actions">
-                    <button type="submit" value="<?= $userRows['userID'] ?>" name="change-password-button">Save</button>
-
-                    <button type="button" onclick="cancel()">Cancel</button>
-                </div>
-
-            </form>
-        </div>
-
-    <?php else : ?>
-
-        <div class="profile-header">
-            <h2>My Profile</h2>
-        </div>
-
-        <div class="profile-details">
-            <p><strong>Full Name:</strong> <?= $userRows['userFullname'] ?></p>
-            <p><strong>Email:</strong> <?= $userRows['userEmail'] ?></p>
-            <p><strong>Phone Number:</strong> <?= $userRows['userNumber'] ?></p>
-            <p><strong>Address:</strong> <?= $userRows['userAddress'] ?></p>
-            <p><strong>Gender:</strong> <?= $userRows['userGender'] ?></p>
-
-            <div class="profile-actions">
-                <button type="submit" onclick="editProfile()">Edit Profile</button>
-                <button type="submit" onclick="deleteAccount()">Delete Account</button>
-                <button type="submit" onclick="changePassword()">Change Password</button>
+                </form>
             </div>
-        </div>
 
-    <?php endif; ?>
+            <div class="tab" id="delete-profile">
+                <h1>DELETE ACCOUNT</h1>
 
-</div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <button class="info-btn"><?= $userRows['userEmail'] ?></button>
+                </div>
+                <div class="form-group">
+                    <label>Fullname</label>
+                    <button class="info-btn"><?= $userRows['userFullname'] ?></button>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <button class="info-btn"><?= $userRows['userNumber'] ?></button>
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <button class="info-btn"><?= $userRows['userAddress'] ?></button>
+                </div>
+                <div class="form-group">
+                    <label >Gender</label>
+                    <button class="info-btn"><?= $userRows['userGender'] ?></button>
+                </div>
+
+                <form action="" method="post">
+
+                    <div class="btn-container">
+
+                        <button type="submit" value="<?= $userRows['userID'] ?>" name="delete-button" class="btn save">Delete</button>
+
+                        <button type="button" onclick="cancel1()" class="btn cancel">Cancel</button>
+
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="tab" id="change-password">
+                <h1>CHANGE PASSWORD</h1>
+                <form action="" method="post">
+
+                    <div class="form-group">
+                        <label for="current-password">Current Password</label>
+                        <input type="password" name="inputCurrent" autofocus required id="current-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" placeholder="Enter your current password">
+                        <span class="show-password" onclick="togglePasswordVisibility('current-password', this)">Show</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new-password">New Password</label>
+                        <input type="password" name="inputNew" required id="new-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" placeholder="Enter your new password">
+                        <span class="show-password" onclick="togglePasswordVisibility('new-password', this)">Show</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm New Password</label>
+                        <input type="password" name="inputRetype" required id="confirm-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" placeholder="Confirm your new password">
+                        <span class="show-password" onclick="togglePasswordVisibility('confirm-password', this)">Show</span>
+                    </div>
+
+                    <div class="btn-container">
+
+                        <button type="submit" value="<?= $userRows['userID'] ?>" name="change-password-button" class="btn save">Save</button>
+
+                        <button type="button" onclick="cancel1()" class="btn cancel">Cancel</button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </div>
+
+<script>
+
+    function cancel1(){
+        window.location.href = 'view-profile.php';
+    }
+        
+    function showTab(tabId){
+
+        const tabs = document.querySelectorAll('.tab');
+
+        tabs.forEach(tab => tab.classList.remove('active'));
+            
+        document.getElementById(tabId).classList.add('active');
+
+    }
+
+    showTab('orders');
+
+    function togglePasswordVisibility(fieldId, toggleElement){
+
+        const field = document.getElementById(fieldId);
+
+        if(field.type === "password"){
+
+            field.type = "text";
+            toggleElement.textContent = "Hide";
+        }else{
+
+            field.type = "password";
+            toggleElement.textContent = "Show";
+        }
+
+    }
+
+</script>
 <?php
     include 'includes/footer.php';
 ?>

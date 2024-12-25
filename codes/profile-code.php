@@ -41,7 +41,7 @@
             redirect('Your Account Deleted Successfully','add-register.php');
         }else{
 
-            redirect('Something went wrong','view-profile.php?action=delete-profile');
+            redirect('Something went wrong','view-profile.php');
         }
     }
     // DELETE USER PROFILE
@@ -65,7 +65,7 @@
             redirect('Your Profile Updated Successfully','view-profile.php');
         }else{
 
-            redirect('Something went wrong','view-profile.php?action=edit');
+            redirect('Something went wrong','view-profile.php');
         }
     }
     // EDIT USER PROFILE

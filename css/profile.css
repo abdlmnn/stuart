@@ -1,0 +1,234 @@
+.profile-container {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    /* margin: 20px; */
+    margin: 25px auto;
+    max-width: 1300px;
+    padding: 35px 35px;
+    height: 100vh;
+}
+
+.sidebar-container {
+    width: 25%;
+    background: #fff;
+    padding: 20px;
+    /* box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); */
+    box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: auto;
+}
+
+.sidebar-container .section-action h4 {
+    font-size: 16px;
+    color: #111;
+    margin-bottom: 15px;
+}
+
+.sidebar-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-container ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar-container ul li a {
+    text-decoration: none;
+    color: #111;
+    font-size: 14px;
+    display: block;
+    padding: 8px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-container ul li a:hover {
+    background-color: #f0f0f0;
+}
+
+.acount-info-container {
+    /* border: 1px solid red; */
+    width: 100%;
+    background: #fff;
+    margin-left: 20px;
+    /* box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); */
+    box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.1);
+    /* padding: 30px; */
+    padding: 25px 25px;
+    overflow-wrap: anywhere;
+    margin-bottom: auto;
+}
+
+.tab {
+    display: none;
+}
+
+.tab.active {
+    display: block;
+}
+
+.tab h1 {
+    font-size: 24px;
+    color: #111;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #111;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #111;
+    border-radius: 5px;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    outline: none;
+    border: none;
+    color: #555;
+    border-bottom: 1px solid #111;
+    border-radius: 5px;
+}
+
+.info-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    background-color: #fff;
+    /* border-bottom: 1px solid #111; */
+    text-align: left;
+}
+
+.show-password {
+    position: absolute;
+    right: 10px;
+    top: 70%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #111;
+    cursor: pointer;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.orders-table th, .orders-table td {
+    text-align: left;
+    padding: 12px 15px;
+}
+
+.orders-table th {
+    /* background-color: #111; */
+    font-size: 14px;
+    /* color: #fff; */
+}
+
+.orders-table td {
+    font-size: 14px;
+    color: #555;
+}
+
+.orders-table .order-status {
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.order-status.completed {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.order-status.pending {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.order-status.cancelled {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.notification-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.notification-item:hover {
+    background-color: #f0f0f0;
+}
+
+.notification-content {
+    max-width: 80%;
+}
+
+.notification-content h4 {
+    font-size: 16px;
+    color: #333;
+    margin: 0 0 5px;
+}
+
+.notification-content p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: flex-start;
+    /* gap: 5px; */
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn.save {
+    background-color: #111;
+    color: #fff;
+}
+
+.btn.cancel {
+    background-color: #111;
+    color: #fff;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}

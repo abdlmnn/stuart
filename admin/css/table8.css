@@ -109,7 +109,7 @@
 }
 
 .table-container .add-button {
-    background-color: #fff;
+    background-color: transparent;
     border: none;
     cursor: pointer;
     /* border: 1px solid red; */
@@ -124,12 +124,14 @@
 }
 .table-container {
     flex: 2;
-    background-color: #fff;
-    box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.1);
+    /* background-color: #fff;
+    box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.1); */
 }
 .scroll-table {
     height: 480px;
     overflow-y: auto; 
+    background-color: #fff;
+    box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.1);
 }
 .child-table {
     border-collapse: collapse;
