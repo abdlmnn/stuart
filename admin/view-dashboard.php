@@ -67,13 +67,40 @@
 
                 <hr style="color: #000;">
 
-                <h2 class="available-item">Available Items</h2>
+                <div class="text-search-container"
+                    style=
+                    "
+                        display: flex;
+                        width: 100%;
+                        /* border: 1px solid red; */
+                    "
+                >
 
-                <div class="search-container">
-                    <input type="text" id="myInput" onkeyup="filterTable()" placeholder="Search here available item . . ." title="Type in a name">
+                    <h2 class="available-item"
+                        style=
+                        "
+                            /* border: 1px solid red; */
+                            width: 50%;
+                            margin-bottom: auto;
+                            text-align: left;
+                            padding: 5px;
+
+                        "
+                    >Available Items</h2>
+                    
+                    <div class="main-search" 
+                    style=
+                    "
+                        width: 100%;
+                    ">
+                        <div class="search-container">
+                            <input type="text" id="myInput" onkeyup="filterTable()" placeholder="Search here available item . . ." title="Type in a name">
+                        </div>
+                    </div>
+                    
                 </div>
-                
-                <div class="table-container">
+
+                <div class="table-container" style="margin-bottom: 25px">
 
                     <div class="scroll-table">
 

@@ -1,5 +1,5 @@
 @import 'cart2.css';
-@import 'font2.css';
+@import 'font3.css';
 @import 'footer6.css';
 @import 'item6.css';
 @import 'navbar3.css';
@@ -48,9 +48,10 @@
     /* background-color: #c1c1c1; */
     background-color: #fff;
     /* background-color: rgba(0, 0, 0, 0.78); */
-    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+    /* box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5); */
+    box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.1);
     padding: 40px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     width: 400px;
 }
 

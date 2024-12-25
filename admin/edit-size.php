@@ -27,7 +27,7 @@
         <div class="child-cont" id="form">
             <div class="form-container">
 
-                <h1>EDIT Category</h1>
+                <h1>EDIT Size</h1>
 
                 <?php
                     // if get updateID is set false

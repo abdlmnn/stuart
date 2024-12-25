@@ -20,7 +20,7 @@
     include '../message.php';
 ?>
 
-<link rel="stylesheet" href="css/profile.css?v=1.1">
+<link rel="stylesheet" href="css/profile1.css?v=1.3">
 
 <main>
     <h1>My Profile</h1>

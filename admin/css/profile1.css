@@ -2,15 +2,16 @@
     /* border: 1px solid red; */
     display: flex;
     margin: 25px auto;
-    max-width: 1000px;
+    max-width: 1050px;
 }
 
 .profile-details {
     /* border: 1px solid blue; */
     /* background-color: #ddd; */
     background-color: #ffff;
-    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
-    border-radius: 2.5px;
+    /* box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5); */
+    box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.1);
+    /* border-radius: 2.5px; */
     padding: 25px 25px;
     /* font-size: 1rem; */
     width: 100%;
@@ -249,4 +250,18 @@ select{
     border: solid white;
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
+}
+
+@media (max-width: 786px) {
+    .profile-container {
+        flex-direction: column;
+        margin-bottom: 60px;
+    }
+
+    .profile-actions {
+        margin-right: 0;
+        margin-bottom: 10px;
+        flex-direction: row;
+        justify-content: center;
+    }
 }

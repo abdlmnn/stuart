@@ -41,17 +41,26 @@
 
         <div class="table-container">
 
-            <button type="submit" class="add-button" onclick="closeForm()">
-                <!-- <ion-icon name="close-circle-outline" class="circle-icon"></ion-icon> -->
-                <ion-icon name="arrow-back-circle-outline" class="circle-icon"></ion-icon>
-            </button>
-            <button type="submit" class="add-button" onclick="showForm()">
-                <!-- <ion-icon name="add-circle-outline" class="circle-icon"></ion-icon> -->
-                <ion-icon name="arrow-forward-circle-outline" class="circle-icon"></ion-icon>
-            </button>
+            <div class="another-bttn-container">
+                <button type="submit" class="add-button" onclick="closeForm()">
+                    <!-- <ion-icon name="close-circle-outline" class="circle-icon"></ion-icon> -->
+                    <ion-icon name="arrow-back-circle-outline" class="circle-icon"></ion-icon>
+                </button>
+                <button type="submit" class="add-button" onclick="showForm()">
+                    <!-- <ion-icon name="add-circle-outline" class="circle-icon"></ion-icon> -->
+                    <ion-icon name="arrow-forward-circle-outline" class="circle-icon"></ion-icon>
+                </button>
+
+                <div class="main-search-cont">
+                    <div class="search-container">
+                        <input type="text" id="myInput" onkeyup="filterTable()" placeholder="Search here . . ." title="Type in a name">
+                    </div>
+                </div>
+
+            </div>
 
             <div class="scroll-table">
-                <table class="child-table">
+                <table class="child-table" id="inventoryTable">
                     <thead>
                         <tr>
                             <!-- <th>ID</th> -->

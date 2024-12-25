@@ -1,6 +1,6 @@
-@import 'font1.css';
-@import 'dashboard.css';
-@import 'table5.css';
+@import 'font2.css';
+@import 'dashboard1.css';
+@import 'table7.css';
 /* @import 'profile.css'; */
 
 input::-webkit-outer-spin-button,
@@ -21,7 +21,9 @@ input::-webkit-inner-spin-button {
     padding: 12px 20px 12px 40px;
     border: none;
     outline: none;
-    border-bottom: 2px solid #ccc;
+    /* border-bottom: 2px solid #ccc; */
+    box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
 }
 
 #sidebar {

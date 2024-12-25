@@ -4,13 +4,15 @@
     /* gap: 1em; */
     margin-top: 25px;
     margin-bottom: 25px;
+    /* border: 2px solid red; */
 }
 .cards .card {
     background-color: #111;
     border-radius: 10px;
     padding: 20px;
     width: calc(33.33% - 20px);
-    transition: transform 0.3s;
+    /* transition: transform 0.3s; */
+    /* border: 2px solid red; */
 }
 .cards .card .box {
     text-align: center;
