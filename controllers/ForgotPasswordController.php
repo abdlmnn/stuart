@@ -47,24 +47,7 @@
             ";
             $result = $this->conn->query($updateDataQuery);
 
-            if($result){
-
-                $selectDataQuery = "
-                    SELECT *
-                    FROM users
-                    WHERE userEmail='$email'
-                    LIMIT 1
-                ";
-                $resultSelect = $this->conn->query($selectDataQuery);
-
-                $row = $resultSelect->fetch_assoc();
-
-                $_SESSION['code'] = $row['userCode'];
-
-                return true;
-            }else{
-                return false;
-            }
+            return$result;
         }
 
         // Delete or Set Null the userCode 

@@ -15,6 +15,36 @@
             // $this->checkIsLoggedIn();    
         }
 
+        public function rows($row)
+        {
+            return $data = [
+                'name'=>$row['userFullname'],
+                'number'=>$row['userNumber'],
+                'address'=>$row['userAddress'],
+                'gender'=>$row['userGender'],
+                'email'=>$row['userEmail']
+            ];
+        }
+
+        public function userTable()
+        {
+            $email = $_SESSION['user']['email'];
+            
+            $getDataQuery = "
+                SELECT * 
+                FROM users
+                WHERE userEmail='$email'
+            ";
+            $result = $this->conn->query($getDataQuery);
+
+            if($result->num_rows > 0){
+
+                $rows = $result->fetch_assoc();
+
+                return $rows;
+            }
+        }
+
         // adminOnly can access the admin pages, when customer attempting to access the admin pages
         public function adminOnly()
         {

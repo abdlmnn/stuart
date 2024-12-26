@@ -25,34 +25,34 @@
         </div>
 
         <?php
-            // trying to access the old code and password reset link
-            if(!isset($_SESSION['code'])){
+
+            // print_r($_SESSION['code']);
+
+            // trying to access the old code and password reset link and without code
+            if(!isset($_GET['code'])){
                 
+                // print_r($_GET['code']);
+
                 exit("<p style='color:red; text-align: center;'>
                         You can't access this link.
                     </p>"); 
             }else{
 
-                // trying to access the page without code
-                if(!isset($_GET['code'])){
-                
-                    exit("<p style='color:red; text-align: center;'>
-                            You can't access this page.
-                        </p>"); 
-                }
-
-                // i get from my url code=
+                // i get from my url code
                 $code = $_GET['code'];
 
-                // when the password is done or regenerate another code for link
-                if ($_SESSION['code'] !== $code) {
+                // print_r($_GET['code']);
+                // print_r($_SESSION['code']);
 
-                    exit("<p style='color:red; text-align: center;'>
-                            The code and link is expired, 
-                            Please request a new password reset link. 
-                            <b>Thank you!</b>
-                        </p>");
-                }
+                // when the password is done or regenerate another code for link
+                // if($_SESSION['code'] !== $code){
+
+                //     exit("<p style='color:red; text-align: center;'>
+                //             The code and link is expired, 
+                //             Please request a new password reset link. 
+                //             <b>Thank you!</b>
+                //         </p>");
+                // }
 
                                  // checkCode came from my Class ForgotPasswordController 
                 $resultCheckCode = $forgotPassword->checkCode($code);
@@ -66,7 +66,6 @@
                             <b>Thank you!</b>
                         </p>"); 
                 }
-            }
         ?>
 
         <form action="" method="post">
@@ -114,5 +113,6 @@
     <script src="js/password-contain1.js"></script>
     <script src="js/show-password1.js"></script>
 <?php
+    }
     // include 'includes/footer.php';
 ?>

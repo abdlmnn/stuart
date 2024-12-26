@@ -74,15 +74,18 @@
             // if the code has been sent to the user it proceed to send a link for the exact user email
             if($resultUpdateCode){
 
+                // $_SESSION['code'] = $data['code'];
+
                 $mail = new PHPMailer(true);
 
                 // Send email to the exact userEmail with a link for reset password
                 try{
 
-                    $_SESSION['reset_code'] = $data['code'];
+                    // $_SESSION['reset_code'] = $data['code'];
 
                     $userEmail = $data['email'];
                     $code = $data['code'];
+                    // $code = $_SESSION['code'];
 
                     //Server settings
                     $mail->SMTPDebug = 0;                           // Enable verbose debug output, 1 for produciton , 2,3 for debuging in devlopment 

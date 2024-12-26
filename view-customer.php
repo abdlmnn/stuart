@@ -16,6 +16,10 @@
     include 'includes/cart.php';
     
     include 'message.php';
+
+    $users = $authenticated->userTable();
+
+    $data = $authenticated->rows($users);
 ?>
 <!-- <section class="bg-image"> -->
     <div class="body">
@@ -23,7 +27,7 @@
         <!-- <div class="box"> -->
 
             <div class="box-title">
-                <h1 style="color: #000;">Welcome <?= $_SESSION['user']['fullname']; ?></h1>
+                <h1 style="color: #000; font-size: 30px;">Welcome! <?= $data['name'] ?></h1>
                 <br>
                 <a href="<?= base_url('view-landing.php') ?>" style="color: #E2A500; font-size: 2.0rem;">
                     Shop Now

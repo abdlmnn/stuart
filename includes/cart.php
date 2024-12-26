@@ -99,7 +99,21 @@
                 <div class="total-price-container">
                     <p class="total-price-display">Total : <span id="total-Price">&#x20B1; <?= number_format($total) ?></span></p>
 
-                    <button type="button" class="remove-button-two" onclick="viewCart()">View Order (<?= count($_SESSION['cart']) ?>)</button>
+                    <?php $totalQuantity = 0; ?>
+
+                    <!-- first array cart, second array inventoryID then value -->
+                    <?php foreach ($_SESSION['cart'] as $inventoryID => $inventoryData): ?>
+
+                        <!-- third array item, fourth array size then data inside of cart array -->
+                        <?php foreach ($inventoryData['item'] as $size => $data) : ?>
+
+                            <?php $totalQuantity = $totalQuantity + $data['quantity']; ?>
+
+                        <?php endforeach; ?>
+
+                    <?php endforeach; ?>
+
+                    <button type="button" class="remove-button-two" onclick="viewCart()">View Order (<?= $totalQuantity ?>)</button>
                     
                     <!-- <button type="submit" name="delete-all-order-button" class="remove-button-two">Clear All</button> -->
                 </div>
