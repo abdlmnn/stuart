@@ -10,7 +10,7 @@
     <!-- <script src="jquery-3.7.1.min.js"></script> -->
     
     <!-- CSS -->
-    <link rel="stylesheet" href="css/login2.css?v=7.3">
+    <link rel="stylesheet" href="css/login2.css?v=7.5">
 
     <title><?= $title; ?></title>
 </head>

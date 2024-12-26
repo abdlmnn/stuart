@@ -3,149 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Messages</title>
+    <title>Shopping Cart</title>
     <style>
-        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f7f7f7;
+            background-color: #f5f5f5;
+            color: #333;
         }
 
-        /* Header */
-        .header {
-            background-color: #fff;
-            border-bottom: 1px solid #ddd;
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            /* box-shadow: 0 0 15px 3px rgba(0,0,0,.1);
+            border: 2px solid red; */
+        }
+
+        .cart {
             display: flex;
             justify-content: space-between;
-            padding: 15px 30px;
-            align-items: center;
+            margin-top: 20px;
+            /* box-shadow: 0 0 15px 3px rgba(0,0,0,.1); */
         }
 
-        .header .logo {
-            font-size: 22px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .header .navigation a {
-            margin: 0 15px;
-            color: #333;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        /* Notifications Section */
-        .notifications-container {
-            margin: 30px auto;
-            max-width: 800px;
-            padding: 20px;
+        .cart-items {
+            flex: 3;
             background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            /* border-radius: 5px; */
+            box-shadow: 0 0 15px 3px rgba(0,0,0,.1);
         }
 
-        .notifications-container h1 {
-            font-size: 26px;
-            color: #333;
-            margin-bottom: 20px;
-            text-align: center;
+        .order-summary {
+            flex: 1;
+            background: #fff;
+            padding: 20px;
+            margin-left: 20px;
+            /* border-radius: 5px; */
+            box-shadow: 0 0 15px 3px rgba(0,0,0,.1);
         }
 
-        /* Notification Item */
-        .notification-item {
+        .cart-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            background-color: #f9f9f9;
-            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
         }
 
-        .notification-item:hover {
-            background-color: #f0f0f0;
+        .cart-item img {
+            width: 100px;
+            height: auto;
+            /* border-radius: 5px; */
         }
 
-        .notification-content {
-            max-width: 80%;
+        .cart-item-details {
+            flex: 1;
+            margin-left: 20px;
         }
 
-        .notification-content h4 {
-            font-size: 16px;
-            color: #333;
-            margin: 0 0 5px;
+        .cart-item-price {
+            font-weight: bold;
+            margin-top: 25px;
         }
 
-        .notification-content p {
-            font-size: 14px;
-            color: #666;
-            margin: 0;
-            line-height: 1.5;
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .notification-timestamp {
-            font-size: 12px;
-            color: #999;
+        .cart-item-quantity input {
+            width: 50px;
+            text-align: center;
+            padding: 5px;
+            border: 1px solid #ccc;
+            /* border-radius: 3px; */
         }
 
-        .mark-read-btn {
-            padding: 8px 12px;
-            font-size: 12px;
-            background-color: #007bff;
-            color: #fff;
+        .cart-item-actions button {
+            background-color: #e74c3c;
+            color: white;
             border: none;
-            border-radius: 5px;
+            padding: 5px 10px;
+            /* border-radius: 3px; */
             cursor: pointer;
         }
 
-        .mark-read-btn:hover {
-            opacity: 0.9;
+        .order-summary h3 {
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .checkout-btn {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            /* border-radius: 5px; */
+            width: 100%;
+        }
+
+        .delete-all {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            /* border-radius: 5px; */
+            cursor: pointer;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="logo">SHEIN</div>
-        <nav class="navigation">
-            <a href="#">Categories</a>
-            <a href="#">New In</a>
-            <a href="#">Sale</a>
-            <a href="#">Women Clothing</a>
-            <a href="#">Men Clothing</a>
-        </nav>
-    </header>
+    <div class="container">
 
-    <!-- Notifications Section -->
-    <div class="notifications-container">
-        <h1>My Messages</h1>
-        
-        <!-- Notification Item 1 -->
-        <div class="notification-item">
-            <div class="notification-content">
-                <h4>Order Delivered</h4>
-                <p>Your order #123456 has been successfully delivered. Thank you for shopping with us!</p>
+        <div class="cart">
+            <div class="cart-items">
+                <h2>All Items (2)</h2>
+                <div class="cart-item">
+                    <img src="images/shirt1.png" alt="Product Image">
+                    <div class="cart-item-details">
+                        <h4>Sweetra Women's Halter Neck</h4>
+                        <p>Multicolor / S</p>
+                        <div class="cart-item-quantity">
+                            <label for="quantity1">Qty:</label>
+                            <input type="number" id="quantity1" value="1" min="1">
+                        </div>
+                        <div class="cart-item-price">₱395</div>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button>Delete</button>
+                    </div>
+                </div>
+                <div class="cart-item">
+                    <img src="images/shoes2.png" alt="Product Image">
+                    <div class="cart-item-details">
+                        <h4>Nike 2024 Pullover Hoodie</h4>
+                        <p>Green / M</p>
+                        <div class="cart-item-quantity">
+                            <label for="quantity2">Qty:</label>
+                            <input type="number" id="quantity2" value="1" min="1">
+                        </div>
+                        <div class="cart-item-price">₱5,660</div>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button>Delete</button>
+                    </div>
+                </div>
+                <button class="delete-all">Delete All</button>
             </div>
-        </div>
 
-        <!-- Notification Item 2 -->
-        <div class="notification-item">
-            <div class="notification-content">
-                <h4>Payment Confirmation</h4>
-                <p>Your payment for order #123457 has been confirmed. We are now processing your order.</p>
-            </div>
-        </div>
-
-        <!-- Notification Item 3 -->
-        <div class="notification-item">
-            <div class="notification-content">
-                <h4>Account Alert</h4>
-                <p>There was a login attempt from a new device. If this was not you, please update your password immediately.</p>
+            <div class="order-summary">
+                <h3>Order Summary</h3>
+                <div class="summary-line">
+                    <span><strong>Estimated Price:</strong></span>
+                    <span><strong>₱7,635</strong></span>
+                </div>
+                <button class="checkout-btn">Checkout Now</button>
             </div>
         </div>
     </div>

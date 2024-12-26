@@ -1,196 +1,217 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-            color: #333;
-        }
+<?php
+    $title = 'Item';
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 20px auto;
-            display: flex;
-            flex-direction: column;
-        }
+    include 'config/connect.php';
 
-        .header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            font-size: 18px;
-            text-align: center;
-        }
+    include 'codes/authentication-code.php';
+    include 'codes/cart-code.php';
+    
+    include_once 'controllers/AuthenticateController.php';
+    include_once 'admin/controllers/InventoryController.php';
+    include_once 'admin/controllers/SizesController.php';
+    $authenticated = new AuthenticateController;
+    $inventory = new InventoryController;
+    $sizes = new SizesController;
 
-        .cart {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
+    $authenticated->customerOnly();
+    // $authenticated->checkIsLoggedIn();
 
-        .cart-items {
-            flex: 3;
-            background: #fff;
-            padding: 20px;
-            /* border-radius: 5px; */
-        }
+    include 'includes/header.php';
+    include 'includes/navbar.php';
+    include 'includes/cart.php';
+    include 'includes/categories.php';
+    
+    include 'message.php';
+?>
 
-        .order-summary {
-            flex: 1;
-            background: #fff;
-            padding: 20px;
-            margin-left: 20px;
-            /* border-radius: 5px; */
-        }
+<style>
 
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
+.main-cart-item-container {
+    /* border: 2px solid red; */
+    width: 90%;
+    height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
 
-        .cart-item img {
-            width: 100px;
-            height: auto;
-            /* border-radius: 5px; */
-        }
+.child-cart-container {
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: space-between;
+    /* margin-top: 20px; */
+}
 
-        .cart-item-details {
-            flex: 1;
-            margin-left: 20px;
-        }
+.cart-info-container {
+    flex: 3;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 15px 3px rgba(0,0,0,.1);
+}
 
-        .cart-item-price {
-            font-weight: bold;
-        }
+.order-summary-container {
+    /* border: 2px solid red; */
+    flex: 1;
+    padding: 20px;
+    margin-left: 20px;
+    box-shadow: 0 0 15px 3px rgba(0,0,0,.1);
+}
 
-        .cart-item-quantity {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+.cart-items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
-        .cart-item-quantity input {
-            width: 50px;
-            text-align: center;
-            padding: 5px;
-            border: 1px solid #ccc;
-            /* border-radius: 3px; */
-        }
+.cart-items img {
+    width: 100px;
+    height: auto;
+}
 
-        .cart-item-actions button {
-            background-color: #e74c3c;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            /* border-radius: 3px; */
-            cursor: pointer;
-        }
+.cart-items-info {
+    flex: 1;
+    margin-left: 20px;
+    /* border: 1px solid red; */
+}
 
-        .order-summary h3 {
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
+.cart-item-name {
+    font-size: 1.2rem;
+}
 
-        .summary-line {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
+.cart-item-size {
+    margin-top: 10px;
+    font-size: 14px;
+}
 
-        .checkout-btn {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 15px 0;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-            /* border-radius: 5px; */
-            width: 100%;
-        }
+.cart-item-price {
+    font-weight: bold;
+    /* margin-top: 25px; */
+    margin-bottom: 15px;
+}
 
-        .delete-all {
-            background-color: #e74c3c;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            /* border-radius: 5px; */
-            cursor: pointer;
-            margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">Shopping Cart</div>
+.cart-item-delete button {
+    background-color: #111;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    text-align: center;
+}
 
-        <div class="cart">
+.order-summary-container .order-summary {
+    /* border-bottom: 2px solid #f0f0f0; */
+    padding-bottom: 10px;
+    /* margin-bottom: 15px; */
+}
+
+.order-summary-item {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkout-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.estimated-price {
+    font-size: 14px;
+    margin-top: 10px;
+    color: #111;
+}
+
+.subtotal-price {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+</style>
+
+<div class="main-cart-item-container">
+
+    <div class="child-cart-container">
+
+        <div class="cart-info-container">
+
+            <h2 class="all-items">All Items (2)</h2>
+
             <div class="cart-items">
-                <h2>All Items (2)</h2>
-                <div class="cart-item">
-                    <img src="https://via.placeholder.com/100" alt="Product Image">
-                    <div class="cart-item-details">
-                        <h4>Sweetra Women's Halter Neck</h4>
-                        <p>Multicolor / S</p>
-                        <div class="cart-item-quantity">
-                            <label for="quantity1">Qty:</label>
-                            <input type="number" id="quantity1" value="1" min="1">
+
+                <img src="images/shirt1.png" alt="">
+
+                <div class="cart-items-info">
+                    <h4 class="cart-item-name">Red T-shirt</h4>
+                    
+                    <p class="cart-item-size">size: S</p>
+
+                    <div class="item-quantity-container">
+                        <h6 class="item-quantity-name">Qty:</h6>
+
+                        <div class="quantity-selector qtyBox">
+                            <input type="hidden" name="inputID" class="inventoryID" value="<?= $data['id'] ?>"">
+
+                            <button type="button" class="quantity-button decrement">-</button>
+
+                            <input type="number" name="inputQuantity" class="qty quantity-input" value="1" min="1">
+
+                            <button type="button" class="quantity-button increment">+</button>
                         </div>
-                        <div class="cart-item-price">₱395</div>
                     </div>
-                    <div class="cart-item-actions">
-                        <button>Delete</button>
-                    </div>
-                </div>
-                <div class="cart-item">
-                    <img src="https://via.placeholder.com/100" alt="Product Image">
-                    <div class="cart-item-details">
-                        <h4>Nike 2024 Pullover Hoodie</h4>
-                        <p>Green / M</p>
-                        <div class="cart-item-quantity">
-                            <label for="quantity2">Qty:</label>
-                            <input type="number" id="quantity2" value="1" min="1">
+
+                    <div class="cart-item-price">&#x20B1; 399</div>
+
+                    <form action="" method="post">
+                        <div class="cart-item-delete">
+                            <button class="action-update-btn">
+                                Update
+                            </button>
+                            <button class="action-delete-btn">
+                            <ion-icon name="bag-remove-outline" style="font-size: 15px;"></ion-icon>
+                            </button>
                         </div>
-                        <div class="cart-item-price">₱5,660</div>
-                    </div>
-                    <div class="cart-item-actions">
-                        <button>Delete</button>
-                    </div>
+                    </form>
                 </div>
-                <button class="delete-all">Delete All</button>
             </div>
 
-            <div class="order-summary">
-                <h3>Order Summary</h3>
-                <div class="summary-line">
-                    <span>Retail Price:</span>
-                    <span>₱8,948</span>
-                </div>
-                <div class="summary-line">
-                    <span>Promotions:</span>
-                    <span>-₱938</span>
-                </div>
-                <div class="summary-line">
-                    <span>Coupon:</span>
-                    <span>-₱375</span>
-                </div>
-                <div class="summary-line">
-                    <span><strong>Estimated Price:</strong></span>
-                    <span><strong>₱7,635</strong></span>
-                </div>
-                <button class="checkout-btn">Checkout Now</button>
-            </div>
+            <form action="" method="post">
+                <button class="action-delete-all-btn">
+                    Delete All
+                </button>
+            </form>
+
         </div>
+
+        <div class="order-summary-container">
+            <h3 class="order-summary">Order Summary</h3>
+
+            <div class="order-summary-item">
+                <h3>Red T-shirt</h3>
+                <p>S</p>
+                <p style="font-weight: bold;">x1</p>
+            </div>
+
+            <hr>
+
+            <div class="checkout-container">
+                <span class="estimated-price"><strong>Estimated Price:</strong></span>
+
+                <span class="subtotal-price"><strong>&#x20B1; 399</strong></span>
+            </div>
+
+
+            <form action="">
+                <button type="submit" class="checkout-btn">Checkout Now (1)</button>
+            </form>
+        </div>
+
     </div>
-</body>
-</html>
+
+</div>
+
+<?php
+    include 'includes/footer.php';
+?>
