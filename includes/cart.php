@@ -6,7 +6,9 @@
             <ion-icon name="chevron-back-outline" class="close-icon"></ion-icon>
         </div>
 
-        <h1 class="cart-title">My Cart</h1>
+        <h1 class="cart-title">
+            <a href="view-cart.php" style="color: #111;">My Cart</a>
+        </h1>
 
         <?php
             include_once 'controllers/CartController.php';
@@ -97,7 +99,7 @@
                 <div class="total-price-container">
                     <p class="total-price-display">Total : <span id="total-Price">&#x20B1; <?= number_format($total) ?></span></p>
 
-                    <button type="button" class="remove-button-two">View Order (<?= count($_SESSION['cart']) ?>)</button>
+                    <button type="button" class="remove-button-two" onclick="viewCart()">View Order (<?= count($_SESSION['cart']) ?>)</button>
                     
                     <!-- <button type="submit" name="delete-all-order-button" class="remove-button-two">Clear All</button> -->
                 </div>
@@ -126,5 +128,11 @@
         <?php endif; ?>
 
     </div>
+
+    <script>
+        function viewCart(){
+            window.location.href = 'view-cart.php';
+        }
+    </script>
 
 <?php endif; ?>
