@@ -25,7 +25,7 @@
             }else{
 
                 // if the session cart is not empty and it has items, and the info is filled up already after login, it direct to add payment
-                redirect('Your information has been successfully completed','add-payment.php');
+                redirect('You can now proceed to checkout','view-cart.php');
             }
 
         }else{

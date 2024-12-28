@@ -28,10 +28,21 @@
         
         if(!isset($_SESSION['cart']) || empty($_SESSION['cart'])){
             
-            redirect('Please select the items you like to checkout with','view-cart.php');
+            showMessage('Please select the items you like to checkout with');
+        }else{
+
+                  // userTable came from my Class authenticate
+                  $data = $authenticate->userTable();
+    
+            if(empty($data['userFullname']) && empty($data['userNumber']) && empty($data['userAddress']) && empty($data['userGender'])){
+          
+                redirect('Please fill up your information before proceeding to checkout','add-info.php');
+            }elseif(!empty($data['userFullname']) && !empty($data['userNumber']) && !empty($data['userAddress']) && !empty($data['userGender'])){
+      
+                direct('add-place-order.php');
+            };
         }
 
-        direct('add-place-order.php');
     }
     // CHECKOUT
     // DELETE ALL ITEM AND UPDATE STOCK CART
@@ -56,6 +67,8 @@
 
                     // emptyCart came from my Class CartController
                     $cart->emptyCart();
+
+                    showMessage('All items successfully deleted from the Cart');
                 }
                 
             }
@@ -70,13 +83,26 @@
         $inventoryID = $_POST['inventoryID'];
         $size = $_POST['sizeID'];
         $quantity = $_POST['inputQuantity'];
+        
+        if(isset($_SESSION['cart'][$inventoryID]['item'][$size])){
+            
+            // updateStockDelete came from my Class CartController
+            $sizes->updateStockDelete($size,$inventoryID,$quantity);
 
-        // updateStockDelete came from my Class CartController
-        $sizes->updateStockDelete($size,$inventoryID,$quantity);
+            // it delete the cart with exact inventoryID
+    
+            // removing the exact key or inventoryID on session cart array 
+            unset($_SESSION['cart'][$inventoryID]['item'][$size]);
 
-        // it delete the cart with exact inventoryID
-        // removing the exact key or inventoryID on session cart array 
-        unset($_SESSION['cart'][$inventoryID]['item'][$size]);
+            // after deleting the item, it make the cart empty again
+            if(empty($_SESSION['cart'][$inventoryID]['item'])){
+
+                unset($_SESSION['cart'][$inventoryID]);
+            }
+
+            showMessage('The item successfully deleted');
+        }
+
     }
     // DELETE ITEM AND UPDATE STOCK CART
     // UPDATE QUANTITY CART
@@ -112,6 +138,8 @@
 
                         // removing the exact key or inventoryID on session cart array 
                         unset($_SESSION['cart'][$inventoryID]);
+
+                        showMessage('The item successfully deleted');
                     }else{
 
                         // if not equal to 0, it update the quantity
@@ -119,6 +147,8 @@
 
                         // updatStock came from my Class SizesController
                         $sizes->updateStock($size,$inventoryID,$newQuantity);
+
+                        showMessage('Your quantity has been updated');
                     }
 
                 }

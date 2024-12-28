@@ -6,6 +6,7 @@
     include 'codes/authentication-code.php';
     include 'codes/profile-code.php';
     include 'codes/change-password-code.php';
+    include 'codes/cart-code.php';
 
     include_once 'controllers/AuthenticateController.php';
     $authenticated = new AuthenticateController;
@@ -52,7 +53,7 @@
                         <a href="#" onclick="showTab('edit-profile')">Edit Profile</a>
                     </li>
                     <li>
-                        <a href="#" onclick="showTab('delete-profile')">Delete Profile</a>
+                        <a href="#" onclick="showTab('delete-profile')">Delete Account</a>
                     </li>
                     <li>
                         <a href="#" onclick="showTab('change-password')">Change Password</a>
@@ -75,40 +76,59 @@
                         <tr>
                             <th>Order #</th>
                             <th>Date</th>
-                            <th>Items</th>
+                            <!-- <th>Items</th> -->
                             <th>Total</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Order Row 1 -->
+                        <?php
+                            $resultOrders = $authenticate->exactOrders();
+
+                            // print_r($resultOrders);
+
+                            if(!$resultOrders){
+
+                                showMessage('No Orders Record Found');
+                            }else{
+
+                                while($orderData = $resultOrders->fetch_assoc()) :
+                            // print_r($orderData);
+
+                            $formattedDate = date('F j, Y, g:i a', strtotime($orderData['orderDate']));
+                        ?>
                         <tr>
-                            <td>#123456</td>
-                            <td>December 20, 2024</td>
-                            <td>2 Items</td>
-                            <td>$45.00</td>
-                            <td><span class="order-status completed">Completed</span></td>
+                            <td><?= $orderData['orderID'] ?></td>
+                            <td><?= $formattedDate ?></td>
+                            <!-- <td>2 Items</td> -->
+                            <td><?= $orderData['orderAmount'] ?></td>
+                            <td><span class="order-status pending"><?= $orderData['orderStatus'] ?></span></td>
                             <td><a href="#" class="btn">View Details</a></td>
                         </tr>
+
+                        <?php 
+                                endwhile;
+                            }
+                        ?>
                         <!-- Order Row 2 -->
-                        <tr>
+                        <!-- <tr>
                             <td>#123457</td>
                             <td>December 18, 2024</td>
                             <td>2 Items</td>
                             <td>$75.00</td>
                             <td><span class="order-status pending">Pending</span></td>
                             <td><a href="#" class="btn">View Details</a></td>
-                        </tr>
+                        </tr> -->
                         <!-- Order Row 3 -->
-                        <tr>
+                        <!-- <tr>
                             <td>#123458</td>
                             <td>December 15, 2024</td>
                             <td>1 Item</td>
                             <td>$35.00</td>
                             <td><span class="order-status cancelled">Cancelled</span></td>
                             <td><a href="#" class="btn">View Details</a></td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
                 

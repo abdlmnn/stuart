@@ -19,14 +19,18 @@
 
     include 'includes/header.php';
     include 'includes/navbar.php';
-    include 'includes/cart.php';
+    // include 'includes/cart.php';
     
     include 'message.php';
+
+    $userData = $authenticate->userTable();
 ?>
 
-<link rel="stylesheet" href="css/mycart.css?v5.5">
+<link rel="stylesheet" href="css/mycart.css?v8.5">
 
 <?php if(isset($_SESSION['authenticated'])) : ?>
+
+    <?php if(!empty($userData['userFullname']) && !empty($userData['userNumber']) && !empty($userData['userAddress']) && !empty($userData['userGender'])) : ?>
 
     <?php if(!empty($_SESSION['cart']) && isset($_SESSION['cart'])) : ?>
 
@@ -39,13 +43,35 @@
             <p class="text-display">Pay</p> >
             <p class="text-display">Order Complete</p>
         </div>
-
-        <!-- <a href="view-landing.php" class="continue-button"><h1 class="text-continue">
-            CONTINUE SHOPPING >
-        </h1></a> -->
     </div>
 
     <div class="child-cart-container">
+
+        <div class="another-child-cart-container">
+        <div class="billing-address-container">
+            <h2 class="billing-address-title">Customer Information</h2>
+            <?php 
+                $userData = $authenticate->userTable();
+            ?>
+            <form action="" method="post" class="billing-form">
+                <div class="form-group">
+                    <label for="fullname">Fullname:</label>
+                    <input type="text" name="fullname" value="<?= $userData['userFullname'] ?>" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" value="<?= $userData['userNumber'] ?>" name="phone" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input type="text" value="<?= $userData['userAddress'] ?>" name="address" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" value="<?= $userData['userEmail'] ?>" name="email" disabled>
+                </div>
+            </form>
+        </div>
 
         <div class="cart-info-container">
 
@@ -98,6 +124,7 @@
             
         <?php endforeach; ?>
 
+        </div>
         </div>
 
         <div class="order-cash-container">
@@ -160,6 +187,11 @@
 
                         <button type="submit" name="add-place-order-button" class="checkout-btn">PLACE ORDER</button>
 
+                        <input type="hidden" name="userID" value="<?= $userData['userID'] ?>">
+                        <!-- <input type="hidden" name="inventoryID" value="<?= $data['id'] ?>"> -->
+                        <!-- <input type="hidden" name="sizeID" value="<?= $size ?>"> -->
+                        <input type="hidden" name="orderTotal" value="<?= $total ?>">
+
                         <button type="button" onclick="backtocart()" class="checkout-btn">BACK TO CART</button>
                         
                     </div>
@@ -171,14 +203,14 @@
 
                 <div class="main-cash-container">
                     <div class="payment-option">
-                        <input type="radio" name="payment" value="COD" required>
+                        <input type="radio" name="paymentMethod" value="COD" required>
                         <label for="cod">
                             <img src="gcash/cod.png" alt="COD">
                         </label>
                     </div>
 
                     <div class="payment-option">
-                        <input type="radio" name="payment" value="GCash" required>
+                        <input type="radio" name="paymentMethod" value="GCash" required>
                         <label for="gcash">
                             <img src="gcash/gcash.png" alt="GCash">
                         </label>
@@ -194,8 +226,9 @@
     </div>
 
 </div>
+    <?php endif; ?>
 
-        <?php endif; ?>
+    <?php endif; ?>
 
 <?php endif; ?>
 

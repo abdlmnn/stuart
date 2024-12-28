@@ -20,5 +20,5 @@ function cancel()
 
 function skip()
 {
-    window.location.href = "view-customer.php";
+    window.location.href = "view-landing.php";
 }

@@ -3,6 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .payment-container {
+            width: 80%;
+            max-width: 900px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .payment-header {
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .payment-header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #5a5a5a;
+        }
+
+        .payment-header p {
+            margin: 5px 0 0;
+            color: #7d7d7d;
+        }
+
+        .payment-content {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        /* Left section */
+        .payment-left {
+            width: 48%;
+        }
+
+        .payment-left h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .payment-left p {
+            color: #666;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        .qr-code img {
+            width: 100%;
+            max-width: 200px;
+            display: block;
+            margin: 10px 0;
+        }
+
+        .payment-method img {
+            width: 50%;
+            display: block;
+            margin: 10px 0;
+        }
+
+        .instruction {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .how-to-pay {
+            font-size: 14px;
+            color: #007BFF;
+            text-decoration: none;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        /* Right section */
+        .payment-right {
+            width: 48%;
+        }
+
+        .payment-right h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .payment-right p {
+            font-size: 14px;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .total-to-pay {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .total-to-pay span {
+            color: #e53935;
+        }
+
+        /* Image input styles */
+        .image-upload {
+            margin-top: 20px;
+        }
+
+        .image-upload input {
+            font-size: 14px;
+            padding: 10px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <div class="payment-header">
+            <h1>Alipay+</h1>
+            <p>Powers payments by your e-wallet</p>
+        </div>
+
+        <div class="payment-content">
+            <!-- Left section -->
+            <div class="payment-left">
+                <h2>Scan QR Code to Pay </h2>
+                <!-- <div class="qr-code">
+                    <img src="placeholder-qr.png" alt="QR Code">
+                </div> -->
+                <div class="payment-method">
+                    <img src="gcash/QRcode.jpg" alt="Gcash">
+                </div>
+
+                <div class="payment-method">
+                    <h3>0961 093 9761</h3>
+                </div>
+                <!-- <p class="instruction">This QR code can be scanned once only</p>
+                <a href="#" class="how-to-pay">How to Pay?</a> -->
+
+                <!-- Image input for GCash proof -->
+                <div class="image-upload">
+                    <label for="gcash-proof">Upload your GCash Payment Proof</label>
+                    <input type="file" id="gcash-proof" name="gcash-proof" accept="image/*">
+                </div>
+            </div>
+
+            <!-- Right section -->
+            <div class="payment-right">
+                <h2>Order Summary</h2>
+                <p><strong>Pay to:</strong> Stuart Boutique</p>
+                <p><strong>Order info:</strong> SHEIN.COM</p>
+                <p><strong>Order amount:</strong> PHP 400.00</p>
+                <p class="total-to-pay"><strong>Total to pay:</strong> <span>PHP 400.00</span></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Method</title>
     <style>
         body {
@@ -92,7 +274,7 @@
         </div>
     </div>
 </body>
-</html>
+</html> -->
 
 
 

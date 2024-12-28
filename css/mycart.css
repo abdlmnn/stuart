@@ -289,6 +289,7 @@
 .payment-option img {
     width: 80px;
     height: auto;
+    cursor: auto;
 }
 
 label {
@@ -300,8 +301,64 @@ label {
 
 input[type="radio"] {
     margin-right: 15px;
+    cursor: pointer;
 }
 
+.another-child-cart-container {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* padding: 20px; */
+    /* box-shadow: 0 0 15px 3px rgba(0,0,0,.1); */
+}
+
+.billing-address-container {
+    width: 100%;
+    flex: 3;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 15px 3px rgba(0,0,0,.1);
+}
+
+.billing-form {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+    border: 1px solid #95959556;
+    padding: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 14px;
+    /* margin-bottom: 5px; */
+    color: #111;
+    font-weight: 600;
+    margin-right: auto;
+    cursor: auto;
+}
+
+.form-group input {
+    padding: 10px;
+    border: none;
+    border-radius: none;
+    font-size: 14px;
+    outline: none;
+    background-color: transparent;
+    color: #111;
+}
+
+.billing-form input[type="text"],
+.billing-form input[type="email"],
+.billing-form input[type="tel"] {
+    width: 100%;
+    /* border: 1px solid red; */
+}
 
 @media (max-width: 786px) {
 
@@ -333,5 +390,13 @@ input[type="radio"] {
 
     .payment-option {
         height: 100%;
+    }
+
+    .billing-address-container {
+        margin-bottom: 15px;
+    }
+
+    .billing-form {
+        gap: 10px;
     }
 }

@@ -121,7 +121,11 @@
 
                 <!-- <button type="button" class="remove-button-two">View Order ()</button> -->
 
-                <!-- <button type="submit" name="delete-all-order-button" class="remove-button-two">Clear All</button> -->
+                <form action="" method="post">
+                    <input type="hidden" name="inventoryID" class="inventoryID" value="<?= $data['id'] ?>">
+                    <input type="hidden" name="sizeID" class="inventoryID" value="<?= $data['size'] ?>">
+                    <button type="submit" name="delete-all-order-button" class="remove-button-two">CLEAR ALL</button>
+                </form>
             </div>
         
         <!-- </form> -->

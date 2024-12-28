@@ -26,6 +26,29 @@
             ];
         }
 
+        
+
+        // Display the orders of exact users
+        public function exactOrders()
+        {
+            $userID = $_SESSION['user']['id'];
+
+            $getDataQuery = "
+                SELECT * 
+                FROM orders
+                WHERE userID='$userID'
+            ";
+            $result = $this->conn->query($getDataQuery);
+            
+            if($result){
+
+                return $result;
+            }else{
+
+                return false;
+            }
+        }
+
         public function userTable()
         {
             $email = $_SESSION['user']['email'];
