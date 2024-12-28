@@ -15,7 +15,7 @@
         // Empty session order array
         public function emptyCart()
         {
-            $_SESSION['cart']= [];
+            return $_SESSION['cart']= [];
         }
 
         // Storing the data in array with key and assign the row as a value
@@ -79,84 +79,6 @@
             }
             
         }
-
-        // Set the quantity 1 or more than 1 exact id
-        public function quantity($inventoryID,$quantity)
-        {
-            // using multi dimensional array it check if the id is in the session order
-            if(isset($_SESSION['order'][$inventoryID])){
-
-                // adding quantity more than 1 or input quantity
-                return $_SESSION['order'][$inventoryID] = $_SESSION['order'][$inventoryID] + $quantity;
-            }else{
-    
-                // adding quantity in the session order
-
-                // if i add number 1 in the cart it also add 1 quantity
-                return $_SESSION['order'][$inventoryID] = $quantity;
-            }
-        }
-
-        // Update the stock of inventory when item been added in order
-        public function updateStock($inventoryID,$quantity)
-        {
-            $updateDataQuery = "
-                UPDATE inventory
-                SET itemStock=itemStock - $quantity
-                WHERE inventoryID='$inventoryID'
-                LIMIT 1
-            ";
-            $result = $this->conn->query($updateDataQuery);
-
-            if($result){
-                return true;
-            }else{
-                return false;
-            }
-        }
-
-        // Update the stock of inventory when item been remove in order
-        public function updateStockDelete($id)
-        {
-            if(isset($_SESSION['order'][$id])){
-
-                $quantity = $_SESSION['order'][$id]['quantity'];
-
-                $updateDataQuery = "
-                    UPDATE inventory
-                    SET itemStock= itemStock + $quantity
-                    WHERE inventoryID='$id'
-                    LIMIT 1
-                ";
-                $result = $this->conn->query($updateDataQuery);
-
-                if($result){
-                    return true;
-                }else{
-                    return false;
-                }
-            }
-        }
-
-        public function updateStockDeleteAll(){
-            foreach($_SESSION['order'] as $id => $data){
-                
-                $quantity = $data['quantity'];
-
-                $updateDataQuery = "
-                    UPDATE inventory
-                    SET itemStock = itemStock + $quantity
-                    WHERE inventoryID='$id'
-                ";
-                $result = $this->conn->query($updateDataQuery);
-
-                if($result){
-
-                    return true;
-                }else{
-                    return false;
-                }
-            }
-        }
+        
     }
 ?>

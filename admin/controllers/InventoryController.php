@@ -238,7 +238,7 @@
 
             if($result->num_rows == 1){
 
-                $this->totalStock();
+                $this->exactTotalStock($updateID);
 
                 // it return the result to the function
                 return $result;
@@ -258,6 +258,21 @@
                     SELECT SUM(sizeStock)
                     FROM sizes
                     WHERE sizes.inventoryID = inventory.inventoryID
+                )
+            ";
+            $result = $this->conn->query($updateDataQuery);
+
+            return $result;
+        }
+
+        public function exactTotalStock($inventoryID)
+        {
+            $updateDataQuery = "
+                UPDATE inventory
+                SET itemTotalStock = (
+                    SELECT SUM(sizeStock)
+                    FROM sizes
+                    WHERE sizes.inventoryID='$inventoryID'
                 )
             ";
             $result = $this->conn->query($updateDataQuery);

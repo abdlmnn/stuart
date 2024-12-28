@@ -59,7 +59,6 @@
                         }
                     };
 
-                // Auto-remove the modal after 5 seconds (5000 ms)
                     setTimeout(function() {
                         document.getElementById('messageModal').remove();
                     }, 5000);

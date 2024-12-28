@@ -214,7 +214,7 @@
                 // This is for empty user Row 
                 if(empty($_SESSION['user']['fullname']) || empty($_SESSION['user']['number']) || empty($_SESSION['user']['address']) || empty($_SESSION['user']['gender'])){
 
-                    redirect('Proceed to fill up your information','add-info.php');
+                    redirect('Please fill up your information','add-info.php');
                 }elseif(!empty($_SESSION['user']['fullname']) && !empty($_SESSION['user']['number']) && !empty($_SESSION['user']['address']) && !empty($_SESSION['user']['gender'])){
 
                     redirect('You have logged in successfully','view-customer.php');

@@ -44,8 +44,7 @@
                 <div class="row">
                     <i class="fas fa-venus-mars"></i>
                     <select name="inputGender" class="input" required>
-                        <option>Select Gender</option>
-                        <option value="Male">Male</option>
+                        <option value="Male" selected>Male</option>
                         <option value="Female">Female</option>
                     </select>
                 </div>

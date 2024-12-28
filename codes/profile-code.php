@@ -18,7 +18,16 @@
 
         if($resultUpdateinfo){
 
-            redirect('Your fill up is complete','view-customer.php');
+            // if the session cart is empty no items, after the filled up info it direct to view customer
+            if(!isset($_SESSION['cart']) || empty($_SESSION['cart'])){
+
+                redirect('Your profile information is complete','view-customer.php');
+            }else{
+
+                // if the session cart is not empty and it has items, and the info is filled up already after login, it direct to add payment
+                redirect('Your information has been successfully completed','add-payment.php');
+            }
+
         }else{
 
             redirect('Something went wrong','add-info.php');

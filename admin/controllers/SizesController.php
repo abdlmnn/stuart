@@ -122,7 +122,7 @@
         }
 
         // Get the exact inventoryID of stock
-        public function getExactStock($inventoryID)
+        public function getExactStock($inventoryID,$size)
         {
             $getDataQuery = "
                 SELECT sizeStock, sizeName, inventory.*
@@ -130,6 +130,7 @@
                 INNER JOIN inventory
                 ON sizes.inventoryID = inventory.inventoryID
                 WHERE inventory.inventoryID='$inventoryID'
+                AND sizes.sizeID='$size'
                 LIMIT 1
             ";
             $result = $this->conn->query($getDataQuery);
@@ -291,15 +292,32 @@
         }
 
         // Update the stock of sizes exact ID
-        public function updateStock($sizeID,$quantity)
+        public function updateStock($sizeID,$inventoryID,$quantity)
         {
             $updateDataQuery = "
                 UPDATE sizes
                 SET sizeStock = sizeStock - $quantity
-                WHERE sizeID='$sizeID'
+                WHERE sizeID='$sizeID' 
+                AND inventoryID='$inventoryID'
+                LIMIT 1
             ";
             $result = $this->conn->query($updateDataQuery);
             
+            return $result;
+        }
+
+        // Update the stock of sizes exact ID after deleting the item
+        public function updateStockDelete($size,$inventoryID,$quantity)
+        {
+            $updateDataQuery = "
+                UPDATE sizes
+                SET sizeStock = sizeStock + $quantity
+                WHERE sizeID='$size' 
+                AND inventoryID='$inventoryID'
+                LIMIT 1
+            ";
+            $result = $this->conn->query($updateDataQuery);
+                
             return $result;
         }
 
