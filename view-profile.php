@@ -48,7 +48,6 @@
         transform: translate(-50%, -50%);
         background-color: #fff;
         padding: 15px;
-        border-radius: 10px;
         width: 85%;
         max-width: 700px;
     }
