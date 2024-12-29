@@ -127,7 +127,7 @@
         </div>
         </div>
 
-        <div class="order-cash-container">
+        <div class="order-cash-container" style="margin-bottom: 0;">
 
             <div class="order-summary-container">
                 <h3 class="order-summary">Order Summary</h3>

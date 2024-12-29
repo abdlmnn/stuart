@@ -54,18 +54,6 @@
                         <a href="view-profile.php" onclick="showTab('orders')">My Orders</a>
                     </li>
                     <li>
-                        <a href="#" onclick="showTab('messages')">My Messages</a>
-                    </li>
-                </ul>
-
-            </div>
-
-            <div class="section-action">
-
-                <h4>My Account</h4>
-
-                <ul>
-                    <li>
                         <a href="#" onclick="showTab('profile')">My Profile</a>
                     </li>
                     <li>

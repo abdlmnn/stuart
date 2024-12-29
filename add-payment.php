@@ -81,8 +81,6 @@
         </form>
     </div>
 
-        
-
             <div class="order-details-section">
                 <h3>Order Summary</h3>
                 <div class="order-detail">
@@ -105,8 +103,8 @@
                     <strong>Total to Pay:</strong>
                     <p class="total-to-pay">&#x20B1; <?= number_format($orderData['orderAmount']) ?></p>
                 </div>
-                <div class="order-detail">
-                    <button type="button" onclick="back()" class="back-button">Back</button>
+                <div class="order-detail" style="display: flex; flex-direction: column; gap: 10px; text-align: center;">
+                    <a href="view-invoice.php?order=<?= $orderID ?>" class="back-button">Invoice</a>
                 </div>
             </div>
 
@@ -121,12 +119,3 @@
     <?php endif; ?>
 
 <?php endif; ?>
-
-<script>
-    function back(){
-        window.location.href = 'view-cart.php';
-    }
-</script>
-<?php
-    // include 'includes/footer.php';
-?>

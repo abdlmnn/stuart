@@ -97,7 +97,7 @@
 
             $resultGetExactOrder = $payment->getExactOrder($orderID);
 
-            while($orderData = $resultGetExactOrder->fetch_assoc()):
+            $orderData = $resultGetExactOrder->fetch_assoc();
     ?>
 
     <div class="main-text-display" style="margin-top: 20px;">
@@ -131,10 +131,15 @@
             gap: 5px;
             padding: 25px;
         ">
-            <h2 style="color: #111; margin-bottom: 20px;">Thank You for Your Order!</h2>
-            <p>Your order has been successfully placed. Please check your email.</p>
-            <p>Official receipt has been sent to your email: <strong><a href="https://mail.google.com/" style="color: #e2a500; font-size:18px;" target="_blank"><?= $userData['userEmail'] ?></a></strong></p>
-
+            <h2 style="color: #111; margin-bottom: 5px;">Thank You for your Order!</h2>
+            <p>Your order has been successfully placed! <br>An official receipt will be sent to your email once the order is approved.</p>
+            <!-- <p>Official receipt has been sent to your email: <strong><a href="https://mail.google.com/" style="color: #e2a500; font-size:18px;" target="_blank"></a></strong></p> -->
+            <p> Order details will be sent to your email: 
+                <strong>
+                    <a href="https://mail.google.com/" style="color: #e2a500; font-size:18px;" target="_blank"><?= $userData['userEmail'] ?></a>
+                </strong>
+            </p>
+            
             <div class="actions">
                 <a href="view-landing.php" class="continue-shopping-btn">Continue Shopping</a>
             </div>
@@ -145,20 +150,9 @@
 </div>
 
     <?php
-            endwhile;
         }
     ?>
 
     <?php endif; ?>
 
 <?php endif; ?>
-
-<script>
-    function back(){
-        window.location.href = 'view-cart.php';
-    }
-</script>
-
-<?php
-    // include 'includes/footer.php';
-?>

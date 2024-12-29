@@ -1,0 +1,182 @@
+.main-invoice-container {
+    /* font-family: Arial, sans-serif;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; */
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    min-height: 100vh;
+}
+
+.invoice {
+    width: 90%;
+    max-width: 700px;
+    padding: 20px;
+    border: none;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+.invoice-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.invoice-header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #111;
+}
+
+.invoice-header p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.invoice-info {
+    margin-bottom: 20px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.info-item strong {
+    color: #333;
+}
+
+.invoice-items h3 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    height: auto;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #111;
+    color: #efaf00;
+    font-size: 14px;
+}
+
+td {
+    font-size: 14px;
+    color: #555;
+}
+
+.invoice-total {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.total-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.total-due {
+    font-size: 18px;
+    font-weight: bold;
+    color: #efaf00;
+}
+
+.payment {
+    color: #111;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.payment-terms {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #444;
+}
+
+.btn-container-form {
+    display: flex;
+    justify-content: center;
+}
+
+.complete-btn {
+    border: none;
+    cursor: pointer;
+    background-color: #111;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.complete-btn:hover {
+    opacity: .8;
+}
+
+
+
+
+
+@media (max-width: 768px) {
+    .invoice {
+        padding: 15px;
+        font-size: 14px;
+        width: 100%;
+    }
+
+    th, td {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .invoice-header h1 {
+        font-size: 20px;
+    }
+
+    .invoice-header p {
+        font-size: 12px;
+    }
+
+    .total-due {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .info-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .info-item strong,
+    .info-item span {
+        display: block;
+        margin-bottom: 2px;
+    }
+
+    .total-line {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+}
