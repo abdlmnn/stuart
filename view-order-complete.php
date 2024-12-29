@@ -133,7 +133,7 @@
         ">
             <h2 style="color: #111; margin-bottom: 20px;">Thank You for Your Order!</h2>
             <p>Your order has been successfully placed. Please check your email.</p>
-            <p>Official receipt has been sent to your email: <strong><?= $userData['userEmail'] ?></strong>.</p>
+            <p>Official receipt has been sent to your email: <strong><a href="https://mail.google.com/" style="color: #e2a500; font-size:18px;" target="_blank"><?= $userData['userEmail'] ?></a></strong></p>
 
             <div class="actions">
                 <a href="view-landing.php" class="continue-shopping-btn">Continue Shopping</a>

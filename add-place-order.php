@@ -26,7 +26,7 @@
     $userData = $authenticated->userTable();
 ?>
 
-<link rel="stylesheet" href="css/mycart.css?v8.5">
+<link rel="stylesheet" href="css/mycart.css?v2.5">
 
 <?php if(isset($_SESSION['authenticated'])) : ?>
 

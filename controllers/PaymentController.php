@@ -20,6 +20,27 @@
             return $path;
         }
 
+        public function getDataOrderline($orderID)
+        {
+            $getDataQuery = "
+                SELECT orderline.*, orders.*, inventory.*, sizes.*
+                FROM orderline
+                INNER JOIN orders ON orderline.orderID = orders.orderID
+                INNER JOIN inventory ON orderline.inventoryID = inventory.inventoryID
+                INNER JOIN sizes ON orderline.sizeID = sizes.sizeID
+                WHERE orderline.orderID='$orderID'
+            ";
+            $result = $this->conn->query($getDataQuery);
+    
+            if($result->num_rows > 0){
+
+                return $result;
+            }else{
+
+                return false;
+            }
+        }
+
         // Add new data through the orderline table
         public function addOrderLine($orderlineData)
         {
@@ -56,6 +77,30 @@
             }
         }
 
+        public function cancelledOrder($orderID)
+        {
+            $updateDataQuery = "
+                UPDATE orders
+                SET orderStatus='cancelled'
+                WHERE orderID='$orderID'
+            ";
+            $result = $this->conn->query($updateDataQuery);
+
+            return $result;
+        }
+
+        public function approvedOrder($orderID)
+        {
+            $updateDataQuery = "
+                UPDATE orders
+                SET orderStatus='approved'
+                WHERE orderID='$orderID'
+            ";
+            $result = $this->conn->query($updateDataQuery);
+
+            return $result;
+        }
+
         public function updatePaymentStatus1($orderID)
         {
             $updateDataQuery = "
@@ -79,6 +124,18 @@
 
         //     return $result;
         // }
+
+        public function paymentCOD($orderID,$amount)
+        {
+            $insertDataQuery = "
+                INSERT INTO 
+                payment (orderID,paymentAmount)
+                VALUES ('$orderID','$amount')
+            ";
+            $result = $this->conn->query($insertDataQuery);
+
+            return $result;
+        }
 
         // Add all the data to the payment
         public function addPayment($orderID,$amount,$proof)
