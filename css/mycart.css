@@ -29,6 +29,9 @@
 
 .text-selected {
     color: #111;
+    /* font-size: 16px; */
+        /* color: #4CAF50; */
+        font-weight: bold;
 }
 
 /* .continue-button {
@@ -360,6 +363,135 @@ input[type="radio"] {
     /* border: 1px solid red; */
 }
 
+.payment-section{
+    flex: 3;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.1);
+    /* border: 1px solid red; */
+    margin-right: 20px;
+}
+
+.order-details-section {
+    flex: 1.2;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.1);
+    /* border: 1px solid red; */
+}
+
+.payment-section {
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.qr-code-container {
+    text-align: center;
+    /* border: 1px solid red; */
+    flex: 1.2;
+    margin-bottom: 25px;
+}
+
+.qr-code-image {
+    max-width: 75%;
+    height: auto;
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+}
+
+.form-payment-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    flex: 1;
+    height: 100%;
+    /* border: 1px solid red; */
+    margin-bottom: auto;
+}
+
+input[type="file"] {
+    display: none; 
+}
+
+.custom-file-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #e2a500;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    /* border-radius: 25px; */
+    transition: background-color 0.3s ease;
+}
+
+.custom-file-label:hover {
+    background-color: #c18a00;
+}
+
+.upload-btn {
+    padding: 10px 20px;
+    background-color: #111;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.upload-btn:hover {
+    background-color: #444;
+}
+
+.order-details-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: auto;
+    position: sticky;
+    top: 15px;
+}
+
+.order-detail {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    /* border-bottom: 1px solid #e0e0e0; */
+    padding-bottom: 5px;
+}
+
+.total-to-pay {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #e2a500;
+}
+.back-button{
+    padding: 10px 20px;
+    background-color: #111;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.back-button:hover {
+    background-color: #444;
+}
+
 @media (max-width: 786px) {
 
     .main-cart-item-container {
@@ -398,5 +530,14 @@ input[type="radio"] {
 
     .billing-form {
         gap: 10px;
+    }
+
+    .payment-section {
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    .order-details-section {
+        width: 100%;
     }
 }

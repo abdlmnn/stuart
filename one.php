@@ -3,6 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Receipt Modal</title>
+    <style>
+        /* Modal container */
+        .view-modal-container {
+            display: none;
+            position: fixed;
+            /* border: 1px solid red; */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow: auto;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Modal content */
+        .first-child-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            width: 85%;
+            max-width: 700px; /* Reduced width */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            /* border: 1px solid red; */
+        }
+
+        /* Header */
+        h2 {
+            text-align: center;
+            font-size: 20px; /* Reduced font size */
+            margin-bottom: 15px;
+        }
+
+        /* User info */
+        .user-info {
+            margin-bottom: 15px;
+            font-size: 14px; /* Smaller font size */
+        }
+
+        /* Order items container with scroll */
+        .order-items {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            max-height: 300px; /* Fixed height for scrolling */
+            overflow-y: auto; /* Enable vertical scrolling */
+            padding-right: 15px; /* Add space for scrollbar */
+            /* border: 1px solid red; */
+            padding: 25px;
+        }
+
+        /* Each order item */
+        .order-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px; 
+            /* border: 1px solid #ddd; */
+            box-shadow: 0 0 15px 3px rgba(0,0,0,.1);
+            /* border-radius: 8px; */
+            /* background-color: #f9f9f9; */
+            background-color: transparent;
+            /* border: 1px solid red; */
+        }
+
+        .order-item img {
+            width: 75px; /* Smaller image size */
+            height: auto;
+            object-fit: cover;
+            margin-right: 20px; /* Reduced margin */
+        }
+
+        .order-item .item-details {
+            flex: 1;
+        }
+
+        .order-item .item-details p {
+            margin: 3px 0; /* Reduced margin */
+            font-size: 14px; /* Smaller font size */
+        }
+
+        /* Total amount */
+        .total-amount {
+            margin-top: 15px;
+            font-size: 16px; /* Smaller font size */
+            font-weight: bold;
+            text-align: right;
+        }
+
+        /* Close Button */
+        .close-button {
+            background-color: #f44336;
+            color: white;
+            padding: 8px 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            display: block;
+            width: 100%;
+        }
+
+        /* Responsive grid layout for larger screens */
+        @media (min-width: 768px) {
+            .order-items {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Modal Container -->
+    <div id="itemModal" class="view-modal-container">
+        <div class="first-child-container">
+            <div class="second-child-container">
+                <form action="" method="post">
+                    <div class="item-modal-container">
+                        <!-- View Modal Content -->
+                        <h2>Order Receipt</h2>
+
+                        <!-- User Information -->
+                        <div class="user-info">
+                            <p><strong>User Full Name:</strong> <span id="userFullName">John Doe</span></p>
+                            <p><strong>Payment Method:</strong> <span id="paymentMethod">Credit Card</span></p>
+                        </div>
+
+                        <!-- Items List -->
+                        <div class="order-items" id="orderItems">
+                            <!-- Order items will be dynamically inserted here -->
+                        </div>
+
+                        <!-- Total Amount -->
+                        <div class="total-amount">
+                            <p><strong>Grand Total: </strong> <span id="grandTotal">$0.00</span></p>
+                        </div>
+
+                        <!-- Close Button -->
+                        <button type="button" class="close-button" onclick="closeModal()">Close</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for the order
+        const orderData = {
+            userFullName: "John Doe",
+            paymentMethod: "Credit Card",
+            items: [
+                {
+                    image: "images/shirt1.png", // Placeholder image
+                    name: "T-Shirt",
+                    size: "M",
+                    price: 19.99,
+                    quantity: 2,
+                    total: 39.98
+                },
+                {
+                    image: "images/shoes1.png", // Placeholder image
+                    name: "Jeans",
+                    size: "L",
+                    price: 49.99,
+                    quantity: 1,
+                    total: 49.99
+                },
+                {
+                    image: "images/shoes2.png", // Placeholder image
+                    name: "Jeans",
+                    size: "L",
+                    price: 49.99,
+                    quantity: 1,
+                    total: 49.99
+                },
+                {
+                    image: "images/PngItem_1801328.png", // Placeholder image
+                    name: "Jeans",
+                    size: "L",
+                    price: 49.99,
+                    quantity: 1,
+                    total: 49.99
+                },
+                {
+                    image: "images/shoes3.png", // Placeholder image
+                    name: "Jeans",
+                    size: "L",
+                    price: 49.99,
+                    quantity: 1,
+                    total: 49.99
+                },
+                {
+                    image: "images/shoes3.png", // Placeholder image
+                    name: "Jeans",
+                    size: "L",
+                    price: 49.99,
+                    quantity: 1,
+                    total: 49.99
+                },
+                {
+                    image: "images/shoes3.png", // Placeholder image
+                    name: "Jeans",
+                    size: "L",
+                    price: 49.99,
+                    quantity: 1,
+                    total: 49.99
+                }
+            ]
+        };
+
+        // Function to open the modal
+        function openModal() {
+            // Populate the modal with the order data
+            document.getElementById("userFullName").textContent = orderData.userFullName;
+            document.getElementById("paymentMethod").textContent = orderData.paymentMethod;
+
+            const orderItemsContainer = document.getElementById("orderItems");
+            orderItemsContainer.innerHTML = ""; // Clear existing items
+
+            let grandTotal = 0;
+
+            // Loop through the order items and display them
+            orderData.items.forEach(item => {
+                grandTotal += item.total;
+                const orderItem = `
+                    <div class="order-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="item-details">
+                            <p><strong>${item.name}</strong></p>
+                            <p>Size: ${item.size}</p>
+                            <p>Price: $${item.price.toFixed(2)}</p>
+                            <p>Quantity: ${item.quantity}</p>
+                            <p>Total: $${item.total.toFixed(2)}</p>
+                        </div>
+                    </div>
+                `;
+                orderItemsContainer.innerHTML += orderItem;
+            });
+
+            // Update the grand total
+            document.getElementById("grandTotal").textContent = `$${grandTotal.toFixed(2)}`;
+
+            // Show the modal
+            document.getElementById("itemModal").style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById("itemModal").style.display = "none";
+        }
+
+        // Example of opening the modal when an order is complete
+        openModal(); // Call this when you want to open the modal, e.g., after order completion
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Page</title>
     <style>
         /* General styles */
@@ -176,7 +451,7 @@
         </div>
     </div>
 </body>
-</html>
+</html> -->
 
 
 

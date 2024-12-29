@@ -3,6 +3,97 @@
 
     $conn = mysqli_connect('localhost','root','','stuartdb');
 
+    // MODAL VIEW ORDER
+    if (isset($_POST['view-order-button'])) {
+        $orderID = $_POST['id'];
+    
+        $getDataQuery = "
+            SELECT orderline.*, orders.*, inventory.*, sizes.*
+            FROM orderline
+            INNER JOIN orders ON orderline.orderID = orders.orderID
+            INNER JOIN inventory ON orderline.inventoryID = inventory.inventoryID
+            INNER JOIN sizes ON orderline.sizeID = sizes.sizeID
+            WHERE orderline.orderID='$orderID'
+        ";
+    
+        $result = mysqli_query($conn, $getDataQuery);
+    
+        if ($result->num_rows > 0) {
+
+            $grandTotal = 0;
+
+            $response = "";
+    
+            while ($row = $result->fetch_assoc()) {
+
+                $inventoryID = $row['inventoryID'];
+                $itemName = $row['itemName'];
+                $itemImage = $row['itemImage'];
+                $sizeID = $row['sizeID'];
+                $sizeName = $row['sizeName'];
+                $price = $row['itemPrice'];
+                $quantity = $row['orderlineQuantity'];
+
+                $total = $price * $quantity;
+    
+                $grandTotal = $grandTotal + $total;
+    
+                $response .= "
+                    <div class='order-item'>
+                        <img src='images/$itemImage' alt='$itemName'>
+                        <div class='item-details'>
+                            <p><strong>Name:</strong> $itemName</p>
+                            <p><strong>Size:</strong> $sizeName </p>
+                            <p><strong>Price:</strong> &#x20B1; " . number_format($price) . "</p>
+                            <p><strong>Quantity:</strong> $quantity</p>
+                            <p><strong>Total:</strong> &#x20B1; " . number_format($total) . "</p>
+                        </div>
+                    </div>
+                ";
+            }
+    
+            $ordersQuery = "
+                SELECT orders.*, users.*
+                FROM orders
+                INNER JOIN users ON orders.userID = users.userID
+                WHERE orders.orderID='$orderID'
+            ";
+    
+            $resultOrders = mysqli_query($conn, $ordersQuery);
+    
+            if ($resultOrders->num_rows > 0) {
+
+                $orderData = $resultOrders->fetch_assoc();
+
+                $fullname = $orderData['userFullname'];
+
+                $paymentMethod = $orderData['paymentMethod'];
+    
+                // Add user info and grand total to the response
+                $response = "
+                    <h2>Order Receipt</h2>
+    
+                    <div class='user-info'>
+                            <p><strong>Full Name:</strong> $fullname</p>
+                            <p><strong>Payment Method:</strong> $paymentMethod</p>
+                    </div>
+    
+                    <div class='order-items'>
+                        $response
+                    </div>
+
+                    <div class='total-amount'>
+                        <p><strong>Order Total:</strong> &#x20B1; " . number_format($grandTotal) . "</p>
+                    </div>
+                    
+                ";
+            }
+    
+            echo $response;
+        }
+    }
+    
+    // MODAL VIEW ORDER
     // MODAL VIEW
     if(isset($_POST['click_view_bttn']))
     {

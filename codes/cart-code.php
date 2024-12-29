@@ -31,8 +31,8 @@
             showMessage('Please select the items you like to checkout with');
         }else{
 
-                  // userTable came from my Class authenticate
-                  $data = $authenticate->userTable();
+            // userTable came from my Class authenticate
+            $data = $authenticate->userTable();
     
             if(empty($data['userFullname']) && empty($data['userNumber']) && empty($data['userAddress']) && empty($data['userGender'])){
           

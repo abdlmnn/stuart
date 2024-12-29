@@ -48,7 +48,7 @@
                 return false;
             }
         }
-
+        
         public function userTable()
         {
             $email = $_SESSION['user']['email'];

@@ -25,7 +25,7 @@
             }else{
 
                 // if the session cart is not empty and it has items, and the info is filled up already after login, it direct to add payment
-                redirect('You can now proceed to checkout','view-cart.php');
+                redirect('Your profile information is successfully completed','add-place-order.php');
             }
 
         }else{
@@ -39,19 +39,31 @@
     {
         $id = $_POST['delete-button'];
 
-                      // delete came from my Class ProfileController 
-        $resultDelete = $profile->delete($id);
+        // Before deleting my account
+        // All exact userID in orders Table will be deleted first
+        // Then the exact userID in users Table will be deleted second
+        // Lastly, after deleting all data then it will logout and proceed to register
 
-        if($resultDelete){
+        // Deleting all Orders data with exact ID that are inserted in orders table
+        $profile->deleteAllOrdersRecords($id);
 
-            // userLogout came from my Class LoginController
-            $login->userLogout();
+                        // delete came from my Class ProfileController 
+            $resultDelete = $profile->delete($id);
+
+            if($resultDelete){
+
+                // Deleting all Orders that are inserted in data exact ID
+                // $profile->deleteAllOrdersRecords($id);
+
+                // userLogout came from my Class LoginController
+                $login->userLogout();
+                
+                redirect('Your Account Deleted Successfully','add-register.php');
+            }else{
+
+                redirect('Something went wrong','view-profile.php');
+            }
             
-            redirect('Your Account Deleted Successfully','add-register.php');
-        }else{
-
-            redirect('Something went wrong','view-profile.php');
-        }
     }
     // DELETE USER PROFILE
     // EDIT USER PROFILE

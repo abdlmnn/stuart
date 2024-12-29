@@ -12,6 +12,18 @@
             $this->conn = $db->conn;
         }
 
+        public function deleteAllOrdersRecords($deleteID)
+        {
+            $deleteDataQuery = "
+                DELETE
+                FROM orders
+                WHERE userID='$deleteID'
+            ";
+            $result = $this->conn->query($deleteDataQuery);
+        
+             return $result;
+        }
+
         // Delete the information of user with exact ID
         public function delete($deleteID)
         {

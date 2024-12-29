@@ -12,7 +12,15 @@
             $this->conn = $db->conn;  
         }
 
-        // 
+        // Upload image file from path
+        public function imagePath($image)
+        {
+            $path = "../gcash/" . $image;
+
+            return $path;
+        }
+
+        // Add new data through the orderline table
         public function addOrderLine($orderlineData)
         {
             // it will dislpay all the data of my inputData which is in array registerData
@@ -28,25 +36,67 @@
             return $result;
         }
 
-        public function getOrderId()
+        public function getExactOrder($id)
         {
-            $id = $_SESSION['user']['id'];
-
             $getDataQuery = "
-                SELECT orderID
+                SELECT orders.*, users.*
                 FROM orders
-                WHERE userID='$id'
-                LIMIT 1
+                INNER JOIN users
+                ON orders.userID = users.userID
+                WHERE orders.orderID='$id'
             ";
             $result = $this->conn->query($getDataQuery);
 
             if($result){
 
-                $row = $result->fetch_assoc();
+                return $result;
+            }else{
 
-                $orderID = $row['orderID'];
+                return false;
+            }
+        }
 
-                return $orderID;
+        public function updatePaymentStatus1($orderID)
+        {
+            $updateDataQuery = "
+                UPDATE orders
+                SET paymentStatus='paid'
+                WHERE orderID='$orderID'
+            ";
+            $result = $this->conn->query($updateDataQuery);
+
+            return $result;
+        }
+
+        // public function updatePaymentStatus2($orderID)
+        // {
+        //     $updateDataQuery = "
+        //         UPDATE payment
+        //         SET paymentStatus='paid'
+        //         WHERE orderID='$orderID'
+        //     ";
+        //     $result = $this->conn->query($updateDataQuery);
+
+        //     return $result;
+        // }
+
+        // Add all the data to the payment
+        public function addPayment($orderID,$amount,$proof)
+        {
+            $insertDataQuery = "
+                INSERT INTO 
+                payment (orderID,paymentAmount,paymentProof)
+                VALUES ('$orderID','$amount','$proof')
+            ";
+            $result = $this->conn->query($insertDataQuery);
+
+            if($result){
+
+                $this->updatePaymentStatus1($orderID);
+
+                // $this->updatePaymentStatus2($orderID);
+
+                return true;
             }else{
 
                 return false;
@@ -67,7 +117,16 @@
             ";
             $result = $this->conn->query($insertDataQuery);
 
-            return $result;
+            if($result){
+
+                // get the last inserted orderID in orders table
+                $orderID = $this->conn->insert_id;
+
+                return $orderID;
+            }else{
+
+                return false;
+            }
         }
     }
 ?>

@@ -23,7 +23,7 @@
     
     include 'message.php';
 
-    $userData = $authenticate->userTable();
+    $userData = $authenticated->userTable();
 ?>
 
 <link rel="stylesheet" href="css/mycart.css?v8.5">

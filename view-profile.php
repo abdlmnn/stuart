@@ -20,7 +20,142 @@
 
     include 'message.php';
 ?>
-<link rel="stylesheet" href="css/profile.css?v=5.5">
+<link rel="stylesheet" href="css/profile.css?v=7.5">
+
+<style>
+        /* Modal container */
+    .view-modal-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        overflow: auto;
+    }
+
+    .view-modal-container.show-modal {
+        display: block;
+    }
+
+    /* Modal content */
+    .first-child-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        width: 85%;
+        max-width: 700px;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .user-info {
+        /* margin-bottom: 15px; */
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-right: auto;
+    }
+
+    .item-modal-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        /* border: 1px solid red; */
+    }
+
+    .order-items {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+        max-height: 400px;
+        overflow-y: auto;
+        /* margin-bottom: 20px; */
+        width: 100%;
+        padding: 20px;
+        /* border: 1px solid red; */
+    }
+
+    /* Each order item */
+    .order-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px;
+        background-color: transparent;
+        width: 100%;
+        box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .order-item img {
+        width: 75px;
+        height: auto;
+        object-fit: cover;
+        margin-right: 20px;
+    }
+
+    .order-item .item-details {
+        flex: 1;
+    }
+
+    .order-item .item-details p {
+        margin: 3px 0;
+        font-size: 14px;
+    }
+
+    .total-amount {
+        /* text-align: center; */
+        margin-left: auto;
+        font-size: 16px;
+        /* font-weight: bold; */
+    }
+
+    .close-button {
+        background-color: #111;
+        color: white;
+        padding: 8px 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+        @media (min-width: 768px) {
+            .order-items {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+</style>
+
+    <div id="itemModal" class="view-modal-container">
+
+        <div class="first-child-container">
+
+            <div class="second-child-container">
+
+                <div class="item-modal-container">
+
+                </div>
+                
+            </div>
+
+        </div>
+
+    </div>
 
     <div class="profile-container">
 
@@ -71,13 +206,15 @@
             <div class="tab" id="orders">
                 <h1>MY ORDERS</h1>
 
+                <div class="table-orders-container">
+
                 <table class="orders-table">
                     <thead>
                         <tr>
-                            <th>Order #</th>
+                            <th>ID</th>
                             <th>Date</th>
-                            <!-- <th>Items</th> -->
-                            <th>Total</th>
+                            <th>Amount</th>
+                            <th>Payment</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -94,17 +231,20 @@
                             }else{
 
                                 while($orderData = $resultOrders->fetch_assoc()) :
-                            // print_r($orderData);
 
-                            $formattedDate = date('F j, Y, g:i a', strtotime($orderData['orderDate']));
+                                // print_r($orderData);
+
+                                $formattedDate = date('F j, Y, g:i a', strtotime($orderData['orderDate']));
                         ?>
                         <tr>
-                            <td><?= $orderData['orderID'] ?></td>
+                            <td class="orderID"><?= $orderData['orderID'] ?></td>
                             <td><?= $formattedDate ?></td>
-                            <!-- <td>2 Items</td> -->
-                            <td><?= $orderData['orderAmount'] ?></td>
-                            <td><span class="order-status pending"><?= $orderData['orderStatus'] ?></span></td>
-                            <td><a href="#" class="btn">View Details</a></td>
+                            <td><?= number_format($orderData['orderAmount']) ?></td>
+                            <td><span class="order-status <?= $orderData['paymentStatus'] ?>"><?= $orderData['paymentStatus'] ?></span></td>
+                            <td><span class="order-status <?= $orderData['orderStatus'] ?>"><?= $orderData['orderStatus'] ?></span></td>
+                            <td>
+                                <a href="#" class="btn view-data">View</a>
+                            </td>
                         </tr>
 
                         <?php 
@@ -131,6 +271,8 @@
                         </tr> -->
                     </tbody>
                 </table>
+
+                </div>
                 
             </div>
 
@@ -310,42 +452,83 @@
         </section>
 
     </div>
-
-<script>
-
-    function cancel1(){
-        window.location.href = 'view-profile.php';
-    }
-        
-    function showTab(tabId){
-
-        const tabs = document.querySelectorAll('.tab');
-
-        tabs.forEach(tab => tab.classList.remove('active'));
-            
-        document.getElementById(tabId).classList.add('active');
-
-    }
-
-    showTab('orders');
-
-    function togglePasswordVisibility(fieldId, toggleElement){
-
-        const field = document.getElementById(fieldId);
-
-        if(field.type === "password"){
-
-            field.type = "text";
-            toggleElement.textContent = "Hide";
-        }else{
-
-            field.type = "password";
-            toggleElement.textContent = "Show";
-        }
-
-    }
-
-</script>
 <?php
     include 'includes/footer.php';
 ?>
+<script>
+
+function cancel1(){
+    window.location.href = 'view-profile.php';
+}
+    
+function showTab(tabId){
+
+    const tabs = document.querySelectorAll('.tab');
+
+    tabs.forEach(tab => tab.classList.remove('active'));
+        
+    document.getElementById(tabId).classList.add('active');
+
+}
+
+showTab('orders');
+
+function togglePasswordVisibility(fieldId, toggleElement){
+
+    const field = document.getElementById(fieldId);
+
+    if(field.type === "password"){
+
+        field.type = "text";
+        toggleElement.textContent = "Hide";
+    }else{
+
+        field.type = "password";
+        toggleElement.textContent = "Show";
+    }
+
+}
+
+$(document).ready(function () {
+    $('.view-data').click(function (e) {
+        e.preventDefault();
+
+        // console.log('hi');
+
+        var orderID = $(this).closest('tr').find('.orderID').text();
+
+        // console.log(orderID);
+
+        $.ajax({
+            method: "POST",
+            url: "codes/modal-code.php",
+            data: {
+                'view-order-button': true,
+                'id': orderID,
+            },
+            success: function(response) {
+
+                // console.log(response);
+
+                $('.item-modal-container').html(response);
+
+                $('#itemModal').addClass('show-modal'); 
+            }
+
+        });
+
+    });
+
+    $(document).mouseup(function(e) {
+        var modalContent = $(".item-modal-container");
+
+        if (!modalContent.is(e.target) && modalContent.has(e.target).length === 0) {
+
+            $('#itemModal').removeClass('show-modal');
+        }
+
+    });
+    
+});
+
+</script>

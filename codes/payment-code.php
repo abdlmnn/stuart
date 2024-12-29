@@ -12,6 +12,32 @@
     // the user is need to login to place an order
     if(isset($_SESSION['authenticated'])) :
 
+        if(isset($_POST['add-payment-button']))
+        {
+            $orderID = $_POST['orderID'];
+            $amount = $_POST['amount'];
+            $proofPayment = $_FILES['inputProof']['name'];
+
+                        // imagePath came from my Class PaymentController
+            $resultPath = $payment->imagePath($proofPayment);
+
+            if($resultPath){
+                
+                // addPayment came from my Class PaymentController
+                $payment->addPayment($orderID,$amount,$proofPayment);
+                
+                // Clear my cart into empty after successfull place order
+                $cart->emptyCart();
+
+                direct("view-order-complete.php?success=$orderID");
+
+            }else{
+
+                showMessage('Something went wrong with the image');
+            }
+        }
+
+        // ADD PLACE ORDER 
         if(isset($_POST['add-place-order-button'])){
 
             $orderData = [
@@ -19,62 +45,62 @@
                 'orderTotal' => $_POST['orderTotal'],
                 'paymentMethod' => $_POST['paymentMethod']
             ];  
-
             $total = $_POST['orderTotal'];
 
             // print_r($inventoryID);
             // print_r($size);
             // print_r($quantity);
 
-            $resultAddOrders = $payment->addOrders($orderData);
+            $orderID = $payment->addOrders($orderData);
 
-            if($resultAddOrders){
+            if($orderID){
 
                 // direct('add-payment.php');
-
-                $orderID = $payment->getOrderId();
-
-                if($orderID){
                     
-                    if(isset($_SESSION['cart'])){
+                if(isset($_SESSION['cart'])){
 
-                        foreach($_SESSION['cart'] as $inventoryID => $inventoryData){
+                    foreach($_SESSION['cart'] as $inventoryID => $inventoryData){
 
-                            foreach($inventoryData['item'] as $size => $data){
+                        foreach($inventoryData['item'] as $size => $data){
 
-                                $orderlineData = [
-                                    'orderID' => $orderID,
-                                    'inventoryID' => $inventoryID,
-                                    'sizeID' => $size,
-                                    'quantity' => $data['quantity'],
-                                    'total' => $total
-                                ];
+                            $orderlineData = [
+                                'orderID' => $orderID,
+                                'inventoryID' => $inventoryID,
+                                'sizeID' => $size,
+                                'quantity' => $data['quantity'],
+                                'total' => $total
+                            ];
 
-                                // print_r($inventoryID);
-                                // print_r($size);
+                            // print_r($inventoryID);
+                            // print_r($size);
 
-                                $payment->addOrderLine($orderlineData);
-
-                            }
-
+                            $payment->addOrderLine($orderlineData);
                         }
 
                         // Clear my cart into empty after successfull place order
                         // $cart->emptyCart();
-                        
-                        // direct('add-payment.php');
-                        
                     }
-                }else{
-                    
-                    redirect('No order id found','add-place-order.php');
-                }
 
-            }else{
+                    if($orderData['paymentMethod'] == 'COD'){
+
+                        // insert payment even COD
+
+                        // Clear my cart into empty after successfull place order
+                        $cart->emptyCart();
+
+                        direct("view-order-complete.php?success=$orderID");
+                    }elseif($orderData['paymentMethod'] == 'GCash'){
+
+                        direct("add-payment.php?order=$orderID");
+                    }
+
+
+                }else{
 
                 redirect('Something went wrong','add-place-order.php');
-            }
+                }
 
+            }
     
         }
 
