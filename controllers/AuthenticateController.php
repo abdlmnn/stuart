@@ -37,6 +37,7 @@
                 SELECT * 
                 FROM orders
                 WHERE userID='$userID'
+                ORDER BY orderDate DESC
             ";
             $result = $this->conn->query($getDataQuery);
             

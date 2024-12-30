@@ -70,11 +70,9 @@
                             $mail->addAddress($email);   
                             
                             $mail->isHTML(true); 
-                            $mail->Subject = "Order #$orderID Cancelled";
+                            $mail->Subject = "Your Order #$orderID has been cancelled";
                             $mail->Body = "
-                                <h2 style='color: #111;'>Your Order #$orderID has been cancelled</h2>
-                                <p style='font-size: 16px; color: #111;'><strong>Amount:</strong> &#x20B1; $totalAmount</p>
-                                <p style='font-size: 16px; color: #111;'>To inform you that your order has been cancelled.</p>
+                                <h2 style='color: #111;'>To inform you that your order has been cancelled</h2>
                                 <p style='font-size: 16px; color: #111;'>If you believe this was a mistake, please contact us.</p>
                                 <p style='font-size: 16px; color: #111;'>Thank you for your understanding.</p>
                             ";
@@ -169,19 +167,21 @@
                             $mail->addAddress($email);   
                             
                             $mail->isHTML(true); 
-                            $mail->Subject = "Order #$orderID Confirmed";
+                            $mail->Subject = "Your Official Receipt for Order #$orderID";
                             $mail->Body = "
                                 <h2 style='color: #111;'>Your Order #$orderID has been confirmed</h2>
-                                <a href='http://localhost/stuart/view-receipt.php?order=$orderID' 
-                                                style='background-color:rgb(22, 25, 22); 
-                                                color: white; 
-                                                padding: 10px 20px; 
-                                                text-decoration: none; 
-                                                font-size:16px;
+                                
+                                <p style='font-size: 16px; color: #111;'>
+                                    Click here to
+                                    <a href='http://localhost/stuart/view-receipt.php?order=$orderID' 
+                                                style=' 
+                                                color: #111; 
+                                                '
                                                 '>
-                                                        Receipt
+                                                        View Receipt
                                                 </a>
-                                <p style='font-size: 16px; color: #111;'><strong>Amount:</strong> &#x20B1; $totalAmount</p>
+                                </p>
+                            
                                 <p style='font-size: 16px; color: #111;'>Thank you, $fullname, for your purchase.</p>
                             ";
 
@@ -226,6 +226,8 @@
         {
             $orderID = $_POST['orderID'];
             $amount = $_POST['amount'];
+
+            $payment->paymentCOD($orderID,$amount);
 
             // Clear my cart into empty after successfull place order
             $cart->emptyCart();
@@ -315,7 +317,7 @@
                                         <p style='  color: #111;  font-size: 16px;
                                                  '
                                         > 
-                                                    <strong>Payment Method:</strong> Cash
+                                                    <strong>Payment Method:</strong> COD
                                         </p>
                                      ";
 
@@ -326,18 +328,18 @@
                     $mail->addAddress($userEmail);      
                     $mail->Subject = "Payment for Order #$orderID";
                     $mail->Body = "
-                        <h1 style='color: #111;'>Payment Successful</h1>
-                        <a href='http://localhost/stuart/view-invoice.php?order=$orderID' 
-                                                style='background-color:rgb(22, 25, 22); 
-                                                color: white; 
-                                                padding: 10px 20px; 
-                                                text-decoration: none; 
-                                                font-size:16px;
+                        <h2 style='color: #111;'>Payment Successful</h2>
+                        
+                        <p style='font-size: 16px; color: #111;'>
+                                    Click here to
+                                    <a href='http://localhost/stuart/view-link-invoice.php?order=$orderID' 
+                                                style=' 
+                                                color: #111;
                                                 '>
-                                                        Invoice
+                                                        View Invoice
                                                 </a>
+                                </p>                        
                         <h2>Thank you for your payment for Order #$orderID</h2>
-                        <p style='font-size: 16px;'><strong>Amount</strong>: &#x20B1; $totalAmount</p>
                         <p style='font-size: 16px;'>We appreciate your order! Once it’s approved, 
                         we’ll send you a notification email.</p>
                     ";
@@ -493,15 +495,16 @@
                     $mail->Subject = "Payment for Order #$orderID";
                     $mail->Body = "
                         <h1 style='color: #111;'>Payment Successful</h1>
-                        <a href='http://localhost/stuart/view-invoice.php?order=$orderID' 
-                                                style='background-color:rgb(22, 25, 22); 
-                                                color: white; 
-                                                padding: 10px 20px; 
-                                                text-decoration: none; 
-                                                font-size:16px;
+                        <p style='font-size: 16px; color: #111;'>
+                                    Click here to
+                                    <a href='http://localhost/stuart/view-link-invoice.php?order=$orderID' 
+                                                style=' 
+                                                color: #111; 
                                                 '>
-                                                        Invoice
+                                                '>
+                                                        View Invoice
                                                 </a>
+                                </p>
                         <h2>Thank you for your payment for Order #$orderID</h2>
                         <p style='font-size: 16px;'><strong>Amount</strong>: &#x20B1; $totalAmount</p>
                         <p style='font-size: 16px;'>We appreciate your order! Once it’s approved, 
@@ -577,7 +580,7 @@
 
                             if($orderData['paymentMethod'] == 'COD'){
  
-                                $payment->paymentCOD($orderID,$total);
+                                // $payment->paymentCOD($orderID,$total);
         
                                 direct("view-invoice.php?order=$orderID");
                             }elseif($orderData['paymentMethod'] == 'GCash'){

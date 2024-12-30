@@ -93,7 +93,7 @@
                     </thead>
                     <tbody>
                         <?php
-                            $resultOrders = $authenticate->exactOrders();
+                            $resultOrders = $authenticated->exactOrders();
 
                             // print_r($resultOrders);
 

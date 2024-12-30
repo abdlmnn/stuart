@@ -125,30 +125,30 @@
         </section>
         
         <br>
-        <?php if($orderData['orderStatus'] === 'pending') : ?>
-            <?php 
-                if($orderData['paymentMethod'] === 'COD'){
-            ?>
-                <form action="" method="post" class="btn-container-form">
+            <?php if($orderData['orderStatus'] === 'pending') : ?>
+                <?php 
+                    if($orderData['paymentMethod'] === 'COD'){
+                ?>
+                    <form action="" method="post" class="btn-container-form">
 
-                    <input type="hidden" name="orderID" value="<?= $orderID ?>">
-                    <input type="hidden" name="amount" value="<?= $total ?>">
+                        <input type="hidden" name="orderID" value="<?= $orderID ?>">
+                        <input type="hidden" name="amount" value="<?= $total ?>">
 
-                    <button type="submit" name="add-complete-order-button" class="complete-btn">Proceed to Complete Order</button>
+                        <button type="submit" name="add-complete-order-button" class="complete-btn">Proceed to Complete Order</button>
 
-                </form>
-            <?php
-                }elseif($orderData['paymentMethod'] === 'GCash'){
-            ?>
-                <div class="btn-container-form">
+                    </form>
+                <?php
+                    }elseif($orderData['paymentMethod'] === 'GCash'){
+                ?>
+                    <div class="btn-container-form">
 
-                    <a href="add-payment.php?order=<?= $orderID ?>" class="complete-btn">Backt to Payment</a>
+                        <a href="add-payment.php?order=<?= $orderID ?>" class="complete-btn">Backt to Payment</a>
 
-                </div>
-            <?php 
-                } 
-            ?>
-        <?php endif; ?>
+                    </div>
+                <?php 
+                    } 
+                ?>
+            <?php endif; ?>
     </div>
 </div>
         <?php 
