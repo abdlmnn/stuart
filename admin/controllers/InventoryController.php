@@ -23,6 +23,20 @@
 
             return $getData->num_rows;
         }
+
+        // Total of Items, it display to dashboard
+        public function totalStockItem()
+        {
+            $getDataQuery = "
+                SELECT SUM(itemTotalStock) AS totalStock
+                FROM inventory
+            ";
+            $getData = $this->conn->query($getDataQuery);
+
+            $row = $getData->fetch_assoc();
+
+            return $row['totalStock'];
+        }
         
         // Storing the data in array with key and assign the row as a value
         public function rows($row)
