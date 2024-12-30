@@ -71,7 +71,7 @@
     
                 // Add user info and grand total to the response
                 $response = "
-                    <h2>Order Receipt</h2>
+                    <h2>Order Details</h2>
     
                     <div class='user-info'>
                             <p><strong>Full Name:</strong> $fullname</p>
