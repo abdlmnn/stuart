@@ -20,6 +20,19 @@
             return $path;
         }
 
+        public function deleteOrder($orderID)
+        {
+            $deleteDataQuery = "
+                DELETE
+                FROM orders
+                WHERE orderID='$orderID'
+                LIMIT 1
+            ";
+            $result = $this->conn->query($deleteDataQuery);
+        
+             return $result;
+        }
+
         public function getDataOrderline($orderID)
         {
             $getDataQuery = "
@@ -185,5 +198,6 @@
                 return false;
             }
         }
+
     }
 ?>

@@ -15,6 +15,7 @@
 .company-name {
     flex-grow: 1;
     padding-left: 50px;
+    /* z-index: 9999; */
 }
 
 .company-name .a-link {
@@ -110,6 +111,7 @@
     padding: 10px;
     cursor: pointer;
     display: none; 
+    z-index: 9999;
 }
 
 .hamburger div {
@@ -137,7 +139,8 @@
     top: -8px;
 }
 
-.modal-content {
+.modal-content-navbar {
+    /* border: 5px solid red; */
     display: none;
     flex-direction: column;
     position: fixed;
@@ -151,28 +154,29 @@
     z-index: 999;
 }
 
-.modal-content a, .modal-content button {
-    color: white;
+.modal-content-navbar a, .modal-content-navbar button {
+    color: #fff;
     font-size: 20px;
     margin: 15px 0;
     text-decoration: none;
     background: none;
     border: none;
     cursor: pointer;
+    /* border: 5px solid red; */
 }
 
-.modal-content a:hover,
-.modal-content button:hover {
+.modal-content-navbar a:hover,
+.modal-content-navbar button:hover {
     color: #E2A500;
 }
 
-.modal-content a ion-icon,
-.modal-content button ion-icon {
+.modal-content-navbar a ion-icon,
+.modal-content-navbar button ion-icon {
     font-size: 25px;
     margin-right: 10px;
 }
 
-.modal-content .logout-icon {
+.modal-content-navbar .logout-icon {
     font-size: 30px;
     padding-left: 7px;
 }

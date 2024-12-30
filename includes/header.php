@@ -10,7 +10,8 @@
     <!-- <script src="jquery-3.7.1.min.js"></script> -->
     
     <!-- CSS -->
-    <link rel="stylesheet" href="css/login2.css?v=7.5">
+    <link rel="stylesheet" href="css/login2.css?v=8.9">
+    <link rel="shortcut icon" href="gcash/logo.png" type="image/x-icon">
 
     <title><?= $title; ?></title>
 </head>

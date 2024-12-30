@@ -185,3 +185,39 @@
 .child-table .delete-button i:hover {
     color: #E2A500;
 }
+
+.order-status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+  
+.order-status.paid {
+    /* background-color: #4caf50;  */
+    background-color: #28a745;
+    color: white; 
+}
+  
+.order-status.unpaid {
+    background-color: #f44336; 
+    color: white; 
+}
+
+.order-status.approved {
+    background-color: #28a745;
+    /* background-color: #4caf50; */
+    color: #fff;
+}
+
+.order-status.pending {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.order-status.cancelled {
+    background-color: #f44336; 
+    /* background-color: #dc3545; */
+    color: #fff;
+}

@@ -45,6 +45,8 @@
                 $formattedDate = date('F j, Y, g:i a', strtotime($orderData['orderDate']));
         ?>
 
+        <?php if($orderData['orderStatus'] === 'approved' && $orderData['paymentStatus'] === 'paid') : ?>
+
 <div class="main-receipt-container">
     <div class="receipt">
         <header class="receipt-header">
@@ -131,6 +133,8 @@
     </div>
 
 </div>
+        <?php endif; ?>
+
         <?php 
             } 
         ?>

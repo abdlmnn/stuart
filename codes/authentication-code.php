@@ -6,15 +6,19 @@
     require 'phpmailer/src/PHPMailer.php';
     require 'phpmailer/src/SMTP.php';
 
+    include_once 'admin/controllers/SizesController.php';
     include_once 'controllers/RegisterController.php';
     include_once 'controllers/LoginController.php';
     include_once 'controllers/ResetPasswordController.php';
     include_once 'controllers/ForgotPasswordController.php';
+    include_once 'controllers/CartController.php';
 
     $register = new RegisterController;
     $login = new LoginController;
     $resetPassword =  new ResetPasswordController;
     $forgotPassword =  new ForgotPasswordController;
+    $sizes = new SizesController;
+    $cart = new CartController;
 
     // RESET PASSWORD USER
     if(isset($_POST['reset-button']))
@@ -178,17 +182,39 @@
     // LOGOUT USER
     if(isset($_POST['logout-button']))
     {
-                      // userLogout came from my Class LoginController
-        $resultLogout = $login->userLogout();
+    
+        if(isset($_SESSION['cart'])){
 
-        if($resultLogout){
-            
-            // userLogout is true, it direct to login page
-            redirect('You have logout successfully','view-login.php');
-        }else{
+            foreach($_SESSION['cart'] as $inventoryID => $inventoryData){
 
-            redirect('Something went wrong','view-customer.php');
+                foreach($inventoryData['item'] as $size => $data){
+
+                    $quantity = $data['quantity'];
+
+                    // updateStockDelete came from my Class SizeController
+                    $sizes->updateStockDelete($size,$inventoryID,$quantity);
+                    
+                    // after updating stock, it become empty array and continue logged out
+                    $cart->emptyCart();
+
+                                  // userLogout came from my Class LoginController
+                    $resultLogout = $login->userLogout();
+
+                    if($resultLogout){
+
+                        // userLogout is true, it direct to login page
+                        redirect('You have logout successfully','view-login.php');
+                    }else{
+
+                        redirect('Something went wrong','view-customer.php');
+                    }
+
+                }
+
+            }
+
         }
+
     }
     // LOGOUT USER
     // LOGIN USER

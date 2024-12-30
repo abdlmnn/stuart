@@ -1,4 +1,4 @@
-const modal = document.querySelector(".modal-content");
+const modal = document.querySelector(".modal-content-navbar");
 const hamburger = document.querySelector(".hamburger");
 
 function toggleModal() 

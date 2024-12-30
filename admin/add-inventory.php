@@ -104,7 +104,7 @@
                             <th>Image</th>
                             <th>Name</th>
                             <th>Price</th>
-                            <th>Total Stock</th>
+                            <th>Total</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>

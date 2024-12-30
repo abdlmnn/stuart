@@ -221,6 +221,23 @@
     // the user is need to login to place an order
     if(isset($_SESSION['authenticated'])) :
 
+        // Delete orders details
+        if(isset($_POST['delete-order-details-button']))
+        {
+            $orderID = $_POST['delete-order-details-button'];
+
+            $resultDeleteOrder = $payment->deleteOrder($orderID);
+
+            if($resultDeleteOrder){
+
+                showMessage('Order Deleted Successfully');
+            }else{
+
+                showMessage('Something went wrong');
+            }
+
+        }
+        // Delete orders details
         // Cash payment only 
         if(isset($_POST['add-complete-order-button']))
         {
@@ -494,19 +511,17 @@
                     $mail->addAddress($userEmail);      
                     $mail->Subject = "Payment for Order #$orderID";
                     $mail->Body = "
-                        <h1 style='color: #111;'>Payment Successful</h1>
+                        <h2 style='color: #111;'>Payment Successful</h2>
                         <p style='font-size: 16px; color: #111;'>
                                     Click here to
                                     <a href='http://localhost/stuart/view-link-invoice.php?order=$orderID' 
                                                 style=' 
-                                                color: #111; 
-                                                '>
+                                                color: #111;
                                                 '>
                                                         View Invoice
                                                 </a>
                                 </p>
                         <h2>Thank you for your payment for Order #$orderID</h2>
-                        <p style='font-size: 16px;'><strong>Amount</strong>: &#x20B1; $totalAmount</p>
                         <p style='font-size: 16px;'>We appreciate your order! Once it’s approved, 
                         we’ll send you a notification email.</p>
                     ";

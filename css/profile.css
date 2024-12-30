@@ -181,16 +181,16 @@
 .btn {
     display: flex;
     justify-content: center;
-    padding: 8px 12px;
-    background-color: #111;
-    color: #fff;
+    /* padding: 8px 12px; */
+    background-color: transparent;
+    color: #111;
     text-decoration: none;
     border: none;
     transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-    background-color: #333;
+    color: #ffc107;
 }
 
 .order-status {

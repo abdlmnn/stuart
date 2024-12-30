@@ -6,6 +6,37 @@
         <div></div>
     </div>
 
+    <div class="modal-content-navbar">
+
+    <?php if(isset($_SESSION['authenticated'])) : ?>
+
+        <form action="" method="post">
+            <button type="submit" name="logout-button" class="logout-btn">
+                <ion-icon name="log-out-outline" class="logout-icon"></ion-icon>
+            </button>
+        </form>
+
+        <a href="<?= base_url('view-profile.php') ?>">
+            <ion-icon name="person-outline" class="user-icon"></ion-icon>
+        </a>
+
+        <a href="<?= base_url('view-cart.php') ?>">
+            <ion-icon name="bag-outline" class="cart-icon"></ion-icon>
+        </a>
+
+        <a href="<?= base_url('view-landing.php') ?>">
+            Home
+        </a>
+
+    <?php else : ?>
+
+        <a href="<?= base_url('view-landing.php') ?>" class="a-link">Shop Now</a>
+        <a href="<?= base_url('add-register.php') ?>" class="a-link">Register</a>
+        <a href="<?= base_url('view-login.php') ?>" class="a-link">Login</a>
+
+    <?php endif; ?>
+    </div>
+
     <?php if(isset($_SESSION['authenticated'])) : ?>
 
         <div class="company-name">
@@ -88,56 +119,7 @@
     <?php endif; ?>
 
     </div>
+
 </div>
 
 
-<div class="modal-content">
-
-    <?php if(isset($_SESSION['authenticated'])) : ?>
-
-        <form action="" method="post">
-            <button type="submit" name="logout-button" class="logout-btn">
-                <ion-icon name="log-out-outline" class="logout-icon"></ion-icon>
-            </button>
-        </form>
-
-        <a href="<?= base_url('view-profile.php') ?>">
-            <ion-icon name="person-outline" class="user-icon"></ion-icon>
-        </a>
-
-        <!-- <a href="#" class="a-link">
-            <span class="total-notification">5</span>
-            <ion-icon name="notifications-outline" class="notification-icon"></ion-icon>
-        </a> -->
-
-        <!-- <a href="<?= base_url('shop.php') ?>" class="a-link">
-            <ion-icon name="bag-outline" class="cart-icon"></ion-icon>
-        </a> -->
-
-        <a href="#" class="a-link">
-            Men Clothing
-        </a>
-
-        <a href="#" class="a-link">
-            Women Clothing
-        </a>
-
-        <a href="#" class="a-link">
-            Men Shoes
-        </a>
-
-        <a href="#" class="a-link">
-            Women Shoes
-        </a>
-
-        <a href="#" class="a-link">
-            Accessories
-        </a>
-
-    <?php else : ?>
-
-        <a href="<?= base_url('add-register.php') ?>" class="a-link">Register</a>
-        <a href="<?= base_url('view-login.php') ?>" class="a-link">Login</a>
-
-    <?php endif; ?>
-</div>

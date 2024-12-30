@@ -7,11 +7,13 @@
     include_once 'controllers/InventoryController.php';
     include_once 'controllers/SubcategoriesController.php';
     include_once 'controllers/SizesController.php';
+    include_once 'controllers/OrderController.php';
 
     $authenticated = new AuthenticateController;
     $inventory = new InventoryController;
     $subcategories = new SubcategoriesController;
     $sizes = new SizesController;
+    $order = new OrderController;
 
     $authenticated->adminOnly();
     $authenticated->checkIsLoggedIn();
@@ -34,7 +36,7 @@
 
                     <div class="card">
                         <div class="box">
-                            <span class="total-number">0</span>
+                            <span class="total-number"><?php echo number_format($order->totalOrders()); ?></span>
                             <span class="text-box">Total Orders</span>
                         </div>
                         <div class="case">
@@ -44,7 +46,7 @@
 
                     <div class="card">
                         <div class="box">
-                            <span class="total-number"><?php echo $inventory->totalItems(); ?></span>
+                            <span class="total-number"><?php echo number_format($inventory->totalItems()); ?></span>
                             <span class="text-box">Total Items</span>
                         </div>
                         <div class="case">
@@ -54,7 +56,7 @@
                     
                     <div class="card">
                         <div class="box">
-                            <span class="total-number">0</span>
+                            <span class="total-number"><?php echo number_format($order->totalSales()); ?></span>
                             <span class="text-box">Total Sales</span>
                         </div>
                         <div class="case">
@@ -222,8 +224,138 @@
                         </table>
                     </div>
                 </div>
+
+
+                <hr style="color: #000;">
+
+                <div class="text-search-container"
+                    style=
+                    "
+                        display: flex;
+                        width: 100%;
+                        /* border: 1px solid red; */
+                    "
+                >
+
+                    <h2 class="available-item"
+                        style=
+                        "
+                            /* border: 1px solid red; */
+                            width: 50%;
+                            margin-bottom: auto;
+                            text-align: left;
+                            padding: 5px;
+
+                        "
+                    >Approved Orders</h2>
+                    
+                    <div class="main-search" 
+                    style=
+                    "
+                        width: 100%;
+                    ">
+                        <div class="search-container">
+                            <input type="text" id="myInput-order" onkeyup="filterTable2()" placeholder="Search here approved order . . ." title="Type in a name">
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="table-container" style="margin-bottom: 25px">
+
+                    <div class="scroll-table">
+
+                        <table class="child-table" id="orderTable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Date</th>
+                                    <th>Customer</th>
+                                    <th>Total</th>
+                                    <th>Method</th>
+                                    <th>Payment Status</th>
+                                    <th>Order Status</th>
+                                    <th>Receipt</th>
+                                </tr>
+                            </thead>
+            
+                            <tbody>
+                                <?php
+                                       // get came from my Class InventoryController  
+                                    $resultGet = $order->getDataOrderApproved();
+
+                                    $total = 0;
+
+                                    while($data = $resultGet->fetch_assoc()){
+
+                                        $formattedDate = date('F j, Y, g:i a', strtotime($data['orderDate']));
+                                ?>
+                                <tr>
+                                    <td>
+                                        <?= $data['orderID'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $formattedDate ?> 
+                                    </td>
+                                    <td>
+                                        <?= $data['userFullname'] ?>
+                                    </td>
+                                    <td>
+                                        <?= number_format($data['orderAmount']) ?>
+                                    </td>
+                                    <td>
+                                        <?= $data['paymentMethod'] ?>
+                                    </td>
+                                    <td>
+                                        <span class="order-status <?= $data['paymentStatus'] ?>"><?= $data['paymentStatus'] ?></span>
+                                    </td>
+                                    <td>
+                                        <span class="order-status <?= $data['orderStatus'] ?>"><?= $data['orderStatus'] ?></span>
+                                    </td>
+                                    <td style="display: flex;">
+
+                                        <a href="../view-receipt.php?order=<?= $data['orderID'] ?>" target="_blank"
+                                            style="color: #111;
+                                            background-color: transparent;
+                                            padding: 10px 20px;
+                                            /* font-size: 14px; */
+                                            "><i class="fa-solid fa-receipt"></i></a>
+                                            
+                                    </td>
+                                </tr>
+                                <?php 
+                                    } 
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                
+
             </div>
         </div>
     </div>
 </main>
+
+<script>
+    function filterTable2() {
+    const input = document.getElementById("myInput-order").value.toUpperCase();
+    const table = document.getElementById("orderTable");
+    const rows = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName("td");
+        let match = false;
+        for (let j = 0; j < cells.length; j++) {
+            if (cells[j] && cells[j].innerText.toUpperCase().indexOf(input) > -1) {
+                match = true;
+                break;
+            }
+        }
+        rows[i].style.display = match ? "" : "none";
+    }
+}
+</script>
 <?php include 'includes/footer.php'; ?>

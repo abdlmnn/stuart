@@ -1,5 +1,5 @@
 <?php
-    $title = 'My Profile';
+    $title = 'My Account';
     
     include 'config/connect.php';
 
@@ -7,6 +7,7 @@
     include 'codes/profile-code.php';
     include 'codes/change-password-code.php';
     include 'codes/cart-code.php';
+    include 'codes/payment-code.php';
 
     include_once 'controllers/AuthenticateController.php';
     $authenticated = new AuthenticateController;
@@ -20,7 +21,7 @@
 
     include 'message.php';
 ?>
-<link rel="stylesheet" href="css/profile.css?v=7.5">
+<link rel="stylesheet" href="css/profile.css?v=8.5">
 <link rel="stylesheet" href="css/order-modal.css?v=1.5">
 
     <div id="itemModal" class="view-modal-container">
@@ -88,7 +89,7 @@
                             <th>Amount</th>
                             <th>Payment</th>
                             <th>Status</th>
-                            <th>Action</th>
+                            <th style="text-align: center;">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -114,8 +115,30 @@
                             <td><?= number_format($orderData['orderAmount']) ?></td>
                             <td><span class="order-status <?= $orderData['paymentStatus'] ?>"><?= $orderData['paymentStatus'] ?></span></td>
                             <td><span class="order-status <?= $orderData['orderStatus'] ?>"><?= $orderData['orderStatus'] ?></span></td>
-                            <td>
-                                <a href="#" class="btn view-data">View</a>
+                            <td style="display: flex; ">
+                                <a href="#" class="btn view-data">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </a>
+                                <form action="" method="post">
+                                    <button type="submit" name="delete-order-details-button" value="<?= $orderData['orderID'] ?>" class="btn"
+                                    
+                                    >
+                                    <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                                <?php if($orderData['paymentStatus'] === 'unpaid' && $orderData['orderStatus'] === 'pending') : ?>
+
+                                <a href="view-link-invoice.php?order=<?= $orderData['orderID'] ?>" target="_blank" class="btn"
+                                ><i class="fa-solid fa-file-invoice"></i></a>
+
+                                <?php elseif($orderData['paymentStatus'] === 'paid' && $orderData['orderStatus'] === 'approved') : ?>
+
+                                <a href="view-receipt.php?order=<?= $orderData['orderID'] ?>" target="_blank" class="btn"
+                                ><i class="fa-solid fa-receipt"></i></a>
+
+                                <?php else : ?>
+
+                                <?php endif; ?>
                             </td>
                         </tr>
 
@@ -123,44 +146,9 @@
                                 endwhile;
                             }
                         ?>
-                        <!-- Order Row 2 -->
-                        <!-- <tr>
-                            <td>#123457</td>
-                            <td>December 18, 2024</td>
-                            <td>2 Items</td>
-                            <td>$75.00</td>
-                            <td><span class="order-status pending">Pending</span></td>
-                            <td><a href="#" class="btn">View Details</a></td>
-                        </tr> -->
-                        <!-- Order Row 3 -->
-                        <!-- <tr>
-                            <td>#123458</td>
-                            <td>December 15, 2024</td>
-                            <td>1 Item</td>
-                            <td>$35.00</td>
-                            <td><span class="order-status cancelled">Cancelled</span></td>
-                            <td><a href="#" class="btn">View Details</a></td>
-                        </tr> -->
                     </tbody>
                 </table>
 
-                </div>
-                
-            </div>
-
-            <div class="tab" id="messages">
-                <h1>MY MESSAGES</h1>
-
-                <div class="notification-item">
-                    <div class="notification-content">
-                        <p>Your order #123456 has been successfully delivered. Thank you for shopping with us!</p>
-                    </div>
-                </div>
-
-                <div class="notification-item">
-                    <div class="notification-content">
-                        <p>Your payment for order #123457 has been confirmed. We are now processing your order.</p>
-                    </div>
                 </div>
                 
             </div>

@@ -124,8 +124,6 @@
 
         </section>
         
-        <br>
-        
     </div>
 </div>
         <?php 

@@ -1,5 +1,5 @@
 <?php
-    $title = 'Sales Report';
+    $title = 'Orders';
 
     include '../config/connect.php';
 
@@ -26,17 +26,22 @@
     $resul = $order->getDataOrder();
 ?>
 <main>
-    <h1>Sales Report</h1>
+    <h1>Orders</h1>
     <hr>
 
         <div class="search-container">
             <input type="text" id="myInput" onkeyup="filterTable()" placeholder="Search here . . ." title="Type in a name">
         </div>
 
-        <form action="" method="post"></form>
-
-
     <!-- <div class="whole-container"> -->
+    <div class="main-two-table-container"
+    style="display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    gap:25px;
+    "
+    >
 
         <div class="table-container">
 
@@ -46,26 +51,25 @@
                         <tr>
                             <th>ID</th>
                             <th>Date</th>
-                            <th>Total Amount</th>
-                            <th>Method</th>
                             <th>Customer</th>
-                            <th>Status</th>
-                            <th>View</th>
+                            <th>Total</th>
+                            <th>Method</th>
+                            <th>Payment Status</th>
+                            <th>Order Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
     
                     <tbody>
                         <?php
                                        // get came from my Class InventoryController  
-                            $resultGet = $order->getDataOrder();
+                            $resultGet = $order->getDataOrderPending();
 
                             $total = 0;
 
                             while($data = $resultGet->fetch_assoc()){
 
                                 $formattedDate = date('F j, Y, g:i a', strtotime($data['orderDate']));
-
-                                $total = $total + $data['orderAmount'];
                         ?>
                         <tr>
                             <td>
@@ -75,37 +79,30 @@
                                 <?= $formattedDate ?> 
                             </td>
                             <td>
+                                <?= $data['userFullname'] ?>
+                            </td>
+                            <td>
                                 <?= number_format($data['orderAmount']) ?>
                             </td>
                             <td>
                                 <?= $data['paymentMethod'] ?>
                             </td>
                             <td>
-                                <?= $data['userFullname'] ?>
+                                <span class="order-status <?= $data['paymentStatus'] ?>"><?= $data['paymentStatus'] ?></span>
                             </td>
                             <td>
                                 <span class="order-status <?= $data['orderStatus'] ?>"><?= $data['orderStatus'] ?></span>
                             </td>
                             <td style="display: flex;">
-                                <?php if($data['paymentStatus'] === 'unpaid' && $data['orderStatus'] === 'pending') : ?>
 
-                                    <a href="../view-link-invoice.php?order=<?= $data['orderID'] ?>" target="_blank"
+                                <a href="../add-confirm-order.php?orderID=<?= $data['orderID'] ?>" target="_blank"
                                     style="color: #111;
                                     background-color: transparent;
                                     padding: 10px 20px;
-                                    /* font-size: 14px; */
-                                    "><i class="fa-solid fa-file-invoice"></i></a>
-
-                                <?php else : ?>
-
-                                    <a href="../view-receipt.php?order=<?= $data['orderID'] ?>" target="_blank"
-                                    style="color: #111;
-                                    background-color: transparent;
-                                    padding: 10px 20px;
-                                    /* font-size: 14px; */
-                                    "><i class="fa-solid fa-receipt"></i></a>
-
-                                <?php endif; ?>
+                                ">
+                                    <i class="fa-solid fa-square-check"></i>
+                                </a>
+                                    
                             </td>
                         </tr>
                         <?php               
@@ -118,14 +115,5 @@
             </div>
         </div>
 
-        <div class="total-sales" style="margin-top: 20px;
-        display:flex;
-        gap: 10px;
-        align-items:center;
-        ">
-            <h3>Total Sales:</h3>
-            <h2 style="color: #E2A500;">&#x20B1; <?= number_format($order->TotalSales()) ?></h2>
-        </div>
-    <!-- </div> -->
 </main>
 <?php include 'includes/footer.php'; ?>

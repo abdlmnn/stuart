@@ -5,6 +5,13 @@
 
     $inventory = new InventoryController;
 
+    // Filter Sales report Total Sales
+    $start = '';
+    $end = '';
+    $selected = '';
+
+    
+    // Filter Sales report Total Sales
     // INVENTORY DELETE
     if(isset($_POST['delete-button']))
     {

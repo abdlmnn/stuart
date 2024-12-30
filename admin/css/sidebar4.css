@@ -1,6 +1,6 @@
 @import 'font3.css';
 @import 'dashboard1.css';
-@import 'table8.css';
+@import 'table10.css';
 /* @import 'profile.css'; */
 
 input::-webkit-outer-spin-button,
@@ -16,6 +16,17 @@ input::-webkit-inner-spin-button {
     flex-direction: row;
 }
 #myInput {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: none;
+    outline: none;
+    /* border-bottom: 2px solid #ccc; */
+    box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+}
+
+#myInput-order{
     width: 100%;
     font-size: 16px;
     padding: 12px 20px 12px 40px;
