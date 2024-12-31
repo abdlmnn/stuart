@@ -10,6 +10,8 @@
 
             // this variable conn is assign as the db of my conn
             $this->conn = $db->conn;
+
+            $this->totalStock();
         }
 
         // Total of Items, it display to dashboard
@@ -72,6 +74,8 @@
 
             if($result->num_rows > 0){
 
+                $this->totalStock();
+
                 return $result;
             }else{
 
@@ -97,6 +101,8 @@
             $result = $this->conn->query($getDataQuery);
 
             if($result->num_rows > 0){
+
+                $this->totalStock();
             
                 return $result;
             }else{
@@ -124,6 +130,8 @@
 
             if($result->num_rows > 0){
 
+                $this->totalStock();
+
                 return $result;
             }else{
 
@@ -149,6 +157,8 @@
             $result = $this->conn->query($getDataQuery);
 
             if($result->num_rows > 0){
+
+                $this->totalStock();
 
                 return $result;
             }else{
@@ -176,6 +186,8 @@
 
             if($result->num_rows > 0){
 
+                $this->totalStock();
+
                 return $result;
             }else{
 
@@ -201,6 +213,8 @@
             $result = $this->conn->query($getDataQuery);
 
             if($result->num_rows > 0){
+
+                $this->totalStock();
 
                 return $result;
             }else{
@@ -252,7 +266,8 @@
 
             if($result->num_rows == 1){
 
-                $this->exactTotalStock($updateID);
+                // $this->exactTotalStock($updateID);
+                $this->totalStock();
 
                 // it return the result to the function
                 return $result;

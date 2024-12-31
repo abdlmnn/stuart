@@ -44,6 +44,26 @@
         // Then the exact userID in users Table will be deleted second
         // Lastly, after deleting all data then it will logout and proceed to register
 
+        if(isset($_SESSION['cart'])){
+
+            foreach($_SESSION['cart'] as $inventoryID => $inventoryData){
+
+                foreach($inventoryData['item'] as $size => $data){
+
+                    $quantity = $data['quantity'];
+
+                    // updateStockDelete came from my Class SizeController
+                    $sizes->updateStockDelete($size,$inventoryID,$quantity);
+                    
+                    // after updating stock, it become empty array and continue logged out
+                    $cart->emptyCart();
+
+                }
+
+            }
+
+        }
+
         // Deleting all Orders data with exact ID that are inserted in orders table
         $profile->deleteAllOrdersRecords($id);
 

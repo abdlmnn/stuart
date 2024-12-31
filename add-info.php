@@ -50,9 +50,9 @@
                 </div>
                 
                 <div class="row button">
-                    <button type="button" name="add-button" class="input button" style="margin-right: 5px;" onclick="skip()">
+                    <!-- <button type="button" name="add-button" class="input button" style="margin-right: 5px;" onclick="skip()">
                         Skip
-                    </button>
+                    </button> -->
                     <button type="submit" name="add-button" class="input button">Save</button>
                 </div>
 

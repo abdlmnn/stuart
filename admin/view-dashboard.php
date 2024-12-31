@@ -46,7 +46,7 @@
 
                     <div class="card">
                         <div class="box">
-                            <span class="total-number"><?php echo number_format($inventory->totalStockItem()); ?></span>
+                            <span class="total-number"><?php echo number_format($inventory->totalItems()); ?></span>
                             <span class="text-box">Total Items</span>
                         </div>
                         <div class="case">

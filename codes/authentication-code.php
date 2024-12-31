@@ -197,22 +197,22 @@
                     // after updating stock, it become empty array and continue logged out
                     $cart->emptyCart();
 
-                                  // userLogout came from my Class LoginController
-                    $resultLogout = $login->userLogout();
-
-                    if($resultLogout){
-
-                        // userLogout is true, it direct to login page
-                        redirect('You have logout successfully','view-login.php');
-                    }else{
-
-                        redirect('Something went wrong','view-customer.php');
-                    }
-
                 }
 
             }
 
+        }
+
+        // userLogout came from my Class LoginController
+        $resultLogout = $login->userLogout();
+
+        if($resultLogout){
+  
+            // userLogout is true, it direct to login page
+            redirect('You have logout successfully','view-login.php');
+        }else{
+  
+            redirect('Something went wrong','view-customer.php');
         }
 
     }
@@ -238,13 +238,13 @@
             }elseif($_SESSION['user']['type'] == '0'){
 
                 // This is for empty user Row 
-                if(empty($_SESSION['user']['fullname']) || empty($_SESSION['user']['number']) || empty($_SESSION['user']['address']) || empty($_SESSION['user']['gender'])){
+                // if(empty($_SESSION['user']['fullname']) || empty($_SESSION['user']['number']) || empty($_SESSION['user']['address']) || empty($_SESSION['user']['gender'])){
 
-                    redirect('Please fill up your information','add-info.php');
-                }elseif(!empty($_SESSION['user']['fullname']) && !empty($_SESSION['user']['number']) && !empty($_SESSION['user']['address']) && !empty($_SESSION['user']['gender'])){
+                    // redirect('Please fill up your information','add-info.php');
+                // }elseif(!empty($_SESSION['user']['fullname']) && !empty($_SESSION['user']['number']) && !empty($_SESSION['user']['address']) && !empty($_SESSION['user']['gender'])){
 
                     redirect('You have logged in successfully','view-customer.php');
-                }
+                // }
                 
             };
 
