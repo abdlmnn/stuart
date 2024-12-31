@@ -95,13 +95,15 @@
                         while($data = $resultGet->fetch_assoc()){
 
                             $total = $data['orderlineTotal'];
+
+                            $totalPrice = number_format($data['itemPrice'] * $data['orderlineQuantity']);
                 ?>
                     <tr>
                         <td><?= $data['itemName'] ?></td>
                         <td><?= $data['sizeName'] ?></td>
                         <td><?= $data['orderlineQuantity'] ?></td>
-                        <td><?= $data['itemPrice'] ?></td>
-                        <td><?= number_format($total) ?></td>
+                        <td><?= number_format($data['itemPrice']) ?></td>
+                        <td><?= $totalPrice ?></td>
                     </tr>
                 <?php
                         }
@@ -119,7 +121,7 @@
             </div>
 
             <div class="total-line total-due">
-                <strong style="color: #111; font-size: 16px;">Total:</strong>
+                <strong style="color: #111; font-size: 16px;">Total Amount:</strong>
                 <span>&#8369; <?= number_format($total) ?></span>
             </div>
             

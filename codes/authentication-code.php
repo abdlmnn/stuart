@@ -212,7 +212,7 @@
             redirect('You have logout successfully','view-login.php');
         }else{
   
-            redirect('Something went wrong','view-customer.php');
+            redirect('Something went wrong','view-landing.php');
         }
 
     }
@@ -243,7 +243,7 @@
                     // redirect('Please fill up your information','add-info.php');
                 // }elseif(!empty($_SESSION['user']['fullname']) && !empty($_SESSION['user']['number']) && !empty($_SESSION['user']['address']) && !empty($_SESSION['user']['gender'])){
 
-                    redirect('You have logged in successfully','view-customer.php');
+                    redirect('You have logged in successfully','view-landing.php');
                 // }
                 
             };
