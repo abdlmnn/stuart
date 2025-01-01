@@ -46,18 +46,19 @@
                         <tr>
                             <th>ID</th>
                             <th>Date</th>
-                            <th>Total Amount</th>
-                            <th>Method</th>
-                            <th>Customer</th>
-                            <th>Status</th>
-                            <th>View</th>
+                            <th>Item</th>
+                            <th>Size</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                            <th>Receipts</th>
                         </tr>
                     </thead>
     
                     <tbody>
                         <?php
                                        // get came from my Class InventoryController  
-                            $resultGet = $order->getDataOrder();
+                            $resultGet = $order->getDataOrderline();
 
                             $total = 0;
 
@@ -65,7 +66,11 @@
 
                                 $formattedDate = date('F j, Y, g:i a', strtotime($data['orderDate']));
 
-                                $total = $total + $data['orderAmount'];
+                                // $total = $total + $data['orderlineTotal'];
+
+                                // print_r($total);
+
+                                $totalAmount = number_format($data['orderlineQuantity'] * $data['itemPrice']);
                         ?>
                         <tr>
                             <td>
@@ -75,16 +80,19 @@
                                 <?= $formattedDate ?> 
                             </td>
                             <td>
-                                <?= number_format($data['orderAmount']) ?>
+                                <?= $data['itemName'] ?>
                             </td>
                             <td>
-                                <?= $data['paymentMethod'] ?>
+                                <?= $data['sizeName'] ?>
                             </td>
                             <td>
-                                <?= $data['userFullname'] ?>
+                                <?= number_format($data['orderlineQuantity']) ?>
                             </td>
                             <td>
-                                <span class="order-status <?= $data['orderStatus'] ?>"><?= $data['orderStatus'] ?></span>
+                                <?= number_format($data['itemPrice']) ?>
+                            </td>
+                            <td>
+                                <?= $totalAmount ?>
                             </td>
                             <td style="display: flex;">
                                 <?php if($data['paymentStatus'] === 'unpaid' && $data['orderStatus'] === 'pending') : ?>

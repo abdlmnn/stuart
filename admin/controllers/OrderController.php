@@ -41,15 +41,19 @@
             return $getData->num_rows;
         }
 
-        public function getDataOrderline($orderID)
+        public function getDataOrderline()
         {
             $getDataQuery = "
                 SELECT orderline.*, orders.*, inventory.*, sizes.*
                 FROM orderline
-                INNER JOIN orders ON orderline.orderID = orders.orderID
-                INNER JOIN inventory ON orderline.inventoryID = inventory.inventoryID
-                INNER JOIN sizes ON orderline.sizeID = sizes.sizeID
-                WHERE orderline.orderID='$orderID'
+                INNER JOIN orders 
+                ON orderline.orderID = orders.orderID
+                INNER JOIN inventory 
+                ON orderline.inventoryID = inventory.inventoryID
+                INNER JOIN sizes 
+                ON orderline.sizeID = sizes.sizeID
+                WHERE orders.orderStatus='approved'
+                ORDER BY orders.orderDate DESC
             ";
             $result = $this->conn->query($getDataQuery);
     
